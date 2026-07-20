@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer utilities {
+    .bg-light-color-opacity {
+      background-color: rgba(var(--light-color), 0.5);
+    }
+  }
+
+  .container {
+    max-width: unset;
+  } */

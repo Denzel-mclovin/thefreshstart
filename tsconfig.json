@@ -1,0 +1,17 @@
+// {
+//   "extends": "./.nuxt/tsconfig.json"
+// }
+
+
+{
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "types": ["@types/node", "vite/client"],
+    "moduleResolution": "Bundler",
+    "paths": {
+      "@utils/*": ["./utils/*"],
+      "@/*": ["./*"],
+      "~/*": ["./*"]
+    }
+  }
+}

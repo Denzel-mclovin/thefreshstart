@@ -1,0 +1,296 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  // url      = env("SUPABASE_URL")
+}
+
+model Callback {
+  id            String                @id @default(uuid())
+  name          String
+  dateCallback  DateTime
+  status        Status                @default(WAITING_CALL)
+  createdAt     DateTime              @default(now())
+  discountEndAt DateTime?
+  comment       String?
+  contactMethod ContactMethod         @default(GOOGLE_MEET)
+  email         String
+  phone         String
+  timeSlot      String
+  country       String
+  language      String
+  timeZone      String
+  reservations  CallbackReservation[]
+}
+
+model CallbackReservation {
+  id         String    @id @default(uuid())
+  date       DateTime
+  time       String
+  expiresAt  DateTime
+  createdAt  DateTime  @default(now())
+  callbackId String?
+  callback   Callback? @relation(fields: [callbackId], references: [id])
+}
+
+model User {
+  id                String            @id @default(cuid())
+  email             String            @unique
+  name              String
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  stripeCustomerId  String?
+  sellerId          String?
+  skoolSubscription Boolean?          @default(false)
+  skoolUserEmail    String?           @unique
+  skoolUserId       String?
+  bookCover         ChoicedBookCover  @default(HARD_COVER)
+  skoolSubDate      String?
+  skoolUserLastName String?
+  skoolUserName     String?
+  selectedVarId     String?
+  isBookDiscount    Boolean           @default(false)
+  sessions          CheckoutSession[]
+  payments          Payment[]
+  subscriptions     Subscription[]
+  seller            Seller?           @relation(fields: [sellerId], references: [id])
+}
+
+model Seller {
+  id        String            @id @default(cuid())
+  authUserId String?            @unique
+  name      String
+  lastName  String
+  avatar    String?
+  email     String            @unique
+  phone     String?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  sessions  CheckoutSession[]
+  users     User[]
+  leads     Lead[]
+  approved  SellerStatus      @default(PENDING)
+
+    @@map("sellers")
+}
+
+model Subscription {
+  id               String             @id @default(cuid())
+  stripeId         String             @unique
+  userId           String?
+  email            String
+  status           SubscriptionStatus
+  startDate        DateTime
+  currentPeriodEnd DateTime
+  createdAt        DateTime
+  updatedAt        DateTime
+  payments         Payment[]
+  user             User?              @relation(fields: [userId], references: [id])
+}
+
+model Payment {
+  id             String        @id @default(cuid())
+  stripeId       String        @unique
+  subscriptionId String?
+  userId         String?
+  amount         Int
+  currency       String        @default("usd")
+  status         PaymentStatus
+  paidAt         DateTime
+  subscription   Subscription? @relation(fields: [subscriptionId], references: [id])
+  user           User?         @relation(fields: [userId], references: [id])
+}
+
+model SubscriptionPlan {
+  id             String                 @id @default(cuid())
+  subName        String
+  subDescription String?
+  subStatus      SubscriptionPlanStatus
+  paymentLink    String
+  amount         Int
+  priceId        String
+}
+
+model CheckoutSession {
+  id          String         @id @default(cuid())
+  sellerId    String
+  userId      String?
+  status      CheckoutStatus @default(PENDING)
+  createdAt   DateTime       @default(now())
+  stripeId    String         @unique
+  amountTotal Int
+  clientEmail String
+  seller      Seller         @relation(fields: [sellerId], references: [id])
+  user        User?          @relation(fields: [userId], references: [id])
+}
+
+model Visitor {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+
+  sessions  Session[]
+}
+
+model Session {
+  id        String   @id @default(uuid())
+  visitorId String
+
+  startedAt DateTime @default(now())
+  endedAt   DateTime?
+  timeSpent String?
+
+  visitor Visitor @relation(fields: [visitorId], references: [id])
+
+  attributions Attribution[]
+  conversions  Conversion[]
+}
+
+model Attribution {
+  id        String @id @default(uuid())
+  sessionId String
+
+  utmSource  String?
+  utmMedium  String?
+  utmContent String?
+
+  createdAt DateTime @default(now())
+
+  session Session @relation(fields: [sessionId], references: [id])
+}
+
+model Conversion {
+  id        String @id @default(uuid())
+  sessionId String
+
+  type String
+
+  createdAt DateTime @default(now())
+
+  session Session @relation(fields: [sessionId], references: [id])
+}
+
+model GeneratedLinks {
+    id          String   @id @default(uuid())
+    fullUrl     String 
+    utmSource   String?
+    utmMedium   String?
+    utmCampaign String?
+    utmTerm     String?
+    utmContent  String?
+    utmName     String?
+    visitLink   Int?     @default(0)
+    clickBuy    Int?     @default(0)
+    createdAt   DateTime @default(now())
+    @@unique([utmSource, utmContent])
+}
+
+
+
+model Lead {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  sessionId String? @unique
+
+  quizAttempts Int @default(1)
+
+  firstName String  @default("UNDEFINED")
+  lastName  String  @default("UNDEFINED")
+  phone     String  @default("UNDEFINED")
+  email     String? @unique
+  quizComment String  @default("UNDEFINED")
+
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmTerm     String?
+  utmContent  String?
+
+  status        LeadStatus @default(IN_PROGRESS)
+  lastStep      Int        @default(0)
+  completedAt   DateTime?
+
+  qualified     Boolean @default(false)
+
+  // Seller
+  sellerId String?
+  seller   Seller? @relation(fields: [sellerId], references: [id])
+  assignedAt DateTime?
+
+  answers QuizAnswer[]
+
+  @@map("leads")
+}
+
+model QuizAnswer {
+   id         String   @id @default(cuid())
+  createdAt  DateTime @default(now())
+
+  leadId     String
+  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  questionId Int
+  question   String
+  answer     String
+
+  @@unique([leadId, questionId])
+  @@map("answers")
+}
+
+enum SellerStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum LeadStatus {
+  IN_PROGRESS
+  COMPLETED
+  ABANDONED
+}
+
+enum Status {
+  WAITING_CALL
+  PURCHASED
+}
+
+enum ContactMethod {
+  PHONE_CALL
+  GOOGLE_MEET
+  SOMEWHERE_ELSE
+}
+
+enum ChoicedBookCover {
+  SOFT_COVER
+  HARD_COVER
+}
+
+enum SubscriptionStatus {
+  active
+  trialing
+  past_due
+  canceled
+  incomplete
+}
+
+enum SubscriptionPlanStatus {
+  active
+  deactivate
+}
+
+enum PaymentStatus {
+  pending
+  succeeded
+  failed
+  refunded
+}
+
+enum CheckoutStatus {
+  PENDING
+  COMPLETED
+  EXPIRED
+}

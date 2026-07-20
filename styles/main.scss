@@ -1,0 +1,115 @@
+// @use './/styles/mixins.scss' as mixins;
+@use 'mixins' as mixins;
+
+
+
+:root{
+
+  // COLOR PALLETTE
+
+  --dark-green: #003323;
+  --emerald-green: #00DD78;
+  --soft-green: #FAFCC7;
+  --soft-white: #F9F9F9;
+  --light-grey: #F0F0F0;
+  --white: #FFFFFF;
+  --surface-green: #e8f6ed;
+
+  --gray-2: #DFDFDF;
+  --gray-3: #CECECE;
+  --gray-4: #BDBDBD;
+  --gray-5: #ACACAC;
+  --gray-6: #9B9B9B;
+
+  --primary-btn-hover: #004c34;
+  --primary-btn-disabled: #648279;
+
+  --secondary-btn-hover: #00c86d;
+  --secondary-btn-disabled: #64e8ac;
+
+  --ghost-btn: #00DD78;
+  --ghost-btn-hover: #004c34;
+  --ghost-btn-active: #002211;
+  --ghost-btn-focus: #005c3f;
+  --ghost-btn-disabled: #001a1a;
+
+  --text-primary: #003323;
+  --text-secondary: #5D746C;
+  --text-muted: #8AA198;
+
+  --border-light: #E6EFEA;
+
+  --success: #00DD78;
+  --warning: #F4B740;
+  --danger: #F05B5B;
+
+  --chart-track: #EAF6EF;
+
+  --shadow-card: 0 10px 30px rgba(0, 51, 35, .06);
+
+
+  // // FONTS
+
+   --font-aeonik: "Aeonik", sans-serif;
+   --font-playfair: "Playfair Display", serif;
+
+  // FONT WEIGHTS
+
+  --font-light: 300;
+  --font-regular: 400;
+  --font-bold: 700;
+
+  // FONT SIZES
+
+ --text-xs: 0.75rem;   /* 12px */
+  --text-sm: 0.875rem;  /* 14px */
+  --text-md: 1rem;      /* 16px */
+  --text-lg: 1.125rem;  /* 18px */
+  --text-xl: 1.25rem;   /* 20px */
+  --text-2xl: 1.5rem;   /* 24px */
+  --text-3xl: 2rem;     /* 32px */
+  --text-4xl: 3rem;     /* 48px */
+
+  // LINE HEIGHTS
+
+  --lh-xs: 1rem;        /* 16px */
+  --lh-sm: 1.25rem;     /* 20px */
+  --lh-md: 1.5rem;      /* 24px */
+  --lh-lg: 1.75rem;     /* 28px */
+  --lh-xl: 2rem;        /* 32px */
+  --lh-2xl: 2.5rem;     /* 40px */
+  --lh-3xl: 3rem;       /* 48px */
+  --lh-4xl: 3.5rem;     /* 56px */
+
+  
+
+  // --fz-display: 
+
+  // BORDER RADIUS
+
+  --radius-small: 14px;
+  --radius-medium: 20px;
+  --radius-full: 100px;
+
+  // DROP SHADOWS
+  --shadow-small: 0px 4px 20px rgba(0, 221, 120, 50);
+
+  // Spacing
+  $spacing-xs: 4px;
+  $spacing-sm: 8px;
+  $spacing-md: 16px;
+  $spacing-lg: 24px;
+  $spacing-xl: 32px;
+
+  // Breakpoints
+  $breakpoint-xs: 480px;
+  $breakpoint-sm: 768px;
+  $breakpoint-md: 1024px;
+  $breakpoint-lg: 1200px;
+  $breakpoint-xl: 1440px;
+
+  // FONTS
+
+  
+  
+}

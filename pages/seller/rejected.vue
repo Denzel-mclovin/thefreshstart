@@ -1,0 +1,172 @@
+<template>
+  <div class="seller_page">
+    <div class="seller_page_content">
+      <div class="loader_wrapper" v-if="loaderState">
+        <SharedLoader />
+      </div>
+
+      <div class="logo_content">
+        <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0_288_8022)">
+            <path
+              d="M15 11.25V16.25"
+              stroke="#003323"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M12.9541 4.48899L2.8216 21.4065C2.61272 21.7682 2.50218 22.1783 2.50099 22.596C2.49979 23.0137 2.60798 23.4245 2.81478 23.7874C3.02159 24.1503 3.3198 24.4528 3.67977 24.6647C4.03974 24.8766 4.44892 24.9905 4.8666 24.9952H25.1341C25.5516 24.9904 25.9606 24.8764 26.3204 24.6646C26.6802 24.4528 26.9783 24.1505 27.185 23.7877C27.3918 23.425 27.5 23.0145 27.499 22.5969C27.498 22.1794 27.3877 21.7694 27.1791 21.4077L17.0466 4.48774C16.8334 4.13587 16.5331 3.84492 16.1747 3.64298C15.8162 3.44105 15.4118 3.33496 15.0003 3.33496C14.5889 3.33496 14.1845 3.44105 13.826 3.64298C13.4676 3.84492 13.1673 4.13587 12.9541 4.48774"
+              stroke="#003323"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15 20H15.0125"
+              stroke="#003323"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </g>
+          <defs>
+            <clipPath id="clip0_288_8022">
+              <rect width="30" height="30" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+      <div class="message_content">
+        <p>Sorry, your request has been rejected.</p>
+      </div>
+      <div class="seller_page_content_btn">
+        <button class="go-back-btn" @click="logOutHandler">Go back</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup>
+import { ref } from "vue";
+
+import { useSellerAuth } from "../../composables/useSellerAuth";
+
+const sellerAuth = useSellerAuth();
+
+const loaderState = ref(false);
+
+const logOutHandler = async () => {
+  loaderState.value = true;
+
+  try {
+    console.log("enter handler");
+
+    const logOutReq = await sellerAuth.signOutSeller();
+
+    console.log(logOutReq, "req");
+  } catch (err) {
+    console.log(`Something went wrong ${err}`);
+  } finally {
+    loaderState.value = false;
+  }
+};
+
+definePageMeta({
+  layout: false,
+});
+</script>
+
+<style lang="scss" scoped>
+@use "/styles/mixins.scss" as mixins;
+
+.seller_page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &_content {
+    width: clamp(290px, 85vw, 750px);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    position: relative;
+
+    .loader_wrapper {
+        width: 95%;
+        height: 95%;
+        position: absolute;
+        background: rgba(255,255,255,0.7);
+        backdrop-filter: blur(3px);
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .logo_content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--gray-2);
+      border-radius: 50%;
+      width: 100px;
+      height: 100px;
+      aspect-ratio: 1/1;
+
+      svg {
+        background: var(--soft-green);
+        width: 80%;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        padding: 25px;
+      }
+    }
+
+    &_btn {
+      width: 100%;
+      height: auto;
+      padding: 0 20px 20px;
+    }
+  }
+
+  .title {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20px 20px 10px 20px;
+  }
+
+  .message_content {
+    width: 70%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    p {
+      @include mixins.fz-h3;
+      color: var(--dark-green);
+      white-space: nowrap;
+    }
+  }
+  .go-back-btn {
+    width: 100%;
+    @include mixins.button-primary;
+  }
+}
+</style>

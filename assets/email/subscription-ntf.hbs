@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="x-apple-disable-message-reformatting" />
+  <title>{{subject}}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f2f0f5;
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .wrapper {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #f8f7fb;
+      border: 2px solid #480074;
+      border-radius: 16px;
+      box-shadow:
+        8px 8px 16px rgba(72, 0, 116, 0.15),
+        -8px -8px 16px rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      @media screen and (max-width: 768px) {
+        &{
+          margin: 20px 2vw;
+        }
+      }
+    }
+
+    .banner {
+      width: 100%;
+      display: block;
+    }
+
+    .content {
+      padding: 32px 28px;
+      text-align: start;
+    }
+
+    h1 {
+      color: #480074;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    a.button {
+      display: inline-block;
+      background: #480074;
+      color: white !important;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.25s ease;
+    }
+
+    a.button:hover {
+      background: #5e00a3;
+    }
+
+    .footer {
+      background: #480074;
+      color: #fff;
+      padding: 20px;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- Header banner -->
+    <img src="{{headerBanner}}" alt="Header Banner" class="banner" style="width: 100%; height: 15vh; object-fit: cover"/>
+
+    <div class="content">
+      <h1>Dear {{clientName}} ,</h1>
+      <p>
+
+        You’re just one step away from changing your life through our consulting program. To activate your subscription and begin receiving access to your consulting services, simply click the secure enrollment link below: 
+        <br/>
+        <br/>
+
+        👉 <a href="{{link}}" class="button">Subscription Link</a> 
+        <br/> 
+        <!-- <br/> 
+
+        (This is the custom link that the person will be sent)
+        <br/> -->
+        <br/>
+
+        Once you complete checkout, your subscription will be live and you’ll gain full access to our monthly consulting services. Please note that, as with any professional subscription service, certain general terms and conditions apply. For your convenience, they are outlined below in detail.
+
+        Terms & Conditions Overview
+
+        Subscription Activation: Your subscription begins immediately upon completing the checkout link above. Services are delivered on a month-to-month basis.
+
+        Billing Authorization: By subscribing, you authorize automatic recurring monthly charges to your chosen payment method until cancellation.
+
+        Refund Policy: All subscription payments are final and non-refundable. Retroactive cancellations or disputes will not be honored once payment has been processed in line with these terms.
+
+        Client Responsibility: Managing, updating, or cancelling your subscription is your sole responsibility. We do not process cancellation requests via phone, text, or email.
+
+        Customer Portal Access: You can update payment details, review billing history, or cancel future billings at any time through our secure Stripe Customer Portal:
+        <br/>
+        <br/>
+
+        👉 <a href="https://billing.stripe.com/p/login/aEUbJm9EG91Vexa3cc" class="button">Customer Portal</a> 
+        <br/>
+        <br/>
+        
+
+        Acknowledgment of Terms: By completing your checkout, you confirm that you have reviewed and agreed to these subscription terms.
+
+        We look forward to helping you achieve lasting results through this program.
+
+        Sincerely,
+        Mystic Visions
+
+      </p>
+      
+    </div>
+
+    <!-- Footer banner -->
+    <!-- <img src="{{footerBanner}}" alt="Footer Banner" class="banner" /> -->
+
+    <!-- <div class="footer">
+      © {{year}} My Company. All rights reserved.
+    </div> -->
+
+    <footer class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; -webkit-text-size-adjust:none;">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="center" valign="top">
+
+				<table width="600" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width:600px; min-width:600px; font-size:0px; line-height:0px; margin:0; font-weight:normal;">
+
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td>
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+												<td style="background-color: #fff" bgcolor="#fff">
+													<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			                                            <tr>
+															<td style="height: 85px; background-color: #F8AA28; text-align: center; vertical-align: bottom;" align="center" valign="bottom" bgcolor="#F8AA28" colspan="6"><a href="#"><img src="https://drive.google.com/thumbnail?id=1LVcwXkvMPqYORt3q6QXfsWKkl2UQ1ZYO&sz=w213" border="0" width="71" style="width: 71px; height:auto"></a></td>
+														</tr>
+			                                            <tr>
+															<td style="height: 50px; background-color: #F8AA28; text-align: center; vertical-align: bottom;" align="center" valign="bottom" bgcolor="#F8AA28" colspan="6"><img src="https://drive.google.com/thumbnail?id=1LiRitz2urIoquVWYZuUG43K96S8VWBUF&sz=w1800" border="0" width="600" style="width: 600px; height:auto"></td>
+														</tr>
+			                                            <tr>
+															<td style="width:211px;height:55px; text-align:right; vertical-align: bottom;" align="right" valign="bottom"><a href="https://www.youtube.com/@WisdomPillar"><img src="https://drive.google.com/thumbnail?id=1oGPlT8j0l59kGgSxLZbSzKf16h6_IMFJ&sz=w1800" border="0" width="20" style="width:30px; height:auto"></a></td>
+															<td style="width:52px;height:55px; text-align:right; vertical-align: bottom;" align="right" valign="bottom"><a href="https://wa.me/+5219991901325"><img src="https://drive.google.com/thumbnail?id=1DMXrYayD657OPI3XDWGao7jf_E2NM73n&sz=w60" border="0" width="20" style="width:30px; height:auto"></a></td>
+															<td style="width:52px;height:55px; text-align:right; vertical-align: bottom;" align="right" valign="bottom"><a href="https://t.me/pillarsofwisdom"><img src="https://drive.google.com/thumbnail?id=1cb8riyEQwMHhHxA8-odJu8iS-BP2_7K4&sz=w60" border="0" width="20" style="width:30px; height:auto"></a></td>
+															<td style="width:52px;height:55px; text-align:right; vertical-align: bottom;" align="right" valign="bottom"><a href="https://www.instagram.com/the_pillars_of_wisdom/"><img src="https://drive.google.com/thumbnail?id=1X_6K7Uh53NtlZpXqhgjRbenDCty4h4up&sz=w60" border="0" width="20" style="width:30px; height:auto"></a></td>
+															<td style="width:52px;height:55px; text-align:right; vertical-align: bottom;" align="right" valign="bottom"><a href="https://twitter.com/wisdom_cards"><img src="https://drive.google.com/thumbnail?id=1JiJege40chcUpegMXvRJUr85up-tZJuX&sz=w60" border="0" width="20" style="width:30px; height:auto"></a></td>
+															<td style="width:181px;height:55px;">&nbsp;</td>
+														</tr>
+														<tr>
+															<td style="height:30px; font-family:'Arial',sans-serif; text-align: center; vertical-align: bottom;" align="center" valign="bottom" colspan="6">
+                                                                <p style="line-height:12px; font-size:10px; font-weight:400; color:#808080;">© 2025 Mystic Visions, LLC, All Rights Reserved.</p>
+                                                            </td>
+														</tr>
+													</table>
+												</td>
+											</tr>
+                                        </table>
+                                    </td>
+                                </tr>
+							</table>
+
+						</td>
+					</tr>
+				</table>
+
+			</td>
+		</tr>
+	</table>
+</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* @font-face {
+  font-family: "DMSerifDisplay-Regular";
+  src: url("/fonts/DMSerifDisplay-Regular.woff2") format("woff2"),
+       url("/fonts/DMSerifDisplay-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF-Pro";
+  src: url("/fonts/SFProDisplay-Medium.woff2") format("woff2"),
+       url("/fonts/SFProDisplay-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Joane-Bold";
+  src: url("/fonts/Joane-Bold.woff2") format("woff2"),
+       url("/fonts/Joane-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+} */
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/AeonikTRIAL-Light.woff2") format("woff2"),
+       url("/fonts/AeonikTRIAL-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/AeonikTRIAL-LightItalic.woff2") format("woff2"),
+       url("/fonts/AeonikTRIAL-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/AeonikTRIAL-Regular.woff2") format("woff2"),
+       url("/fonts/AeonikTRIAL-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/AeonikTRIAL-RegularItalic.woff2") format("woff2"),
+       url("/fonts/AeonikTRIAL-RegularItalic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/AeonikTRIAL-Bold.woff2") format("woff2"),
+       url("/fonts/AeonikTRIAL-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/AeonikTRIAL-BoldItalic.woff2") format("woff2"),
+       url("/fonts/AeonikTRIAL-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}

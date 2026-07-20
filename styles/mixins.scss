@@ -1,0 +1,305 @@
+@mixin Title-text {
+	font-family: 'SF-Pro', sans-serif;
+	font-size: clamp(32px, 2.4vw, 42px);
+	line-height: 1.2;
+	font-weight: 400;
+	color: var(--text_color);
+
+}
+
+@mixin Description-text {
+	font-family: 'SF-Pro', sans-serif;
+	font-size: clamp(18px, 1.2vw, 24px);
+	line-height: 1.2;
+	font-weight: 400;
+	color: var(--text_color);
+}
+
+// FONTS
+
+
+@mixin fz-display($family: var(--font-aeonik, sans-serif), $size: 64px) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.1;
+	font-weight: 700;
+}
+
+@mixin fz-h1($family: var(--font-aeonik, sans-serif), $size: 3rem, $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.2;
+	font-weight: 700;
+	color: $color;
+
+	@media screen and (max-width: 1024px) {
+		font-size: 2.5rem;
+	}
+
+	@media screen and (max-width: 768px) {
+		font-size: 2rem;
+	}
+	@media screen and (max-width: 480px) {
+		font-size: 1.75rem;
+	}
+	@media screen and (max-width: 375px) {
+		font-size: 1.5rem;
+	}
+}
+
+@mixin fz-h2($family: var(--font-aeonik, sans-serif), $size: 36px) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.2;
+	font-weight: 700;
+}
+
+@mixin fz-h3($family: var(--font-aeonik, sans-serif), $size: clamp(14px, 3vw, 30px), $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.3;
+	font-weight: 600;
+	color: $color;
+}
+
+@mixin fz-h4($family: var(--font-aeonik, sans-serif), $size: 24px) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.4;
+	font-weight: 600;
+}
+
+@mixin fz-h5($family: var(--font-aeonik, sans-serif), $size: clamp(1rem, 3vw, 1.25rem), $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.4;
+	font-weight: 600;
+	color: $color;
+}
+
+@mixin fz-h6($family: var(--font-aeonik, sans-serif), $size: 18px, $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.4;
+	font-weight: 600;
+	color: $color;
+}
+
+@mixin fz-body-large($family: var(--font-aeonik, sans-serif), $size: clamp(0.875rem, 3vw, 1.125rem), $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.6;
+	font-weight: 400;
+	color: $color;
+}
+
+@mixin fz-body($family: var(--font-aeonik, sans-serif), $size: clamp(0.875rem, 2vw, 1rem), $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.5;
+	font-weight: 400;
+	color: $color;
+
+	// @media screen and (max-width: 450px) {
+		
+	// }
+
+	// @media screen and (max-width: 375px) {
+		
+	// }
+
+}
+
+@mixin button-font($family: var(--font-aeonik, sans-serif), $size: clamp(0.875rem, 2vw, 1rem)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1;
+	font-weight: 500;
+}
+
+@mixin caption-font($family: var(--font-aeonik, sans-serif), $size: 0.85rem, $color: var(--gray-2)) {
+	font-family: $family;
+	font-size: $size;
+	line-height: 1.5;
+	font-weight: 400;
+	color: $color;
+
+	// @media screen and (max-width: 1024px) {
+		
+	// }
+
+	// @media screen and (max-width: 450px) {
+		
+	// }
+
+	// @media screen and (max-width: 375px) {
+		
+	// }
+}
+
+// BUTTONS
+
+@mixin default-button($bg: var(--dark-green)) {
+
+	background-color: $bg;
+	transition: all ease 0.3s;
+	border: 1px solid transparent;
+	border-radius: 14px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 14px 18px;
+	cursor: pointer;
+	color: var(--soft-white);
+	gap: 8px;
+
+}
+
+@mixin button-primary($bg: var(--dark-green), $family: var(--font-aeonik, sans-serif), $size: 16px) {
+
+	@include button-font($family, $size);
+	@include default-button($bg);
+
+	@media screen and (min-width: 1024px) {
+
+		&:hover {
+			background-color: var(--primary-btn-hover);
+			transition: all ease 0.3s;
+		}
+	}
+
+	&:active {
+	    transition: all ease 0.3s;
+
+	}
+	&:focus {
+		transition: all ease 0.3s;
+		border: 1px solid var(--emerald-green);
+	}
+	&:disabled {
+		background-color: var(--primary-btn-disabled);
+		transition: all ease 0.3s;
+	}
+
+
+}
+
+@mixin button-secondary($bg: var(--emerald-green), $family: var(--font-aeonik, sans-serif), $size: 16px) {
+
+	@include button-font($family, $size);
+	@include default-button-setup($bg);
+
+	@media screen and (min-width: 1024px) {
+
+		&:hover {
+			background-color: var(--secondary-btn-hover);
+			transition: all ease 0.3s;
+		}
+	}
+
+	&:active {
+	    transition: all ease 0.3s;
+
+	}
+	&:focus {
+		transition: all ease 0.3s;
+		border: 1px solid var(--dark-green);
+	}
+	&:disabled {
+		background-color: var(--secondary-btn-disabled);
+		transition: all ease 0.3s;
+	}
+
+}
+
+@mixin button-outline( $bg: var(--dark-green), $family: var(--font-aeonik, sans-serif), $size: 16px) {
+
+	@include button-font($family, $size);
+	@include default-button($bg);
+	background: var(--soft-white);
+	border: 1px solid var(--gray-2);
+	color: var(--dark-green);
+
+	@media screen and (min-width: 1024px) {
+
+		&:hover {
+			background-color: var(--gray-3);
+			transition: all ease 0.3s;
+		}
+	}
+
+	&:active {
+	    transition: all ease 0.3s;
+
+	}
+	&:focus {
+		transition: all ease 0.3s;
+		border: 1px solid var(--light-grey);
+	}
+	&:disabled {
+		background-color: #e9e9e9;
+		transition: all ease 0.3s;
+		color: #648279;
+	}
+
+}
+
+@mixin button-ghost( $bg: var(--soft-white), $family: var(--font-aeonik, sans-serif), $size: 16px) {
+
+	@include button-font($family, $size);
+	@include default-button-setup($bg);
+	border: 1px solid var(--gray-2);
+	color: var(--dark-green);
+
+	@media screen and (min-width: 1024px) {
+
+		&:hover {
+			color: var(--emerald-green);
+			transition: all ease 0.3s;
+		}
+	}
+
+	&:active {
+	    transition: all ease 0.3s;
+
+	}
+	&:focus {
+		transition: all ease 0.3s;
+	}
+	&:disabled {
+		border: 1px solid #f1f1f1;
+		transition: all ease 0.3s;
+		color: #648279;
+	}
+
+}
+
+@mixin component-spacing {
+	padding-block: 80px;
+
+	@media screen and (max-width: 1024px) {
+		padding-block: 60px;
+	}
+
+	@media screen and (max-width: 768px) {
+		padding-block: 40px;
+	}
+
+	@media screen and (max-width: 480px) {
+		padding-block: 24px;
+	}
+	@media screen and (max-width: 375px) {
+		padding-block: 20px;
+	}
+}
+
+@mixin page-spacing {
+	margin-top: 85px;
+
+	@media screen and (max-width: 1024px) {
+		margin-top: 75px;
+	}
+	@media screen and (max-width: 480px) {
+		margin-top: 60px;
+	}
+}
