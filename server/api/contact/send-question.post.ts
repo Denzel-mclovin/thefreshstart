@@ -62,6 +62,7 @@ export default defineEventHandler(async (event) => {
         if (!sendEmailRes.error) {
             console.log('Email sent');
             return ({
+                success: true,
                 statusCode: 200,
                 message: 'Email sent'
             })

@@ -6,6 +6,9 @@
 
         <div class="faq_content_inner">
           <div class="unique_question">
+            <div class="loader_wrapper" v-if="loaderState">
+              <SharedLoader />
+            </div>
             <div class="unique_question_head">
               <h3 class="unique_question_title">Still have a question?</h3>
               <p class="unique_question_text">
@@ -291,6 +294,7 @@ const sendQuestionHandler = async () => {
     alert('Failed to sent message');
 
   } finally {
+    questionInput.value = ''
 
     loaderState.value = false;
 
