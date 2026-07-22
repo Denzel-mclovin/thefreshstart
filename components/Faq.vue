@@ -373,8 +373,8 @@ onMounted(async () => {
     gap: 50px;
 
     .loader_wrapper {
-      width: 90%;
-      height: 90%;
+      width: 98%;
+      height: 98%;
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(5px);
       position: absolute;
