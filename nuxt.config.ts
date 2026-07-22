@@ -1,11 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { defineNuxtConfig } from 'nuxt/config'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   components: true,
   devtools: { enabled: true },
    vue: {
     compilerOptions: {
-      isCustomElement: (tag) => tag === 'wistia-player'
+      isCustomElement: (tag: any) => tag === 'wistia-player'
     }
   },
   nitro: {
@@ -41,6 +43,10 @@ export default defineNuxtConfig({
     zohoAppPassword: process.env.ZOHO_APP_PASSWORD,
     calendlyToken: process.env.CALENDLY_TOKEN,
 
+
+    recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
+    resendApiKEy: process.env.RESEND_API_KEY,
+
     public: {
       supabaseKey: process.env.SUPABASE_KEY,
       zohoAppHost: process.env.ZOHO_APP_HOST,
@@ -49,6 +55,7 @@ export default defineNuxtConfig({
       // supabaseUrl: process.env.SUPABASE_URL,
       supabaseApiUrl: process.env.SUPABASE_API_URL,
       // stripePublicKey: process.env.STRIPE_PUBLIC_KEY
+      recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY
     }
   },
   app: {

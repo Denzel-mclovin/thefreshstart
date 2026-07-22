@@ -63,7 +63,10 @@
                 "
               />
 
-              <button class="send_button">
+              <button 
+                class="send_button"
+                @click="sendQuestionHandler"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -157,6 +160,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
+import { useReCaptcha } from "vue-recaptcha-v3";
 import gsap from "gsap";
 
 // REFS---------------
@@ -166,6 +170,15 @@ const questionInput = ref("");
 const activeQuestion = ref(null);
 
 const answerRefs = ref([]);
+const activeSendBtn = ref(false);
+const loaderState = ref(false);
+
+
+// const { executeRecaptcha } = useReCaptcha();
+
+const recaptcha = shallowRef(null);
+
+
 
 const questionData = [
   {
@@ -238,9 +251,50 @@ const toggleQuestionVisible = (id, index) => {
   });
 };
 
+const sendQuestionHandler = async () => {
+
+  if (!questionInput.value.trim()) return
+
+  loaderState.value = true;
+
+  await recaptcha.value.recaptchaLoaded();
+
+  const token = await recaptcha.value.executeRecaptcha("faq_form");
+
+  try {
+
+    await $fetch('/api/contact/send-question', {
+      method: 'POST',
+      body: {
+        question: questionInput.value,
+        token,
+      }
+    })
+
+    questionInput.value = ''
+
+
+  } catch (err) {
+  
+    console.error(err);
+
+
+  } finally {
+
+    loaderState.value = false;
+
+  }
+
+
+
+}
+
 // ANIMATION METHODS
 
 onMounted(async () => {
+
+  recaptcha.value = useReCaptcha();
+
   await nextTick();
 
   answerRefs.value.forEach((el) => {
@@ -370,6 +424,7 @@ onMounted(async () => {
       display: flex;
       justify-content: center;
       align-items: center;
+      z-index: 10;
 
       svg {
         width: clamp(20px, 5vw, 24px);
