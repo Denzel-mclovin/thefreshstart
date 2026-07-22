@@ -253,7 +253,12 @@ const toggleQuestionVisible = (id, index) => {
 
 const sendQuestionHandler = async () => {
 
-  if (!questionInput.value.trim()) return
+  if (!questionInput.value.trim()) {
+
+    alert(`Please enter a question`);
+
+    return;
+  }
 
   loaderState.value = true;
 
@@ -263,7 +268,7 @@ const sendQuestionHandler = async () => {
 
   try {
 
-    await $fetch('/api/contact/send-question', {
+    const sendEmailRes = await $fetch('/api/contact/send-question', {
       method: 'POST',
       body: {
         question: questionInput.value,
@@ -271,13 +276,19 @@ const sendQuestionHandler = async () => {
       }
     })
 
-    questionInput.value = ''
+    if (sendEmailRes.success) {
 
+      alert('Your question has been sent, we will get back to you as soon as possible!');
+
+      questionInput.value = ''
+
+    }
 
   } catch (err) {
   
     console.error(err);
 
+    alert('Failed to sent message');
 
   } finally {
 

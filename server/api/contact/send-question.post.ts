@@ -71,9 +71,10 @@ export default defineEventHandler(async (event) => {
 
         console.log(err);
 
-        return ({
-            statusCode: 403,
-            message: 'Recaptcha failed'
-        })
+          throw createError({
+                statusCode: 500,
+                statusMessage: 'Failed to send email'
+            })
+
     }
 })
