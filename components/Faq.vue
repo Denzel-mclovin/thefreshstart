@@ -368,8 +368,21 @@ onMounted(async () => {
     align-items: center;
     padding: 30px;
     border: 1px solid var(--gray-2);
+    position: relative;
     border-radius: 20px;
     gap: 50px;
+
+    .loader_wrapper {
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
     &_head {
       display: flex;
