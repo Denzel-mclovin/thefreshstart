@@ -373,12 +373,15 @@ onMounted(async () => {
     gap: 50px;
 
     .loader_wrapper {
-      width: 100%;
-      height: 100%;
+      width: 90%;
+      height: 90%;
       background: rgba(255, 255, 255, 0.5);
       backdrop-filter: blur(5px);
       position: absolute;
-      inset: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
