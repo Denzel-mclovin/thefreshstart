@@ -9,6 +9,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     nuxtApp.vueApp.use(VueReCaptcha as any, {
         siteKey: String(config.public.recaptchaSiteKey),
         version: 3,
-        autoHideBadge: false,
+        autoHideBadge: true,
     })
 })

@@ -22,14 +22,28 @@ export default defineNuxtRouteMiddleware((to) => {
   }
 
   // SELLER ROUTES
-  if (!to.path.startsWith('/seller')) return
+
+
+
+  if (!to.path.startsWith('/seller')) return;
+
+    const publicSellerPages = [
+      '/seller/login',
+      '/seller/reset-password'
+    ]
+
+
 
   // allow login page always
-  if (to.path === '/seller/login') {
-    if (role === 'seller') {
-      return navigateTo('/seller')
-    }
-    return
+  // if (to.path === '/seller/login') {
+  //   if (role === 'seller') {
+  //     return navigateTo('/seller')
+  //   }
+  //   return
+  // }
+
+  if (publicSellerPages.includes(to.path)) {
+    return;
   }
 
   // AUTH CHECK (COOKIE ONLY — NO SSR CRASH)
