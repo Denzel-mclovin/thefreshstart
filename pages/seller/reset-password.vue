@@ -197,7 +197,7 @@ definePageMeta({
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap");
+@use '../../styles/mixins' as mixins;
 
 *,
 *::before,
@@ -207,21 +207,13 @@ definePageMeta({
   padding: 0;
 }
 
-:root {
-  --c-bg: #08090d;
-  --c-accent: #e63e3e;
-  --c-accent-2: #ff6b35;
-  --radius-card: 28px;
-  --radius-inp: 14px;
-}
-
 .auth-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--c-bg);
-  font-family: "DM Sans", sans-serif;
+  background: var(--soft-white);
+  font-family: var(--font-aeonik);
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -236,26 +228,26 @@ definePageMeta({
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.18;
 }
 .orb-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #e63e3e, transparent);
+  background: radial-gradient(circle, var(--emerald-green), transparent);
   top: -120px;
   left: -100px;
 }
 .orb-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #3e4de6, transparent);
+  background: radial-gradient(circle, var(--dark-green), transparent);
   bottom: -100px;
   right: -80px;
 }
 .orb-3 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, #ff6b35, transparent);
+  background: radial-gradient(circle, var(--soft-green), transparent);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -264,8 +256,8 @@ definePageMeta({
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(0, 51, 35, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 51, 35, 0.025) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -274,40 +266,37 @@ definePageMeta({
   z-index: 1;
   width: 100%;
   max-width: 420px;
-  background: #fff;
-  border-radius: var(--radius-card);
+  background: var(--white);
+  border-radius: var(--radius-medium);
   padding: 44px 40px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 40px 100px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--shadow-card);
 }
 
 .brand-mark {
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-2));
-  border-radius: 14px;
+  background: linear-gradient(135deg, var(--dark-green), var(--emerald-green));
+  border-radius: var(--radius-small);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 28px;
-  box-shadow: 0 8px 24px rgba(228, 183, 183, 0.35);
+  box-shadow: var(--shadow-small);
 }
 .brand-icon {
   font-size: 22px;
-  color: #fff;
+  color: var(--soft-white);
 }
 
 .reset-title {
-  font-family: "DM Serif Display", serif;
+  font-family: var(--font-playfair);
+  font-weight: var(--font-regular);
   font-size: 26px;
-  color: #111;
+  color: var(--text-primary);
   margin-bottom: 10px;
 }
 .reset-desc {
-  font-size: 14px;
-  color: #777;
-  line-height: 1.6;
+  @include mixins.fz-body($color: var(--text-secondary));
   margin-bottom: 24px;
 }
 
@@ -318,9 +307,8 @@ definePageMeta({
   margin-bottom: 16px;
 }
 .field-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
+  @include mixins.caption-font($color: var(--text-secondary));
+  font-weight: var(--font-bold);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -328,73 +316,63 @@ definePageMeta({
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 1.5px solid #e8e8ec;
-  border-radius: var(--radius-inp);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-small);
   padding: 0 14px;
-  background: #fafafa;
+  background: var(--soft-white);
   position: relative;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 .field-wrap:focus-within {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 3px rgba(230, 62, 62, 0.1);
-  background: #fff;
+  border-color: var(--emerald-green);
+  box-shadow: 0 0 0 3px rgba(0, 221, 120, 0.12);
+  background: var(--white);
 }
 .error-field-border {
-  border: 1px solid red;
+  border: 1px solid var(--danger);
 }
 .field-icon {
   font-size: 14px;
-  color: #bbb;
+  color: var(--gray-4);
   flex-shrink: 0;
 }
 .field-input {
   flex: 1;
   border: none;
   background: transparent;
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  color: #111;
+  font-family: var(--font-aeonik);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
   padding: 13px 0;
   outline: none;
 }
 .pass-toggle {
   border: none;
   background: none;
-  color: #aaa;
+  color: var(--gray-5);
   cursor: pointer;
-  font-size: 12px;
+  font-size: var(--text-xs);
   white-space: nowrap;
+  transition: color 0.2s;
 }
 .pass-toggle:hover {
-  color: #555;
+  color: var(--text-primary);
 }
 .error_message {
-  font-size: 0.7rem;
-  color: red;
+  font-size: var(--text-xs);
+  color: var(--danger);
   position: absolute;
   bottom: -22px;
   left: 0;
 }
 
 .submit_btn {
+  @include mixins.button-primary($bg: var(--dark-green));
   width: 100%;
-  border: none;
-  background: linear-gradient(135deg, var(--c-accent) 0%, var(--c-accent-2) 100%);
-  color: #fff;
-  font-family: "DM Sans", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 15px 24px;
-  border-radius: var(--radius-inp);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  border-radius: var(--radius-small);
+  box-shadow: var(--shadow-card);
   margin-top: 8px;
-  box-shadow: 0 8px 24px rgba(230, 62, 62, 0.3);
-  transition: box-shadow 0.2s, opacity 0.2s;
+  color: var(--soft-white);
   text-decoration: none;
 }
 .submit_btn:disabled {
@@ -402,8 +380,7 @@ definePageMeta({
   cursor: not-allowed;
 }
 .submit_btn:hover:not(:disabled) {
-  box-shadow: 0 12px 32px rgba(230, 62, 62, 0.4);
-  opacity: 0.93;
+  box-shadow: 0 12px 32px rgba(0, 51, 35, 0.25);
 }
 .as-link {
   margin-top: 4px;

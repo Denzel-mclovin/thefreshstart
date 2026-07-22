@@ -142,12 +142,10 @@ watch(activeTab, (tab) => {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
-
 .seller-dashboard {
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
-  background: #f5f3f9;
-  color: #1a1a2e;
+  font-family: var(--font-aeonik);
+  background: var(--soft-white);
+  color: var(--text-primary);
   min-height: 100vh;
 }
 
@@ -157,30 +155,30 @@ watch(activeTab, (tab) => {
   align-items: center;
   justify-content: space-between;
   padding: 14px 28px;
-  background: #fff;
-  border-bottom: 1px solid #e8e0f0;
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
   position: sticky;
   top: 0;
   z-index: 50;
-  box-shadow: 0 2px 12px rgba(72,0,116,0.07);
+  box-shadow: var(--shadow-card);
 }
 
 .sd-header__logo {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 700;
+  font-weight: var(--font-bold);
   font-size: 15px;
   letter-spacing: .04em;
-  color: #480074;
+  color: var(--dark-green);
 }
 
 .sd-header__dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #480074;
-  box-shadow: 0 0 8px rgba(72,0,116,0.5);
+  background: var(--dark-green);
+  box-shadow: 0 0 8px rgba(0, 51, 35, 0.5);
   animation: pulse 2s infinite;
 }
 
@@ -194,21 +192,21 @@ watch(activeTab, (tab) => {
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  color: #999;
+  color: var(--text-muted);
 }
 
 .sd-header__avatar {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #480074, #8a00d4);
-  color: #fff;
+  background: linear-gradient(135deg, var(--dark-green), var(--emerald-green));
+  color: var(--soft-white);
   font-weight: 700;
   font-size: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(72,0,116,0.28);
+  box-shadow: var(--shadow-small);
 }
 
 /* Main */
@@ -223,12 +221,12 @@ watch(activeTab, (tab) => {
   display: flex;
   gap: 4px;
   margin-bottom: 30px;
-  background: #fff;
+  background: var(--white);
   padding: 5px;
-  border-radius: 14px;
-  border: 1px solid #e8e0f0;
+  border-radius: var(--radius-medium);
+  border: 1px solid var(--border-light);
   width: fit-content;
-  box-shadow: 0 2px 10px rgba(72,0,116,0.07);
+  box-shadow: var(--shadow-card);
 }
 
 .sd-tabs__btn {
@@ -236,11 +234,11 @@ watch(activeTab, (tab) => {
   align-items: center;
   gap: 7px;
   padding: 9px 20px;
-  border-radius: 10px;
+  border-radius: var(--radius-small);
   border: none;
   background: transparent;
-  color: #999;
-  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  color: var(--text-muted);
+  font-family: var(--font-aeonik);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -248,22 +246,22 @@ watch(activeTab, (tab) => {
 }
 
 .sd-tabs__btn:hover {
-  color: #480074;
-  background: #f0ebf8;
+  color: var(--dark-green);
+  background: var(--surface-green);
 }
 
 .sd-tabs__btn--active {
-  background: #480074 !important;
-  color: #fff !important;
-  font-weight: 600;
-  box-shadow: 0 4px 14px rgba(72,0,116,0.3);
+  background: var(--dark-green) !important;
+  color: var(--soft-white) !important;
+  font-weight: var(--font-bold);
+  box-shadow: 0 4px 14px rgba(0, 51, 35, 0.3);
 }
 
 .sd-tabs__icon { font-size: 16px; }
 
 .sd-tabs__badge {
-  background: #dc2626;
-  color: #fff;
+  background: var(--danger);
+  color: var(--white);
   font-size: 11px;
   font-weight: 700;
   padding: 2px 7px;
@@ -274,6 +272,6 @@ watch(activeTab, (tab) => {
 
 .sd-tabs__btn--active .sd-tabs__badge {
   background: rgba(255,255,255,0.25);
-  color: #fff;
+  color: var(--soft-white);
 }
 </style>

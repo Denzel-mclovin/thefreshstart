@@ -348,23 +348,19 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// SellerDashboard.vue — компонент для продавца
-// Использование: <SellerDashboard :seller-id="currentUserId" />
+<script setup>
 
-const props = defineProps<{
-  sellerId: string
-}>()
+const props = defineProps();
 
 // ── State ──────────────────────────────────────────────
 const activeTab = ref<'pool' | 'my' | 'analytics'>('pool')
 const selectedLead = ref<any>(null)
 const takingId = ref<string | null>(null)
 
-const poolLeads = ref<any[]>([])
-const myLeads = ref<any[]>([])
-const analytics = ref<any>(null)
-const currentSeller = ref<any>(null)
+const poolLeads = ref([])
+const myLeads = ref([])
+const analytics = ref(null)
+const currentSeller = ref(null)
 
 const loadingPool = ref(false)
 const loadingMy = ref(false)
@@ -424,7 +420,7 @@ async function fetchAnalytics() {
 }
 
 // ── Actions ─────────────────────────────────────────────
-async function takeLead(lead: any) {
+async function takeLead(lead) {
   takingId.value = lead.id
   try {
     await $fetch(`/api/leads/${lead.id}/assign`, {
@@ -437,7 +433,7 @@ async function takeLead(lead: any) {
   }
 }
 
-function openLead(lead: any) {
+function openLead(lead) {
   selectedLead.value = lead
 }
 
@@ -446,29 +442,29 @@ function closeLead() {
 }
 
 // ── Utilities ───────────────────────────────────────────
-function formatDate(d: string) {
+function formatDate(d) {
   if (!d) return '—'
   return new Date(d).toLocaleDateString('ru-RU', {
     day: '2-digit', month: '2-digit', year: 'numeric',
   })
 }
 
-function getInitials(first?: string, last?: string) {
+function getInitials(first, last) {
   return ((first?.[0] || '') + (last?.[0] || '')).toUpperCase() || '?'
 }
 
-function statusLabel(s: string) {
-  return { COMPLETED: 'Завершил', ABANDONED: 'Ушёл', IN_PROGRESS: 'В процессе' }[s] || s
+function statusLabel(s) {
+  return { COMPLETED: 'Завершил', ABANDONED: 'Ушёл', IN_PROGRESS: 'In progress' }[s] || s
 }
 
-function funnelWidth(step: number) {
-  const max = Math.max(...Object.values(analytics.value?.dropoffByStep || {}), 1) as number
+function funnelWidth(step) {
+  const max = Math.max(...Object.values(analytics.value?.dropoffByStep || {}), 1)
   const val = analytics.value?.dropoffByStep?.[step] || 0
   return Math.round((val / max) * 100) + '%'
 }
 
-function utmWidth(count: number) {
-  const max = Math.max(...Object.values(analytics.value?.utmSources || {}), 1) as number
+function utmWidth(count) {
+  const max = Math.max(...Object.values(analytics.value?.utmSources || {}), 1)
   return Math.round((count / max) * 100) + '%'
 }
 
@@ -477,7 +473,6 @@ onMounted(async () => {
   await Promise.all([fetchPool(), fetchMyLeads(), fetchAnalytics()])
 })
 
-// Обновляем данные при смене таба
 watch(activeTab, (tab) => {
   if (tab === 'pool') fetchPool()
   if (tab === 'my') fetchMyLeads()
@@ -487,26 +482,24 @@ watch(activeTab, (tab) => {
 
 <style scoped>
 /* ════════════════════════════════════════════
-   SELLER DASHBOARD — CSS-only, no framework
-   Palette: slate dark + electric teal accents
+   SELLER DASHBOARD
+   Palette: brand green (dark-green / emerald-green)
 ════════════════════════════════════════════ */
-:root, .seller-dashboard {
-  --bg: #0f1117;
-  --bg-2: #161b26;
-  --bg-3: #1e2433;
-  --border: #2a3144;
-  --text: #e8ecf4;
-  --text-muted: #8892a4;
-  --accent: #00e5c7;
-  --accent-dim: #00e5c720;
-  --clr-completed: #22d67a;
-  --clr-abandoned: #ff4d6d;
-  --clr-progress: #f59e0b;
-  --radius: 10px;
-  --font: 'DM Sans', 'Segoe UI', sans-serif;
+.seller-dashboard {
+  --bg: var(--white);
+  --bg-2: var(--soft-white);
+  --bg-3: var(--light-grey);
+  --border: var(--border-light);
+  --text: var(--text-primary);
+  --text-muted: var(--text-secondary);
+  --accent: var(--dark-green);
+  --accent-dim: var(--surface-green);
+  --clr-completed: var(--success);
+  --clr-abandoned: var(--danger);
+  --clr-progress: var(--warning);
+  --radius: var(--radius-small);
+  --font: var(--font-aeonik);
 }
-
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
 
 .seller-dashboard {
   font-family: var(--font);
@@ -532,17 +525,18 @@ watch(activeTab, (tab) => {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-weight: 600;
+  font-weight: var(--font-bold);
   font-size: 15px;
   letter-spacing: .04em;
+  color: var(--text-primary);
 }
 
 .sd-header__dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background: var(--emerald-green);
+  box-shadow: 0 0 8px var(--emerald-green);
   animation: pulse 2s infinite;
 }
 
@@ -563,8 +557,8 @@ watch(activeTab, (tab) => {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: var(--accent);
-  color: #000;
+  background: var(--emerald-green);
+  color: var(--dark-green);
   font-weight: 700;
   font-size: 12px;
   display: flex;
@@ -610,16 +604,16 @@ watch(activeTab, (tab) => {
 .sd-tabs__btn:hover { color: var(--text); background: var(--bg-3); }
 
 .sd-tabs__btn--active {
-  background: var(--accent) !important;
-  color: #000 !important;
-  font-weight: 600;
+  background: var(--dark-green) !important;
+  color: var(--soft-white) !important;
+  font-weight: var(--font-bold);
 }
 
 .sd-tabs__icon { font-size: 16px; }
 
 .sd-tabs__badge {
-  background: #ff4d6d;
-  color: #fff;
+  background: var(--danger);
+  color: var(--white);
   font-size: 11px;
   font-weight: 700;
   padding: 2px 6px;
@@ -629,8 +623,8 @@ watch(activeTab, (tab) => {
 }
 
 .sd-tabs__btn--active .sd-tabs__badge {
-  background: rgba(0,0,0,0.25);
-  color: #000;
+  background: rgba(255,255,255,0.25);
+  color: var(--soft-white);
 }
 
 /* ── Section ── */
@@ -638,7 +632,8 @@ watch(activeTab, (tab) => {
 
 .sd-section__title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
   margin: 0 0 4px;
 }
 
@@ -662,7 +657,7 @@ watch(activeTab, (tab) => {
   width: 18px;
   height: 18px;
   border: 2px solid var(--border);
-  border-top-color: var(--accent);
+  border-top-color: var(--emerald-green);
   border-radius: 50%;
   animation: spin .7s linear infinite;
   display: inline-block;
@@ -718,29 +713,13 @@ watch(activeTab, (tab) => {
 .sd-table td {
   padding: 12px 16px;
   vertical-align: middle;
+  color: var(--text-primary);
 }
 
 .sd-table__name { font-weight: 500; }
 .sd-table__date { color: var(--text-muted); font-size: 13px; }
 
 /* ── Progress bar ── */
-.sd-progress {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  color: var(--text-muted);
-}
-
-.sd-progress__bar {
-  height: 4px;
-  background: var(--accent);
-  border-radius: 2px;
-  min-width: 0;
-  transition: width .3s;
-  flex-shrink: 0;
-}
-
 .sd-progress {
   background: var(--bg-3);
   border-radius: 4px;
@@ -753,7 +732,7 @@ watch(activeTab, (tab) => {
 .sd-progress__bar {
   position: absolute;
   left: 0; top: 0; bottom: 0;
-  background: var(--accent);
+  background: var(--emerald-green);
 }
 
 .sd-progress span {
@@ -801,14 +780,14 @@ watch(activeTab, (tab) => {
 }
 
 .sd-btn--take {
-  background: var(--accent-dim);
-  color: var(--accent);
-  border: 1px solid var(--accent);
+  background: var(--surface-green);
+  color: var(--dark-green);
+  border: 1px solid var(--emerald-green);
 }
 
 .sd-btn--take:hover:not(:disabled) {
-  background: var(--accent);
-  color: #000;
+  background: var(--emerald-green);
+  color: var(--dark-green);
 }
 
 .sd-btn--take:disabled {
@@ -842,9 +821,9 @@ watch(activeTab, (tab) => {
   letter-spacing: .05em;
 }
 
-.sd-badge--completed { background: #22d67a1a; color: var(--clr-completed); border: 1px solid #22d67a40; }
-.sd-badge--abandoned { background: #ff4d6d1a; color: var(--clr-abandoned); border: 1px solid #ff4d6d40; }
-.sd-badge--in_progress { background: #f59e0b1a; color: var(--clr-progress); border: 1px solid #f59e0b40; }
+.sd-badge--completed { background: rgba(0, 221, 120, .12); color: var(--clr-completed); border: 1px solid rgba(0, 221, 120, .3); }
+.sd-badge--abandoned { background: rgba(240, 91, 91, .12); color: var(--clr-abandoned); border: 1px solid rgba(240, 91, 91, .3); }
+.sd-badge--in_progress { background: rgba(244, 183, 64, .15); color: var(--clr-progress); border: 1px solid rgba(244, 183, 64, .35); }
 
 /* ── Cards (My leads) ── */
 .sd-cards {
@@ -863,9 +842,9 @@ watch(activeTab, (tab) => {
 }
 
 .sd-card:hover {
-  border-color: var(--accent);
+  border-color: var(--emerald-green);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0,229,199,.08);
+  box-shadow: var(--shadow-card);
 }
 
 .sd-card__top {
@@ -879,8 +858,8 @@ watch(activeTab, (tab) => {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #00a8ff);
-  color: #000;
+  background: linear-gradient(135deg, var(--dark-green), var(--emerald-green));
+  color: var(--soft-white);
   font-weight: 700;
   font-size: 14px;
   display: flex;
@@ -890,7 +869,7 @@ watch(activeTab, (tab) => {
 }
 
 .sd-card__info { flex: 1; min-width: 0; }
-.sd-card__name { font-weight: 600; font-size: 15px; }
+.sd-card__name { font-weight: 600; font-size: 15px; color: var(--text-primary); }
 .sd-card__meta { font-size: 13px; color: var(--text-muted); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
 .sd-card__progress { margin-bottom: 14px; }
@@ -919,15 +898,16 @@ watch(activeTab, (tab) => {
   padding: 20px;
 }
 
-.sd-metric--green { border-color: #22d67a40; }
-.sd-metric--red { border-color: #ff4d6d40; }
-.sd-metric--yellow { border-color: #f59e0b40; }
+.sd-metric--green { border-color: rgba(0, 221, 120, .3); }
+.sd-metric--red { border-color: rgba(240, 91, 91, .3); }
+.sd-metric--yellow { border-color: rgba(244, 183, 64, .3); }
 
 .sd-metric__value {
   font-size: 36px;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 6px;
+  color: var(--text-primary);
 }
 
 .sd-metric--green .sd-metric__value { color: var(--clr-completed); }
@@ -947,6 +927,7 @@ watch(activeTab, (tab) => {
 .sd-chart-title {
   font-size: 16px;
   font-weight: 600;
+  color: var(--text-primary);
   margin: 0 0 20px;
 }
 
@@ -971,7 +952,7 @@ watch(activeTab, (tab) => {
 
 .sd-funnel__fill {
   height: 100%;
-  background: linear-gradient(90deg, #ff4d6d, #ff8fa3);
+  background: linear-gradient(90deg, var(--danger), #f7a3a3);
   border-radius: 4px;
   transition: width .6s cubic-bezier(.4, 0, .2, 1);
 }
@@ -995,13 +976,13 @@ watch(activeTab, (tab) => {
 .sd-donut__pct {
   font-size: 22px;
   font-weight: 700;
-  fill: var(--text);
+  fill: var(--text-primary);
   font-family: var(--font);
 }
 
 .sd-donut__sub {
   font-size: 9px;
-  fill: var(--text-muted);
+  fill: var(--text-secondary);
   font-family: var(--font);
 }
 
@@ -1012,6 +993,7 @@ watch(activeTab, (tab) => {
   align-items: center;
   gap: 10px;
   font-size: 14px;
+  color: var(--text-primary);
 }
 
 .sd-donut__dot {
@@ -1042,7 +1024,7 @@ watch(activeTab, (tab) => {
 
 .sd-bar-chart__fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent), #00a8ff);
+  background: linear-gradient(90deg, var(--dark-green), var(--emerald-green));
   border-radius: 4px;
   transition: width .6s;
 }
@@ -1053,7 +1035,7 @@ watch(activeTab, (tab) => {
 .sd-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, .7);
+  background: rgba(0, 51, 35, .45);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;
@@ -1099,8 +1081,8 @@ watch(activeTab, (tab) => {
 }
 
 .sd-popup__close:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  border-color: var(--emerald-green);
+  color: var(--dark-green);
 }
 
 .sd-popup__header {
@@ -1114,8 +1096,8 @@ watch(activeTab, (tab) => {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent), #00a8ff);
-  color: #000;
+  background: linear-gradient(135deg, var(--dark-green), var(--emerald-green));
+  color: var(--soft-white);
   font-weight: 700;
   font-size: 18px;
   display: flex;
@@ -1127,6 +1109,7 @@ watch(activeTab, (tab) => {
 .sd-popup__name {
   font-size: 20px;
   font-weight: 700;
+  color: var(--text-primary);
   margin: 0 0 6px;
 }
 
@@ -1155,11 +1138,13 @@ watch(activeTab, (tab) => {
 .sd-popup__field-val {
   font-size: 14px;
   font-weight: 500;
+  color: var(--text-primary);
 }
 
 .sd-popup__answers-title {
   font-size: 15px;
   font-weight: 600;
+  color: var(--text-primary);
   margin: 0 0 14px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
@@ -1184,8 +1169,8 @@ watch(activeTab, (tab) => {
 .sd-answer__num {
   width: 22px;
   height: 22px;
-  background: var(--accent-dim);
-  color: var(--accent);
+  background: var(--surface-green);
+  color: var(--dark-green);
   border-radius: 50%;
   font-size: 11px;
   font-weight: 700;
@@ -1199,6 +1184,7 @@ watch(activeTab, (tab) => {
 .sd-answer__a {
   font-size: 15px;
   font-weight: 500;
+  color: var(--text-primary);
   padding-left: 32px;
 }
 </style>

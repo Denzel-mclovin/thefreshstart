@@ -22,8 +22,8 @@
 </script>
 
 
-
 <style lang="scss" scoped>
+@use '../../styles/mixins' as mixins;
 
 .seller_page {
     width: 100vw;
@@ -32,6 +32,8 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    background: var(--soft-white);
+    font-family: var(--font-aeonik);
 
     &_content {
         width: 50%;
@@ -41,20 +43,24 @@
         justify-content: flex-start;
         align-items: center;
         gap: 20px;
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        border-radius: 16px;
-        background: #ffffff;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-medium);
+        background: var(--white);
+        box-shadow: var(--shadow-card);
     }
 
     .title {
         width: 100%;
         height: auto;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid var(--border-light);
         display: flex;
         justify-content: flex-start;
         align-items: center;
         padding: 20px 20px 10px 20px;
+
+        h1 {
+            @include mixins.fz-h3($color: var(--text-primary));
+        }
     }
 
     .message_content {
@@ -65,7 +71,11 @@
         justify-content: center;
         align-items: center;
         min-height: 30vh;
+
+        p {
+            @include mixins.fz-body($color: var(--text-secondary));
+            text-align: center;
+        }
     }
 }
-
 </style>

@@ -175,14 +175,17 @@ definePageMeta({
   layout: false,
 });
 </script>
-
 <style lang="scss" scoped>
+@use '../../styles/mixins' as mixins;
+
 .login {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--soft-white);
+  font-family: var(--font-aeonik);
 
   .tooltip_wrapper {
     display: none;
@@ -196,16 +199,16 @@ definePageMeta({
   .login_container {
     width: clamp(300px, 40vw, 500px);
     height: auto;
-    padding: 20px;
+    padding: 40px 36px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    border-radius: 16px;
-    background: #ffffff;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-medium);
+    background: var(--white);
+    box-shadow: var(--shadow-card);
     position: relative;
 
     @media screen and (max-width: 768px) {
@@ -220,10 +223,9 @@ definePageMeta({
   .login_head {
     width: 100%;
     text-align: center;
+
     span {
-      font-size: 1.5em;
-      font-weight: 500;
-      color: var(--text-color);
+      @include mixins.fz-h3($color: var(--text-primary));
       text-align: center;
     }
   }
@@ -261,7 +263,7 @@ definePageMeta({
     appearance: none;
     width: 18px;
     height: 18px;
-    border: 2px solid #555;
+    border: 2px solid var(--gray-4);
     border-radius: 4px;
     display: inline-block;
     position: relative;
@@ -274,7 +276,7 @@ definePageMeta({
     position: absolute;
     width: 5px;
     height: 10px;
-    border: solid var(--text-color);
+    border: solid var(--white);
     border-width: 0 2px 2px 0;
     top: 2px;
     left: 5px;
@@ -284,8 +286,8 @@ definePageMeta({
   }
 
   .box input[type="checkbox"]:checked {
-    background: #e3f2fd;
-    border-color: var(--text-color);
+    background: var(--emerald-green);
+    border-color: var(--emerald-green);
   }
 
   .box input[type="checkbox"]:checked::after {
@@ -293,8 +295,7 @@ definePageMeta({
   }
 
   .box label {
-    font-size: 14px;
-    color: #333;
+    @include mixins.caption-font($color: var(--text-secondary));
     cursor: pointer;
     position: relative;
     top: 0;
@@ -305,43 +306,60 @@ definePageMeta({
   input[type="password"],
   input[type="email"] {
     width: 100%;
-    padding: 12px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 13px 14px;
+    font-family: var(--font-aeonik);
+    font-size: var(--text-sm);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-small);
+    background: var(--soft-white);
     outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+
+    &:focus {
+      border-color: var(--emerald-green);
+      box-shadow: 0 0 0 3px rgba(0, 221, 120, 0.12);
+      background: var(--white);
+    }
   }
 
   label {
     position: absolute;
-    left: 12px;
-    top: 12px;
-    color: #888;
+    left: 14px;
+    top: 13px;
+    color: var(--gray-5);
+    font-family: var(--font-aeonik);
+    font-size: var(--text-sm);
     pointer-events: none;
     transition: 0.2s ease all;
   }
 
   label.active {
     top: -8px;
-    left: 8px;
-    font-size: 12px;
-    background: white;
+    left: 10px;
+    font-size: var(--text-xs);
+    font-weight: var(--font-bold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    background: var(--white);
     padding: 0 4px;
-    color: #333;
+    color: var(--text-secondary);
   }
 
   .error {
-    color: red;
-    font-size: 12px;
+    color: var(--danger);
+    font-size: var(--text-xs);
     margin-top: 4px;
   }
 
   .radio_group p {
     margin-bottom: 0.5em;
-    font-weight: 500;
+    font-weight: var(--font-bold);
   }
 
   .login_buttons {
+    width: 100%;
+
     .hidden_btn {
       opacity: 0.3;
       pointer-events: none;

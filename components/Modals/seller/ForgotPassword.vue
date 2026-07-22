@@ -93,16 +93,12 @@ async function handleForgotPasswordSubmit() {
     forgotPasswordLoading.value = false;
   }
 }
+
+// @import url("https://fonts.
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap");
-
-:root {
-  --radius-card: 28px;
-  --radius-inp: 14px;
-  --c-accent: #e63e3e;
-}
+@use '../../../styles/mixins' as mixins;
 
 .modal {
   position: fixed;
@@ -112,7 +108,7 @@ async function handleForgotPasswordSubmit() {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(8, 9, 13, 0.65);
+  background: rgba(0, 51, 35, 0.45);
   backdrop-filter: blur(6px);
   pointer-events: auto;
   z-index: 1000;
@@ -129,13 +125,11 @@ async function handleForgotPasswordSubmit() {
 .modal-card {
   position: relative;
   width: 100%;
-  background: #fff;
-  border-radius: var(--radius-card);
+  background: var(--white);
+  border-radius: var(--radius-medium);
   padding: 36px 32px 32px;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 30px 80px rgba(0, 0, 0, 0.5);
-  font-family: "DM Sans", sans-serif;
+  box-shadow: var(--shadow-card), 0 30px 80px rgba(0, 51, 35, 0.2);
+  font-family: var(--font-aeonik);
 }
 
 .modal-close {
@@ -145,25 +139,25 @@ async function handleForgotPasswordSubmit() {
   border: none;
   background: transparent;
   font-size: 16px;
-  color: #999;
+  color: var(--gray-5);
   cursor: pointer;
   line-height: 1;
+  transition: color 0.2s;
 }
 .modal-close:hover {
-  color: #333;
+  color: var(--text-primary);
 }
 
 .modal-title {
-  font-family: "DM Serif Display", serif;
+  font-family: var(--font-playfair);
+  font-weight: var(--font-regular);
   font-size: 24px;
-  color: #111;
+  color: var(--text-primary);
   margin-bottom: 8px;
 }
 
 .modal-desc {
-  font-size: 13px;
-  color: #777;
-  line-height: 1.6;
+  @include mixins.caption-font($color: var(--text-secondary));
   margin-bottom: 20px;
 }
 
@@ -175,9 +169,8 @@ async function handleForgotPasswordSubmit() {
 }
 
 .field-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
+  @include mixins.caption-font($color: var(--text-secondary));
+  font-weight: var(--font-bold);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -186,28 +179,26 @@ async function handleForgotPasswordSubmit() {
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 1.5px solid #e8e8ec;
-  border-radius: var(--radius-inp);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-small);
   padding: 0 14px;
-  background: #fafafa;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  background: var(--soft-white);
+  transition: border-color 0.2s, box-shadow 0.2s;
   position: relative;
 }
 .field-wrap:focus-within {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 3px rgba(230, 62, 62, 0.1);
-  background: #fff;
+  border-color: var(--emerald-green);
+  box-shadow: 0 0 0 3px rgba(0, 221, 120, 0.12);
+  background: var(--white);
 }
 
 .error-field-border {
-  border: 1px solid red;
+  border: 1px solid var(--danger);
 }
 
 .field-icon {
   font-size: 14px;
-  color: #bbb;
+  color: var(--gray-4);
   flex-shrink: 0;
 }
 
@@ -215,59 +206,45 @@ async function handleForgotPasswordSubmit() {
   flex: 1;
   border: none;
   background: transparent;
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  color: #111;
+  font-family: var(--font-aeonik);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
   padding: 13px 0;
   outline: none;
 }
 .field-input::placeholder {
-  color: #bbb;
+  color: var(--gray-5);
 }
 
 .error_message {
-  font-size: 0.7rem;
-  color: red;
-  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--danger);
+  font-weight: var(--font-regular);
   position: absolute;
   bottom: -25%;
   transform: translateX(-50%);
   left: 50%;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: var(--white);
+  border: 1px solid var(--border-light);
   padding: 3px 5px;
   border-radius: 4px;
   white-space: nowrap;
 }
 
 .submit_btn {
+  @include mixins.button-primary($bg: var(--dark-green));
   width: 100%;
-  border: none;
-  background: linear-gradient(135deg, #e63e3e 0%, #ff6b35 100%);
-  color: #fff;
-  font-family: "DM Sans", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 15px 24px;
-  border-radius: var(--radius-inp);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+  border-radius: var(--radius-small);
+  box-shadow: var(--shadow-card);
   margin-top: 20px;
-  box-shadow: 0 8px 24px rgba(230, 62, 62, 0.3);
-  transition:
-    box-shadow 0.2s,
-    opacity 0.2s;
+  color: var(--soft-white);
 }
 .submit_btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
 .submit_btn:hover:not(:disabled) {
-  box-shadow: 0 12px 32px rgba(230, 62, 62, 0.4);
-  opacity: 0.93;
+  box-shadow: 0 12px 32px rgba(0, 51, 35, 0.25);
 }
 .btn-arrow {
   font-size: 18px;
@@ -275,8 +252,8 @@ async function handleForgotPasswordSubmit() {
 
 .modal-success {
   margin-top: 14px;
-  font-size: 13px;
-  color: #1a8a4a;
+  font-size: var(--text-sm);
+  color: var(--emerald-green);
   text-align: center;
 }
 

@@ -552,7 +552,7 @@ definePageMeta({
 </script>
 
 <style scoped lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap");
+@use '../../styles/mixins' as mixins;
 
 *,
 *::before,
@@ -562,27 +562,13 @@ definePageMeta({
   padding: 0;
 }
 
-:root {
-  --c-bg: #08090d;
-  --c-surface: #0f1117;
-  --c-border: rgba(255, 255, 255, 0.08);
-  --c-accent: #e63e3e;
-  --c-accent-2: #ff6b35;
-  --c-text: #f0f0f0;
-  --c-muted: rgba(240, 240, 240, 0.45);
-  --c-panel-l: #10111a;
-  --c-panel-r: #ffffff;
-  --radius-card: 28px;
-  --radius-inp: 14px;
-}
-
 .auth-wrapper {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--c-bg);
-  font-family: "DM Sans", sans-serif;
+  background: var(--soft-white);
+  font-family: var(--font-aeonik);
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -598,26 +584,26 @@ definePageMeta({
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.25;
+  opacity: 0.18;
 }
 .orb-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #e63e3e, transparent);
+  background: radial-gradient(circle, var(--emerald-green), transparent);
   top: -120px;
   left: -100px;
 }
 .orb-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #3e4de6, transparent);
+  background: radial-gradient(circle, var(--dark-green), transparent);
   bottom: -100px;
   right: -80px;
 }
 .orb-3 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, #ff6b35, transparent);
+  background: radial-gradient(circle, var(--soft-green), transparent);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -627,8 +613,8 @@ definePageMeta({
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(0, 51, 35, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 51, 35, 0.025) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
@@ -638,12 +624,10 @@ definePageMeta({
   width: 100%;
   max-width: 900px;
   min-height: 580px;
-  border-radius: var(--radius-card);
+  border-radius: var(--radius-medium);
   overflow: hidden;
-  box-shadow:
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 40px 100px rgba(0, 0, 0, 0.6),
-    0 0 60px rgba(230, 62, 62, 0.08);
+  background: var(--white);
+  box-shadow: var(--shadow-card);
   position: relative;
   z-index: 1;
 }
@@ -655,7 +639,7 @@ definePageMeta({
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 51, 35, 0.15);
   backdrop-filter: blur(7px);
   z-index: 5;
 }
@@ -663,9 +647,9 @@ definePageMeta({
 .loader_bg {
   width: 100px;
   height: 100px;
-  background: black;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
+  background: var(--dark-green);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-small);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -675,7 +659,7 @@ definePageMeta({
 .loader_content {
   width: 60px;
   aspect-ratio: 2;
-  --_g: no-repeat radial-gradient(circle closest-side, #efefef 90%, #0000);
+  --_g: no-repeat radial-gradient(circle closest-side, var(--emerald-green) 90%, #0000);
   background:
     var(--_g) 0% 50%,
     var(--_g) 50% 50%,
@@ -684,34 +668,16 @@ definePageMeta({
   animation: l3 1s infinite linear;
 }
 @keyframes l3 {
-  20% {
-    background-position:
-      0% 0%,
-      50% 50%,
-      100% 50%;
-  }
-  40% {
-    background-position:
-      0% 100%,
-      50% 0%,
-      100% 50%;
-  }
-  60% {
-    background-position:
-      0% 50%,
-      50% 100%,
-      100% 0%;
-  }
-  80% {
-    background-position:
-      0% 50%,
-      50% 50%,
-      100% 100%;
-  }
+  20% { background-position: 0% 0%, 50% 50%, 100% 50%; }
+  40% { background-position: 0% 100%, 50% 0%, 100% 50%; }
+  60% { background-position: 0% 50%, 50% 100%, 100% 0%; }
+  80% { background-position: 0% 50%, 50% 50%, 100% 100%; }
 }
 
 .panel-visual {
-  background: linear-gradient(135deg, #12131f 0%, #1a1124 50%, #0d0f1a 100%);
+  background: var(--dark-green);
+  // background: var(--surface-green);
+
   padding: 48px 40px;
   display: flex;
   flex-direction: column;
@@ -726,6 +692,10 @@ definePageMeta({
   width: 100%;
   height: 100%;
   pointer-events: none;
+
+  line, circle {
+    stroke: rgba(250, 252, 199, 0.05);
+  }
 }
 
 .panel-content {
@@ -736,36 +706,35 @@ definePageMeta({
 .brand-mark {
   width: 52px;
   height: 52px;
-  background: linear-gradient(135deg, var(--c-accent), var(--c-accent-2));
-  border-radius: 14px;
+  background: linear-gradient(135deg, var(--dark-green), var(--emerald-green));
+  border-radius: var(--radius-small);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 48px;
-  box-shadow: 0 8px 24px rgba(228, 183, 183, 0.35);
+  box-shadow: 2px 3px 10px rgba(0, 221, 120, 50);
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 .brand-icon {
   font-size: 22px;
-  color: #fff;
+  color: var(--soft-white);
 }
 
 .visual-title {
-  font-family: "DM Serif Display", serif;
+  font-family: var(--font-playfair);
   font-size: clamp(28px, 3vw, 38px);
-  color: white;
+  font-weight: var(--font-regular);
+  color: #FFF;
   line-height: 1.15;
   margin-bottom: 14px;
 }
 .visual-desc {
-  font-size: 14px;
-  color: white;
-  line-height: 1.7;
+  @include mixins.fz-body($color: var(--surface-green));
   max-width: 260px;
 }
 
 .panel-form {
-  background: var(--c-panel-r);
+  background: var(--white);
   padding: 44px 44px 40px;
   display: flex;
   flex-direction: column;
@@ -776,8 +745,8 @@ definePageMeta({
 .tabs {
   display: flex;
   position: relative;
-  background: #f1f1f5;
-  border-radius: 100px;
+  background: var(--light-grey);
+  border-radius: var(--radius-full);
   padding: 4px;
 }
 
@@ -786,18 +755,17 @@ definePageMeta({
   border: none;
   background: transparent;
   padding: 10px 0;
-  font-family: "DM Sans", sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  color: #888;
-  border-radius: 100px;
+  @include mixins.button-font;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  border-radius: var(--radius-full);
   cursor: pointer;
   position: relative;
   z-index: 1;
   transition: color 0.3s;
 }
 .tab.active {
-  color: #111;
+  color: var(--text-primary);
 }
 
 .tab-indicator {
@@ -805,12 +773,10 @@ definePageMeta({
   top: 4px;
   bottom: 4px;
   left: 2%;
-  /* right: 0; */
   width: calc(50% - 4px);
-  background: #fff;
-  border-radius: 100px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  background: var(--white);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-card);
   transition: all ease 0.3s;
 }
 .tab-right {
@@ -853,9 +819,8 @@ definePageMeta({
 }
 
 .field-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #555;
+  @include mixins.caption-font($color: var(--text-secondary));
+  font-weight: var(--font-bold);
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
@@ -864,29 +829,27 @@ definePageMeta({
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 1.5px solid #e8e8ec;
-  border-radius: var(--radius-inp);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-small);
   padding: 0 14px;
-  background: #fafafa;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
+  background: var(--soft-white);
+  transition: border-color 0.2s, box-shadow 0.2s;
   position: relative;
 }
 .field-wrap.focused,
 .field-wrap:focus-within {
-  border-color: var(--c-accent);
-  box-shadow: 0 0 0 3px rgba(230, 62, 62, 0.1);
-  background: #fff;
+  border-color: var(--emerald-green);
+  box-shadow: 0 0 0 3px rgba(0, 221, 120, 0.12);
+  background: var(--white);
 }
 
 .error-field-border {
-  border: 1px solid red;
+  border: 1px solid var(--danger);
 }
 
 .field-icon {
   font-size: 14px;
-  color: #bbb;
+  color: var(--gray-4);
   flex-shrink: 0;
 }
 
@@ -894,26 +857,26 @@ definePageMeta({
   flex: 1;
   border: none;
   background: transparent;
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  color: #111;
+  font-family: var(--font-aeonik);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
   padding: 13px 0;
   outline: none;
 }
 .field-input::placeholder {
-  color: #bbb;
+  color: var(--gray-5);
 }
 
 .error_message {
-  font-size: 0.7rem;
-  color: red;
-  font-weight: 400;
+  font-size: var(--text-xs);
+  color: var(--danger);
+  font-weight: var(--font-regular);
   position: absolute;
   bottom: -25%;
   transform: translateX(-50%);
   left: 50%;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: var(--white);
+  border: 1px solid var(--border-light);
   padding: 3px 5px;
   border-radius: 4px;
   white-space: nowrap;
@@ -922,7 +885,7 @@ definePageMeta({
 .pass-toggle {
   border: none;
   background: none;
-  color: #aaa;
+  color: var(--gray-5);
   cursor: pointer;
   font-size: 10px;
   padding: 0;
@@ -931,7 +894,7 @@ definePageMeta({
   height: 20px;
 }
 .pass-toggle:hover {
-  color: #555;
+  color: var(--text-primary);
 }
 
 .extras {
@@ -945,59 +908,38 @@ definePageMeta({
   display: flex;
   align-items: center;
   gap: 7px;
-  font-size: 13px;
-  color: #666;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 .remember input {
-  accent-color: var(--c-accent);
+  accent-color: var(--emerald-green);
 }
 
 .forgot {
   border: none;
   background: none;
-  font-family: "DM Sans", sans-serif;
-  font-size: 13px;
-  color: var(--c-accent);
+  font-family: var(--font-aeonik);
+  font-size: var(--text-sm);
+  color: var(--emerald-green);
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, color 0.2s;
 }
 .forgot:hover {
-  opacity: 0.7;
+  color: var(--dark-green);
 }
 
 .submit_btn {
+  @include mixins.button-primary($bg: var(--dark-green));
   width: 100%;
-  border: none;
-  background: linear-gradient(
-    135deg,
-    var(--c-accent) 0%,
-    var(--c-accent-2) 100%
-  );
-  color: #fff;
-  font-family: "DM Sans", sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 15px 24px;
-  border-radius: var(--radius-inp);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 4px;
-  box-shadow: 0 8px 24px rgba(230, 62, 62, 0.3);
-  transition:
-    box-shadow 0.2s,
-    opacity 0.2s;
-  letter-spacing: 0.01em;
-  opacity: 1 !important;
+  border-radius: var(--radius-small);
+  box-shadow: var(--shadow-card);
   margin-top: 20px;
-  color: black;
+  color: var(--soft-white);
+  opacity: 1 !important;
 }
 .submit_btn:hover {
-  box-shadow: 0 12px 32px rgba(230, 62, 62, 0.4);
-  opacity: 0.93;
+  box-shadow: 0 12px 32px rgba(0, 51, 35, 0.25);
 }
 .btn-arrow {
   font-size: 18px;
@@ -1007,39 +949,21 @@ definePageMeta({
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #ccc;
-  font-size: 12px;
+  color: var(--gray-4);
+  font-size: var(--text-xs);
 }
 .divider::before,
 .divider::after {
   content: "";
   flex: 1;
   height: 1px;
-  background: #e8e8ec;
+  background: var(--border-light);
 }
 
 .google-btn {
+  @include mixins.button-outline;
   width: 100%;
-  border: 1.5px solid #e8e8ec;
-  background: #fff;
-  font-family: "DM Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  padding: 13px 24px;
-  border-radius: var(--radius-inp);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
-}
-.google-btn:hover {
-  border-color: #ccc;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  font-size: var(--text-sm);
 }
 
 .field-fade-enter-active,
