@@ -34,7 +34,6 @@ if (!utmTracked.value) {
 
   const utmStore = useUtmStore()
   const utmCookie = useCookie<any>("utm_data", { maxAge: 60 * 60 * 24 * 90 })
-  const showCookieModal = useState<boolean>("showCookieModal", () => false)
   const cookieConsent = useCookie('cookie_consent')
 
   const newUtm = {
@@ -46,14 +45,18 @@ if (!utmTracked.value) {
     utmCookie.value?.utm_source !== utmSource ||
     utmCookie.value?.utm_content !== utmContent
 
-  if ((!utmCookie.value || isDifferent) && cookieConsent.value !== "accepted") {
-    utmStore.setPending(utmSource || "", utmContent || "")
-    showCookieModal.value = true
-  } else if (isDifferent && cookieConsent.value === "accepted") {
-    utmCookie.value = {
-      ...newUtm,
-      updated_at: Date.now()
+  if (cookieConsent.value === "accepted") {
+    if (!utmCookie.value || isDifferent) {
+      utmCookie.value = {
+        ...newUtm,
+        updated_at: Date.now()
+      }
     }
+  } else {
+    utmStore.setPending(
+      utmSource || "",
+      utmContent || ""
+    )
   }
 
   if ("utm_source" in to.query || "utm_content" in to.query) {

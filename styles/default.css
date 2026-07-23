@@ -460,4 +460,8 @@ swiper-slide {
     margin: 0 10px;
   }
 }
+
+.grecaptcha-badge {
+    visibility: hidden;
+}
   

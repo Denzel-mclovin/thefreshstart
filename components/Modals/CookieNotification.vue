@@ -2,16 +2,40 @@
   <div class="cookie_modal_overlay">
     <div class="cookie_modal">
       <div class="cookie_content">
-        <h3>We use cookies to improve your experience on our website.</h3>
+        <img class="cookie_content_icon" src="/icons/protect.png" alt="icon" />
 
-        <div class="buttons">
-          <button @click="cookieSettingsHandler" class="secondary">
-            Manage Preferences
-          </button>
+        <div class="cookie_content_wrapper">
+          <div class="content_head">
+            <h2>Your privacy, your choice</h2>
+            <button class="close_btn" @click="modalStore.closeModal()">
+              ✕
+            </button>
+          </div>
 
-          <button @click="acceptCookies" class="primary">
-            Accept All
-          </button>
+          <p class="content_middle">
+            We use cookies to run this site, understand how it's used, and
+            improve your experience. You can accept all, reject non-essential,
+            or manage your preferences. See our
+
+            <NuxtLink 
+              class="accent_text"
+              to="/privacy-policy"
+            > 
+              Privacy Policy 
+            </NuxtLink>
+
+            .
+          </p>
+
+          <div class="content_bottom" >
+            <button class="accent" @click="acceptCookies">Accept All</button>
+
+            <button class="secondary"  @click="cookieSettingsHandler">Customize</button>
+
+            <!-- <button class="transparent" @click="cookieSettingsHandler">
+              Manage preferences
+            </button> -->
+          </div>
         </div>
       </div>
     </div>
@@ -19,35 +43,33 @@
 </template>
 
 <script setup>
+import { useUTMTracking } from "../../composables/useUTMTracking";
 
-import { useUTMTracking } from '../../composables/useUTMTracking'
+const { saveUTMFromStore } = useUTMTracking();
 
-const { saveUTMFromStore } = useUTMTracking()
+const modalStore = useModalStore();
 
-const modalStore = useModalStore()
-
-const cookieConsent = useCookie('cookie_consent', {
-  maxAge: 60 * 60 * 24 * 365
-})
+const cookieConsent = useCookie("cookie_consent", {
+  maxAge: 60 * 60 * 24 * 365,
+});
 
 const acceptCookies = () => {
+  cookieConsent.value = "accepted";
 
-  cookieConsent.value = "accepted"
+  saveUTMFromStore();
 
-  saveUTMFromStore()
-
-  modalStore.closeModal()
-
-}
+  modalStore.closeModal();
+};
 
 const cookieSettingsHandler = () => {
-  modalStore.closeModal()
-  modalStore.showModal("CookieSettings", {}, true)
-}
-
+  modalStore.closeModal();
+  modalStore.showModal("CookieSettings", {}, true);
+};
 </script>
 
 <style lang="scss" scoped>
+@use "/styles/mixins.scss" as mixins;
+
 .cookie_modal_overlay {
   width: 100%;
   height: 100%;
@@ -74,94 +96,140 @@ const cookieSettingsHandler = () => {
 
 .cookie_content {
   background: white;
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 15px 20px;
   max-width: 80%;
   width: 100%;
 
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-  border: 1px solid rgba(55, 28, 71, 0.2);
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+  border: 1px solid rgba(0, 51, 35, 0.2);
   position: relative;
 
-  h3 {
-    font-size: clamp(0.75rem, 3.8vw, 1rem);
-    font-weight: 700;
-    font-family: "Libre Baskerville", sans-serif;
-    font-style: normal;
-    line-height: 150%;
-    text-align: center;
+  &_icon {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    aspect-ratio: 1/1;
+    background: #e0f6ec;
+    border-radius: 7px;
+    padding: 10px;
+  }
 
-    @media screen and (max-width: 768px) {
-      line-height: 130%;
+  &_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .content_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    height: auto;
+
+    h2 {
+      @include mixins.fz-h5;
+      color: var(--dark-green);
+    }
+
+    button {
+      color: var(--gray-6);
+      transition: all ease 0.3s;
+      aspect-ratio: 1/1;
+      width: 20px;
+      height: 20px;
+      line-height: normal;
+
+      @media screen and (min-width: 1024px) {
+        &:hover {
+          color: var(--dark-grey);
+          transition: all ease 0.3s;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 25px;
+        height: 25px;
+        font-size: 1.3rem;
+      }
     }
   }
 
-  .buttons {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 12px;
+  .content_middle {
+    @include mixins.fz-body-large;
+    color: var(--text-secondary);
+    line-height: 1.2;
 
-    button {
-      width: fit-content;
-      padding: 10px 18px;
-      border-radius: 6px;
-      font-weight: 700;
-      white-space: nowrap;
-      border: none;
+    a {
       cursor: pointer;
-
-      font-size: 1rem;
-      font-weight: 400;
-      font-family: "Josefin Sans", sans-serif;
-
-      font-style: normal;
-      line-height: 150%;
-      transition: all ease 0.3s;
-
-      @media screen and (max-width: 768px) {
-        width: 100%;
-        font-size: 1.125rem;
-        line-height: 130%;
-      }
-
-      @media screen and (max-width: 480px) {
-        font-size: clamp(0.8rem, 3.8vw, 1.2rem);
-        padding: 8px 12px;
-      }
+      color: var(--emerald-green);
     }
+  }
 
-    .primary {
-      background: #f7ac0b;
-      color: white;
-      @media screen and (min-width: 1024px) {
-        &:hover {
-          background: #f0a607;
+  .content_bottom {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: auto;
 
-          transition: all ease 0.3s;
-        }
-      }
+
+    .accent {
+      @include mixins.button-primary;
     }
 
     .secondary {
-      color: #333;
-      background: #edf0f4;
+      @include mixins.button-ghost;
+    }
+
+    .transparent {
+      @include mixins.button-ghost;
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--gray-6);
 
       @media screen and (min-width: 1024px) {
         &:hover {
-          background: #e6e9ed;
-          transition: all ease 0.3s;
+          border: 1px solid var(--gray-3);
+          color: var(--dark-grey);
         }
+      }
+    }
+
+    button {
+      border-radius: 6px;
+
+      @media screen and (max-width: 768px) {
+        flex: 1;
+        white-space: nowrap;
+        font-size: clamp(0.75rem, 2vw, 1.2rem) !important;
+        width: 100%;
       }
     }
 
     @media screen and (max-width: 768px) {
-      width: 100%;
-      height: auto;
+      margin: 0 auto;
+      justify-content: center;
+      flex-wrap: wrap;
     }
+
+    @media screen and (max-width: 375px) {
+      flex-direction: column;
+
+    }
+
   }
 
   @media screen and (max-width: 1024px) {

@@ -187,7 +187,8 @@
 @mixin button-secondary($bg: var(--emerald-green), $family: var(--font-aeonik, sans-serif), $size: 16px) {
 
 	@include button-font($family, $size);
-	@include default-button-setup($bg);
+	// @include default-button-setup($bg);
+	@include default-button($bg);
 
 	@media screen and (min-width: 1024px) {
 
@@ -247,7 +248,7 @@
 @mixin button-ghost( $bg: var(--soft-white), $family: var(--font-aeonik, sans-serif), $size: 16px) {
 
 	@include button-font($family, $size);
-	@include default-button-setup($bg);
+	@include default-button($bg);
 	border: 1px solid var(--gray-2);
 	color: var(--dark-green);
 

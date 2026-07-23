@@ -56,12 +56,34 @@
         </div>
 
         <div class="footer_content_bottom">
-          Disclaimer: Fresh Start provides educational consulting and is not a
-          tax, legal, or financial advisor; nothing here is personal tax, legal,
-          or financial advice. The Foreign Earned Income Exclusion is referenced
-          for educational purposes only, and eligibility depends on your
-          individual circumstances. Consult a qualified CPA or tax professional
-          regarding your situation.
+          <p>
+            Disclaimer: Fresh Start provides educational consulting and is not a
+            tax, legal, or financial advisor; nothing here is personal tax,
+            legal, or financial advice. The Foreign Earned Income Exclusion is
+            referenced for educational purposes only, and eligibility depends on
+            your individual circumstances. Consult a qualified CPA or tax
+            professional regarding your situation.
+          </p>
+
+          <p class="recaptcha-disclaimer">
+            This site is protected by reCAPTCHA and the Google
+            <NuxtLink 
+              to="https://policies.google.com/privacy" 
+              target="_blank"
+              class="link_text"
+            >
+              Privacy Policy
+            </NuxtLink>
+            and
+            <NuxtLink 
+              to="https://policies.google.com/terms" 
+              target="_blank"
+              class="link_text"
+            >
+              Terms of Service
+            </NuxtLink>
+            apply.
+          </p>
         </div>
       </div>
     </div>
@@ -224,6 +246,22 @@
       height: auto;
       padding-top: 30px;
       @include mixins.fz-body($color: var(--gray-6), $size: 1rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 20px;
+
+      .link_text {
+        color: #FFF;
+
+        @media screen and (mix-width: 1024px) {
+          &:hover {
+            text-decoration: underline;
+            color: var(--soft-green);
+          }
+        }
+      }
 
       @media screen and (max-width: 480px) {
         padding-bottom: 50px;

@@ -47,51 +47,6 @@ if (import.meta.client) {
     ],
   });
 }
-
-// onMounted(() => {
-
-//   if (cookieConsent.value === 'accepted') return
-
-//   const urlParams = new URLSearchParams(window.location.search)
-//   // const hasUTM = urlParams.has('utm_source') || urlParams.has('utm_medium') ||
-//   //                urlParams.has('utm_campaign') || urlParams.has('utm_content')
-
-//   const hasUTM = urlParams.has('utm_source') || urlParams.has('utm_medium') ||
-//                urlParams.has('utm_campaign') || urlParams.has('utm_content') ||
-//                utmSource.value || utmMedium.value || utmCampaign.value || utmContent.value
-
-//   if (hasUTM) {
-//     setTimeout(() => {
-//       modalStore.showModal('CookieNotification', {})
-//     }, 3000)
-//   }
-
-// })
-
-// LINK EXAMPLE
-// localhost:3000/?utm_source=tiktok&utm_content=clip1
-
-// generating URL
-
-// function generateUTMUrl(baseUrl: string, params: Record<string,string>) {
-//   const url = new URL(baseUrl)
-//   Object.entries(params).forEach(([key, value]) => {
-//     if (value) url.searchParams.set(key, value)
-//   })
-//   return url.toString()
-// }
-
-// const base = "https://www.google.com/"
-// const utmParams = {
-//   utm_source: "instagram",
-//   utm_medium: "social",
-//   utm_campaign: "spring_launch",
-//   utm_content: "reel14_53s",
-//   utm_term: "tiktok_influencer"
-// }
-
-// const finalUrl = generateUTMUrl(base, utmParams)
-// console.log(finalUrl)
 </script>
 
 <style lang="scss" scoped>

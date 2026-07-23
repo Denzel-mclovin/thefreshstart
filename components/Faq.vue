@@ -66,10 +66,7 @@
                 "
               />
 
-              <button 
-                class="send_button"
-                @click="sendQuestionHandler"
-              >
+              <button class="send_button" @click="sendQuestionHandler">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -176,12 +173,9 @@ const answerRefs = ref([]);
 const activeSendBtn = ref(false);
 const loaderState = ref(false);
 
-
 // const { executeRecaptcha } = useReCaptcha();
 
 const recaptcha = shallowRef(null);
-
-
 
 const questionData = [
   {
@@ -255,9 +249,7 @@ const toggleQuestionVisible = (id, index) => {
 };
 
 const sendQuestionHandler = async () => {
-
   if (!questionInput.value.trim()) {
-
     alert(`Please enter a question`);
 
     return;
@@ -270,44 +262,35 @@ const sendQuestionHandler = async () => {
   const token = await recaptcha.value.executeRecaptcha("faq_form");
 
   try {
-
-    const sendEmailRes = await $fetch('/api/contact/send-question', {
-      method: 'POST',
+    const sendEmailRes = await $fetch("/api/contact/send-question", {
+      method: "POST",
       body: {
         question: questionInput.value,
         token,
-      }
-    })
+      },
+    });
 
     if (sendEmailRes.success) {
+      alert(
+        "Your question has been sent, we will get back to you as soon as possible!",
+      );
 
-      alert('Your question has been sent, we will get back to you as soon as possible!');
-
-      questionInput.value = ''
-
+      questionInput.value = "";
     }
-
   } catch (err) {
-  
     console.error(err);
 
-    alert('Failed to sent message');
-
+    alert("Failed to sent message");
   } finally {
-    questionInput.value = ''
+    questionInput.value = "";
 
     loaderState.value = false;
-
   }
-
-
-
-}
+};
 
 // ANIMATION METHODS
 
 onMounted(async () => {
-
   recaptcha.value = useReCaptcha();
 
   await nextTick();
@@ -512,7 +495,6 @@ onMounted(async () => {
       cursor: pointer;
       width: 100%;
       height: auto;
-      // gap: 16px;
 
       h5 {
         @include mixins.fz-h5($color: var(--dark-green));

@@ -20,13 +20,13 @@
             Accept All
           </button>
 
-          <button
+          <!-- <button
             class="secondary_btn"
             :class="activeBtn === 'essential' ? 'top_btn_active' : ''"
             @click="onlyRequired"
           >
             Essentials
-          </button>
+          </button> -->
 
           <button
             class="secondary_btn"
@@ -200,7 +200,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 51, 35, 0.45);
   backdrop-filter: blur(3px);
   pointer-events: auto;
 }
@@ -213,6 +213,13 @@ onMounted(() => {
   display: flex;
   justify-content: center;
 
+  /* убираем скроллбар, скролл остаётся рабочим */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome/Safari/Opera */
+  }
+
   @media screen and (max-width: 768px) {
     width: 100%;
 
@@ -224,8 +231,8 @@ onMounted(() => {
 }
 
 .cookie_settings .cookie_content {
-  background: white;
-  border-radius: 8px;
+  background: var(--white);
+  border-radius: var(--radius-medium);
 
   padding: 25px 30px;
 
@@ -256,17 +263,19 @@ onMounted(() => {
 
 .cookie_settings h3 {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: var(--font-regular);
 
-  font-family: "Libre Baskerville", sans-serif;
+  font-family: var(--font-playfair);
 
+  color: var(--text-primary);
   line-height: 150%;
   text-align: start;
 }
 
 .cookie_settings p {
   font-size: 1.25rem;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: var(--font-aeonik);
+  color: var(--text-secondary);
 
   line-height: 150%;
 }
@@ -291,14 +300,16 @@ onMounted(() => {
 .cookie_settings .top_buttons button {
   padding: 10px 18px;
   white-space: nowrap;
-  border-radius: 6px;
+  border-radius: var(--radius-small);
   border: none;
   cursor: pointer;
-  background: #edf0f4;
+  background: var(--light-grey);
+  color: var(--text-primary);
 
   font-size: 1.25rem;
-  font-family: "Josefin Sans", sans-serif;
+  font-family: var(--font-aeonik);
   flex: 1;
+  transition: background 0.2s, color 0.2s;
 
   @media screen and (max-width: 768px) {
     font-size: clamp(0.8rem, 3.8vw, 1.2rem);
@@ -310,8 +321,8 @@ onMounted(() => {
 }
 
 .cookie_settings .top_buttons .top_btn_active {
-  background: #f7ac0b;
-  color: white;
+  background: var(--dark-green);
+  color: var(--soft-white);
 }
 
 .tab_description {
@@ -319,9 +330,9 @@ onMounted(() => {
 
   p {
     font-size: 1.2rem;
-    font-family: "Josefin Sans", sans-serif;
+    font-family: var(--font-aeonik);
     line-height: 150%;
-    color: #555;
+    color: var(--text-secondary);
   }
 }
 
@@ -348,7 +359,7 @@ onMounted(() => {
 
   padding: 15px 0;
 
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-light);
   gap: 20px;
 }
 
@@ -357,7 +368,8 @@ onMounted(() => {
 
   h4 {
     font-size: 1.3rem;
-    font-family: "Libre Baskerville", serif;
+    font-family: var(--font-playfair);
+    color: var(--text-primary);
     margin-bottom: 5px;
 
     @media screen and (max-width: 480px) {
@@ -367,8 +379,8 @@ onMounted(() => {
 
   p {
     font-size: 1.1rem;
-    font-family: "Josefin Sans", sans-serif;
-    color: #666;
+    font-family: var(--font-aeonik);
+    color: var(--text-secondary);
   }
 
   @media screen and (max-width: 480px) {
@@ -382,7 +394,7 @@ onMounted(() => {
   display: flex;
   gap: 25px;
 
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .tabs button {
@@ -391,19 +403,20 @@ onMounted(() => {
 
   font-size: 1.25rem;
 
-  font-family: "Josefin Sans", sans-serif;
+  font-family: var(--font-aeonik);
 
   padding-bottom: 10px;
 
   cursor: pointer;
 
-  color: #666;
+  color: var(--text-muted);
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .tabs .active {
-  color: #f7ac0b;
+  color: var(--dark-green);
 
-  border-bottom: 2px solid #f7ac0b;
+  border-bottom: 2px solid var(--emerald-green);
 }
 
 .tab_content {
@@ -425,7 +438,8 @@ onMounted(() => {
 .cookie_info h4 {
   font-size: 1.4rem;
 
-  font-family: "Libre Baskerville", serif;
+  font-family: var(--font-playfair);
+  color: var(--text-primary);
 
   margin-bottom: 6px;
 }
@@ -433,9 +447,9 @@ onMounted(() => {
 .cookie_info p {
   font-size: 1.1rem;
 
-  font-family: "Josefin Sans", sans-serif;
+  font-family: var(--font-aeonik);
 
-  color: #555;
+  color: var(--text-secondary);
 }
 
 .switch {
@@ -455,9 +469,9 @@ onMounted(() => {
   position: absolute;
   inset: 0;
 
-  background: #ccc;
+  background: var(--gray-3);
 
-  border-radius: 26px;
+  border-radius: var(--radius-full);
 
   transition: 0.3s;
 }
@@ -473,7 +487,7 @@ onMounted(() => {
   left: 3px;
   bottom: 3px;
 
-  background: white;
+  background: var(--white);
 
   border-radius: 50%;
 
@@ -481,7 +495,7 @@ onMounted(() => {
 }
 
 input:checked + .slider {
-  background: #f7ac0b;
+  background: var(--emerald-green);
 }
 
 input:checked + .slider:before {
@@ -506,9 +520,14 @@ input:checked + .slider:before {
 .footer a {
   font-size: 1.1rem;
 
-  font-family: "Josefin Sans", sans-serif;
+  font-family: var(--font-aeonik);
 
-  color: #666;
+  color: var(--text-muted);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--dark-green);
+  }
 
   @media screen and (max-width: 420px) {
     text-align: end;
@@ -525,10 +544,12 @@ input:checked + .slider:before {
   button {
     padding: 10px 18px;
     white-space: nowrap;
-    border-radius: 6px;
+    border-radius: var(--radius-small);
     border: none;
     cursor: pointer;
-    background: #edf0f4;
+    background: var(--light-grey);
+    color: var(--text-primary);
+    transition: background 0.2s, opacity 0.2s;
 
     @media screen and (max-width: 420px) {
       font-size: clamp(0.8rem, 4vw, 1.1rem);
@@ -538,9 +559,9 @@ input:checked + .slider:before {
   }
 
   .primary_btn {
-    background: #f7ac0b;
-    color: white;
-    font-weight: 600;
+    background: var(--dark-green);
+    color: var(--soft-white);
+    font-weight: var(--font-bold);
   }
 
   @media screen and (max-width: 420px) {
