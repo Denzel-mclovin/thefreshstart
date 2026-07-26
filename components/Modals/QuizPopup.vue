@@ -845,7 +845,7 @@ async function submitContact() {
     return;
   }
   submitting.value = true;
-  phase.value = "homerun";
+  phase.value = "calendly";
   submitting.value = false;
 }
 

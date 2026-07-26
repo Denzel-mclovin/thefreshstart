@@ -20,6 +20,11 @@ import { useRoute } from "#app";
 // import { Analytics } from "@vercel/analytics/nuxt";
 import IconLibrary from "./components/shared/IconLibrary.vue";
 
+import { useModalStore } from "./stores/modal";
+
+
+const modalStore = useModalStore();
+
 useHead({
   meta: [
     { name: 'color-scheme', content: 'light' }
@@ -55,22 +60,6 @@ useHead({
 
 const utmStore = useUtmStore();
 
-// const utmVisitHandler = async () => {
-
-//    const data = sessionStorage.getItem('utm_attribution')
-
-//    console.log(data, "data");
-//   if (!data) return
-
-//   try {
-//     await $fetch('/api/utm/update-visit', {
-//       method: 'POST',
-//       body: JSON.parse(data)
-//     })
-//   } catch (e) {
-//     console.error('UTM visit tracking failed', e)
-//   }
-// }
 
 onMounted( () => {
 

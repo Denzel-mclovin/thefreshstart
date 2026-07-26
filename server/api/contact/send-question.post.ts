@@ -53,9 +53,9 @@ export default defineEventHandler(async (event) => {
 
         const sendEmailRes = await resend.emails.send({
             from: 'The Fresh Start <noreply@thefreshstart.net>',
-            to: 'nick7.dev@gmail.com',
-            subject: 'Hello World',
-            html: `<p>Congrats on sending your <strong>first email</strong>! <br/> ${question}</p>`
+            to: config.sendEmailTo,
+            subject: 'Fresh Start Question',
+            html: `<p>You have a new question! <br/> ${question}</p>`
             // replyTo: ""
         });
 

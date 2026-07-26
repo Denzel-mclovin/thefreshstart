@@ -47,6 +47,8 @@ export default defineNuxtConfig({
     recaptchaSecretKey: process.env.RECAPTCHA_SECRET_KEY,
     resendApiKEy: process.env.RESEND_API_KEY,
 
+    sendEmailTo: process.env.SEND_EMAIL_TO,
+
     public: {
       supabaseKey: process.env.SUPABASE_KEY,
       zohoAppHost: process.env.ZOHO_APP_HOST,
@@ -105,7 +107,8 @@ export default defineNuxtConfig({
         exposeConfig: true,
         viewer: true,
       }
-    ]
+    ],
+    '@vercel/analytics',
   ],
   image: {
     provider: 'none',
