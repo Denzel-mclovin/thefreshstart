@@ -108,7 +108,7 @@ export default defineNuxtConfig({
         viewer: true,
       }
     ],
-    '@vercel/analytics/nuxt',
+    '@vercel/analytics',
   ],
   image: {
     provider: 'none',
