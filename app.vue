@@ -2,7 +2,6 @@
   <NuxtLayout>
     <NuxtPage />
     <IconLibrary />
-    <!-- <Analytics /> -->
     <noscript>
       <img
         height="1"
@@ -17,7 +16,6 @@
 <script setup>
 import { onMounted } from "vue";
 import { useRoute } from "#app";
-// import { Analytics } from "@vercel/analytics/nuxt";
 import IconLibrary from "./components/shared/IconLibrary.vue";
 
 import { useModalStore } from "./stores/modal";
