@@ -23,6 +23,7 @@
     "dayjs": "^1.11.13",
     "gsap": "^3.13.0",
     "handlebars": "^4.7.8",
+    "libphonenumber-js": "^1.13.9",
     "nodemailer": "^7.0.6",
     "nuxt": "^3.18.1",
     "pg": "^8.16.3",

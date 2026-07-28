@@ -50,7 +50,11 @@
               </clipPath>
             </defs>
           </svg>
-          <span> Built on a legal U.S. tax provision (FEIE) </span>
+          <span> 
+            <!-- Built on a legal U.S. tax provision (FEIE)  -->
+             Built on a proven relocation framework.
+          
+          </span>
         </div>
         <div class="video_options_divider"></div>
         <div class="video_options_item">

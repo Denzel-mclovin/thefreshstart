@@ -178,11 +178,11 @@ const loaderState = ref(false);
 const recaptcha = shallowRef(null);
 
 const questionData = [
-  {
-    id: 1,
-    q: "Is this legal?",
-    a: "The Foreign Earned Income Exclusion is a documented provision in the U.S. tax code that's been in place for decades, and many Americans living and working abroad use it. Whether it applies to your situation is a question for a qualified CPA. This is educational, not personal tax advice.",
-  },
+  // {
+  //   id: 1,
+  //   q: "Is this legal?",
+  //   a: "The Foreign Earned Income Exclusion is a documented provision in the U.S. tax code that's been in place for decades, and many Americans living and working abroad use it. Whether it applies to your situation is a question for a qualified CPA. This is educational, not personal tax advice.",
+  // },
   {
     id: 2,
     q: "Do I have to quit my job?",
@@ -208,11 +208,11 @@ const questionData = [
     q: "What's the time commitment?",
     a: "It's a 90-day engagement, roughly 4–6 hours a week. This includes weekly calls, logistics, and decisions. It's hands-on, not passive.",
   },
-  {
-    id: 7,
-    q: "Is this tax advice?",
-    a: "This is educational consulting, not tax advice. GLO is a consultant, not a CPA or attorney. The program helps you get organized, understand how the strategy works, and bring the right questions to a licensed CPA or tax professional, who handles your actual eligibility and filings.",
-  },
+  // {
+  //   id: 7,
+  //   q: "Is this tax advice?",
+  //   a: "This is educational consulting, not tax advice. GLO is a consultant, not a CPA or attorney. The program helps you get organized, understand how the strategy works, and bring the right questions to a licensed CPA or tax professional, who handles your actual eligibility and filings.",
+  // },
 ];
 
 // FUNCTIONS----------------
