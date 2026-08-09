@@ -1398,6 +1398,7 @@ const modalStyle = computed(() => ({
   min-width: 0;
 
    min-height: 0;
+   height: max-content;
   // overflow-y: auto;
 }
 
