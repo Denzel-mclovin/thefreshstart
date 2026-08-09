@@ -248,7 +248,16 @@
                         </p>
                       </div>
                       <div v-if="a.q4 === 'week'" class="q-affirm-pitch">
-                        <p>Nothing's due today. You'll lock in your call...</p>
+                        <p>
+                          <!-- Nothing's due today. You'll lock in your call... -->
+
+                          Perfect. A week is not a problem. Nothing’s due today; 
+                          you’ll lock in your call now and we’ll sort the details when we talk. 
+                          (And if your timing shifts, we also work with Affirm financing, 
+                          so you’ll have options either way.)
+                        
+                        
+                        </p>
                       </div>
                       <div v-if="a.q4 !== 'week'" class="q-affirm-widget">
                         <div class="q-affirm-widget__logo">
@@ -896,7 +905,7 @@ const modalStyle = computed(() => ({
 
   maxWidth: phase.value === "calendly" ? "1100px" : "700px",
 
-  height: phase.value === "calendly" ? "90vh" : "auto",
+  height: phase.value === "calendly" ? "90vh" : "90dvh",
 }));
 </script>
 
@@ -917,14 +926,33 @@ const modalStyle = computed(() => ({
 }
 
 .q-modal {
+  // background: #ffffff;
+  // border-radius: var(--radius-medium);
+  // width: clamp(300px, 90vw, 700px);
+  // max-width: 700px;
+  // max-height: 90dvh;
+  // display: flex;
+  // flex-direction: column;
+  // box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+  // position: relative;
+  // overflow: hidden;
+
   background: #ffffff;
   border-radius: var(--radius-medium);
+
   width: clamp(300px, 90vw, 700px);
   max-width: 700px;
-  max-height: 90vh;
+
+  height: 90dvh;
+  max-height: 90dvh;
+
   display: flex;
   flex-direction: column;
+
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+
+  position: relative;
+  overflow: hidden;
 
   @media (max-width: 480px) {
     max-height: 96vh;
@@ -1026,10 +1054,20 @@ const modalStyle = computed(() => ({
 }
 
 .q-modal__body {
+  // flex: 1;
+  // // overflow-y: auto;
+  // padding: 28px 30px 30px;
+  // position: relative;
+
   flex: 1;
-  overflow-y: auto;
+  min-height: 0;
+
+  // padding: 28px 30px 100px;
   padding: 28px 30px 30px;
+
   position: relative;
+
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     width: 4px;
@@ -1049,8 +1087,17 @@ const modalStyle = computed(() => ({
 }
 
 .q-slide {
+  // display: flex;
+  // flex-direction: column;
+
+  height: 100%;
+
   display: flex;
   flex-direction: column;
+  // max-height: clamp(100px, 60vh, 600px);
+  position: relative;
+
+  min-height: 0;
 }
 
 .loader-wrapper {
@@ -1069,25 +1116,90 @@ const modalStyle = computed(() => ({
   @include mixins.fz-h3($color: var(--dark-green));
   font-weight: 500;
   margin: 0 0 10px;
+
+  flex-shrink: 0;
 }
 
 .q-hint {
   @include mixins.fz-body($color: var(--gray-6));
   margin: 0 0 28px;
+
+  flex-shrink: 0;
 }
 
 .q-options {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  // display: flex;
+  // flex-direction: column;
+  // margin-bottom: 60px;
+  // overflow-y: auto;
+  // gap: 10px;
+
+    flex: 1;
+    min-height: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-bottom: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+
+    // padding-bottom: 20px;
+    padding-bottom: 4px;
+    padding-right: 12px;
+
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0,
+      #000 calc(100% - 20px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0,
+      #000 calc(100% - 20px),
+      transparent 100%
+    );
+
+    // firefox
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray-5) transparent;
+
+    // chrome/safari
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: var(--gray-3);
+      border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--gray-4);
+    }
 
   &--with-affirm {
     flex-direction: row;
-    align-items: flex-start;
+    // align-items: flex-start;
+    align-items: stretch;
+  // padding-right: 12px;
+
     gap: 16px;
 
     @media (max-width: 600px) {
       flex-direction: column;
+
+      .q-options-col,
+      .q-affirm-block {
+        flex: 0 0 auto; 
+        width: 100%;
+      }
     }
   }
 }
@@ -1097,7 +1209,13 @@ const modalStyle = computed(() => ({
   flex-direction: column;
   gap: 10px;
   min-width: 0;
-  flex: 1;
+  // flex: 1;
+  flex: 1 1 0;
+  // 
+  min-height: 0;
+  // overflow-y: auto;
+  // min-height: 0;
+  padding-right: 4px;
 }
 
 .q-opt {
@@ -1168,11 +1286,49 @@ const modalStyle = computed(() => ({
 }
 
 .q-navigation {
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+  // margin-top: 8px;
+  // padding-top: 32px;
+
+  // position: absolute;
+  // width: 100%;
+  // left: 0;
+  // bottom: 0;
+  // padding: 20px 30px;
+  // background: white;
+  // border-bottom-left-radius: 20px;
+  // border-bottom-right-radius: 20px;
+
+  // position: absolute;
+
+  // left: 0;
+  // bottom: 0;
+
+  // width: 100%;
+
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+
+  // padding: 10px 30px 20px;
+
+  // background: white;
+
+  // border-bottom-left-radius: 20px;
+  // border-bottom-right-radius: 20px;
+
+  // z-index: 5;
+
+  flex-shrink: 0;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 8px;
-  padding-top: 32px;
+
+  padding: 16px 0 0;
+  background: transparent;
 }
 
 .q-nav-back {
@@ -1234,11 +1390,15 @@ const modalStyle = computed(() => ({
 }
 
 .q-affirm-block {
-  flex: 1;
+  // flex: 1;
+  flex: 1 1 0;
   border: 1.5px solid var(--gray-2);
   border-radius: var(--radius-small);
   overflow: hidden;
   min-width: 0;
+
+   min-height: 0;
+  // overflow-y: auto;
 }
 
 .q-affirm-pitch {
@@ -1341,11 +1501,52 @@ const modalStyle = computed(() => ({
 .q-slide-results {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
+  justify-content: flex-start;
   position: relative;
 
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+
+  padding: 4px 4px 20px;
+  padding-right: 12px; 
+
   gap: 30px;
+
+    mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-3) transparent;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-3);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-4);
+  }
 
   .go-back-btn {
     width: 100%;
@@ -1353,6 +1554,7 @@ const modalStyle = computed(() => ({
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-shrink: 0;
   }
 
   .results-content {
@@ -1362,6 +1564,7 @@ const modalStyle = computed(() => ({
     align-items: center;
     position: relative;
     gap: 20px;
+    flex-shrink: 0;
 
     &-label {
       width: 100px;
@@ -1395,6 +1598,7 @@ const modalStyle = computed(() => ({
       @include mixins.fz-h3($color: var(--dark-green));
       font-weight: 500;
       text-align: center;
+      margin-bottom: 20px;
     }
 
     &-info {
@@ -1410,7 +1614,9 @@ const modalStyle = computed(() => ({
     justify-content: center;
     align-items: center;
     gap: 15px;
-    flex: 1;
+    // flex: 1;
+    flex-shrink: 0;
+    margin-top: auto;
     position: relative;
     width: 100%;
     height: auto;
