@@ -905,7 +905,7 @@ const modalStyle = computed(() => ({
 
   maxWidth: phase.value === "calendly" ? "1100px" : "700px",
 
-  height: phase.value === "calendly" ? "90vh" : "90dvh",
+  height: phase.value === "calendly" ? "90vh" : "77vh",
 }));
 </script>
 
