@@ -333,7 +333,8 @@
     gap: 10px;
 
     button {
-      @include mixins.button-primary;
+      @include mixins.button-secondary;
+      color: var(--text-primary);
       @media screen and (max-width: 768px) {
         width: 100%;
         height: auto; 

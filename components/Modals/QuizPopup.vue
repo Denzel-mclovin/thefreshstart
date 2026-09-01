@@ -329,7 +329,13 @@
 
             <transition name="fade" mode="out-in">
               <div v-if="phase === 'results'" key="results" class="q-slide">
-                <div class="q-slide-results">
+                <div v-if="loadingResults" class="loading_results">
+                  <div class="ios-spinner">
+                    <div class="ios-spinner__blade" v-for="n in 12" :key="n"></div>
+                  </div>
+                  <p class="loading_results__text">Your results will be soon</p>
+                </div>
+                <div v-else class="q-slide-results">
                   <button
                     class="go-back-btn"
                     @click="
@@ -375,7 +381,7 @@
                     <button class="q-btn-primary" @click="goToCalendlyDirect()">
                       Book My Free Strategy Call →
                     </button>
-                    <button class="q-btn-secondary" @click="phase = 'contact'">
+                    <button class="q-btn-secondary q-btn-neon" @click="phase = 'contact'">
                       Email me my full breakdown first
                     </button>
                   </div>
@@ -636,7 +642,7 @@ const teamMemberName = ref("Vito");
 
 // ─── State ─────────────────────────────────────────────────────────────────
 const phase = ref("questions");
-// const phase = ref("confirmed");
+// const phase = ref("calendly");
 
 const stepIdx = ref(0);
 const transitionName = ref("slide-up");
@@ -651,6 +657,9 @@ const affirmStatus = ref("idle"); // idle | loading | approved | denied
 const a = ref({ q1: "", q2: "", q3: "", q4: "", q5: "", homerun: "" });
 const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
 const consent = ref({ email: false, sms: false });
+
+const TEST_MODE = ref(true);
+const loadingResults = ref(false);
 
 // ─── Computed ──────────────────────────────────────────────────────────────
 const progressPct = computed(() => (stepIdx.value / TOTAL_STEPS) * 100);
@@ -720,7 +729,14 @@ function pick(field, value) {
 
 async function next(field, value) {
   if (!value) return;
-  updateQuiz(field, value).catch(console.error);
+
+  if (!TEST_MODE.value) {
+    console.log("inside if")
+    updateQuiz(field, value).catch(console.error);
+
+  }
+
+  console.log("outside if")
   transitionName.value = "slide-up";
   if (stepIdx.value < TOTAL_STEPS - 1) {
     setTimeout(() => {
@@ -737,7 +753,15 @@ function back() {
 async function finishQuiz() {
   if (!a.value.q5) return;
 
+  loadingResults.value = true;
+
   await next("q5", a.value.q5);
+
+  setTimeout(() => {
+    loadingResults.value = false;
+
+  }, 5000);
+
 
   phase.value = "results";
 }
@@ -926,16 +950,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-modal {
-  // background: #ffffff;
-  // border-radius: var(--radius-medium);
-  // width: clamp(300px, 90vw, 700px);
-  // max-width: 700px;
-  // max-height: 90dvh;
-  // display: flex;
-  // flex-direction: column;
-  // box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
-  // position: relative;
-  // overflow: hidden;
 
   background: #ffffff;
   border-radius: var(--radius-medium);
@@ -1054,15 +1068,9 @@ const modalStyle = computed(() => ({
 }
 
 .q-modal__body {
-  // flex: 1;
-  // // overflow-y: auto;
-  // padding: 28px 30px 30px;
-  // position: relative;
 
   flex: 1;
   min-height: 0;
-
-  // padding: 28px 30px 100px;
   padding: 28px 30px 30px;
 
   position: relative;
@@ -1087,14 +1095,11 @@ const modalStyle = computed(() => ({
 }
 
 .q-slide {
-  // display: flex;
-  // flex-direction: column;
 
   height: 100%;
 
   display: flex;
   flex-direction: column;
-  // max-height: clamp(100px, 60vh, 600px);
   position: relative;
 
   min-height: 0;
@@ -1128,11 +1133,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-options {
-  // display: flex;
-  // flex-direction: column;
-  // margin-bottom: 60px;
-  // overflow-y: auto;
-  // gap: 10px;
 
     flex: 1;
     min-height: 0;
@@ -1148,7 +1148,6 @@ const modalStyle = computed(() => ({
     overflow-x: hidden;
     scrollbar-gutter: stable;
 
-    // padding-bottom: 20px;
     padding-bottom: 4px;
     padding-right: 12px;
 
@@ -1186,9 +1185,7 @@ const modalStyle = computed(() => ({
 
   &--with-affirm {
     flex-direction: row;
-    // align-items: flex-start;
     align-items: stretch;
-  // padding-right: 12px;
 
     gap: 16px;
 
@@ -1209,12 +1206,8 @@ const modalStyle = computed(() => ({
   flex-direction: column;
   gap: 10px;
   min-width: 0;
-  // flex: 1;
   flex: 1 1 0;
-  // 
   min-height: 0;
-  // overflow-y: auto;
-  // min-height: 0;
   padding-right: 4px;
 }
 
@@ -1286,40 +1279,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-navigation {
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-  // margin-top: 8px;
-  // padding-top: 32px;
-
-  // position: absolute;
-  // width: 100%;
-  // left: 0;
-  // bottom: 0;
-  // padding: 20px 30px;
-  // background: white;
-  // border-bottom-left-radius: 20px;
-  // border-bottom-right-radius: 20px;
-
-  // position: absolute;
-
-  // left: 0;
-  // bottom: 0;
-
-  // width: 100%;
-
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
-
-  // padding: 10px 30px 20px;
-
-  // background: white;
-
-  // border-bottom-left-radius: 20px;
-  // border-bottom-right-radius: 20px;
-
-  // z-index: 5;
 
   flex-shrink: 0;
 
@@ -1390,7 +1349,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-affirm-block {
-  // flex: 1;
   flex: 1 1 0;
   border: 1.5px solid var(--gray-2);
   border-radius: var(--radius-small);
@@ -1399,7 +1357,6 @@ const modalStyle = computed(() => ({
 
    min-height: 0;
    height: max-content;
-  // overflow-y: auto;
 }
 
 .q-affirm-pitch {
@@ -1502,7 +1459,6 @@ const modalStyle = computed(() => ({
 .q-slide-results {
   display: flex;
   flex-direction: column;
-  // justify-content: center;
   align-items: center;
   justify-content: flex-start;
   position: relative;
@@ -1615,13 +1571,74 @@ const modalStyle = computed(() => ({
     justify-content: center;
     align-items: center;
     gap: 15px;
-    // flex: 1;
     flex-shrink: 0;
     margin-top: auto;
     position: relative;
     width: 100%;
     height: auto;
   }
+}
+
+.loading_results {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.ios-spinner {
+  position: relative;
+  width: 44px;
+  height: 44px;
+
+  &__blade {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    margin-left: -1.5px;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 28%;
+      border-radius: 3px;
+      background: var(--dark-green);
+    }
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{($i - 1) * 30}deg);
+
+        &::before {
+          animation: ios-spinner-fade 1s linear infinite;
+          animation-delay: calc(#{$i - 1} * (1s / 12));
+        }
+      }
+    }
+  }
+}
+
+@keyframes ios-spinner-fade {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+
+.loading_results__text {
+  @include mixins.fz-body($color: var(--dark-green));
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
 }
 
 .confirmed-label {
@@ -1699,6 +1716,29 @@ const modalStyle = computed(() => ({
       transition: all ease 0.3s;
     }
   }
+}
+
+.q-btn-neon {
+  @include mixins.button-secondary;
+  border-radius: var(--radius-small);
+  color: var(--text-primary);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 12px 20px;
+  width: 100%;
+  text-align: center;
+  transition: all ease 0.3s;
+  display: block;
+
+
+  @media screen and (min-width: 1024px) {
+
+    &:hover {
+      color: var(--dark-green);
+      transition: all ease 0.3s;
+    }
+  }
+
 }
 
 .q-results-preview {

@@ -113,7 +113,8 @@ onMounted(async () => {
 
   &_cta {
     margin-top: 20px;
-    @include mixins.button-primary;
+    @include mixins.button-secondary;
+    color: var(--text-primary);
 
     @media screen and (max-width: 480px) {
       margin-top: unset;

@@ -97,21 +97,21 @@
             <g clip-path="url(#clip0_505_428)">
               <path
                 d="M19 12H5"
-                stroke="#F9F9F9"
+                stroke="#003323"
                 stroke-width="1.6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
                 d="M19 12L13 18"
-                stroke="#F9F9F9"
+                stroke="#003323"
                 stroke-width="1.6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
               <path
                 d="M19 12L13 6"
-                stroke="#F9F9F9"
+                stroke="#003323"
                 stroke-width="1.6"
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -229,7 +229,8 @@ const modalStore = useModalStore();
   }
 
   &_cta {
-    @include mixins.button-primary;
+    @include mixins.button-secondary;
+    color: var(--text-primary);
 
     @media screen and (max-width: 768px) {
       width: 100%;
