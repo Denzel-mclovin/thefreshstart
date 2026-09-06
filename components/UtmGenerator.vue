@@ -1,13 +1,13 @@
 <template>
   <div class="max-w-xl p-5 bg-white border border-gray-300 rounded-xl shadow-sm space-y-4">
-    
+
 
     <div>
       <label class="text-sm text-gray-500">UTM Source:</label>
       <input
         v-model="social"
         placeholder="enter social media name"
-        class="w-full mt-2 border border-solid border-gray-300 rounded-lg px-3 py-2 
+        class="w-full mt-2 border border-solid border-gray-300 rounded-lg px-3 py-2
                focus:outline-none focus:border-[var(--text-color)]"
       />
     </div>
@@ -17,7 +17,7 @@
       <input
         v-model="content"
         placeholder="enter content name"
-        class="w-full mt-2 border border-solid border-gray-300 rounded-lg px-3 py-2 
+        class="w-full mt-2 border border-solid border-gray-300 rounded-lg px-3 py-2
                focus:outline-none focus:border-[var(--text-color)]"
       />
     </div>
@@ -27,7 +27,7 @@
       <input
         v-model="linkName"
         placeholder="enter content name"
-        class="w-full mt-2 border border-solid border-gray-300 rounded-lg px-3 py-2 
+        class="w-full mt-2 border border-solid border-gray-300 rounded-lg px-3 py-2
                focus:outline-none focus:border-[var(--text-color)]"
       />
     </div>
@@ -73,9 +73,24 @@ import { ref } from 'vue'
 
 import { useUtmStore } from '../stores/utmStore'
 
-const BASE_URL = 'https://www.thepillarsofwisdom.com/'
-// const BASE_URL = 'http://localhost:3000/'
+import {
+  getRequestHost,
+  getRequestProtocol,
+} from 'h3'
 
+// const BASE_URL = 'https://www.thepillarsofwisdom.com/'
+// const BASE_URL = 'http://localhost:3000/'
+const BASE_URL = computed(() => {
+  if (import.meta.client) {
+    return location.origin
+  }
+
+  const event = useRequestEvent()
+
+  return event
+    ? `${getRequestProtocol(event)}://${getRequestHost(event)}`
+    : ''
+})
 
 const social = ref('')
 const content = ref('')
@@ -101,7 +116,7 @@ const generateLink = async () => {
   }
 
   try {
-    const url = new URL(BASE_URL)
+    const url = new URL(BASE_URL.value)
 
     url.searchParams.set('utm_source', social.value.trim())
 
@@ -133,4 +148,3 @@ const copy = async () => {
   setTimeout(() => (copied.value = false), 1500)
 }
 </script>
-
