@@ -9,8 +9,8 @@
       </div>
 
       <div class="privacy_hero">
-        <h1>Return Policy</h1>
-  
+        <h1>Service Agreement</h1>
+
       </div>
 
       <div class="privacy_layout">
@@ -54,12 +54,48 @@
               :key="`sub-${i}`"
               class="policy_subsection"
             >
-              <h3>{{ sub.subtitle }}</h3>
+              <h3 v-if="sub.subtitle">{{ sub.subtitle }}</h3>
               <p v-if="sub.text" class="main_text">{{ sub.text }}</p>
 
               <ul v-if="sub.items" class="check_list">
                 <li v-for="(item, j) in sub.items" :key="j">
                   <CheckIcon />
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+
+              <p v-if="sub.note" class="main_text sub_note">{{ sub.note }}</p>
+            </div>
+
+            <div
+              v-for="(sub, i) in s.prossection"
+              :key="`sub-${i}`"
+              class="policy_subsection"
+            >
+              <h3 v-if="sub.subtitle">{{ sub.subtitle }}</h3>
+              <p v-if="sub.text" class="main_text">{{ sub.text }}</p>
+
+              <ul v-if="sub.items" class="check_list">
+                <li v-for="(item, j) in sub.items" :key="j">
+                  <CheckIcon />
+                  <span>{{ item }}</span>
+                </li>
+              </ul>
+
+              <p v-if="sub.note" class="main_text sub_note">{{ sub.note }}</p>
+            </div>
+
+            <div
+              v-for="(sub, i) in s.conssection"
+              :key="`sub-${i}`"
+              class="policy_subsection"
+            >
+              <h3 v-if="sub.subtitle">{{ sub.subtitle }}</h3>
+              <p v-if="sub.text" class="main_text">{{ sub.text }}</p>
+
+              <ul v-if="sub.items" class="check_list">
+                <li v-for="(item, j) in sub.items" :key="j">
+                  <CrossIcon />
                   <span>{{ item }}</span>
                 </li>
               </ul>
@@ -97,7 +133,7 @@
           <div class="privacy_signature">
             <span class="signature_line"></span>
             <strong>
-              {{ companyName }} 
+              {{ companyName }}
             </strong>
           </div>
         </div>
@@ -131,59 +167,131 @@ const CheckIcon = () =>
     ]
   );
 
+const CrossIcon = () =>
+  h(
+    'svg',
+    { class: 'cross_icon', viewBox: '0 0 18 18', fill: 'none' },
+    [
+      h('circle', { cx: 9, cy: 9, r: 9, fill: 'var(--surface-danger)' }),
+      h('path', {
+        d: 'M5.5 9.2l2.3 2.3 4.7-5',
+        stroke: 'var(--danger)',
+        'stroke-width': 1.7,
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round',
+      }),
+    ]
+  );
+
 const sections = [
   {
-    id: 'digital-products',
+    id: 'service-description',
     number: '01',
-    title: 'Digital Products',
-    intro:
-      'Due to the digital nature of our products, all digital product sales are final once access has been granted or content has been delivered.',
-      items: [
-        'By completing your purchase, you acknowledge that access to the digital product begins immediately and that no refunds, chargebacks, or retroactive cancellations will be issued once access is provided.',
-        ' If you experience technical issues accessing a purchased digital product, please contact us and we will make reasonable efforts to resolve the issue. Technical issues do not constitute grounds for a refund once access has been successfully delivered.',
-      ]
+    title: 'Service Description',
+    subsections: [
+      {
+        text:
+          'This agreement covers a 3-month coaching engagement consisting of 12 weekly 60-minute 1:1 coaching calls and async messaging access to your coach between sessions via Telegram. Calls are scheduled weekly at a mutually agreed time. If you need to reschedule, provide 24 hours notice. Missed calls without notice are counted as a delivered session.',
+      },
+    ],
   },
   {
-    id: 'services',
+    id: 'price',
     number: '02',
-    title: 'Coaching & Consulting Services',
-    intro: 'Coaching and consulting services, where applicable, are non-refundable once the service period has begun or access has been granted.',
-    items: [
-      'By completing checkout, you acknowledge that:',
-      'Services begin immediately or on the agreed start date',
-      'All payments are final once services commence',
-      'Retroactive cancellations or disputes will not be honored after services begin'
+    title: 'Price',
+    subsections: [
+      {
+        text:
+          'The price of this engagement is $3,000, payable in full before the first session. The price is fixed and non-negotiable. Payment plans are offered at the same total price.',
+      },
     ],
   },
   {
-    id: 'client-responsibility',
+    id: 'refund-policy',
     number: '03',
-    title: '3. Cancellations & Client Responsibility',
-    intro:
-      'We may use advertising technologies to measure the effectiveness of advertising campaigns, such as the Meta Pixel.',
-    items: [
-      'If a cancellation option is available, it is the client’s sole responsibility to manage or submit cancellation requests prior to the start of the service period, in accordance with the terms provided at checkout.',
-      'We do not process cancellations or billing changes via phone, text, or social media. Failure to cancel prior to service commencement does not constitute grounds for a refund.'
-    ]
-  },
-
-   {
-    id: 'contact',
-    number: '4',
-    title: 'Contact Information',
-    intro: 'For questions related to access or technical issues only, please contact:',
+    title: 'Refund Policy',
+    subsections: [
+      {
+        text:
+          'Before your first coaching session, you may request a full refund for any reason. To request a refund before your first session, send a message to your coach via Telegram or email at mysty.vis@gmail.com. Refunds are processed within 5 business days.',
+      },
+      {
+        text:
+          'After your first coaching session, no refunds are available for any reason. This includes but is not limited to dissatisfaction with the coaching, inability to attend sessions, or failure to achieve specific results.',
+      },
+    ],
   },
   {
-    id: 'additional-notes',
-    number: '05',
-    title: 'Additional Notes & Disclaimer',
-    intro: 'We use collected information to:',
-    items: [
-    
-      'We do not guarantee specific outcomes or results from the use of our products or services. Results vary based on individual effort, circumstances, and external factors.',
-      'By completing your purchase, you confirm that you have reviewed, understood, and agreed to these terms in full.'
+    id: 'cancellation',
+    number: '04',
+    title: 'Cancellation',
+    subsections: [
+      {
+        text:
+          'You may cancel future sessions at any time by notifying your coach via Telegram or email. Cancellation stops future scheduling but does not trigger a refund for sessions already delivered or for the engagement fee if paid in full. If you are on a monthly payment plan and cancel before all payments are complete, remaining payments are still owed for the full engagement term unless a refund is requested before your first session per the refund policy above.',
+      },
     ],
-  }
+  },
+  {
+    id: 'scope-of-services',
+    number: '05',
+    title: 'Scope of Services',
+    prossection: [
+      {
+        subtitle: 'Included in this engagement:',
+        items: [
+          '12 weekly 60-minute 1:1 coaching calls',
+          'Async messaging access to your coach via Telegram between sessions',
+          'A structured curriculum focused on remote income acquisition',
+          'Feedback on completed assignments and work product',
+          'Resume and outreach strategy coaching',
+        ],
+      },
+    ],
+    conssection: [
+      {
+        subtitle: 'Not included in this engagement:',
+        items: [
+          'Guaranteed job placement, job offers, or specific income results',
+          'Legal, tax, or immigration advice or services',
+          'Access to the founder\'s personal network contacts unless explicitly arranged and confirmed in writing',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'outcomes',
+    number: '06',
+    title: 'Outcomes',
+    subsections: [
+      {
+        text:
+          'We do not guarantee specific outcomes from this engagement. Your results depend on your effort, circumstances, and external factors outside our control. What we guarantee is the delivery of 12 coaching sessions, async access between sessions, and a structured curriculum. If we fail to deliver a scheduled session, that session will be rescheduled or refunded at your option.',
+      },
+    ],
+  },
+  {
+    id: 'communication',
+    number: '07',
+    title: 'Communication',
+    subsections: [
+      {
+        text:
+          'All coaching communication happens via Telegram and email. Your coach will respond to async messages within 24 hours during business hours. This agreement and all communications related to it are conducted in English.',
+      },
+    ],
+  },
+  {
+    id: 'agreement',
+    number: '08',
+    title: 'Agreement',
+    subsections: [
+      {
+        text:
+          'By making payment, you confirm that you have read and agreed to the terms in this document. This agreement is sent to you before payment. You are not required to agree to it during a live call. Take time to review it. If you have questions, ask before completing your purchase.'
+      }
+    ],
+  },
 ];
 
 const activeId = ref(sections[0].id);
@@ -466,9 +574,9 @@ onBeforeUnmount(() => {
 }
 
 .policy_subsection {
-  padding: 20px 0 0 20px;
+  // padding: 20px 0 0 20px;
   margin-top: 8px;
-  border-left: 2px solid var(--border-light);
+  // border-left: 2px solid var(--border-light);
 
   &:first-of-type { margin-top: 16px; }
 
@@ -502,6 +610,12 @@ onBeforeUnmount(() => {
 }
 
 .check_icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.cross_icon {
   width: 18px;
   height: 18px;
   flex-shrink: 0;
