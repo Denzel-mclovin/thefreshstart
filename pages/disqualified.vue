@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <TempLinks />
+    <!-- <TempLinks /> -->
 
     <Disqualified />
   </div>

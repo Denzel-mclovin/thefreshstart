@@ -21,7 +21,16 @@ export type SellerStatus = (typeof SellerStatus)[keyof typeof SellerStatus]
 export const LeadStatus = {
   IN_PROGRESS: 'IN_PROGRESS',
   COMPLETED: 'COMPLETED',
-  ABANDONED: 'ABANDONED'
+  ABANDONED: 'ABANDONED',
+  NEW: 'NEW',
+  DISQUALIFIED_QUIZ: 'DISQUALIFIED_QUIZ',
+  BOOKED: 'BOOKED',
+  CANCELLED: 'CANCELLED',
+  RESCHEDULED: 'RESCHEDULED',
+  NO_SHOW: 'NO_SHOW',
+  SHOWED_NO_CLOSE: 'SHOWED_NO_CLOSE',
+  UNQUALIFIED_ON_CALL: 'UNQUALIFIED_ON_CALL',
+  CLOSED_WON: 'CLOSED_WON'
 } as const
 
 export type LeadStatus = (typeof LeadStatus)[keyof typeof LeadStatus]
@@ -88,3 +97,34 @@ export const CheckoutStatus = {
 } as const
 
 export type CheckoutStatus = (typeof CheckoutStatus)[keyof typeof CheckoutStatus]
+
+
+export const PaymentMethod = {
+  FULL_PAY: 'FULL_PAY',
+  AFFIRM: 'AFFIRM'
+} as const
+
+export type PaymentMethod = (typeof PaymentMethod)[keyof typeof PaymentMethod]
+
+
+export const ClientPaymentStatus = {
+  PAID_IN_FULL: 'PAID_IN_FULL',
+  ON_PLAN: 'ON_PLAN',
+  LATE: 'LATE',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type ClientPaymentStatus = (typeof ClientPaymentStatus)[keyof typeof ClientPaymentStatus]
+
+
+export const ClientStatus = {
+  ONBOARDING: 'ONBOARDING',
+  ACTIVE: 'ACTIVE',
+  AT_RISK: 'AT_RISK',
+  PAUSED: 'PAUSED',
+  COMPLETED: 'COMPLETED',
+  CHURNED: 'CHURNED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type ClientStatus = (typeof ClientStatus)[keyof typeof ClientStatus]

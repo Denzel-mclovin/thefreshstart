@@ -398,7 +398,9 @@ export const ModelName = {
   Conversion: 'Conversion',
   GeneratedLinks: 'GeneratedLinks',
   Lead: 'Lead',
-  QuizAnswer: 'QuizAnswer'
+  Client: 'Client',
+  QuizAnswer: 'QuizAnswer',
+  LeadStatusHistory: 'LeadStatusHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -414,7 +416,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "quizAnswer"
+    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "quizAnswer" | "leadStatusHistory"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1454,6 +1456,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Client: {
+      payload: Prisma.$ClientPayload<ExtArgs>
+      fields: Prisma.ClientFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClientFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClientFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>
+        }
+        findFirst: {
+          args: Prisma.ClientFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClientFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>
+        }
+        findMany: {
+          args: Prisma.ClientFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>[]
+        }
+        create: {
+          args: Prisma.ClientCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>
+        }
+        createMany: {
+          args: Prisma.ClientCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClientCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>[]
+        }
+        delete: {
+          args: Prisma.ClientDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>
+        }
+        update: {
+          args: Prisma.ClientUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClientDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClientUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClientUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClientUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientPayload>
+        }
+        aggregate: {
+          args: Prisma.ClientAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClient>
+        }
+        groupBy: {
+          args: Prisma.ClientGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClientGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClientCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClientCountAggregateOutputType> | number
+        }
+      }
+    }
     QuizAnswer: {
       payload: Prisma.$QuizAnswerPayload<ExtArgs>
       fields: Prisma.QuizAnswerFieldRefs
@@ -1525,6 +1601,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.QuizAnswerCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.QuizAnswerCountAggregateOutputType> | number
+        }
+      }
+    }
+    LeadStatusHistory: {
+      payload: Prisma.$LeadStatusHistoryPayload<ExtArgs>
+      fields: Prisma.LeadStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.LeadStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.LeadStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.LeadStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.LeadStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.LeadStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.LeadStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.LeadStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.LeadStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.LeadStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.LeadStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.LeadStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.LeadStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.LeadStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.LeadStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$LeadStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.LeadStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateLeadStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.LeadStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LeadStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.LeadStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.LeadStatusHistoryCountAggregateOutputType> | number
         }
       }
     }
@@ -1757,25 +1907,84 @@ export const LeadScalarFieldEnum = {
   updatedAt: 'updatedAt',
   sessionId: 'sessionId',
   quizAttempts: 'quizAttempts',
+  lastStep: 'lastStep',
+  completedAt: 'completedAt',
   firstName: 'firstName',
   lastName: 'lastName',
   phone: 'phone',
   email: 'email',
   quizComment: 'quizComment',
+  qualified: 'qualified',
   utmSource: 'utmSource',
   utmMedium: 'utmMedium',
   utmCampaign: 'utmCampaign',
   utmTerm: 'utmTerm',
   utmContent: 'utmContent',
+  fbclid: 'fbclid',
+  fbc: 'fbc',
+  fbp: 'fbp',
+  referrer: 'referrer',
+  landingPage: 'landingPage',
+  financingFlag: 'financingFlag',
   status: 'status',
-  lastStep: 'lastStep',
-  completedAt: 'completedAt',
-  qualified: 'qualified',
+  firstVisitAt: 'firstVisitAt',
+  quizStartedAt: 'quizStartedAt',
+  leadCreatedAt: 'leadCreatedAt',
+  quizCompletedAt: 'quizCompletedAt',
+  bookingMadeAt: 'bookingMadeAt',
+  callScheduledFor: 'callScheduledFor',
+  callOutcomeAt: 'callOutcomeAt',
+  closedAt: 'closedAt',
+  refundedAt: 'refundedAt',
+  activeCampaignContactId: 'activeCampaignContactId',
   sellerId: 'sellerId',
   assignedAt: 'assignedAt'
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const ClientScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leadId: 'leadId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phone: 'phone',
+  timezone: 'timezone',
+  utmSource: 'utmSource',
+  utmMedium: 'utmMedium',
+  utmCampaign: 'utmCampaign',
+  utmTerm: 'utmTerm',
+  utmContent: 'utmContent',
+  fbclid: 'fbclid',
+  fbc: 'fbc',
+  fbp: 'fbp',
+  referrer: 'referrer',
+  landingPage: 'landingPage',
+  financingFlag: 'financingFlag',
+  contractValue: 'contractValue',
+  cashCollected: 'cashCollected',
+  outstandingBalance: 'outstandingBalance',
+  paymentMethod: 'paymentMethod',
+  paymentStatus: 'paymentStatus',
+  refundAmount: 'refundAmount',
+  refundDate: 'refundDate',
+  startDate: 'startDate',
+  assignedConsultant: 'assignedConsultant',
+  clientGoal: 'clientGoal',
+  clientKpi: 'clientKpi',
+  acquisitionSource: 'acquisitionSource',
+  status: 'status',
+  testimonialConsent: 'testimonialConsent',
+  testimonialConsentDate: 'testimonialConsentDate',
+  figuresConsent: 'figuresConsent',
+  recordingConsent: 'recordingConsent'
+} as const
+
+export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
 export const QuizAnswerScalarFieldEnum = {
@@ -1788,6 +1997,17 @@ export const QuizAnswerScalarFieldEnum = {
 } as const
 
 export type QuizAnswerScalarFieldEnum = (typeof QuizAnswerScalarFieldEnum)[keyof typeof QuizAnswerScalarFieldEnum]
+
+
+export const LeadStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  status: 'status',
+  createdAt: 'createdAt',
+  createdBy: 'createdBy'
+} as const
+
+export type LeadStatusHistoryScalarFieldEnum = (typeof LeadStatusHistoryScalarFieldEnum)[keyof typeof LeadStatusHistoryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1996,6 +2216,48 @@ export type ListEnumLeadStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'PaymentMethod'
+ */
+export type EnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod'>
+    
+
+
+/**
+ * Reference to a field of type 'PaymentMethod[]'
+ */
+export type ListEnumPaymentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentMethod[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ClientPaymentStatus'
+ */
+export type EnumClientPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClientPaymentStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ClientPaymentStatus[]'
+ */
+export type ListEnumClientPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClientPaymentStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'ClientStatus'
+ */
+export type EnumClientStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClientStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'ClientStatus[]'
+ */
+export type ListEnumClientStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClientStatus[]'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2132,7 +2394,9 @@ export type GlobalOmitConfig = {
   conversion?: Prisma.ConversionOmit
   generatedLinks?: Prisma.GeneratedLinksOmit
   lead?: Prisma.LeadOmit
+  client?: Prisma.ClientOmit
   quizAnswer?: Prisma.QuizAnswerOmit
+  leadStatusHistory?: Prisma.LeadStatusHistoryOmit
 }
 
 /* Types for Logging */

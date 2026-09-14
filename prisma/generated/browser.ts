@@ -88,7 +88,17 @@ export type GeneratedLinks = Prisma.GeneratedLinksModel
  */
 export type Lead = Prisma.LeadModel
 /**
+ * Model Client
+ * 
+ */
+export type Client = Prisma.ClientModel
+/**
  * Model QuizAnswer
  * 
  */
 export type QuizAnswer = Prisma.QuizAnswerModel
+/**
+ * Model LeadStatusHistory
+ * 
+ */
+export type LeadStatusHistory = Prisma.LeadStatusHistoryModel

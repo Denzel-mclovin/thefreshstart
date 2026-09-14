@@ -190,40 +190,131 @@ model GeneratedLinks {
 
 
 model Lead {
-  id        String     @id @default(cuid())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   sessionId String? @unique
 
-  quizAttempts Int @default(1)
+  quizAttempts Int  @default(1)
+  lastStep     Int  @default(0)
+  completedAt  DateTime?
 
-  firstName String  @default("UNDEFINED")
-  lastName  String  @default("UNDEFINED")
-  phone     String  @default("UNDEFINED")
+  firstName String @default("UNDEFINED")
+  lastName  String @default("UNDEFINED")
+  phone     String @default("UNDEFINED")
   email     String? @unique
-  quizComment String  @default("UNDEFINED")
 
+  quizComment String @default("UNDEFINED")
+  qualified     Boolean @default(false)
+
+  // Attribution
   utmSource   String?
   utmMedium   String?
   utmCampaign String?
   utmTerm     String?
   utmContent  String?
 
-  status        LeadStatus @default(IN_PROGRESS)
-  lastStep      Int        @default(0)
-  completedAt   DateTime?
+  fbclid String?
+  fbc    String?
+  fbp    String?
 
-  qualified     Boolean @default(false)
+  referrer    String?
+  landingPage String?
+
+  // Quiz
+  financingFlag Boolean @default(false)
+
+  // Sales status
+  status LeadStatus @default(NEW)
+
+  // Timestamps
+  firstVisitAt       DateTime?
+  quizStartedAt      DateTime?
+  leadCreatedAt      DateTime?
+  quizCompletedAt    DateTime?
+  bookingMadeAt      DateTime?
+  callScheduledFor   DateTime?
+  callOutcomeAt      DateTime?
+  closedAt           DateTime?
+  refundedAt         DateTime?
+
+  // ActiveCampaign
+  activeCampaignContactId String?
 
   // Seller
   sellerId String?
   seller   Seller? @relation(fields: [sellerId], references: [id])
+
   assignedAt DateTime?
 
   answers QuizAnswer[]
 
+  statusHistory LeadStatusHistory[]
+
+  client Client?
+
   @@map("leads")
+}
+
+model Client {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leadId String @unique
+  lead   Lead   @relation(fields: [leadId], references: [id])
+
+  // Contact
+  firstName String?
+  lastName  String?
+  email     String?
+  phone     String?
+  timezone  String?
+
+  // Attribution
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  utmTerm     String?
+  utmContent  String?
+  fbclid      String?
+  fbc         String?
+  fbp         String?
+  referrer    String?
+  landingPage String?
+
+  // Quiz
+  financingFlag Boolean @default(false)
+
+  // Sales
+  contractValue    Int?
+  cashCollected    Int?
+  outstandingBalance Int?
+  paymentMethod    PaymentMethod?
+  paymentStatus    ClientPaymentStatus?
+  refundAmount     Int?
+  refundDate       DateTime?
+
+  // Delivery
+  startDate         DateTime?
+  assignedConsultant String?
+  clientGoal        String?
+  clientKpi         String?
+
+  // Acquisition
+  acquisitionSource String?
+
+  // Client status
+  status ClientStatus @default(ONBOARDING)
+
+  // Consent
+  testimonialConsent     Boolean   @default(false)
+  testimonialConsentDate DateTime?
+  figuresConsent         Boolean   @default(false)
+  recordingConsent       Boolean   @default(false)
+
+  @@map("clients")
 }
 
 model QuizAnswer {
@@ -241,6 +332,19 @@ model QuizAnswer {
   @@map("answers")
 }
 
+model LeadStatusHistory {
+  id        String     @id @default(cuid())
+  leadId    String
+  status    LeadStatus
+  createdAt DateTime   @default(now())
+  createdBy String?
+
+  lead Lead @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@map("lead_status_history")
+}
+
 enum SellerStatus {
   PENDING
   APPROVED
@@ -251,6 +355,15 @@ enum LeadStatus {
   IN_PROGRESS
   COMPLETED
   ABANDONED
+  NEW
+  DISQUALIFIED_QUIZ
+  BOOKED
+  CANCELLED
+  RESCHEDULED
+  NO_SHOW
+  SHOWED_NO_CLOSE
+  UNQUALIFIED_ON_CALL
+  CLOSED_WON
 }
 
 enum Status {
@@ -293,4 +406,26 @@ enum CheckoutStatus {
   PENDING
   COMPLETED
   EXPIRED
+}
+
+enum PaymentMethod {
+  FULL_PAY
+  AFFIRM
+}
+
+enum ClientPaymentStatus {
+  PAID_IN_FULL
+  ON_PLAN
+  LATE
+  REFUNDED
+}
+
+enum ClientStatus {
+  ONBOARDING
+  ACTIVE
+  AT_RISK
+  PAUSED
+  COMPLETED
+  CHURNED
+  REFUNDED
 }
