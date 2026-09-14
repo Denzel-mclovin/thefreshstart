@@ -118,10 +118,10 @@ export default defineNuxtConfig({
     dir: 'public',
     format: ['webp', 'avif', 'jpeg', 'png'],
   },
-  alias: {
-    '@': './',
-    '~': './'
-  },
+  // alias: {
+  //   '@': './',
+  //   '~': './'
+  // },
   typescript: {
     strict: false,
   },
