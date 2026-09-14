@@ -65,7 +65,9 @@ export const ModelName = {
   Conversion: 'Conversion',
   GeneratedLinks: 'GeneratedLinks',
   Lead: 'Lead',
-  QuizAnswer: 'QuizAnswer'
+  Client: 'Client',
+  QuizAnswer: 'QuizAnswer',
+  LeadStatusHistory: 'LeadStatusHistory'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -274,25 +276,84 @@ export const LeadScalarFieldEnum = {
   updatedAt: 'updatedAt',
   sessionId: 'sessionId',
   quizAttempts: 'quizAttempts',
+  lastStep: 'lastStep',
+  completedAt: 'completedAt',
   firstName: 'firstName',
   lastName: 'lastName',
   phone: 'phone',
   email: 'email',
   quizComment: 'quizComment',
+  qualified: 'qualified',
   utmSource: 'utmSource',
   utmMedium: 'utmMedium',
   utmCampaign: 'utmCampaign',
   utmTerm: 'utmTerm',
   utmContent: 'utmContent',
+  fbclid: 'fbclid',
+  fbc: 'fbc',
+  fbp: 'fbp',
+  referrer: 'referrer',
+  landingPage: 'landingPage',
+  financingFlag: 'financingFlag',
   status: 'status',
-  lastStep: 'lastStep',
-  completedAt: 'completedAt',
-  qualified: 'qualified',
+  firstVisitAt: 'firstVisitAt',
+  quizStartedAt: 'quizStartedAt',
+  leadCreatedAt: 'leadCreatedAt',
+  quizCompletedAt: 'quizCompletedAt',
+  bookingMadeAt: 'bookingMadeAt',
+  callScheduledFor: 'callScheduledFor',
+  callOutcomeAt: 'callOutcomeAt',
+  closedAt: 'closedAt',
+  refundedAt: 'refundedAt',
+  activeCampaignContactId: 'activeCampaignContactId',
   sellerId: 'sellerId',
   assignedAt: 'assignedAt'
 } as const
 
 export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
+
+
+export const ClientScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  leadId: 'leadId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phone: 'phone',
+  timezone: 'timezone',
+  utmSource: 'utmSource',
+  utmMedium: 'utmMedium',
+  utmCampaign: 'utmCampaign',
+  utmTerm: 'utmTerm',
+  utmContent: 'utmContent',
+  fbclid: 'fbclid',
+  fbc: 'fbc',
+  fbp: 'fbp',
+  referrer: 'referrer',
+  landingPage: 'landingPage',
+  financingFlag: 'financingFlag',
+  contractValue: 'contractValue',
+  cashCollected: 'cashCollected',
+  outstandingBalance: 'outstandingBalance',
+  paymentMethod: 'paymentMethod',
+  paymentStatus: 'paymentStatus',
+  refundAmount: 'refundAmount',
+  refundDate: 'refundDate',
+  startDate: 'startDate',
+  assignedConsultant: 'assignedConsultant',
+  clientGoal: 'clientGoal',
+  clientKpi: 'clientKpi',
+  acquisitionSource: 'acquisitionSource',
+  status: 'status',
+  testimonialConsent: 'testimonialConsent',
+  testimonialConsentDate: 'testimonialConsentDate',
+  figuresConsent: 'figuresConsent',
+  recordingConsent: 'recordingConsent'
+} as const
+
+export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
 export const QuizAnswerScalarFieldEnum = {
@@ -305,6 +366,17 @@ export const QuizAnswerScalarFieldEnum = {
 } as const
 
 export type QuizAnswerScalarFieldEnum = (typeof QuizAnswerScalarFieldEnum)[keyof typeof QuizAnswerScalarFieldEnum]
+
+
+export const LeadStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  leadId: 'leadId',
+  status: 'status',
+  createdAt: 'createdAt',
+  createdBy: 'createdBy'
+} as const
+
+export type LeadStatusHistoryScalarFieldEnum = (typeof LeadStatusHistoryScalarFieldEnum)[keyof typeof LeadStatusHistoryScalarFieldEnum]
 
 
 export const SortOrder = {

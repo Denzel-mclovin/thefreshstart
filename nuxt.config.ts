@@ -49,6 +49,9 @@ export default defineNuxtConfig({
 
     sendEmailTo: process.env.SEND_EMAIL_TO,
 
+    activeCampaignUrl: process.env.ACTIVE_CAMPAIGN_URL,
+    activeCampaignApiKey: process.env.ACTIVE_CAMPAIGN_API_KEY,
+
     public: {
       supabaseKey: process.env.SUPABASE_KEY,
       zohoAppHost: process.env.ZOHO_APP_HOST,

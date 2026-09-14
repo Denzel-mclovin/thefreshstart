@@ -42,20 +42,36 @@ export type LeadMinAggregateOutputType = {
   updatedAt: Date | null
   sessionId: string | null
   quizAttempts: number | null
+  lastStep: number | null
+  completedAt: Date | null
   firstName: string | null
   lastName: string | null
   phone: string | null
   email: string | null
   quizComment: string | null
+  qualified: boolean | null
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  fbclid: string | null
+  fbc: string | null
+  fbp: string | null
+  referrer: string | null
+  landingPage: string | null
+  financingFlag: boolean | null
   status: $Enums.LeadStatus | null
-  lastStep: number | null
-  completedAt: Date | null
-  qualified: boolean | null
+  firstVisitAt: Date | null
+  quizStartedAt: Date | null
+  leadCreatedAt: Date | null
+  quizCompletedAt: Date | null
+  bookingMadeAt: Date | null
+  callScheduledFor: Date | null
+  callOutcomeAt: Date | null
+  closedAt: Date | null
+  refundedAt: Date | null
+  activeCampaignContactId: string | null
   sellerId: string | null
   assignedAt: Date | null
 }
@@ -66,20 +82,36 @@ export type LeadMaxAggregateOutputType = {
   updatedAt: Date | null
   sessionId: string | null
   quizAttempts: number | null
+  lastStep: number | null
+  completedAt: Date | null
   firstName: string | null
   lastName: string | null
   phone: string | null
   email: string | null
   quizComment: string | null
+  qualified: boolean | null
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  fbclid: string | null
+  fbc: string | null
+  fbp: string | null
+  referrer: string | null
+  landingPage: string | null
+  financingFlag: boolean | null
   status: $Enums.LeadStatus | null
-  lastStep: number | null
-  completedAt: Date | null
-  qualified: boolean | null
+  firstVisitAt: Date | null
+  quizStartedAt: Date | null
+  leadCreatedAt: Date | null
+  quizCompletedAt: Date | null
+  bookingMadeAt: Date | null
+  callScheduledFor: Date | null
+  callOutcomeAt: Date | null
+  closedAt: Date | null
+  refundedAt: Date | null
+  activeCampaignContactId: string | null
   sellerId: string | null
   assignedAt: Date | null
 }
@@ -90,20 +122,36 @@ export type LeadCountAggregateOutputType = {
   updatedAt: number
   sessionId: number
   quizAttempts: number
+  lastStep: number
+  completedAt: number
   firstName: number
   lastName: number
   phone: number
   email: number
   quizComment: number
+  qualified: number
   utmSource: number
   utmMedium: number
   utmCampaign: number
   utmTerm: number
   utmContent: number
+  fbclid: number
+  fbc: number
+  fbp: number
+  referrer: number
+  landingPage: number
+  financingFlag: number
   status: number
-  lastStep: number
-  completedAt: number
-  qualified: number
+  firstVisitAt: number
+  quizStartedAt: number
+  leadCreatedAt: number
+  quizCompletedAt: number
+  bookingMadeAt: number
+  callScheduledFor: number
+  callOutcomeAt: number
+  closedAt: number
+  refundedAt: number
+  activeCampaignContactId: number
   sellerId: number
   assignedAt: number
   _all: number
@@ -126,20 +174,36 @@ export type LeadMinAggregateInputType = {
   updatedAt?: true
   sessionId?: true
   quizAttempts?: true
+  lastStep?: true
+  completedAt?: true
   firstName?: true
   lastName?: true
   phone?: true
   email?: true
   quizComment?: true
+  qualified?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  fbclid?: true
+  fbc?: true
+  fbp?: true
+  referrer?: true
+  landingPage?: true
+  financingFlag?: true
   status?: true
-  lastStep?: true
-  completedAt?: true
-  qualified?: true
+  firstVisitAt?: true
+  quizStartedAt?: true
+  leadCreatedAt?: true
+  quizCompletedAt?: true
+  bookingMadeAt?: true
+  callScheduledFor?: true
+  callOutcomeAt?: true
+  closedAt?: true
+  refundedAt?: true
+  activeCampaignContactId?: true
   sellerId?: true
   assignedAt?: true
 }
@@ -150,20 +214,36 @@ export type LeadMaxAggregateInputType = {
   updatedAt?: true
   sessionId?: true
   quizAttempts?: true
+  lastStep?: true
+  completedAt?: true
   firstName?: true
   lastName?: true
   phone?: true
   email?: true
   quizComment?: true
+  qualified?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  fbclid?: true
+  fbc?: true
+  fbp?: true
+  referrer?: true
+  landingPage?: true
+  financingFlag?: true
   status?: true
-  lastStep?: true
-  completedAt?: true
-  qualified?: true
+  firstVisitAt?: true
+  quizStartedAt?: true
+  leadCreatedAt?: true
+  quizCompletedAt?: true
+  bookingMadeAt?: true
+  callScheduledFor?: true
+  callOutcomeAt?: true
+  closedAt?: true
+  refundedAt?: true
+  activeCampaignContactId?: true
   sellerId?: true
   assignedAt?: true
 }
@@ -174,20 +254,36 @@ export type LeadCountAggregateInputType = {
   updatedAt?: true
   sessionId?: true
   quizAttempts?: true
+  lastStep?: true
+  completedAt?: true
   firstName?: true
   lastName?: true
   phone?: true
   email?: true
   quizComment?: true
+  qualified?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  fbclid?: true
+  fbc?: true
+  fbp?: true
+  referrer?: true
+  landingPage?: true
+  financingFlag?: true
   status?: true
-  lastStep?: true
-  completedAt?: true
-  qualified?: true
+  firstVisitAt?: true
+  quizStartedAt?: true
+  leadCreatedAt?: true
+  quizCompletedAt?: true
+  bookingMadeAt?: true
+  callScheduledFor?: true
+  callOutcomeAt?: true
+  closedAt?: true
+  refundedAt?: true
+  activeCampaignContactId?: true
   sellerId?: true
   assignedAt?: true
   _all?: true
@@ -285,20 +381,36 @@ export type LeadGroupByOutputType = {
   updatedAt: Date
   sessionId: string | null
   quizAttempts: number
+  lastStep: number
+  completedAt: Date | null
   firstName: string
   lastName: string
   phone: string
   email: string | null
   quizComment: string
+  qualified: boolean
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  fbclid: string | null
+  fbc: string | null
+  fbp: string | null
+  referrer: string | null
+  landingPage: string | null
+  financingFlag: boolean
   status: $Enums.LeadStatus
-  lastStep: number
-  completedAt: Date | null
-  qualified: boolean
+  firstVisitAt: Date | null
+  quizStartedAt: Date | null
+  leadCreatedAt: Date | null
+  quizCompletedAt: Date | null
+  bookingMadeAt: Date | null
+  callScheduledFor: Date | null
+  callOutcomeAt: Date | null
+  closedAt: Date | null
+  refundedAt: Date | null
+  activeCampaignContactId: string | null
   sellerId: string | null
   assignedAt: Date | null
   _count: LeadCountAggregateOutputType | null
@@ -332,24 +444,42 @@ export type LeadWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   sessionId?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizAttempts?: Prisma.IntFilter<"Lead"> | number
+  lastStep?: Prisma.IntFilter<"Lead"> | number
+  completedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   firstName?: Prisma.StringFilter<"Lead"> | string
   lastName?: Prisma.StringFilter<"Lead"> | string
   phone?: Prisma.StringFilter<"Lead"> | string
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
+  qualified?: Prisma.BoolFilter<"Lead"> | boolean
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
+  referrer?: Prisma.StringNullableFilter<"Lead"> | string | null
+  landingPage?: Prisma.StringNullableFilter<"Lead"> | string | null
+  financingFlag?: Prisma.BoolFilter<"Lead"> | boolean
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
-  lastStep?: Prisma.IntFilter<"Lead"> | number
-  completedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
-  qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  firstVisitAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  quizStartedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  leadCreatedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  quizCompletedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  bookingMadeAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  callScheduledFor?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  callOutcomeAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  refundedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  activeCampaignContactId?: Prisma.StringNullableFilter<"Lead"> | string | null
   sellerId?: Prisma.StringNullableFilter<"Lead"> | string | null
   assignedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
   answers?: Prisma.QuizAnswerListRelationFilter
+  statusHistory?: Prisma.LeadStatusHistoryListRelationFilter
+  client?: Prisma.XOR<Prisma.ClientNullableScalarRelationFilter, Prisma.ClientWhereInput> | null
 }
 
 export type LeadOrderByWithRelationInput = {
@@ -358,24 +488,42 @@ export type LeadOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   quizAttempts?: Prisma.SortOrder
+  lastStep?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
+  qualified?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
   utmCampaign?: Prisma.SortOrderInput | Prisma.SortOrder
   utmTerm?: Prisma.SortOrderInput | Prisma.SortOrder
   utmContent?: Prisma.SortOrderInput | Prisma.SortOrder
+  fbclid?: Prisma.SortOrderInput | Prisma.SortOrder
+  fbc?: Prisma.SortOrderInput | Prisma.SortOrder
+  fbp?: Prisma.SortOrderInput | Prisma.SortOrder
+  referrer?: Prisma.SortOrderInput | Prisma.SortOrder
+  landingPage?: Prisma.SortOrderInput | Prisma.SortOrder
+  financingFlag?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastStep?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  qualified?: Prisma.SortOrder
+  firstVisitAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  quizStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  leadCreatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  quizCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  bookingMadeAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  callScheduledFor?: Prisma.SortOrderInput | Prisma.SortOrder
+  callOutcomeAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  refundedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  activeCampaignContactId?: Prisma.SortOrderInput | Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
   assignedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   seller?: Prisma.SellerOrderByWithRelationInput
   answers?: Prisma.QuizAnswerOrderByRelationAggregateInput
+  statusHistory?: Prisma.LeadStatusHistoryOrderByRelationAggregateInput
+  client?: Prisma.ClientOrderByWithRelationInput
 }
 
 export type LeadWhereUniqueInput = Prisma.AtLeast<{
@@ -388,23 +536,41 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   quizAttempts?: Prisma.IntFilter<"Lead"> | number
+  lastStep?: Prisma.IntFilter<"Lead"> | number
+  completedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   firstName?: Prisma.StringFilter<"Lead"> | string
   lastName?: Prisma.StringFilter<"Lead"> | string
   phone?: Prisma.StringFilter<"Lead"> | string
   quizComment?: Prisma.StringFilter<"Lead"> | string
+  qualified?: Prisma.BoolFilter<"Lead"> | boolean
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
+  referrer?: Prisma.StringNullableFilter<"Lead"> | string | null
+  landingPage?: Prisma.StringNullableFilter<"Lead"> | string | null
+  financingFlag?: Prisma.BoolFilter<"Lead"> | boolean
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
-  lastStep?: Prisma.IntFilter<"Lead"> | number
-  completedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
-  qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  firstVisitAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  quizStartedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  leadCreatedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  quizCompletedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  bookingMadeAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  callScheduledFor?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  callOutcomeAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  refundedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  activeCampaignContactId?: Prisma.StringNullableFilter<"Lead"> | string | null
   sellerId?: Prisma.StringNullableFilter<"Lead"> | string | null
   assignedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   seller?: Prisma.XOR<Prisma.SellerNullableScalarRelationFilter, Prisma.SellerWhereInput> | null
   answers?: Prisma.QuizAnswerListRelationFilter
+  statusHistory?: Prisma.LeadStatusHistoryListRelationFilter
+  client?: Prisma.XOR<Prisma.ClientNullableScalarRelationFilter, Prisma.ClientWhereInput> | null
 }, "id" | "sessionId" | "email">
 
 export type LeadOrderByWithAggregationInput = {
@@ -413,20 +579,36 @@ export type LeadOrderByWithAggregationInput = {
   updatedAt?: Prisma.SortOrder
   sessionId?: Prisma.SortOrderInput | Prisma.SortOrder
   quizAttempts?: Prisma.SortOrder
+  lastStep?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
+  qualified?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
   utmCampaign?: Prisma.SortOrderInput | Prisma.SortOrder
   utmTerm?: Prisma.SortOrderInput | Prisma.SortOrder
   utmContent?: Prisma.SortOrderInput | Prisma.SortOrder
+  fbclid?: Prisma.SortOrderInput | Prisma.SortOrder
+  fbc?: Prisma.SortOrderInput | Prisma.SortOrder
+  fbp?: Prisma.SortOrderInput | Prisma.SortOrder
+  referrer?: Prisma.SortOrderInput | Prisma.SortOrder
+  landingPage?: Prisma.SortOrderInput | Prisma.SortOrder
+  financingFlag?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastStep?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  qualified?: Prisma.SortOrder
+  firstVisitAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  quizStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  leadCreatedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  quizCompletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  bookingMadeAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  callScheduledFor?: Prisma.SortOrderInput | Prisma.SortOrder
+  callOutcomeAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  closedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  refundedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  activeCampaignContactId?: Prisma.SortOrderInput | Prisma.SortOrder
   sellerId?: Prisma.SortOrderInput | Prisma.SortOrder
   assignedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.LeadCountOrderByAggregateInput
@@ -445,20 +627,36 @@ export type LeadScalarWhereWithAggregatesInput = {
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Lead"> | Date | string
   sessionId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   quizAttempts?: Prisma.IntWithAggregatesFilter<"Lead"> | number
+  lastStep?: Prisma.IntWithAggregatesFilter<"Lead"> | number
+  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
   firstName?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   lastName?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   quizComment?: Prisma.StringWithAggregatesFilter<"Lead"> | string
+  qualified?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
   utmSource?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  fbclid?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  fbc?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  fbp?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  referrer?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  landingPage?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  financingFlag?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
   status?: Prisma.EnumLeadStatusWithAggregatesFilter<"Lead"> | $Enums.LeadStatus
-  lastStep?: Prisma.IntWithAggregatesFilter<"Lead"> | number
-  completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
-  qualified?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
+  firstVisitAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  quizStartedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  leadCreatedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  quizCompletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  bookingMadeAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  callScheduledFor?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  callOutcomeAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  refundedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
+  activeCampaignContactId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   sellerId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   assignedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
 }
@@ -469,23 +667,41 @@ export type LeadCreateInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   assignedAt?: Date | string | null
   seller?: Prisma.SellerCreateNestedOneWithoutLeadsInput
   answers?: Prisma.QuizAnswerCreateNestedManyWithoutLeadInput
+  statusHistory?: Prisma.LeadStatusHistoryCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientCreateNestedOneWithoutLeadInput
 }
 
 export type LeadUncheckedCreateInput = {
@@ -494,23 +710,41 @@ export type LeadUncheckedCreateInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   sellerId?: string | null
   assignedAt?: Date | string | null
   answers?: Prisma.QuizAnswerUncheckedCreateNestedManyWithoutLeadInput
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientUncheckedCreateNestedOneWithoutLeadInput
 }
 
 export type LeadUpdateInput = {
@@ -519,23 +753,41 @@ export type LeadUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   seller?: Prisma.SellerUpdateOneWithoutLeadsNestedInput
   answers?: Prisma.QuizAnswerUpdateManyWithoutLeadNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUpdateOneWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateInput = {
@@ -544,23 +796,41 @@ export type LeadUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.QuizAnswerUncheckedUpdateManyWithoutLeadNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUncheckedUpdateOneWithoutLeadNestedInput
 }
 
 export type LeadCreateManyInput = {
@@ -569,20 +839,36 @@ export type LeadCreateManyInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   sellerId?: string | null
   assignedAt?: Date | string | null
 }
@@ -593,20 +879,36 @@ export type LeadUpdateManyMutationInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -616,20 +918,36 @@ export type LeadUncheckedUpdateManyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
@@ -650,20 +968,36 @@ export type LeadCountOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   quizAttempts?: Prisma.SortOrder
+  lastStep?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
+  qualified?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  fbclid?: Prisma.SortOrder
+  fbc?: Prisma.SortOrder
+  fbp?: Prisma.SortOrder
+  referrer?: Prisma.SortOrder
+  landingPage?: Prisma.SortOrder
+  financingFlag?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastStep?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
-  qualified?: Prisma.SortOrder
+  firstVisitAt?: Prisma.SortOrder
+  quizStartedAt?: Prisma.SortOrder
+  leadCreatedAt?: Prisma.SortOrder
+  quizCompletedAt?: Prisma.SortOrder
+  bookingMadeAt?: Prisma.SortOrder
+  callScheduledFor?: Prisma.SortOrder
+  callOutcomeAt?: Prisma.SortOrder
+  closedAt?: Prisma.SortOrder
+  refundedAt?: Prisma.SortOrder
+  activeCampaignContactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
   assignedAt?: Prisma.SortOrder
 }
@@ -679,20 +1013,36 @@ export type LeadMaxOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   quizAttempts?: Prisma.SortOrder
+  lastStep?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
+  qualified?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  fbclid?: Prisma.SortOrder
+  fbc?: Prisma.SortOrder
+  fbp?: Prisma.SortOrder
+  referrer?: Prisma.SortOrder
+  landingPage?: Prisma.SortOrder
+  financingFlag?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastStep?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
-  qualified?: Prisma.SortOrder
+  firstVisitAt?: Prisma.SortOrder
+  quizStartedAt?: Prisma.SortOrder
+  leadCreatedAt?: Prisma.SortOrder
+  quizCompletedAt?: Prisma.SortOrder
+  bookingMadeAt?: Prisma.SortOrder
+  callScheduledFor?: Prisma.SortOrder
+  callOutcomeAt?: Prisma.SortOrder
+  closedAt?: Prisma.SortOrder
+  refundedAt?: Prisma.SortOrder
+  activeCampaignContactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
   assignedAt?: Prisma.SortOrder
 }
@@ -703,20 +1053,36 @@ export type LeadMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
   sessionId?: Prisma.SortOrder
   quizAttempts?: Prisma.SortOrder
+  lastStep?: Prisma.SortOrder
+  completedAt?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
+  qualified?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  fbclid?: Prisma.SortOrder
+  fbc?: Prisma.SortOrder
+  fbp?: Prisma.SortOrder
+  referrer?: Prisma.SortOrder
+  landingPage?: Prisma.SortOrder
+  financingFlag?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  lastStep?: Prisma.SortOrder
-  completedAt?: Prisma.SortOrder
-  qualified?: Prisma.SortOrder
+  firstVisitAt?: Prisma.SortOrder
+  quizStartedAt?: Prisma.SortOrder
+  leadCreatedAt?: Prisma.SortOrder
+  quizCompletedAt?: Prisma.SortOrder
+  bookingMadeAt?: Prisma.SortOrder
+  callScheduledFor?: Prisma.SortOrder
+  callOutcomeAt?: Prisma.SortOrder
+  closedAt?: Prisma.SortOrder
+  refundedAt?: Prisma.SortOrder
+  activeCampaignContactId?: Prisma.SortOrder
   sellerId?: Prisma.SortOrder
   assignedAt?: Prisma.SortOrder
 }
@@ -777,6 +1143,20 @@ export type EnumLeadStatusFieldUpdateOperationsInput = {
   set?: $Enums.LeadStatus
 }
 
+export type LeadCreateNestedOneWithoutClientInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutClientInput, Prisma.LeadUncheckedCreateWithoutClientInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutClientInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutClientNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutClientInput, Prisma.LeadUncheckedCreateWithoutClientInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutClientInput
+  upsert?: Prisma.LeadUpsertWithoutClientInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutClientInput, Prisma.LeadUpdateWithoutClientInput>, Prisma.LeadUncheckedUpdateWithoutClientInput>
+}
+
 export type LeadCreateNestedOneWithoutAnswersInput = {
   create?: Prisma.XOR<Prisma.LeadCreateWithoutAnswersInput, Prisma.LeadUncheckedCreateWithoutAnswersInput>
   connectOrCreate?: Prisma.LeadCreateOrConnectWithoutAnswersInput
@@ -791,28 +1171,60 @@ export type LeadUpdateOneRequiredWithoutAnswersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutAnswersInput, Prisma.LeadUpdateWithoutAnswersInput>, Prisma.LeadUncheckedUpdateWithoutAnswersInput>
 }
 
+export type LeadCreateNestedOneWithoutStatusHistoryInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutStatusHistoryInput, Prisma.LeadUncheckedCreateWithoutStatusHistoryInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutStatusHistoryInput
+  connect?: Prisma.LeadWhereUniqueInput
+}
+
+export type LeadUpdateOneRequiredWithoutStatusHistoryNestedInput = {
+  create?: Prisma.XOR<Prisma.LeadCreateWithoutStatusHistoryInput, Prisma.LeadUncheckedCreateWithoutStatusHistoryInput>
+  connectOrCreate?: Prisma.LeadCreateOrConnectWithoutStatusHistoryInput
+  upsert?: Prisma.LeadUpsertWithoutStatusHistoryInput
+  connect?: Prisma.LeadWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutStatusHistoryInput, Prisma.LeadUpdateWithoutStatusHistoryInput>, Prisma.LeadUncheckedUpdateWithoutStatusHistoryInput>
+}
+
 export type LeadCreateWithoutSellerInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   assignedAt?: Date | string | null
   answers?: Prisma.QuizAnswerCreateNestedManyWithoutLeadInput
+  statusHistory?: Prisma.LeadStatusHistoryCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientCreateNestedOneWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutSellerInput = {
@@ -821,22 +1233,40 @@ export type LeadUncheckedCreateWithoutSellerInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   assignedAt?: Date | string | null
   answers?: Prisma.QuizAnswerUncheckedCreateNestedManyWithoutLeadInput
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientUncheckedCreateNestedOneWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutSellerInput = {
@@ -874,22 +1304,222 @@ export type LeadScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Lead"> | Date | string
   sessionId?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizAttempts?: Prisma.IntFilter<"Lead"> | number
+  lastStep?: Prisma.IntFilter<"Lead"> | number
+  completedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   firstName?: Prisma.StringFilter<"Lead"> | string
   lastName?: Prisma.StringFilter<"Lead"> | string
   phone?: Prisma.StringFilter<"Lead"> | string
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
+  qualified?: Prisma.BoolFilter<"Lead"> | boolean
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
+  fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
+  referrer?: Prisma.StringNullableFilter<"Lead"> | string | null
+  landingPage?: Prisma.StringNullableFilter<"Lead"> | string | null
+  financingFlag?: Prisma.BoolFilter<"Lead"> | boolean
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
-  lastStep?: Prisma.IntFilter<"Lead"> | number
-  completedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
-  qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  firstVisitAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  quizStartedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  leadCreatedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  quizCompletedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  bookingMadeAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  callScheduledFor?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  callOutcomeAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  closedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  refundedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+  activeCampaignContactId?: Prisma.StringNullableFilter<"Lead"> | string | null
   sellerId?: Prisma.StringNullableFilter<"Lead"> | string | null
   assignedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
+}
+
+export type LeadCreateWithoutClientInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessionId?: string | null
+  quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
+  firstName?: string
+  lastName?: string
+  phone?: string
+  email?: string | null
+  quizComment?: string
+  qualified?: boolean
+  utmSource?: string | null
+  utmMedium?: string | null
+  utmCampaign?: string | null
+  utmTerm?: string | null
+  utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
+  status?: $Enums.LeadStatus
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
+  assignedAt?: Date | string | null
+  seller?: Prisma.SellerCreateNestedOneWithoutLeadsInput
+  answers?: Prisma.QuizAnswerCreateNestedManyWithoutLeadInput
+  statusHistory?: Prisma.LeadStatusHistoryCreateNestedManyWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutClientInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessionId?: string | null
+  quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
+  firstName?: string
+  lastName?: string
+  phone?: string
+  email?: string | null
+  quizComment?: string
+  qualified?: boolean
+  utmSource?: string | null
+  utmMedium?: string | null
+  utmCampaign?: string | null
+  utmTerm?: string | null
+  utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
+  status?: $Enums.LeadStatus
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
+  sellerId?: string | null
+  assignedAt?: Date | string | null
+  answers?: Prisma.QuizAnswerUncheckedCreateNestedManyWithoutLeadInput
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedCreateNestedManyWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutClientInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutClientInput, Prisma.LeadUncheckedCreateWithoutClientInput>
+}
+
+export type LeadUpsertWithoutClientInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutClientInput, Prisma.LeadUncheckedUpdateWithoutClientInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutClientInput, Prisma.LeadUncheckedCreateWithoutClientInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutClientInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutClientInput, Prisma.LeadUncheckedUpdateWithoutClientInput>
+}
+
+export type LeadUpdateWithoutClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seller?: Prisma.SellerUpdateOneWithoutLeadsNestedInput
+  answers?: Prisma.QuizAnswerUpdateManyWithoutLeadNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUpdateManyWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutClientInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.QuizAnswerUncheckedUpdateManyWithoutLeadNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedUpdateManyWithoutLeadNestedInput
 }
 
 export type LeadCreateWithoutAnswersInput = {
@@ -898,22 +1528,40 @@ export type LeadCreateWithoutAnswersInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   assignedAt?: Date | string | null
   seller?: Prisma.SellerCreateNestedOneWithoutLeadsInput
+  statusHistory?: Prisma.LeadStatusHistoryCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientCreateNestedOneWithoutLeadInput
 }
 
 export type LeadUncheckedCreateWithoutAnswersInput = {
@@ -922,22 +1570,40 @@ export type LeadUncheckedCreateWithoutAnswersInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   sellerId?: string | null
   assignedAt?: Date | string | null
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientUncheckedCreateNestedOneWithoutLeadInput
 }
 
 export type LeadCreateOrConnectWithoutAnswersInput = {
@@ -962,22 +1628,40 @@ export type LeadUpdateWithoutAnswersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   seller?: Prisma.SellerUpdateOneWithoutLeadsNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUpdateOneWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutAnswersInput = {
@@ -986,22 +1670,224 @@ export type LeadUncheckedUpdateWithoutAnswersInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUncheckedUpdateOneWithoutLeadNestedInput
+}
+
+export type LeadCreateWithoutStatusHistoryInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessionId?: string | null
+  quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
+  firstName?: string
+  lastName?: string
+  phone?: string
+  email?: string | null
+  quizComment?: string
+  qualified?: boolean
+  utmSource?: string | null
+  utmMedium?: string | null
+  utmCampaign?: string | null
+  utmTerm?: string | null
+  utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
+  status?: $Enums.LeadStatus
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
+  assignedAt?: Date | string | null
+  seller?: Prisma.SellerCreateNestedOneWithoutLeadsInput
+  answers?: Prisma.QuizAnswerCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientCreateNestedOneWithoutLeadInput
+}
+
+export type LeadUncheckedCreateWithoutStatusHistoryInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessionId?: string | null
+  quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
+  firstName?: string
+  lastName?: string
+  phone?: string
+  email?: string | null
+  quizComment?: string
+  qualified?: boolean
+  utmSource?: string | null
+  utmMedium?: string | null
+  utmCampaign?: string | null
+  utmTerm?: string | null
+  utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
+  status?: $Enums.LeadStatus
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
+  sellerId?: string | null
+  assignedAt?: Date | string | null
+  answers?: Prisma.QuizAnswerUncheckedCreateNestedManyWithoutLeadInput
+  client?: Prisma.ClientUncheckedCreateNestedOneWithoutLeadInput
+}
+
+export type LeadCreateOrConnectWithoutStatusHistoryInput = {
+  where: Prisma.LeadWhereUniqueInput
+  create: Prisma.XOR<Prisma.LeadCreateWithoutStatusHistoryInput, Prisma.LeadUncheckedCreateWithoutStatusHistoryInput>
+}
+
+export type LeadUpsertWithoutStatusHistoryInput = {
+  update: Prisma.XOR<Prisma.LeadUpdateWithoutStatusHistoryInput, Prisma.LeadUncheckedUpdateWithoutStatusHistoryInput>
+  create: Prisma.XOR<Prisma.LeadCreateWithoutStatusHistoryInput, Prisma.LeadUncheckedCreateWithoutStatusHistoryInput>
+  where?: Prisma.LeadWhereInput
+}
+
+export type LeadUpdateToOneWithWhereWithoutStatusHistoryInput = {
+  where?: Prisma.LeadWhereInput
+  data: Prisma.XOR<Prisma.LeadUpdateWithoutStatusHistoryInput, Prisma.LeadUncheckedUpdateWithoutStatusHistoryInput>
+}
+
+export type LeadUpdateWithoutStatusHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  seller?: Prisma.SellerUpdateOneWithoutLeadsNestedInput
+  answers?: Prisma.QuizAnswerUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUpdateOneWithoutLeadNestedInput
+}
+
+export type LeadUncheckedUpdateWithoutStatusHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sellerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  answers?: Prisma.QuizAnswerUncheckedUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUncheckedUpdateOneWithoutLeadNestedInput
 }
 
 export type LeadCreateManySellerInput = {
@@ -1010,20 +1896,36 @@ export type LeadCreateManySellerInput = {
   updatedAt?: Date | string
   sessionId?: string | null
   quizAttempts?: number
+  lastStep?: number
+  completedAt?: Date | string | null
   firstName?: string
   lastName?: string
   phone?: string
   email?: string | null
   quizComment?: string
+  qualified?: boolean
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
   status?: $Enums.LeadStatus
-  lastStep?: number
-  completedAt?: Date | string | null
-  qualified?: boolean
+  firstVisitAt?: Date | string | null
+  quizStartedAt?: Date | string | null
+  leadCreatedAt?: Date | string | null
+  quizCompletedAt?: Date | string | null
+  bookingMadeAt?: Date | string | null
+  callScheduledFor?: Date | string | null
+  callOutcomeAt?: Date | string | null
+  closedAt?: Date | string | null
+  refundedAt?: Date | string | null
+  activeCampaignContactId?: string | null
   assignedAt?: Date | string | null
 }
 
@@ -1033,22 +1935,40 @@ export type LeadUpdateWithoutSellerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.QuizAnswerUpdateManyWithoutLeadNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUpdateOneWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateWithoutSellerInput = {
@@ -1057,22 +1977,40 @@ export type LeadUncheckedUpdateWithoutSellerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   answers?: Prisma.QuizAnswerUncheckedUpdateManyWithoutLeadNestedInput
+  statusHistory?: Prisma.LeadStatusHistoryUncheckedUpdateManyWithoutLeadNestedInput
+  client?: Prisma.ClientUncheckedUpdateOneWithoutLeadNestedInput
 }
 
 export type LeadUncheckedUpdateManyWithoutSellerInput = {
@@ -1081,20 +2019,36 @@ export type LeadUncheckedUpdateManyWithoutSellerInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessionId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizAttempts?: Prisma.IntFieldUpdateOperationsInput | number
+  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
+  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
+  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
-  lastStep?: Prisma.IntFieldUpdateOperationsInput | number
-  completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  leadCreatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  quizCompletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  bookingMadeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callScheduledFor?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  callOutcomeAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  closedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  refundedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  activeCampaignContactId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   assignedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
 }
 
@@ -1105,10 +2059,12 @@ export type LeadUncheckedUpdateManyWithoutSellerInput = {
 
 export type LeadCountOutputType = {
   answers: number
+  statusHistory: number
 }
 
 export type LeadCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   answers?: boolean | LeadCountOutputTypeCountAnswersArgs
+  statusHistory?: boolean | LeadCountOutputTypeCountStatusHistoryArgs
 }
 
 /**
@@ -1128,6 +2084,13 @@ export type LeadCountOutputTypeCountAnswersArgs<ExtArgs extends runtime.Types.Ex
   where?: Prisma.QuizAnswerWhereInput
 }
 
+/**
+ * LeadCountOutputType without action
+ */
+export type LeadCountOutputTypeCountStatusHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadStatusHistoryWhereInput
+}
+
 
 export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1135,24 +2098,42 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   sessionId?: boolean
   quizAttempts?: boolean
+  lastStep?: boolean
+  completedAt?: boolean
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
   email?: boolean
   quizComment?: boolean
+  qualified?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  fbclid?: boolean
+  fbc?: boolean
+  fbp?: boolean
+  referrer?: boolean
+  landingPage?: boolean
+  financingFlag?: boolean
   status?: boolean
-  lastStep?: boolean
-  completedAt?: boolean
-  qualified?: boolean
+  firstVisitAt?: boolean
+  quizStartedAt?: boolean
+  leadCreatedAt?: boolean
+  quizCompletedAt?: boolean
+  bookingMadeAt?: boolean
+  callScheduledFor?: boolean
+  callOutcomeAt?: boolean
+  closedAt?: boolean
+  refundedAt?: boolean
+  activeCampaignContactId?: boolean
   sellerId?: boolean
   assignedAt?: boolean
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
   answers?: boolean | Prisma.Lead$answersArgs<ExtArgs>
+  statusHistory?: boolean | Prisma.Lead$statusHistoryArgs<ExtArgs>
+  client?: boolean | Prisma.Lead$clientArgs<ExtArgs>
   _count?: boolean | Prisma.LeadCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lead"]>
 
@@ -1162,20 +2143,36 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   sessionId?: boolean
   quizAttempts?: boolean
+  lastStep?: boolean
+  completedAt?: boolean
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
   email?: boolean
   quizComment?: boolean
+  qualified?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  fbclid?: boolean
+  fbc?: boolean
+  fbp?: boolean
+  referrer?: boolean
+  landingPage?: boolean
+  financingFlag?: boolean
   status?: boolean
-  lastStep?: boolean
-  completedAt?: boolean
-  qualified?: boolean
+  firstVisitAt?: boolean
+  quizStartedAt?: boolean
+  leadCreatedAt?: boolean
+  quizCompletedAt?: boolean
+  bookingMadeAt?: boolean
+  callScheduledFor?: boolean
+  callOutcomeAt?: boolean
+  closedAt?: boolean
+  refundedAt?: boolean
+  activeCampaignContactId?: boolean
   sellerId?: boolean
   assignedAt?: boolean
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
@@ -1187,20 +2184,36 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   updatedAt?: boolean
   sessionId?: boolean
   quizAttempts?: boolean
+  lastStep?: boolean
+  completedAt?: boolean
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
   email?: boolean
   quizComment?: boolean
+  qualified?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  fbclid?: boolean
+  fbc?: boolean
+  fbp?: boolean
+  referrer?: boolean
+  landingPage?: boolean
+  financingFlag?: boolean
   status?: boolean
-  lastStep?: boolean
-  completedAt?: boolean
-  qualified?: boolean
+  firstVisitAt?: boolean
+  quizStartedAt?: boolean
+  leadCreatedAt?: boolean
+  quizCompletedAt?: boolean
+  bookingMadeAt?: boolean
+  callScheduledFor?: boolean
+  callOutcomeAt?: boolean
+  closedAt?: boolean
+  refundedAt?: boolean
+  activeCampaignContactId?: boolean
   sellerId?: boolean
   assignedAt?: boolean
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
@@ -1212,28 +2225,46 @@ export type LeadSelectScalar = {
   updatedAt?: boolean
   sessionId?: boolean
   quizAttempts?: boolean
+  lastStep?: boolean
+  completedAt?: boolean
   firstName?: boolean
   lastName?: boolean
   phone?: boolean
   email?: boolean
   quizComment?: boolean
+  qualified?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  fbclid?: boolean
+  fbc?: boolean
+  fbp?: boolean
+  referrer?: boolean
+  landingPage?: boolean
+  financingFlag?: boolean
   status?: boolean
-  lastStep?: boolean
-  completedAt?: boolean
-  qualified?: boolean
+  firstVisitAt?: boolean
+  quizStartedAt?: boolean
+  leadCreatedAt?: boolean
+  quizCompletedAt?: boolean
+  bookingMadeAt?: boolean
+  callScheduledFor?: boolean
+  callOutcomeAt?: boolean
+  closedAt?: boolean
+  refundedAt?: boolean
+  activeCampaignContactId?: boolean
   sellerId?: boolean
   assignedAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "status" | "lastStep" | "completedAt" | "qualified" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "qualified" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
   answers?: boolean | Prisma.Lead$answersArgs<ExtArgs>
+  statusHistory?: boolean | Prisma.Lead$statusHistoryArgs<ExtArgs>
+  client?: boolean | Prisma.Lead$clientArgs<ExtArgs>
   _count?: boolean | Prisma.LeadCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type LeadIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1248,6 +2279,8 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     seller: Prisma.$SellerPayload<ExtArgs> | null
     answers: Prisma.$QuizAnswerPayload<ExtArgs>[]
+    statusHistory: Prisma.$LeadStatusHistoryPayload<ExtArgs>[]
+    client: Prisma.$ClientPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1255,20 +2288,36 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     updatedAt: Date
     sessionId: string | null
     quizAttempts: number
+    lastStep: number
+    completedAt: Date | null
     firstName: string
     lastName: string
     phone: string
     email: string | null
     quizComment: string
+    qualified: boolean
     utmSource: string | null
     utmMedium: string | null
     utmCampaign: string | null
     utmTerm: string | null
     utmContent: string | null
+    fbclid: string | null
+    fbc: string | null
+    fbp: string | null
+    referrer: string | null
+    landingPage: string | null
+    financingFlag: boolean
     status: $Enums.LeadStatus
-    lastStep: number
-    completedAt: Date | null
-    qualified: boolean
+    firstVisitAt: Date | null
+    quizStartedAt: Date | null
+    leadCreatedAt: Date | null
+    quizCompletedAt: Date | null
+    bookingMadeAt: Date | null
+    callScheduledFor: Date | null
+    callOutcomeAt: Date | null
+    closedAt: Date | null
+    refundedAt: Date | null
+    activeCampaignContactId: string | null
     sellerId: string | null
     assignedAt: Date | null
   }, ExtArgs["result"]["lead"]>
@@ -1667,6 +2716,8 @@ export interface Prisma__LeadClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   seller<T extends Prisma.Lead$sellerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$sellerArgs<ExtArgs>>): Prisma.Prisma__SellerClient<runtime.Types.Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   answers<T extends Prisma.Lead$answersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$answersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizAnswerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  statusHistory<T extends Prisma.Lead$statusHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$statusHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  client<T extends Prisma.Lead$clientArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lead$clientArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1701,20 +2752,36 @@ export interface LeadFieldRefs {
   readonly updatedAt: Prisma.FieldRef<"Lead", 'DateTime'>
   readonly sessionId: Prisma.FieldRef<"Lead", 'String'>
   readonly quizAttempts: Prisma.FieldRef<"Lead", 'Int'>
+  readonly lastStep: Prisma.FieldRef<"Lead", 'Int'>
+  readonly completedAt: Prisma.FieldRef<"Lead", 'DateTime'>
   readonly firstName: Prisma.FieldRef<"Lead", 'String'>
   readonly lastName: Prisma.FieldRef<"Lead", 'String'>
   readonly phone: Prisma.FieldRef<"Lead", 'String'>
   readonly email: Prisma.FieldRef<"Lead", 'String'>
   readonly quizComment: Prisma.FieldRef<"Lead", 'String'>
+  readonly qualified: Prisma.FieldRef<"Lead", 'Boolean'>
   readonly utmSource: Prisma.FieldRef<"Lead", 'String'>
   readonly utmMedium: Prisma.FieldRef<"Lead", 'String'>
   readonly utmCampaign: Prisma.FieldRef<"Lead", 'String'>
   readonly utmTerm: Prisma.FieldRef<"Lead", 'String'>
   readonly utmContent: Prisma.FieldRef<"Lead", 'String'>
+  readonly fbclid: Prisma.FieldRef<"Lead", 'String'>
+  readonly fbc: Prisma.FieldRef<"Lead", 'String'>
+  readonly fbp: Prisma.FieldRef<"Lead", 'String'>
+  readonly referrer: Prisma.FieldRef<"Lead", 'String'>
+  readonly landingPage: Prisma.FieldRef<"Lead", 'String'>
+  readonly financingFlag: Prisma.FieldRef<"Lead", 'Boolean'>
   readonly status: Prisma.FieldRef<"Lead", 'LeadStatus'>
-  readonly lastStep: Prisma.FieldRef<"Lead", 'Int'>
-  readonly completedAt: Prisma.FieldRef<"Lead", 'DateTime'>
-  readonly qualified: Prisma.FieldRef<"Lead", 'Boolean'>
+  readonly firstVisitAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly quizStartedAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly leadCreatedAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly quizCompletedAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly bookingMadeAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly callScheduledFor: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly callOutcomeAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly closedAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly refundedAt: Prisma.FieldRef<"Lead", 'DateTime'>
+  readonly activeCampaignContactId: Prisma.FieldRef<"Lead", 'String'>
   readonly sellerId: Prisma.FieldRef<"Lead", 'String'>
   readonly assignedAt: Prisma.FieldRef<"Lead", 'DateTime'>
 }
@@ -2158,6 +3225,49 @@ export type Lead$answersArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.QuizAnswerScalarFieldEnum | Prisma.QuizAnswerScalarFieldEnum[]
+}
+
+/**
+ * Lead.statusHistory
+ */
+export type Lead$statusHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the LeadStatusHistory
+   */
+  select?: Prisma.LeadStatusHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the LeadStatusHistory
+   */
+  omit?: Prisma.LeadStatusHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LeadStatusHistoryInclude<ExtArgs> | null
+  where?: Prisma.LeadStatusHistoryWhereInput
+  orderBy?: Prisma.LeadStatusHistoryOrderByWithRelationInput | Prisma.LeadStatusHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.LeadStatusHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LeadStatusHistoryScalarFieldEnum | Prisma.LeadStatusHistoryScalarFieldEnum[]
+}
+
+/**
+ * Lead.client
+ */
+export type Lead$clientArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Client
+   */
+  select?: Prisma.ClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Client
+   */
+  omit?: Prisma.ClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientInclude<ExtArgs> | null
+  where?: Prisma.ClientWhereInput
 }
 
 /**
