@@ -1,5 +1,5 @@
 import { defineEventHandler, getQuery } from "h3";
-import { activeCampaign } from "~/server/utils/activeCampaingClient";
+import { activeCampaign } from "@/server/utils/activeCampaingClient";
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);

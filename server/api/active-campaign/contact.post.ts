@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody } from "h3";
-import { activeCampaign } from "~/server/utils/activeCampaingClient";
+import { activeCampaign } from "@/server/utils/activeCampaingClient";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
