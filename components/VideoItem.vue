@@ -1,5 +1,8 @@
 <template>
-  <div class="video_block">
+  <div 
+    class="video_block"
+    :style="{ backgroundImage: `url(${preview})` }"
+  >
     <ClientOnly>
       <div class="wistia-wrapper">
         <wistia-player
@@ -105,7 +108,10 @@ const enableSound = async () => {
   width: 100%;
   height: auto;
   position: relative;
-  background: url(v-bind(preview));
+  // background: url(v-bind(preview));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: var(--dark-green);
   background-size: cover;
   max-width: 1240px;
