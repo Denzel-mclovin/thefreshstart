@@ -20,7 +20,16 @@
         >
           Take the 3-Minute Quiz
         </button>
+        <button 
+          class="hero_content_cta"
+          @click="testActiveCampaign"
+        >
+          TEST ACTIVE CAMPAIGN
+
+        </button>
       </div>
+
+  
 
     </div>
 
@@ -41,6 +50,23 @@ import { useModalStore } from "../stores/modal";
 
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
+
+const testActiveCampaign = async () => {
+  try {
+    const response = await fetch("/api/active-campaign/fields", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data, "data");
+    console.log(response, "response");
+
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 onMounted(async () => {
