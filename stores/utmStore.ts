@@ -19,16 +19,6 @@ export const useUtmStore = defineStore('utm', () => {
     pending.value = false
   }
 
-  // const openCookieModal = () => {
-
-  //   const modalStore = useModalStore()
-
-  //   setTimeout(() => {
-  //     modalStore.showModal('CookieNotification', {})
-  //   }, 3000)
-
-  // }
-
   const createUtmLink = async (linkData: any) => {
     await $fetch('/api/utm/create-link', {
       method: 'POST',
@@ -73,7 +63,6 @@ export const useUtmStore = defineStore('utm', () => {
     pending,
     setPending,
     clearPending,
-    // openCookieModal,
     createUtmLink,
     getUtmList,
     updateUtmList,
