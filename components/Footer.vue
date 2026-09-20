@@ -4,7 +4,9 @@
       <div class="footer_content">
         <div class="footer_content_top">
           <div class="footer_content_top_main">
-            <img src="/public/images/logo_white.png" alt="logo" />
+            <nuxt-link to="/">
+              <img src="/public/images/logo_white.png" alt="logo" />
+            </nuxt-link>
 
             <p>
               Helping remote professionals keep more of what they earn and build
@@ -67,16 +69,16 @@
 
           <p class="recaptcha-disclaimer">
             This site is protected by reCAPTCHA and the Google
-            <NuxtLink 
-              to="https://policies.google.com/privacy" 
+            <NuxtLink
+              to="https://policies.google.com/privacy"
               target="_blank"
               class="link_text"
             >
               Privacy Policy
             </NuxtLink>
             and
-            <NuxtLink 
-              to="https://policies.google.com/terms" 
+            <NuxtLink
+              to="https://policies.google.com/terms"
               target="_blank"
               class="link_text"
             >
