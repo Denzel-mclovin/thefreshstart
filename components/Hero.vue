@@ -93,6 +93,8 @@ onMounted(async () => {
     }
   }
 
+  
+
   &_title {
     @include mixins.fz-h1($color: var(--dark-green), $family: var(--font-playfair));
     text-align: center;
