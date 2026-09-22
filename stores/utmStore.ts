@@ -4,14 +4,20 @@ export const useUtmStore = defineStore('utm', () => {
 
   const utmSource = ref<string | null>(null)
   const utmContent = ref<string | null>(null)
+  const utmMedium = ref<string | null>(null)
+  const utmCampaign = ref<string | null>(null)
+  const utmTerm = ref<string | null>(null)
 
   const utmLinksList = ref([]);
 
   const pending = ref(false)
 
-  const setPending = (source: string, content: string) => {
+  const setPending = (source: string, content: string, medium?: string, campaign?: string, term?: string) => {
     utmSource.value = source
     utmContent.value = content
+    utmMedium.value = medium || null
+    utmCampaign.value = campaign || null
+    utmTerm.value = term || null
     pending.value = true
   }
 
@@ -60,6 +66,9 @@ export const useUtmStore = defineStore('utm', () => {
   return {
     utmSource,
     utmContent,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
     pending,
     setPending,
     clearPending,
