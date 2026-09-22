@@ -51,13 +51,44 @@ import { useModalStore } from "../stores/modal";
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
 
+// const contactData = ref({
+//   email: "test-email@mail.com",
+//   firstName: "Test",
+//   lastName: "User",
+//   phone: "+190000000000",
+
+//   q1: "yes",
+//   q2: "no",
+//   q3: "yes",
+//   q4: "affirm",
+//   q5: "finances",
+//   q5FreeText: "Test text",
+
+//   financingFlag: true,
+
+//   utmSource: "test",
+//   utmMedium: "test",
+//   utmCampaign: "test",
+//   utmContent: "test",
+
+//   fbclid: "test_fbclid",
+//   fbc: "test_fbc",
+//   fbp: "test_fbp",
+
+//   referrer: "https://example.com",
+//   landingPage: "https://example.com/test",
+// })
+
 const testActiveCampaign = async () => {
   try {
-    const response = await fetch("/api/active-campaign/fields", {
-      method: "GET",
+    const response = await fetch("/api/active-campaign/contacts/get-by-email", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        email: "ololo-email@mail.com",
+      }),
     });
     const data = await response.json();
     console.log(data, "data");
@@ -119,7 +150,7 @@ onMounted(async () => {
     }
   }
 
-  
+
 
   &_title {
     @include mixins.fz-h1($color: var(--dark-green), $family: var(--font-playfair));
