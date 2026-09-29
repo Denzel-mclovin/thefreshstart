@@ -13,6 +13,7 @@ export const ACTIVE_CAMPAIGN_FIELDS = {
   FB_CLICK_ID: "30",
   FBC: "31",
   FBP: "32",
+  TEST_DROPDOWN: "36",
   REFERRER: "33",
   LANDING_PAGE: "34",
 };
