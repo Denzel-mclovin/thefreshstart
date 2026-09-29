@@ -51,43 +51,43 @@ import { useModalStore } from "../stores/modal";
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
 
-const contactData = ref({
-  email: "hero.dev@gmail.com",
-  firstName: "Test",
-  lastName: "S",
-  phone: "+190000000002",
+// const contactData = ref({
+//   email: "hero.dev@gmail.com",
+//   firstName: "Test",
+//   lastName: "S",
+//   phone: "+190000000002",
 
-  q1: "yes",
-  q2: "no",
-  q3: "yes",
-  q4: "affirm",
-  q5: "finances",
-  q5FreeText: "Test text",
+//   q1: "yes",
+//   q2: "no",
+//   q3: "yes",
+//   q4: "affirm",
+//   q5: "finances",
+//   q5FreeText: "Test text",
 
-  financingFlag: true,
+//   financingFlag: true,
 
-  utmSource: "test",
-  utmMedium: "test",
-  utmCampaign: "test",
-  utmContent: "test",
+//   utmSource: "test",
+//   utmMedium: "test",
+//   utmCampaign: "test",
+//   utmContent: "test",
 
-  fbclid: "test_fbclid",
-  fbc: "test_fbc",
-  fbp: "test_fbp",
-  testDropdown: "Option 1",
+//   fbclid: "test_fbclid",
+//   fbc: "test_fbc",
+//   fbp: "test_fbp",
 
-  referrer: "https://example.com",
-  landingPage: "https://example.com/test",
-})
+//   referrer: "https://example.com",
+//   landingPage: "https://example.com/test",
+// })
 
 const testActiveCampaign = async () => {
   try {
-    const response = await fetch("/api/active-campaign/contacts/contact-test", {
-      method: "POST",
+    // const response = await fetch("/api/active-campaign/contacts/contact-test", {
+    const response = await fetch("/api/active-campaign/fields", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contactData.value),
+      // body: JSON.stringify(contactData.value),
     });
     const data = await response.json();
     console.log(data, "data");
