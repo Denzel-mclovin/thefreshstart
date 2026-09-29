@@ -40,6 +40,7 @@ type ContactData = {
   fbclid?: string;
   fbc?: string;
   fbp?: string;
+  testDropdown?: string;
 
   referrer?: string;
   landingPage?: string;
@@ -72,6 +73,9 @@ const buildFieldValues = (data: ContactData) => {
     [ACTIVE_CAMPAIGN_FIELDS.FB_CLICK_ID, data.fbclid],
     [ACTIVE_CAMPAIGN_FIELDS.FBC, data.fbc],
     [ACTIVE_CAMPAIGN_FIELDS.FBP, data.fbp],
+    [ACTIVE_CAMPAIGN_FIELDS.FBP, data.fbp],
+
+    [ACTIVE_CAMPAIGN_FIELDS.TEST_DROPDOWN, data.testDropdown],
 
     [ACTIVE_CAMPAIGN_FIELDS.REFERRER, data.referrer],
     [ACTIVE_CAMPAIGN_FIELDS.LANDING_PAGE, data.landingPage],

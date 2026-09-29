@@ -174,57 +174,60 @@
                   class="q-options"
                   :class="{ 'q-options--with-affirm': affirmVisible }"
                 >
-                  <div class="q-options-col">
-                    <button
-                      class="q-opt"
-                      :class="{ active: a.q4 === 'yes' }"
-                      @click="
-                        pick('q4', 'yes');
-                        affirmVisible = false;
-                      "
-                    >
-                      <span class="q-opt__label"
-                        >Yes — I have the cash available</span
+                  <div class="q-options-affirm">
+                    <!-- q-options-affirm -->
+                    <div class="q-options-affirm_col-wrapper">
+                      <button
+                        class="q-opt"
+                        :class="{ active: a.q4 === 'yes' }"
+                        @click="
+                          pick('q4', 'yes');
+                          affirmVisible = false;
+                        "
                       >
-                      <RadioIcon :checked="a.q4 === 'yes'" />
-                    </button>
-                    <button
-                      class="q-opt"
-                      :class="{ active: a.q4 === 'week' }"
-                      @click="
-                        pick('q4', 'week');
-                        showAffirm('week');
-                      "
-                    >
-                      <span class="q-opt__label"
-                        >Maybe — I'll have it within a week</span
+                        <span class="q-opt__label"
+                          >Yes — I have the cash available</span
+                        >
+                        <RadioIcon :checked="a.q4 === 'yes'" />
+                      </button>
+                      <button
+                        class="q-opt"
+                        :class="{ active: a.q4 === 'week' }"
+                        @click="
+                          pick('q4', 'week');
+                          showAffirm('week');
+                        "
                       >
-                      <RadioIcon :checked="a.q4 === 'week'" />
-                    </button>
-                    <button
-                      class="q-opt"
-                      :class="{ active: a.q4 === 'affirm' }"
-                      @click="
-                        pick('q4', 'affirm');
-                        showAffirm('affirm');
-                      "
-                    >
-                      <span class="q-opt__label"
-                        >I'd use financing (Affirm)</span
+                        <span class="q-opt__label"
+                          >Maybe — I'll have it within a week</span
+                        >
+                        <RadioIcon :checked="a.q4 === 'week'" />
+                      </button>
+                      <button
+                        class="q-opt"
+                        :class="{ active: a.q4 === 'affirm' }"
+                        @click="
+                          pick('q4', 'affirm');
+                          showAffirm('affirm');
+                        "
                       >
-                      <RadioIcon :checked="a.q4 === 'affirm'" />
-                    </button>
-                    <button
-                      class="q-opt"
-                      :class="{ active: a.q4 === 'no' }"
-                      @click="
-                        pick('q4', 'no');
-                        showAffirm('no');
-                      "
-                    >
-                      <span class="q-opt__label">Not right now</span>
-                      <RadioIcon :checked="a.q4 === 'no'" />
-                    </button>
+                        <span class="q-opt__label"
+                          >I'd use financing (Affirm)</span
+                        >
+                        <RadioIcon :checked="a.q4 === 'affirm'" />
+                      </button>
+                      <button
+                        class="q-opt"
+                        :class="{ active: a.q4 === 'no' }"
+                        @click="
+                          pick('q4', 'no');
+                          showAffirm('no');
+                        "
+                      >
+                        <span class="q-opt__label">Not right now</span>
+                        <RadioIcon :checked="a.q4 === 'no'" />
+                      </button>
+                    </div>
                   </div>
                   <transition name="fade">
                     <div v-if="affirmVisible" class="q-affirm-block">
@@ -251,12 +254,11 @@
                         <p>
                           <!-- Nothing's due today. You'll lock in your call... -->
 
-                          Perfect. A week is not a problem. Nothing’s due today; 
-                          you’ll lock in your call now and we’ll sort the details when we talk. 
-                          (And if your timing shifts, we also work with Affirm financing, 
-                          so you’ll have options either way.)
-                        
-                        
+                          Perfect. A week is not a problem. Nothing’s due today;
+                          you’ll lock in your call now and we’ll sort the
+                          details when we talk. (And if your timing shifts, we
+                          also work with Affirm financing, so you’ll have
+                          options either way.)
                         </p>
                       </div>
                       <div v-if="a.q4 !== 'week'" class="q-affirm-widget">
@@ -299,19 +301,21 @@
                   most relevant info.
                 </p>
                 <div class="q-options">
-                  <button
-                    v-for="opt in q5Options"
-                    :key="opt.value"
-                    class="q-opt"
-                    :class="{ active: a.q5 === opt.value }"
-                    @click="pick('q5', opt.value)"
-                  >
-                    <span class="q-opt__label">
-                      <span class="q-opt__emoji">{{ opt.emoji }}</span>
-                      {{ opt.label }}
-                    </span>
-                    <RadioIcon :checked="a.q5 === opt.value" />
-                  </button>
+                  <div class="q-options-col">
+                    <button
+                      v-for="opt in q5Options"
+                      :key="opt.value"
+                      class="q-opt"
+                      :class="{ active: a.q5 === opt.value }"
+                      @click="pick('q5', opt.value)"
+                    >
+                      <span class="q-opt__label">
+                        <span class="q-opt__emoji">{{ opt.emoji }}</span>
+                        {{ opt.label }}
+                      </span>
+                      <RadioIcon :checked="a.q5 === opt.value" />
+                    </button>
+                  </div>
                 </div>
                 <div class="q-navigation">
                   <button class="q-nav-back" @click="back()">← Back</button>
@@ -331,7 +335,11 @@
               <div v-if="phase === 'results'" key="results" class="q-slide">
                 <div v-if="loadingResults" class="loading_results">
                   <div class="ios-spinner">
-                    <div class="ios-spinner__blade" v-for="n in 12" :key="n"></div>
+                    <div
+                      class="ios-spinner__blade"
+                      v-for="n in 12"
+                      :key="n"
+                    ></div>
                   </div>
                   <p class="loading_results__text">Your results will be soon</p>
                 </div>
@@ -381,7 +389,10 @@
                     <button class="q-btn-primary" @click="goToCalendlyDirect()">
                       Book My Free Strategy Call →
                     </button>
-                    <button class="q-btn-secondary q-btn-neon" @click="phase = 'contact'">
+                    <button
+                      class="q-btn-secondary q-btn-neon"
+                      @click="phase = 'contact'"
+                    >
                       Email me my full breakdown first
                     </button>
                   </div>
@@ -556,9 +567,11 @@ import Loader from "../shared/Loader.vue";
 // STORES
 
 import { useModalStore } from "../../stores/modal";
+import { useUtmStore } from "../../stores/utmStore.js";
 
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
+const utmStore = useUtmStore();
 
 const RadioIcon = defineComponent({
   props: { checked: Boolean },
@@ -710,6 +723,32 @@ const calendlyUrl = computed(() => {
   return `${CALENDLY_URL}?${p.toString()}`;
 });
 
+const activeCampaignData = computed(() => ({
+  firstName: contact.value.firstName,
+  lastName: contact.value.lastName,
+  email: contact.value.email,
+  phone: contact.value.phone,
+  q1: a.value.q1,
+  q2: a.value.q2,
+  q3: a.value.q3,
+  q4: a.value.q4,
+  q5: a.value.q5,
+  q5FreeText: a.value.q5FreeText,
+  financingFlag: a.value.financingFlag,
+
+  utmSource: utmStore.utmSource,
+  utmMedium: utmStore.utmMedium,
+  utmCampaign: utmStore.utmCampaign,
+  utmContent: utmStore.utmContent,
+
+  fbclid: a.value.fbclid,
+  fbc: a.value.fbc,
+  fbp: a.value.fbp,
+
+  referrer: a.value.referrer,
+  landingPage: a.value.landingPage,
+}));
+
 // ─── Lifecycle ─────────────────────────────────────────────────────────────
 onMounted(() => {
   document.body.style.overflow = "hidden";
@@ -731,12 +770,11 @@ async function next(field, value) {
   if (!value) return;
 
   if (!TEST_MODE.value) {
-    console.log("inside if")
+    console.log("inside if");
     updateQuiz(field, value).catch(console.error);
-
   }
 
-  console.log("outside if")
+  console.log("outside if");
   transitionName.value = "slide-up";
   if (stepIdx.value < TOTAL_STEPS - 1) {
     setTimeout(() => {
@@ -759,9 +797,7 @@ async function finishQuiz() {
 
   setTimeout(() => {
     loadingResults.value = false;
-
   }, 5000);
-
 
   phase.value = "results";
 }
@@ -802,6 +838,21 @@ function goToCalendly() {
 }
 
 // ─── API ───────────────────────────────────────────────────────────────────
+
+async function createActiveCampaignContact() {
+
+
+
+  try {
+
+    const res = await $fetch("/api/active-campaign/contacts", {
+      
+    })
+
+  } catch (err) {
+    console.error("Lead save failed:", err);
+  }
+}
 async function updateQuiz(field, value) {
   const q = QUESTIONS[field];
   loaderState.value = true;
@@ -950,7 +1001,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-modal {
-
   background: #ffffff;
   border-radius: var(--radius-medium);
 
@@ -1068,7 +1118,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-modal__body {
-
   flex: 1;
   min-height: 0;
   padding: 28px 30px 30px;
@@ -1095,7 +1144,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-slide {
-
   height: 100%;
 
   display: flex;
@@ -1133,55 +1181,54 @@ const modalStyle = computed(() => ({
 }
 
 .q-options {
+  flex: 1;
+  min-height: 0;
 
-    flex: 1;
-    min-height: 0;
+  display: flex;
+  flex-direction: column;
 
-    display: flex;
-    flex-direction: column;
+  gap: 10px;
 
-    gap: 10px;
+  margin-bottom: 0;
+  height: 100%;
 
-    margin-bottom: 0;
+  // overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
 
-    overflow-y: auto;
-    overflow-x: hidden;
-    scrollbar-gutter: stable;
+  padding-bottom: 4px;
 
-    padding-bottom: 4px;
-    padding-right: 12px;
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 calc(100% - 20px),
+    transparent 100%
+  );
 
-    mask-image: linear-gradient(
-      to bottom,
-      #000 0,
-      #000 calc(100% - 20px),
-      transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      #000 0,
-      #000 calc(100% - 20px),
-      transparent 100%
-    );
+  // firefox
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-5) transparent;
 
-    // firefox
-    scrollbar-width: thin;
-    scrollbar-color: var(--gray-5) transparent;
-
-    // chrome/safari
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: var(--gray-3);
-      border-radius: 10px;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: var(--gray-4);
-    }
+  // chrome/safari
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--gray-3);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-4);
+  }
 
   &--with-affirm {
     flex-direction: row;
@@ -1194,14 +1241,19 @@ const modalStyle = computed(() => ({
 
       .q-options-col,
       .q-affirm-block {
-        flex: 0 0 auto; 
+        flex: 0 0 auto;
         width: 100%;
       }
     }
   }
 }
 
-.q-options-col {
+// .q-options--with-affirm {
+//   padding-bottom: 50px;
+// }
+
+.q-options-col,
+.q-options-affirm {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -1209,6 +1261,34 @@ const modalStyle = computed(() => ({
   flex: 1 1 0;
   min-height: 0;
   padding-right: 4px;
+  overflow-y: auto;
+  height: 100%;
+  padding-bottom: 50px;
+  padding-right: 15px;
+}
+
+.q-options-affirm {
+  overflow-y: unset;
+  flex: 0 0 auto;
+
+  &_col-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    padding-bottom: 40px;
+    @media screen and (max-width: 600px) {
+      padding-bottom: unset;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+      padding-bottom: unset;
+    }
+
+  
+  // padding-bottom: 50px;
 }
 
 .q-opt {
@@ -1279,7 +1359,6 @@ const modalStyle = computed(() => ({
 }
 
 .q-navigation {
-
   flex-shrink: 0;
 
   display: flex;
@@ -1354,9 +1433,11 @@ const modalStyle = computed(() => ({
   border-radius: var(--radius-small);
   overflow: hidden;
   min-width: 0;
+  margin-bottom: 40px;
+  margin-right: 15px;
 
-   min-height: 0;
-   height: max-content;
+  min-height: 0;
+  height: max-content;
 }
 
 .q-affirm-pitch {
@@ -1471,11 +1552,11 @@ const modalStyle = computed(() => ({
   scrollbar-gutter: stable;
 
   padding: 4px 4px 20px;
-  padding-right: 12px; 
+  padding-right: 12px;
 
   gap: 30px;
 
-    mask-image: linear-gradient(
+  mask-image: linear-gradient(
     to bottom,
     #000 0,
     #000 calc(100% - 20px),
@@ -1730,15 +1811,12 @@ const modalStyle = computed(() => ({
   transition: all ease 0.3s;
   display: block;
 
-
   @media screen and (min-width: 1024px) {
-
     &:hover {
       color: var(--dark-green);
       transition: all ease 0.3s;
     }
   }
-
 }
 
 .q-results-preview {
@@ -1772,6 +1850,8 @@ const modalStyle = computed(() => ({
 .q-form {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
   gap: 12px;
 }
 
