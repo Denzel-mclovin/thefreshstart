@@ -52,8 +52,8 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
+<script setup>
+import { ref, onMounted } from 'vue';
 
 const props = defineProps({
   src: { type: String, required: true },
@@ -61,11 +61,11 @@ const props = defineProps({
 })
 
 const showOverlay = ref(true)
-const playerRef = ref<any>(null)
+const playerRef = ref(null)
 const preview = ref("")
 const playerReady = ref(false)
 
-const loadWistiaMediaScript = (src: string): Promise<void> => {
+const loadWistiaMediaScript = (src) => {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
       resolve()

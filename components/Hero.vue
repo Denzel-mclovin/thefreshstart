@@ -20,13 +20,13 @@
         >
           Take the 2-Minute Quiz
         </button>
-        <button 
+        <!-- <button 
           class="hero_content_cta"
           @click="testActiveCampaign"
         >
           TEST ACTIVE CAMPAIGN
 
-        </button>
+        </button> -->
       </div>
 
   

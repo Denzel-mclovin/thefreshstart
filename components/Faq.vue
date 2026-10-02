@@ -154,7 +154,11 @@
               </li>
             </ul>
 
-            <button
+            
+          </div>
+        </div>
+        <div class="faq_cta_wrapper">
+          <button
               class="faq_cta"
               @click="modalStore.showModal('QuizPopup')"
             >
@@ -202,7 +206,6 @@
                 </defs>
               </svg>
             </button>
-          </div>
         </div>
       </div>
     </div>
@@ -405,6 +408,14 @@ onMounted(async () => {
       justify-content: center;
       align-items: center;
     }
+  }
+
+  &_cta_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
   }
 
   .unique_question {
