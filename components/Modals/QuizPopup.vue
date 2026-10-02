@@ -666,6 +666,8 @@ const loaderState = ref(false);
 const embedDomain = ref("");
 const affirmVisible = ref(false);
 const affirmStatus = ref("idle"); // idle | loading | approved | denied
+const isBreakdown = ref(false);
+const scheduledACall = ref("NO");
 
 const a = ref({ q1: "", q2: "", q3: "", q4: "", q5: "", homerun: "" });
 const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
@@ -747,6 +749,7 @@ const activeCampaignData = computed(() => ({
 
   referrer: a.value.referrer,
   landingPage: a.value.landingPage,
+  scheduledACall: scheduledACall.value,
 }));
 
 // ─── Lifecycle ─────────────────────────────────────────────────────────────
@@ -770,11 +773,9 @@ async function next(field, value) {
   if (!value) return;
 
   if (!TEST_MODE.value) {
-    console.log("inside if");
     updateQuiz(field, value).catch(console.error);
   }
 
-  console.log("outside if");
   transitionName.value = "slide-up";
   if (stepIdx.value < TOTAL_STEPS - 1) {
     setTimeout(() => {
@@ -833,6 +834,7 @@ function goToCalendlyDirect() {
 }
 function goToCalendly() {
   phase.value = "calendly";
+
   nextTick(initCalendly);
   createLead();
 }
@@ -841,13 +843,15 @@ function goToCalendly() {
 
 async function createActiveCampaignContact() {
 
-
-
   try {
 
-    const res = await $fetch("/api/active-campaign/contacts", {
+    const res = await $fetch("/api/active-campaign/contacts/contact-test", {
+      method: "POST",
+      body: JSON.stringify(activeCampaignData.value)
       
     })
+
+    console.log(res, "res");
 
   } catch (err) {
     console.error("Lead save failed:", err);
@@ -899,7 +903,7 @@ async function sendUtm() {
 
 async function createLead() {
   try {
-    await $fetch("/api/lead/create", {
+    const createLeadContact = await $fetch("/api/lead/create", {
       method: "POST",
       body: {
         firstName: contact.value.firstName,
@@ -912,6 +916,15 @@ async function createLead() {
         consentSms: consent.value.sms,
       },
     });
+
+    const activeCampaignContact = await createActiveCampaignContact();
+
+    if (isBreakdown.value) {
+      createLeadContact();
+    } else {
+      Promise.all([createLeadContact(), activeCampaignContact()]);
+    }
+
   } catch (err) {
     console.error("Lead save failed:", err);
   }
@@ -928,8 +941,12 @@ async function submitContact() {
     contactError.value = "Please enter a valid email address.";
     return;
   }
+
+  console.log(activeCampaignData.value, "activeCampaignData");
   submitting.value = true;
-  phase.value = "calendly";
+  // phase.value = "calendly";
+  isBreakdown.value = true;
+  phase.value = "homerun";
   submitting.value = false;
 }
 
