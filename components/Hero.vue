@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
 
-    <div class="conntainer">
+    <div class="container">
        <div class="hero_content">
         <h1 class="hero_content_title">
           Same Job. Same Salary. But A Life That Finally 
@@ -18,15 +18,15 @@
           class="hero_content_cta"
           @click="modalStore.showModal('QuizPopup')"
         >
-          Take the 3-Minute Quiz
+          Take the 2-Minute Quiz
         </button>
-        <button 
+        <!-- <button 
           class="hero_content_cta"
           @click="testActiveCampaign"
         >
           TEST ACTIVE CAMPAIGN
 
-        </button>
+        </button> -->
       </div>
 
   
