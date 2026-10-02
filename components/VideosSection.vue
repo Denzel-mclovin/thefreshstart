@@ -1,13 +1,12 @@
 <template>
   <section class="videos">
-    <div class="conntainer">
+    <div class="container">
       <div class="videos_content">
-        <div class="results_content_heading">
+        <div class="videos_content_heading">
           <h1>Still on the fence?</h1>
         </div>
 
-        <div class="results_content_media">
-          <!-- TODO: CHECK WHY VIDEO HAVE EXTRA CONTROLS AND PAUSED AT START -->
+        <div class="videos_content_media">
           <VideoComponent src="https://fast.wistia.com/embed/k304wo40mb.js" media-id="k304wo40mb"/>
           <VideoComponent src="https://fast.wistia.com/embed/qbvrmw3gai.js" media-id="qbvrmw3gai"/>
           <VideoComponent src="https://fast.wistia.com/embed/dzemku09rm.js" media-id="dzemku09rm"/>
@@ -34,7 +33,7 @@
   overflow: visible;
 }
 
-.conntainer {
+.container {
   overflow: visible;
 }
 
@@ -67,9 +66,9 @@
   &_media {
     overflow: visible;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    flex-direction: row-reverse;
     transform: translateY(-10px);
     width: 75%;
     height: auto;

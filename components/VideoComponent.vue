@@ -1,9 +1,9 @@
 <template>
   <section class="video_section">
-    <div class="conntainer">
+    <div class="container">
       <VideoItem :src="props.src" :media-id="props.mediaId"/>
 
-      <div class="video_options" v-if="heroVideo" >
+      <div class="video_options" v-if="props.heroVideo">
         <div class="video_options_item">
           <svg
             xmlns="http://www.w3.org/2000/svg"

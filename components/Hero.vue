@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
 
-    <div class="conntainer">
+    <div class="container">
        <div class="hero_content">
         <h1 class="hero_content_title">
           Same Job. Same Salary. But A Life That Finally 

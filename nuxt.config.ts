@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   components: true,
   devtools: { enabled: true },
-   vue: {
+  vue: {
     compilerOptions: {
       isCustomElement: (tag: any) => tag === 'wistia-player'
     }
@@ -19,7 +19,7 @@ export default defineNuxtConfig({
       }
     ]
   },
-   runtimeConfig: {
+  runtimeConfig: {
 
     // supabaseKey: process.env.SUPABASE_KEY,
     supabaseUrl: process.env.SUPABASE_URL,
@@ -71,8 +71,11 @@ export default defineNuxtConfig({
           name: 'color-scheme',
           content: 'light'
         }
+      ],
+      script: [
+        { src: 'https://fast.wistia.com/player.js', async: true }
       ]
-  },
+    },
   },
   css: [
     '~/styles/default.css',
@@ -91,26 +94,26 @@ export default defineNuxtConfig({
     //   'Montserrat': [100, 200, 300, 400, 500, 600, 700, 800, 900],
     //   'Urbanist': [100, 200, 300, 400, 500, 600, 700, 800, 900],
     //   },
-      families: {
-        // 'Joane': [100, 200, 300, 400, 500, 600, 700, 800, 900],
-        // 'Roboto': [100, 300, 400, 500, 600, 700, 800, 900],
-        // 'DM Serif Display': [400, 500, 600, 700, 800, 900],
-        'Merriweather': [300, 400, 700, 900],
-        'Josefin Sans': [100, 200, 300, 400, 500, 600, 700, 800, 900],
-        'Libre Baskerville': [400, 700],
-        'Playfair Display': [400, 500, 600, 700, 800, 900],
+    families: {
+      // 'Joane': [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      // 'Roboto': [100, 300, 400, 500, 600, 700, 800, 900],
+      // 'DM Serif Display': [400, 500, 600, 700, 800, 900],
+      'Merriweather': [300, 400, 700, 900],
+      'Josefin Sans': [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      'Libre Baskerville': [400, 700],
+      'Playfair Display': [400, 500, 600, 700, 800, 900],
 
 
-      },
-      display: 'swap',
-    }], 
+    },
+    display: 'swap',
+  }],
     '@pinia/nuxt',
     "@nuxt/image",
-    ['@nuxtjs/tailwindcss', {
-        exposeConfig: true,
-        viewer: true,
-      }
-    ],
+  ['@nuxtjs/tailwindcss', {
+    exposeConfig: true,
+    viewer: true,
+  }
+  ],
     '@vercel/analytics/nuxt',
   ],
   image: {

@@ -1,6 +1,6 @@
 <template>
   <section class="faq">
-    <div class="conntainer">
+    <div class="container">
       <div class="faq_content">
         <h1 class="faq_content_heading">FAQ</h1>
 
@@ -154,12 +154,53 @@
               </li>
             </ul>
 
-            <!-- TODO: MAKE CTA FUNCTIONAL -->
-            <button 
+            <button
               class="faq_cta"
-              @click="console.log('pressed')"
+              @click="modalStore.showModal('QuizPopup')"
             >
-              See if You Qualify
+              <span> See If You Qualify </span>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <g clip-path="url(#clip0_505_428)">
+                  <path
+                    d="M19 12H5"
+                    stroke="#003323"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M19 12L13 18"
+                    stroke="#003323"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M19 12L13 6"
+                    stroke="#003323"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_505_428">
+                    <rect
+                      width="24"
+                      height="24"
+                      fill="white"
+                      transform="matrix(-1 0 0 1 24 0)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
             </button>
           </div>
         </div>
@@ -171,6 +212,7 @@
 <script setup>
 import { ref, onMounted, nextTick } from "vue";
 import { useReCaptcha } from "vue-recaptcha-v3";
+import { useModalStore } from "../stores/modal";
 import gsap from "gsap";
 
 // REFS---------------
@@ -182,6 +224,8 @@ const activeQuestion = ref(null);
 const answerRefs = ref([]);
 const activeSendBtn = ref(false);
 const loaderState = ref(false);
+
+const modalStore = useModalStore();
 
 // const { executeRecaptcha } = useReCaptcha();
 

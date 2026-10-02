@@ -8,10 +8,14 @@
         <wistia-player
           ref="playerRef"
           :media-id="props.mediaId"
-          silent-autoplay
+          autoplay="true"
+          silent-autoplay="true"
           playsinline
           fit-strategy="cover"
-          @loadedmetadata="onLoaded"
+          @loaded-metadata="onLoaded"
+          aspect="1.7777777777777777"
+          controls-visible-on-load="false"
+          big-play-button="false"
         />
       </div>
     </ClientOnly>
@@ -49,67 +53,78 @@
 </template>
 
 <script setup lang="ts">
-const showOverlay = ref(true);
-const playerRef = ref<any>(null);
-const preview = ref("");
+import { ref, onMounted } from 'vue'
 
 const props = defineProps({
-  src: {
-    type: String,
-    required: true
-  },
-  mediaId: {
-    type: String,
-    required: true
+  src: { type: String, required: true },
+  mediaId: { type: String, required: true }
+})
+
+const showOverlay = ref(true)
+const playerRef = ref<any>(null)
+const preview = ref("")
+const playerReady = ref(false)
+
+const loadWistiaMediaScript = (src: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) {
+      resolve()
+      return
+    }
+    const script = document.createElement('script')
+    script.src = src
+    script.type = 'module'
+    script.async = true
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error(`Failed to load ${src}`))
+    document.head.appendChild(script)
+  })
+}
+
+onMounted(async () => {
+  try {
+    if (props.src) {
+      await loadWistiaMediaScript(props.src)
+    }
+  } catch (err) {
+    console.error('Error loading Wistia script:', err)
   }
 })
 
 const onLoaded = () => {
   const player = playerRef.value
+  if (!player) return
 
-  preview.value = player.thumbnailUrl
+  if (player.thumbnailUrl) {
+    preview.value = player.thumbnailUrl
+  }
+  playerReady.value = true
 }
 
-const loadScript = (src: string, type?: string) => {
-  return new Promise<void>((resolve) => {
-    if (document.querySelector(`script[src="${src}"]`)) {
-      resolve();
-      return;
+const enableSound = async () => {
+  const player = playerRef.value
+  if (!player) return
+
+  try {
+    if (typeof player.unmute === 'function') {
+      player.unmute()
+    } else {
+      player.muted = false
     }
 
-    const script = document.createElement("script");
-    script.src = src;
-    script.async = true;
+    if (player.currentTime > 0) {
+      player.currentTime = 0
+    }
 
-    if (type) script.type = type;
+    if (typeof player.play === 'function') {
+      await player.play()
+    }
 
-    script.onload = () => resolve();
-
-    document.head.appendChild(script);
-  });
-};
-
-onMounted(async () => {
-  await loadScript("https://fast.wistia.com/player.js");
-
-  await loadScript(props.src, "module");
-});
-
-const enableSound = async () => {
-  const player = playerRef.value;
-
-  if (!player) return;
-
-  player.pause?.();
-
-  player.currentTime = 0;
-
-  player.muted = false;
-
-  await player.play?.();
-
-  showOverlay.value = false;
-};
+    showOverlay.value = false
+  } catch (error) {
+    console.error('Wistia play failed:', error)
+  }
+}
 </script>
 
 <style scoped lang="scss">
