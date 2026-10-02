@@ -1,9 +1,9 @@
 <template>
   <section class="video_section">
     <div class="conntainer">
-      <VideoItem />
+      <VideoItem :src="props.src" :media-id="props.mediaId"/>
 
-      <div class="video_options">
+      <div class="video_options" v-if="heroVideo" >
         <div class="video_options_item">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +210,22 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  src: {
+    type: String,
+    required: true
+  },
+  mediaId: {
+    type: String,
+    required: true
+  },
+  heroVideo: {
+    type: Boolean,
+    default: false
+  }
+})
+</script>
 
 <style lang="scss" scoped>
 @use "/styles/mixins.scss" as mixins;

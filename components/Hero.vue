@@ -18,7 +18,7 @@
           class="hero_content_cta"
           @click="modalStore.showModal('QuizPopup')"
         >
-          Take the 3-Minute Quiz
+          Take the 2-Minute Quiz
         </button>
         <button 
           class="hero_content_cta"

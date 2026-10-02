@@ -98,60 +98,70 @@
             </div>
           </div>
 
-          <ul class="question_list">
-            <li
-              class="question_list_item"
-              v-for="(item, index) in questionData"
-              @click="toggleQuestionVisible(item.id, index)"
-              :style="{ gap: activeQuestion === item.id ? '16px' : '0' }"
-              :key="item.id"
-            >
-              <div class="item_heading">
-                <h5>
-                  {{ item.q }}
-                </h5>
+          <div class="question_list">
+            <ul>
+              <li
+                class="question_list_item"
+                v-for="(item, index) in questionData"
+                @click="toggleQuestionVisible(item.id, index)"
+                :style="{ gap: activeQuestion === item.id ? '16px' : '0' }"
+                :key="item.id"
+              >
+                <div class="item_heading">
+                  <h5>
+                    {{ item.q }}
+                  </h5>
 
-                <div
-                  class="arrow_el"
-                  :class="{ arrow_el_active: activeQuestion === item.id }"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
+                  <div
+                    class="arrow_el"
+                    :class="{ arrow_el_active: activeQuestion === item.id }"
                   >
-                    <g clip-path="url(#clip0_527_197)">
-                      <path
-                        d="M18 9L12 15L6 9"
-                        stroke="#003323"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </g>
-                    <defs>
-                      <clipPath id="clip0_527_197">
-                        <rect
-                          width="24"
-                          height="24"
-                          fill="white"
-                          transform="matrix(-1 0 0 -1 24 24)"
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <g clip-path="url(#clip0_527_197)">
+                        <path
+                          d="M18 9L12 15L6 9"
+                          stroke="#003323"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
                         />
-                      </clipPath>
-                    </defs>
-                  </svg>
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_527_197">
+                          <rect
+                            width="24"
+                            height="24"
+                            fill="white"
+                            transform="matrix(-1 0 0 -1 24 24)"
+                          />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </div>
                 </div>
-              </div>
 
-              <div class="answer" :ref="(el) => (answerRefs[index] = el)">
-                <p>
-                  {{ item.a }}
-                </p>
-              </div>
-            </li>
-          </ul>
+                <div class="answer" :ref="(el) => (answerRefs[index] = el)">
+                  <p>
+                    {{ item.a }}
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <!-- TODO: MAKE CTA FUNCTIONAL -->
+            <button 
+              class="faq_cta"
+              @click="console.log('pressed')"
+            >
+              See if You Qualify
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -313,7 +323,16 @@ onMounted(async () => {
   width: 100%;
   height: auto;
   position: relative;
-  background: var(--light-grey);
+
+  &_cta {
+    margin-top: 20px;
+    @include mixins.button-secondary;
+    color: var(--text-primary);
+
+    @media screen and (max-width: 480px) {
+      margin-top: unset;
+    }
+  }
 }
 
 .faq_content {
@@ -477,11 +496,13 @@ onMounted(async () => {
   }
 
   .question_list {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 10px;
+    ul {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
+    }
 
     li {
       border: 1px solid var(--gray-4);

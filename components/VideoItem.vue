@@ -7,7 +7,7 @@
       <div class="wistia-wrapper">
         <wistia-player
           ref="playerRef"
-          media-id="mi2sa50wnp"
+          :media-id="props.mediaId"
           silent-autoplay
           playsinline
           fit-strategy="cover"
@@ -53,6 +53,17 @@ const showOverlay = ref(true);
 const playerRef = ref<any>(null);
 const preview = ref("");
 
+const props = defineProps({
+  src: {
+    type: String,
+    required: true
+  },
+  mediaId: {
+    type: String,
+    required: true
+  }
+})
+
 const onLoaded = () => {
   const player = playerRef.value
 
@@ -81,7 +92,7 @@ const loadScript = (src: string, type?: string) => {
 onMounted(async () => {
   await loadScript("https://fast.wistia.com/player.js");
 
-  await loadScript("https://fast.wistia.com/embed/mi2sa50wnp.js", "module");
+  await loadScript(props.src, "module");
 });
 
 const enableSound = async () => {
