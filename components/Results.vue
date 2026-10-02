@@ -1,6 +1,6 @@
 <template>
   <section class="results">
-    <div class="conntainer">
+    <div class="container">
       <div class="results_content">
         <div class="results_content_heading">
           <h1>Real results from real clients</h1>
@@ -87,9 +87,10 @@ const columnContentRight = ref([
   height: auto;
   position: relative;
   overflow: visible;
+  background: var(--light-grey);
 }
 
-.conntainer {
+.container {
   overflow: visible;
 }
 
