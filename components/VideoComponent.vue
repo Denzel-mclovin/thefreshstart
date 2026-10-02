@@ -1,5 +1,5 @@
 <template>
-  <section class="video_section">
+  <section class="video_section" :class="{'video_section--hero': props.heroVideo}" >
     <div class="container">
       <VideoItem :src="props.src" :media-id="props.mediaId"/>
 
@@ -231,11 +231,14 @@ const props = defineProps({
 @use "/styles/mixins.scss" as mixins;
 
 .video_section {
-  padding-top: 50px;
-  padding-bottom: 80px;
   position: relative;
   width: 100%;
   height: auto;
+
+  &--hero {
+    padding-top: 50px;
+    padding-bottom: 80px;
+  }
 
   .video_options {
     display: flex;
