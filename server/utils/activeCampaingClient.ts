@@ -1,49 +1,57 @@
 const config = useRuntimeConfig();
 
-const activeCampaignFetch = async (
+const activeCampaignFetch = async <T>(
   endpoint: string,
   options: any = {}
 ) => {
-  return await $fetch(
-    `${config.activeCampaignUrl}/api/3/${endpoint}`,
-    {
-      ...options,
+  try {
+    return await $fetch(
+      `${config.activeCampaignUrl}/api/3/${endpoint}`,
+      {
+        ...options,
+        headers: {
+          "Api-Token": config.activeCampaignApiKey,
+          "Content-Type": "application/json",
+          ...(options.headers || {}),
+        },
+      }
+    );
+  } catch (error: any) {
+    console.error(
+      "ActiveCampaign API error:",
+      error?.data || error?.response?._data || error
+    );
 
-      headers: {
-        "Api-Token": config.activeCampaignApiKey,
-        "Content-Type": "application/json",
-        ...(options.headers || {}),
-      },
-    }
-  );
+    throw error;
+  }
 };
 
 export const activeCampaign = {
-  get(endpoint: string, options = {}) {
-    return activeCampaignFetch(endpoint, {
+  get<T>(endpoint: string, options = {}) {
+    return activeCampaignFetch<T>(endpoint, {
       method: "GET",
       ...options,
     });
   },
 
-  post(endpoint: string, body: any, options = {}) {
-    return activeCampaignFetch(endpoint, {
+  post<T>(endpoint: string, body: any, options = {}) {
+    return activeCampaignFetch<T>(endpoint, {
       method: "POST",
       body,
       ...options,
     });
   },
 
-  put(endpoint: string, body: any, options = {}) {
-    return activeCampaignFetch(endpoint, {
+  put<T>(endpoint: string, body: any, options = {}) {
+    return activeCampaignFetch<T>(endpoint, {
       method: "PUT",
       body,
       ...options,
     });
   },
 
-  delete(endpoint: string, options = {}) {
-    return activeCampaignFetch(endpoint, {
+  delete<T>(endpoint: string, options = {}) {
+    return activeCampaignFetch<T>(endpoint, {
       method: "DELETE",
       ...options,
     });

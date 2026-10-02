@@ -5,28 +5,42 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const utmSource = to.query.utm_source as string | undefined
   const utmContent = to.query.utm_content as string | undefined
+  const utmMedium = to.query.utm_medium as string | undefined
+  const utmCampaign = to.query.utm_campaign as string | undefined
+  const utmTerm = to.query.utm_term as string | undefined
 
-  if (!utmSource && !utmContent) return;
+  if (!utmSource && !utmContent && !utmMedium && !utmCampaign && !utmTerm) return;
 
   if (process.client) {
-  sessionStorage.setItem('utm_attribution', JSON.stringify({
-    utm_source: utmSource,
-    utm_content: utmContent
-  }))
-}
+    const existing = sessionStorage.getItem('utm_attribution')
+    if (!existing) {
+      sessionStorage.setItem('utm_attribution', JSON.stringify({
+        utm_source: utmSource,
+        utm_content: utmContent,
+        utm_medium: utmMedium,
+        utm_campaign: utmCampaign,
+        utm_term: utmTerm
+      }))
+    }
+  }
 
-
-  const utmKey = `${utmSource}_${utmContent}`
+  const utmKey = `${utmSource}_${utmContent}_${utmMedium}_${utmCampaign}_${utmTerm}`
   const utmTracked = useSessionStorage(`utm_tracked_${utmKey}`, false)
 
 if (!utmTracked.value) {
-  try {
-    await $fetch('/api/utm/update-visit', {
-      method: 'POST',
-      body: { utm_source: utmSource, utm_content: utmContent }
-    })
+    try {
+      await $fetch('/api/utm/update-visit', {
+        method: 'POST',
+        body: { 
+          utm_source: utmSource, 
+          utm_content: utmContent,
+          utm_medium: utmMedium,
+          utm_campaign: utmCampaign,
+          utm_term: utmTerm
+        }
+      })
 
-    utmTracked.value = true
+      utmTracked.value = true
   } catch (e) {
     console.error('UTM tracking error', e)
   }
@@ -38,31 +52,47 @@ if (!utmTracked.value) {
 
   const newUtm = {
     utm_source: utmSource,
-    utm_content: utmContent
+    utm_content: utmContent,
+    utm_medium: utmMedium,
+    utm_campaign: utmCampaign,
+    utm_term: utmTerm
   }
 
-  const isDifferent =
-    utmCookie.value?.utm_source !== utmSource ||
-    utmCookie.value?.utm_content !== utmContent
+  // First Touch Rule: check if a UTM cookie already exists and has values
+  const hasExistingUtm = utmCookie.value && (
+    utmCookie.value.utm_source || 
+    utmCookie.value.utm_content || 
+    utmCookie.value.utm_medium || 
+    utmCookie.value.utm_campaign
+  )
 
   if (cookieConsent.value === "accepted") {
-    if (!utmCookie.value || isDifferent) {
+    if (!hasExistingUtm) {
       utmCookie.value = {
         ...newUtm,
         updated_at: Date.now()
       }
     }
   } else {
-    utmStore.setPending(
-      utmSource || "",
-      utmContent || ""
-    )
+    // If not accepted yet, we still shouldn't override if there's already pending UTMs
+    if (!utmStore.utmSource && !utmStore.utmMedium && !utmStore.utmCampaign) {
+      utmStore.setPending(
+        utmSource || "",
+        utmContent || "",
+        utmMedium || "",
+        utmCampaign || "",
+        utmTerm || ""
+      )
+    }
   }
 
-  if ("utm_source" in to.query || "utm_content" in to.query) {
+  if ("utm_source" in to.query || "utm_content" in to.query || "utm_medium" in to.query || "utm_campaign" in to.query || "utm_term" in to.query) {
     const cleanQuery = { ...to.query }
     delete cleanQuery.utm_source
     delete cleanQuery.utm_content
+    delete cleanQuery.utm_medium
+    delete cleanQuery.utm_campaign
+    delete cleanQuery.utm_term
 
     return navigateTo({
       path: to.path,

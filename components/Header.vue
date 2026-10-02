@@ -6,13 +6,12 @@
     <div class="header_container">
       <div class="header_content">
 
-        <img
-          src="/images/freshstart_logo.png"
-          alt="logo"
-        />
+        <nuxt-link to="/">
+          <img src="/images/freshstart_logo.png" alt="logo" />
+        </nuxt-link>
 
       </div>
-     
+
     </div>
   </div>
 </template>

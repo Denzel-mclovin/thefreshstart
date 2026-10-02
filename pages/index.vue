@@ -1,8 +1,9 @@
 <template>
   <div class="page">
     <Hero />
-    <VideoComponent />
+    <VideoComponent :hero-video="true" src="https://fast.wistia.com/embed/mi2sa50wnp.js" media-id="mi2sa50wnp"/>
     <Options />
+    <VideosSection />
     <Results />
     <Faq />
   </div>

@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
 
-    <div class="conntainer">
+    <div class="container">
        <div class="hero_content">
         <h1 class="hero_content_title">
           Same Job. Same Salary. But A Life That Finally 
@@ -18,9 +18,18 @@
           class="hero_content_cta"
           @click="modalStore.showModal('QuizPopup')"
         >
-          Take the 3-Minute Quiz
+          Take the 2-Minute Quiz
         </button>
+        <!-- <button 
+          class="hero_content_cta"
+          @click="testActiveCampaign"
+        >
+          TEST ACTIVE CAMPAIGN
+
+        </button> -->
       </div>
+
+  
 
     </div>
 
@@ -41,6 +50,53 @@ import { useModalStore } from "../stores/modal";
 
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
+
+// const contactData = ref({
+//   email: "hero.dev@gmail.com",
+//   firstName: "Test",
+//   lastName: "S",
+//   phone: "+190000000002",
+
+//   q1: "yes",
+//   q2: "no",
+//   q3: "yes",
+//   q4: "affirm",
+//   q5: "finances",
+//   q5FreeText: "Test text",
+
+//   financingFlag: true,
+
+//   utmSource: "test",
+//   utmMedium: "test",
+//   utmCampaign: "test",
+//   utmContent: "test",
+
+//   fbclid: "test_fbclid",
+//   fbc: "test_fbc",
+//   fbp: "test_fbp",
+
+//   referrer: "https://example.com",
+//   landingPage: "https://example.com/test",
+// })
+
+const testActiveCampaign = async () => {
+  try {
+    // const response = await fetch("/api/active-campaign/contacts/contact-test", {
+    const response = await fetch("/api/active-campaign/fields", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify(contactData.value),
+    });
+    const data = await response.json();
+    console.log(data, "data");
+    console.log(response, "response");
+
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 onMounted(async () => {
@@ -92,6 +148,8 @@ onMounted(async () => {
       padding: 8px 12px;
     }
   }
+
+
 
   &_title {
     @include mixins.fz-h1($color: var(--dark-green), $family: var(--font-playfair));
