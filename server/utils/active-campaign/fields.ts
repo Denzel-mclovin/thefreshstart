@@ -15,4 +15,5 @@ export const ACTIVE_CAMPAIGN_FIELDS = {
   FBP: "51",
   REFERRER: "52",
   LANDING_PAGE: "53",
+  SCHEDULED_A_CALL: "54",
 };

@@ -43,6 +43,7 @@ type ContactData = {
 
   referrer?: string;
   landingPage?: string;
+  scheduledACall?: string;
 };
 
 const isValidEmail = (email: string) => {
@@ -76,6 +77,9 @@ const buildFieldValues = (data: ContactData) => {
 
     [ACTIVE_CAMPAIGN_FIELDS.REFERRER, data.referrer],
     [ACTIVE_CAMPAIGN_FIELDS.LANDING_PAGE, data.landingPage],
+    [ACTIVE_CAMPAIGN_FIELDS.SCHEDULED_A_CALL, data.scheduledACall],
+
+
   ];
 
   return fields
