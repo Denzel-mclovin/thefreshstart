@@ -1,6 +1,7 @@
 <template>
   <div 
     class="video_block"
+    :class="{'vertical': props.vertical}"
     :style="{ backgroundImage: `url(${preview})` }"
   >
     <ClientOnly>
@@ -13,7 +14,6 @@
           playsinline
           fit-strategy="cover"
           @loaded-metadata="onLoaded"
-          aspect="1.7777777777777777"
           controls-visible-on-load="false"
           big-play-button="false"
         />
@@ -57,7 +57,8 @@ import { ref, onMounted } from 'vue';
 
 const props = defineProps({
   src: { type: String, required: true },
-  mediaId: { type: String, required: true }
+  mediaId: { type: String, required: true },
+  vertical: { type: Boolean, default: false },
 })
 
 const showOverlay = ref(true)
@@ -145,6 +146,15 @@ const enableSound = async () => {
   aspect-ratio: 5/3;
   margin: 0 auto;
   border-radius: 15px;
+
+  &.vertical {
+    max-height: 740px;
+    aspect-ratio: 9/16;
+
+    @media screen and (max-width: 768px) {
+      max-height: 533px;
+    }
+  }
 }
 
 .video_control {

@@ -1,7 +1,7 @@
 <template>
   <section class="video_section" :class="{'video_section--hero': props.heroVideo}" >
     <div class="container">
-      <VideoItem :src="props.src" :media-id="props.mediaId"/>
+      <VideoItem :src="props.src" :media-id="props.mediaId" :vertical="props.vertical" />
 
       <div class="video_options" v-if="props.heroVideo">
         <div class="video_options_item">
@@ -223,6 +223,10 @@ const props = defineProps({
   heroVideo: {
     type: Boolean,
     default: false
+  },
+  vertical: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -278,27 +282,6 @@ const props = defineProps({
 
     @media screen and (max-width: 480px) {
       padding-top: 14px;
-    }
-  }
-
-  @media screen and (max-width: 1024px) {
-    & {
-      padding-top: 40px;
-      padding-bottom: 60px;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    & {
-      padding-top: 30px;
-      padding-bottom: 45px;
-    }
-  }
-
-  @media screen and (max-width: 450px) {
-    & {
-      padding-top: 20px;
-      padding-bottom: 24px;
     }
   }
 }
