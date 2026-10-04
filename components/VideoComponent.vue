@@ -1,6 +1,5 @@
 <template>
   <section class="video_section" :class="{'video_section--hero': props.heroVideo}" >
-    <div class="container">
       <VideoItem :src="props.src" :media-id="props.mediaId" :vertical="props.vertical" />
 
       <div class="video_options" v-if="props.heroVideo">
@@ -206,7 +205,6 @@
           <span> SSL encrypted & secure </span>
         </div>
       </div>
-    </div>
   </section>
 </template>
 
@@ -242,6 +240,7 @@ const props = defineProps({
   &--hero {
     padding-top: 50px;
     padding-bottom: 80px;
+    padding-inline: 10px;
   }
 
   .video_options {

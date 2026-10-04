@@ -13,14 +13,16 @@
 
         <div class="results_content_media">
           <div class="column_content">
-            <VideoComponent src="https://fast.wistia.com/embed/0j7y3omt95.js" media-id="0j7y3omt95" :vertical="true" />
-            <VideoComponent src="https://fast.wistia.com/embed/7lxbd0a05q.js" media-id="7lxbd0a05q" :vertical="true" />
+            <VideoComponent src="https://fast.wistia.com/embed/0j7y3omt95.js" class="video_result_bg" media-id="0j7y3omt95" :vertical="true" />
+            <VideoComponent v-if="!isDesktop" src="https://fast.wistia.com/embed/qaafwh40mf.js" class="video_result_bg" media-id="qaafwh40mf" :vertical="true"/>
+            <VideoComponent v-if="!isDesktop" src="https://fast.wistia.com/embed/7lxbd0a05q.js" class="video_result_bg" media-id="7lxbd0a05q" :vertical="true" />
             <div class="result_media_bg" v-for="(item, idx) in columnContentLeft" :key="idx">
               <img :src="item.imgPath" alt="chat">
             </div>
           </div>
           <div class="column_content">
-            <VideoComponent src="https://fast.wistia.com/embed/qaafwh40mf.js" media-id="qaafwh40mf" :vertical="true"/>
+            <VideoComponent v-if="isDesktop" src="https://fast.wistia.com/embed/qaafwh40mf.js" class="video_result_bg" media-id="qaafwh40mf" :vertical="true"/>
+            <VideoComponent v-if="isDesktop" src="https://fast.wistia.com/embed/7lxbd0a05q.js" class="video_result_bg" media-id="7lxbd0a05q" :vertical="true" />
             <div class="result_media_bg" v-for="(item, idx) in columnContentRight" :key="idx">
               <img :src="item.imgPath" alt="chat">
             </div>
@@ -33,9 +35,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted, onBeforeUnmount } from "vue";
 
 import "swiper/css/pagination";
+
+const isDesktop = ref(false);
 
 
 const columnContentLeft = ref([
@@ -71,6 +75,19 @@ const columnContentRight = ref([
     imgPath: "/images/screen5.png",
   },
 ])
+
+onMounted(() => {
+  const checkIsDesktop = () => {
+    isDesktop.value = window.innerWidth >= 1024;
+  };
+
+  checkIsDesktop();
+  window.addEventListener("resize", checkIsDesktop);
+
+  onBeforeUnmount(() => {
+    window.removeEventListener("resize", checkIsDesktop);
+  });
+});
 
 </script>
 
@@ -176,7 +193,7 @@ const columnContentRight = ref([
     }
   }
 
-  .result_media_bg {
+  .result_media_bg, .video_result_bg {
     --card-radius: 20px;
     --card-padding: 15px;
 
