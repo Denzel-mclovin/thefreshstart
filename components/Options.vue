@@ -6,7 +6,7 @@
           <h1>Find Out If This Is Even An Option For You</h1>
 
           <p>
-            This 3-minute quiz maps your salary, remote eligibility, and
+            This 2-minute quiz maps your salary, remote eligibility, and
             location against the strategy you just learned so you'll know
             exactly where you stand before we ever talk.
           </p>
