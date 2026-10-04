@@ -475,14 +475,15 @@
                     <span v-if="submitting" class="q-spinner" />
                     <span v-else>Send My Breakdown & Book →</span>
                   </button>
+                  <button
+                    class="q-nav-back"
+                    
+                    @click="phase = 'results'"
+                  >
+                    ← Back
+                  </button>
                 </div>
-                <button
-                  class="q-nav-back"
-                  style="margin-top: 16px"
-                  @click="phase = 'results'"
-                >
-                  ← Back
-                </button>
+               
               </div>
             </transition>
 
@@ -1035,7 +1036,9 @@ const modalStyle = computed(() => ({
   position: relative;
   overflow: hidden;
 
+
   @media (max-width: 480px) {
+    min-height: 90vh;
     max-height: 96vh;
     border-radius: var(--radius-small);
 
@@ -1869,6 +1872,7 @@ const modalStyle = computed(() => ({
   flex-direction: column;
   height: 100%;
   overflow-y: scroll;
+  padding-right: 15px;
   gap: 12px;
 }
 
@@ -1994,9 +1998,13 @@ const modalStyle = computed(() => ({
   border-radius: var(--radius-small);
   border: 1.5px solid var(--gray-2);
   min-height: 60vh;
+  position: relative;
+  overflow-y: scroll;
 
   iframe {
     min-height: inherit;
+    height: 100vh;
+    position: relative;
   }
 }
 
