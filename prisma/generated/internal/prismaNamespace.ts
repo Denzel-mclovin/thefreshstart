@@ -400,7 +400,9 @@ export const ModelName = {
   Lead: 'Lead',
   Client: 'Client',
   QuizAnswer: 'QuizAnswer',
-  LeadStatusHistory: 'LeadStatusHistory'
+  LeadStatusHistory: 'LeadStatusHistory',
+  AdInsight: 'AdInsight',
+  MetaSyncLog: 'MetaSyncLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -416,7 +418,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "quizAnswer" | "leadStatusHistory"
+    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "quizAnswer" | "leadStatusHistory" | "adInsight" | "metaSyncLog"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1678,6 +1680,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AdInsight: {
+      payload: Prisma.$AdInsightPayload<ExtArgs>
+      fields: Prisma.AdInsightFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdInsightFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdInsightFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>
+        }
+        findFirst: {
+          args: Prisma.AdInsightFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdInsightFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>
+        }
+        findMany: {
+          args: Prisma.AdInsightFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>[]
+        }
+        create: {
+          args: Prisma.AdInsightCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>
+        }
+        createMany: {
+          args: Prisma.AdInsightCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdInsightCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>[]
+        }
+        delete: {
+          args: Prisma.AdInsightDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>
+        }
+        update: {
+          args: Prisma.AdInsightUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>
+        }
+        deleteMany: {
+          args: Prisma.AdInsightDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdInsightUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdInsightUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>[]
+        }
+        upsert: {
+          args: Prisma.AdInsightUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdInsightPayload>
+        }
+        aggregate: {
+          args: Prisma.AdInsightAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdInsight>
+        }
+        groupBy: {
+          args: Prisma.AdInsightGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdInsightGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdInsightCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdInsightCountAggregateOutputType> | number
+        }
+      }
+    }
+    MetaSyncLog: {
+      payload: Prisma.$MetaSyncLogPayload<ExtArgs>
+      fields: Prisma.MetaSyncLogFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MetaSyncLogFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MetaSyncLogFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>
+        }
+        findFirst: {
+          args: Prisma.MetaSyncLogFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MetaSyncLogFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>
+        }
+        findMany: {
+          args: Prisma.MetaSyncLogFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>[]
+        }
+        create: {
+          args: Prisma.MetaSyncLogCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>
+        }
+        createMany: {
+          args: Prisma.MetaSyncLogCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MetaSyncLogCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>[]
+        }
+        delete: {
+          args: Prisma.MetaSyncLogDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>
+        }
+        update: {
+          args: Prisma.MetaSyncLogUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>
+        }
+        deleteMany: {
+          args: Prisma.MetaSyncLogDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MetaSyncLogUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MetaSyncLogUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>[]
+        }
+        upsert: {
+          args: Prisma.MetaSyncLogUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MetaSyncLogPayload>
+        }
+        aggregate: {
+          args: Prisma.MetaSyncLogAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMetaSyncLog>
+        }
+        groupBy: {
+          args: Prisma.MetaSyncLogGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MetaSyncLogGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MetaSyncLogCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MetaSyncLogCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1915,11 +2065,15 @@ export const LeadScalarFieldEnum = {
   email: 'email',
   quizComment: 'quizComment',
   qualified: 'qualified',
+  trafficSource: 'trafficSource',
   utmSource: 'utmSource',
   utmMedium: 'utmMedium',
   utmCampaign: 'utmCampaign',
   utmTerm: 'utmTerm',
   utmContent: 'utmContent',
+  metaCampaignId: 'metaCampaignId',
+  metaAdsetId: 'metaAdsetId',
+  metaAdId: 'metaAdId',
   fbclid: 'fbclid',
   fbc: 'fbc',
   fbp: 'fbp',
@@ -2008,6 +2162,41 @@ export const LeadStatusHistoryScalarFieldEnum = {
 } as const
 
 export type LeadStatusHistoryScalarFieldEnum = (typeof LeadStatusHistoryScalarFieldEnum)[keyof typeof LeadStatusHistoryScalarFieldEnum]
+
+
+export const AdInsightScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  campaignId: 'campaignId',
+  campaignName: 'campaignName',
+  adsetId: 'adsetId',
+  adsetName: 'adsetName',
+  adId: 'adId',
+  adName: 'adName',
+  spend: 'spend',
+  impressions: 'impressions',
+  clicks: 'clicks',
+  reach: 'reach',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdInsightScalarFieldEnum = (typeof AdInsightScalarFieldEnum)[keyof typeof AdInsightScalarFieldEnum]
+
+
+export const MetaSyncLogScalarFieldEnum = {
+  id: 'id',
+  startedAt: 'startedAt',
+  finishedAt: 'finishedAt',
+  rangeStart: 'rangeStart',
+  rangeEnd: 'rangeEnd',
+  status: 'status',
+  recordsSynced: 'recordsSynced',
+  error: 'error'
+} as const
+
+export type MetaSyncLogScalarFieldEnum = (typeof MetaSyncLogScalarFieldEnum)[keyof typeof MetaSyncLogScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -2202,6 +2391,20 @@ export type ListEnumCheckoutStatusFieldRefInput<$PrismaModel> = FieldRefInputTyp
 
 
 /**
+ * Reference to a field of type 'TrafficSource'
+ */
+export type EnumTrafficSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TrafficSource'>
+    
+
+
+/**
+ * Reference to a field of type 'TrafficSource[]'
+ */
+export type ListEnumTrafficSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TrafficSource[]'>
+    
+
+
+/**
  * Reference to a field of type 'LeadStatus'
  */
 export type EnumLeadStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadStatus'>
@@ -2254,6 +2457,20 @@ export type EnumClientStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'ClientStatus[]'
  */
 export type ListEnumClientStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ClientStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'SyncStatus'
+ */
+export type EnumSyncStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SyncStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'SyncStatus[]'
+ */
+export type ListEnumSyncStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SyncStatus[]'>
     
 
 
@@ -2397,6 +2614,8 @@ export type GlobalOmitConfig = {
   client?: Prisma.ClientOmit
   quizAnswer?: Prisma.QuizAnswerOmit
   leadStatusHistory?: Prisma.LeadStatusHistoryOmit
+  adInsight?: Prisma.AdInsightOmit
+  metaSyncLog?: Prisma.MetaSyncLogOmit
 }
 
 /* Types for Logging */

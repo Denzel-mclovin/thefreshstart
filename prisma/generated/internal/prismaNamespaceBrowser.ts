@@ -67,7 +67,9 @@ export const ModelName = {
   Lead: 'Lead',
   Client: 'Client',
   QuizAnswer: 'QuizAnswer',
-  LeadStatusHistory: 'LeadStatusHistory'
+  LeadStatusHistory: 'LeadStatusHistory',
+  AdInsight: 'AdInsight',
+  MetaSyncLog: 'MetaSyncLog'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -284,11 +286,15 @@ export const LeadScalarFieldEnum = {
   email: 'email',
   quizComment: 'quizComment',
   qualified: 'qualified',
+  trafficSource: 'trafficSource',
   utmSource: 'utmSource',
   utmMedium: 'utmMedium',
   utmCampaign: 'utmCampaign',
   utmTerm: 'utmTerm',
   utmContent: 'utmContent',
+  metaCampaignId: 'metaCampaignId',
+  metaAdsetId: 'metaAdsetId',
+  metaAdId: 'metaAdId',
   fbclid: 'fbclid',
   fbc: 'fbc',
   fbp: 'fbp',
@@ -377,6 +383,41 @@ export const LeadStatusHistoryScalarFieldEnum = {
 } as const
 
 export type LeadStatusHistoryScalarFieldEnum = (typeof LeadStatusHistoryScalarFieldEnum)[keyof typeof LeadStatusHistoryScalarFieldEnum]
+
+
+export const AdInsightScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  campaignId: 'campaignId',
+  campaignName: 'campaignName',
+  adsetId: 'adsetId',
+  adsetName: 'adsetName',
+  adId: 'adId',
+  adName: 'adName',
+  spend: 'spend',
+  impressions: 'impressions',
+  clicks: 'clicks',
+  reach: 'reach',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdInsightScalarFieldEnum = (typeof AdInsightScalarFieldEnum)[keyof typeof AdInsightScalarFieldEnum]
+
+
+export const MetaSyncLogScalarFieldEnum = {
+  id: 'id',
+  startedAt: 'startedAt',
+  finishedAt: 'finishedAt',
+  rangeStart: 'rangeStart',
+  rangeEnd: 'rangeEnd',
+  status: 'status',
+  recordsSynced: 'recordsSynced',
+  error: 'error'
+} as const
+
+export type MetaSyncLogScalarFieldEnum = (typeof MetaSyncLogScalarFieldEnum)[keyof typeof MetaSyncLogScalarFieldEnum]
 
 
 export const SortOrder = {

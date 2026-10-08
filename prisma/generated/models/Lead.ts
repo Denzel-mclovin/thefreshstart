@@ -50,11 +50,15 @@ export type LeadMinAggregateOutputType = {
   email: string | null
   quizComment: string | null
   qualified: boolean | null
+  trafficSource: $Enums.TrafficSource | null
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  metaCampaignId: string | null
+  metaAdsetId: string | null
+  metaAdId: string | null
   fbclid: string | null
   fbc: string | null
   fbp: string | null
@@ -90,11 +94,15 @@ export type LeadMaxAggregateOutputType = {
   email: string | null
   quizComment: string | null
   qualified: boolean | null
+  trafficSource: $Enums.TrafficSource | null
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  metaCampaignId: string | null
+  metaAdsetId: string | null
+  metaAdId: string | null
   fbclid: string | null
   fbc: string | null
   fbp: string | null
@@ -130,11 +138,15 @@ export type LeadCountAggregateOutputType = {
   email: number
   quizComment: number
   qualified: number
+  trafficSource: number
   utmSource: number
   utmMedium: number
   utmCampaign: number
   utmTerm: number
   utmContent: number
+  metaCampaignId: number
+  metaAdsetId: number
+  metaAdId: number
   fbclid: number
   fbc: number
   fbp: number
@@ -182,11 +194,15 @@ export type LeadMinAggregateInputType = {
   email?: true
   quizComment?: true
   qualified?: true
+  trafficSource?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  metaCampaignId?: true
+  metaAdsetId?: true
+  metaAdId?: true
   fbclid?: true
   fbc?: true
   fbp?: true
@@ -222,11 +238,15 @@ export type LeadMaxAggregateInputType = {
   email?: true
   quizComment?: true
   qualified?: true
+  trafficSource?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  metaCampaignId?: true
+  metaAdsetId?: true
+  metaAdId?: true
   fbclid?: true
   fbc?: true
   fbp?: true
@@ -262,11 +282,15 @@ export type LeadCountAggregateInputType = {
   email?: true
   quizComment?: true
   qualified?: true
+  trafficSource?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  metaCampaignId?: true
+  metaAdsetId?: true
+  metaAdId?: true
   fbclid?: true
   fbc?: true
   fbp?: true
@@ -389,11 +413,15 @@ export type LeadGroupByOutputType = {
   email: string | null
   quizComment: string
   qualified: boolean
+  trafficSource: $Enums.TrafficSource
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  metaCampaignId: string | null
+  metaAdsetId: string | null
+  metaAdId: string | null
   fbclid: string | null
   fbc: string | null
   fbp: string | null
@@ -452,11 +480,15 @@ export type LeadWhereInput = {
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
@@ -496,11 +528,15 @@ export type LeadOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
   utmCampaign?: Prisma.SortOrderInput | Prisma.SortOrder
   utmTerm?: Prisma.SortOrderInput | Prisma.SortOrder
   utmContent?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdId?: Prisma.SortOrderInput | Prisma.SortOrder
   fbclid?: Prisma.SortOrderInput | Prisma.SortOrder
   fbc?: Prisma.SortOrderInput | Prisma.SortOrder
   fbp?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -543,11 +579,15 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"Lead"> | string
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
@@ -587,11 +627,15 @@ export type LeadOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
   utmCampaign?: Prisma.SortOrderInput | Prisma.SortOrder
   utmTerm?: Prisma.SortOrderInput | Prisma.SortOrder
   utmContent?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdId?: Prisma.SortOrderInput | Prisma.SortOrder
   fbclid?: Prisma.SortOrderInput | Prisma.SortOrder
   fbc?: Prisma.SortOrderInput | Prisma.SortOrder
   fbp?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -635,11 +679,15 @@ export type LeadScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   quizComment?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   qualified?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
+  trafficSource?: Prisma.EnumTrafficSourceWithAggregatesFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
@@ -675,11 +723,15 @@ export type LeadCreateInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -718,11 +770,15 @@ export type LeadUncheckedCreateInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -761,11 +817,15 @@ export type LeadUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -804,11 +864,15 @@ export type LeadUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -847,11 +911,15 @@ export type LeadCreateManyInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -887,11 +955,15 @@ export type LeadUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -926,11 +998,15 @@ export type LeadUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -976,11 +1052,15 @@ export type LeadCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrder
+  metaAdId?: Prisma.SortOrder
   fbclid?: Prisma.SortOrder
   fbc?: Prisma.SortOrder
   fbp?: Prisma.SortOrder
@@ -1021,11 +1101,15 @@ export type LeadMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrder
+  metaAdId?: Prisma.SortOrder
   fbclid?: Prisma.SortOrder
   fbc?: Prisma.SortOrder
   fbp?: Prisma.SortOrder
@@ -1061,11 +1145,15 @@ export type LeadMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrder
+  metaAdId?: Prisma.SortOrder
   fbclid?: Prisma.SortOrder
   fbc?: Prisma.SortOrder
   fbp?: Prisma.SortOrder
@@ -1139,6 +1227,10 @@ export type LeadUncheckedUpdateManyWithoutSellerNestedInput = {
   deleteMany?: Prisma.LeadScalarWhereInput | Prisma.LeadScalarWhereInput[]
 }
 
+export type EnumTrafficSourceFieldUpdateOperationsInput = {
+  set?: $Enums.TrafficSource
+}
+
 export type EnumLeadStatusFieldUpdateOperationsInput = {
   set?: $Enums.LeadStatus
 }
@@ -1199,11 +1291,15 @@ export type LeadCreateWithoutSellerInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1241,11 +1337,15 @@ export type LeadUncheckedCreateWithoutSellerInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1312,11 +1412,15 @@ export type LeadScalarWhereInput = {
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
@@ -1352,11 +1456,15 @@ export type LeadCreateWithoutClientInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1394,11 +1502,15 @@ export type LeadUncheckedCreateWithoutClientInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1452,11 +1564,15 @@ export type LeadUpdateWithoutClientInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1494,11 +1610,15 @@ export type LeadUncheckedUpdateWithoutClientInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1536,11 +1656,15 @@ export type LeadCreateWithoutAnswersInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1578,11 +1702,15 @@ export type LeadUncheckedCreateWithoutAnswersInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1636,11 +1764,15 @@ export type LeadUpdateWithoutAnswersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1678,11 +1810,15 @@ export type LeadUncheckedUpdateWithoutAnswersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1720,11 +1856,15 @@ export type LeadCreateWithoutStatusHistoryInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1762,11 +1902,15 @@ export type LeadUncheckedCreateWithoutStatusHistoryInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1820,11 +1964,15 @@ export type LeadUpdateWithoutStatusHistoryInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1862,11 +2010,15 @@ export type LeadUncheckedUpdateWithoutStatusHistoryInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1904,11 +2056,15 @@ export type LeadCreateManySellerInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
@@ -1943,11 +2099,15 @@ export type LeadUpdateWithoutSellerInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1985,11 +2145,15 @@ export type LeadUncheckedUpdateWithoutSellerInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2027,11 +2191,15 @@ export type LeadUncheckedUpdateManyWithoutSellerInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2106,11 +2274,15 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
@@ -2151,11 +2323,15 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
@@ -2192,11 +2368,15 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
@@ -2233,11 +2413,15 @@ export type LeadSelectScalar = {
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
@@ -2259,7 +2443,7 @@ export type LeadSelectScalar = {
   assignedAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "qualified" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "qualified" | "trafficSource" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "metaCampaignId" | "metaAdsetId" | "metaAdId" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
   answers?: boolean | Prisma.Lead$answersArgs<ExtArgs>
@@ -2296,11 +2480,15 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string | null
     quizComment: string
     qualified: boolean
+    trafficSource: $Enums.TrafficSource
     utmSource: string | null
     utmMedium: string | null
     utmCampaign: string | null
     utmTerm: string | null
     utmContent: string | null
+    metaCampaignId: string | null
+    metaAdsetId: string | null
+    metaAdId: string | null
     fbclid: string | null
     fbc: string | null
     fbp: string | null
@@ -2760,11 +2948,15 @@ export interface LeadFieldRefs {
   readonly email: Prisma.FieldRef<"Lead", 'String'>
   readonly quizComment: Prisma.FieldRef<"Lead", 'String'>
   readonly qualified: Prisma.FieldRef<"Lead", 'Boolean'>
+  readonly trafficSource: Prisma.FieldRef<"Lead", 'TrafficSource'>
   readonly utmSource: Prisma.FieldRef<"Lead", 'String'>
   readonly utmMedium: Prisma.FieldRef<"Lead", 'String'>
   readonly utmCampaign: Prisma.FieldRef<"Lead", 'String'>
   readonly utmTerm: Prisma.FieldRef<"Lead", 'String'>
   readonly utmContent: Prisma.FieldRef<"Lead", 'String'>
+  readonly metaCampaignId: Prisma.FieldRef<"Lead", 'String'>
+  readonly metaAdsetId: Prisma.FieldRef<"Lead", 'String'>
+  readonly metaAdId: Prisma.FieldRef<"Lead", 'String'>
   readonly fbclid: Prisma.FieldRef<"Lead", 'String'>
   readonly fbc: Prisma.FieldRef<"Lead", 'String'>
   readonly fbp: Prisma.FieldRef<"Lead", 'String'>

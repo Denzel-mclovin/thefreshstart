@@ -102,3 +102,13 @@ export type QuizAnswer = Prisma.QuizAnswerModel
  * 
  */
 export type LeadStatusHistory = Prisma.LeadStatusHistoryModel
+/**
+ * Model AdInsight
+ * 
+ */
+export type AdInsight = Prisma.AdInsightModel
+/**
+ * Model MetaSyncLog
+ * 
+ */
+export type MetaSyncLog = Prisma.MetaSyncLogModel

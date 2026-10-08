@@ -9,6 +9,25 @@
 * 🟢 You can import this file directly.
 */
 
+export const SyncStatus = {
+  RUNNING: 'RUNNING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED'
+} as const
+
+export type SyncStatus = (typeof SyncStatus)[keyof typeof SyncStatus]
+
+
+export const TrafficSource = {
+  PAID: 'PAID',
+  ORGANIC: 'ORGANIC',
+  EMAIL_LIST: 'EMAIL_LIST',
+  OTHER: 'OTHER'
+} as const
+
+export type TrafficSource = (typeof TrafficSource)[keyof typeof TrafficSource]
+
+
 export const SellerStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
