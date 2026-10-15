@@ -3,7 +3,8 @@
 // ТЗ 4.5. Одна функция для Q4 и Q5 — отличается только questionId.
 // Сверить реальные questionId в QuizAnswer с конфигом квиза перед продакшеном.
 
-import { prisma } from "../prisma";
+import { prisma } from "../../../prisma/prisma";
+
 
 export interface SegmentRow {
   answer: string;

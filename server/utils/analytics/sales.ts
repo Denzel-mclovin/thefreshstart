@@ -6,7 +6,8 @@
 // платежей. С рассрочкой Affirm точный cash collected по периодам требует
 // отдельной таблицы платежей для Client (как Payment уже есть для Subscription).
 
-import { prisma } from "../prisma";
+import { prisma } from "../../../prisma/prisma";
+
 import { Granularity, truncUnit, intervalStep } from "./query-helpers";
 
 interface RawRow {

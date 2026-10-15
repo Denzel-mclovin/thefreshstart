@@ -1,10 +1,6 @@
-// server/utils/analytics/funnel.ts
-//
-// ТЗ 4.2. Четыре отдельные rate (не один "opt-in rate"), плюс CPA по
-// quiz-complete / booking / close. Группировка по неделе/месяцу — lifetime
-// версии нет намеренно.
 
-import { prisma } from "../prisma";
+
+import { prisma } from "../../../prisma/prisma";
 import { Granularity, truncUnit, intervalStep } from "./query-helpers";
 
 interface RawRow {

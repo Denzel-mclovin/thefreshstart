@@ -50,6 +50,8 @@ export type LeadMinAggregateOutputType = {
   email: string | null
   quizComment: string | null
   qualified: boolean | null
+  calendlyInviteeUri: string | null
+  calendlyEventUri: string | null
   trafficSource: $Enums.TrafficSource | null
   utmSource: string | null
   utmMedium: string | null
@@ -94,6 +96,8 @@ export type LeadMaxAggregateOutputType = {
   email: string | null
   quizComment: string | null
   qualified: boolean | null
+  calendlyInviteeUri: string | null
+  calendlyEventUri: string | null
   trafficSource: $Enums.TrafficSource | null
   utmSource: string | null
   utmMedium: string | null
@@ -138,6 +142,8 @@ export type LeadCountAggregateOutputType = {
   email: number
   quizComment: number
   qualified: number
+  calendlyInviteeUri: number
+  calendlyEventUri: number
   trafficSource: number
   utmSource: number
   utmMedium: number
@@ -194,6 +200,8 @@ export type LeadMinAggregateInputType = {
   email?: true
   quizComment?: true
   qualified?: true
+  calendlyInviteeUri?: true
+  calendlyEventUri?: true
   trafficSource?: true
   utmSource?: true
   utmMedium?: true
@@ -238,6 +246,8 @@ export type LeadMaxAggregateInputType = {
   email?: true
   quizComment?: true
   qualified?: true
+  calendlyInviteeUri?: true
+  calendlyEventUri?: true
   trafficSource?: true
   utmSource?: true
   utmMedium?: true
@@ -282,6 +292,8 @@ export type LeadCountAggregateInputType = {
   email?: true
   quizComment?: true
   qualified?: true
+  calendlyInviteeUri?: true
+  calendlyEventUri?: true
   trafficSource?: true
   utmSource?: true
   utmMedium?: true
@@ -413,6 +425,8 @@ export type LeadGroupByOutputType = {
   email: string | null
   quizComment: string
   qualified: boolean
+  calendlyInviteeUri: string | null
+  calendlyEventUri: string | null
   trafficSource: $Enums.TrafficSource
   utmSource: string | null
   utmMedium: string | null
@@ -480,6 +494,8 @@ export type LeadWhereInput = {
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableFilter<"Lead"> | string | null
   trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
@@ -528,6 +544,8 @@ export type LeadOrderByWithRelationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrderInput | Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrderInput | Prisma.SortOrder
   trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -579,6 +597,8 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   phone?: Prisma.StringFilter<"Lead"> | string
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableFilter<"Lead"> | string | null
   trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
@@ -627,6 +647,8 @@ export type LeadOrderByWithAggregationInput = {
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrderInput | Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrderInput | Prisma.SortOrder
   trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -679,6 +701,8 @@ export type LeadScalarWhereWithAggregatesInput = {
   email?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   quizComment?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   qualified?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   trafficSource?: Prisma.EnumTrafficSourceWithAggregatesFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
@@ -723,6 +747,8 @@ export type LeadCreateInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -770,6 +796,8 @@ export type LeadUncheckedCreateInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -817,6 +845,8 @@ export type LeadUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -864,6 +894,8 @@ export type LeadUncheckedUpdateInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -911,6 +943,8 @@ export type LeadCreateManyInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -955,6 +989,8 @@ export type LeadUpdateManyMutationInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -998,6 +1034,8 @@ export type LeadUncheckedUpdateManyInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1052,6 +1090,8 @@ export type LeadCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrder
   trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
@@ -1101,6 +1141,8 @@ export type LeadMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrder
   trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
@@ -1145,6 +1187,8 @@ export type LeadMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrder
   trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
@@ -1291,6 +1335,8 @@ export type LeadCreateWithoutSellerInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1337,6 +1383,8 @@ export type LeadUncheckedCreateWithoutSellerInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1412,6 +1460,8 @@ export type LeadScalarWhereInput = {
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableFilter<"Lead"> | string | null
   trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
@@ -1456,6 +1506,8 @@ export type LeadCreateWithoutClientInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1502,6 +1554,8 @@ export type LeadUncheckedCreateWithoutClientInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1564,6 +1618,8 @@ export type LeadUpdateWithoutClientInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1610,6 +1666,8 @@ export type LeadUncheckedUpdateWithoutClientInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1656,6 +1714,8 @@ export type LeadCreateWithoutAnswersInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1702,6 +1762,8 @@ export type LeadUncheckedCreateWithoutAnswersInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1764,6 +1826,8 @@ export type LeadUpdateWithoutAnswersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1810,6 +1874,8 @@ export type LeadUncheckedUpdateWithoutAnswersInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1856,6 +1922,8 @@ export type LeadCreateWithoutStatusHistoryInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1902,6 +1970,8 @@ export type LeadUncheckedCreateWithoutStatusHistoryInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -1964,6 +2034,8 @@ export type LeadUpdateWithoutStatusHistoryInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2010,6 +2082,8 @@ export type LeadUncheckedUpdateWithoutStatusHistoryInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2056,6 +2130,8 @@ export type LeadCreateManySellerInput = {
   email?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
   trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
@@ -2099,6 +2175,8 @@ export type LeadUpdateWithoutSellerInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2145,6 +2223,8 @@ export type LeadUncheckedUpdateWithoutSellerInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2191,6 +2271,8 @@ export type LeadUncheckedUpdateManyWithoutSellerInput = {
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -2274,6 +2356,8 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
   trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
@@ -2323,6 +2407,8 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
   trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
@@ -2368,6 +2454,8 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
   trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
@@ -2413,6 +2501,8 @@ export type LeadSelectScalar = {
   email?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
   trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
@@ -2443,7 +2533,7 @@ export type LeadSelectScalar = {
   assignedAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "qualified" | "trafficSource" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "metaCampaignId" | "metaAdsetId" | "metaAdId" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "qualified" | "calendlyInviteeUri" | "calendlyEventUri" | "trafficSource" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "metaCampaignId" | "metaAdsetId" | "metaAdId" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
   answers?: boolean | Prisma.Lead$answersArgs<ExtArgs>
@@ -2480,6 +2570,8 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string | null
     quizComment: string
     qualified: boolean
+    calendlyInviteeUri: string | null
+    calendlyEventUri: string | null
     trafficSource: $Enums.TrafficSource
     utmSource: string | null
     utmMedium: string | null
@@ -2948,6 +3040,8 @@ export interface LeadFieldRefs {
   readonly email: Prisma.FieldRef<"Lead", 'String'>
   readonly quizComment: Prisma.FieldRef<"Lead", 'String'>
   readonly qualified: Prisma.FieldRef<"Lead", 'Boolean'>
+  readonly calendlyInviteeUri: Prisma.FieldRef<"Lead", 'String'>
+  readonly calendlyEventUri: Prisma.FieldRef<"Lead", 'String'>
   readonly trafficSource: Prisma.FieldRef<"Lead", 'TrafficSource'>
   readonly utmSource: Prisma.FieldRef<"Lead", 'String'>
   readonly utmMedium: Prisma.FieldRef<"Lead", 'String'>

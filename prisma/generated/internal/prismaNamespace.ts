@@ -402,7 +402,8 @@ export const ModelName = {
   QuizAnswer: 'QuizAnswer',
   LeadStatusHistory: 'LeadStatusHistory',
   AdInsight: 'AdInsight',
-  MetaSyncLog: 'MetaSyncLog'
+  MetaSyncLog: 'MetaSyncLog',
+  CalendlyWebhookEvent: 'CalendlyWebhookEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -418,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "quizAnswer" | "leadStatusHistory" | "adInsight" | "metaSyncLog"
+    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "quizAnswer" | "leadStatusHistory" | "adInsight" | "metaSyncLog" | "calendlyWebhookEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1828,6 +1829,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CalendlyWebhookEvent: {
+      payload: Prisma.$CalendlyWebhookEventPayload<ExtArgs>
+      fields: Prisma.CalendlyWebhookEventFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CalendlyWebhookEventFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CalendlyWebhookEventFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>
+        }
+        findFirst: {
+          args: Prisma.CalendlyWebhookEventFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CalendlyWebhookEventFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>
+        }
+        findMany: {
+          args: Prisma.CalendlyWebhookEventFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>[]
+        }
+        create: {
+          args: Prisma.CalendlyWebhookEventCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>
+        }
+        createMany: {
+          args: Prisma.CalendlyWebhookEventCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CalendlyWebhookEventCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>[]
+        }
+        delete: {
+          args: Prisma.CalendlyWebhookEventDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>
+        }
+        update: {
+          args: Prisma.CalendlyWebhookEventUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>
+        }
+        deleteMany: {
+          args: Prisma.CalendlyWebhookEventDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CalendlyWebhookEventUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CalendlyWebhookEventUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>[]
+        }
+        upsert: {
+          args: Prisma.CalendlyWebhookEventUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CalendlyWebhookEventPayload>
+        }
+        aggregate: {
+          args: Prisma.CalendlyWebhookEventAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCalendlyWebhookEvent>
+        }
+        groupBy: {
+          args: Prisma.CalendlyWebhookEventGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CalendlyWebhookEventGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CalendlyWebhookEventCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CalendlyWebhookEventCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -2065,6 +2140,8 @@ export const LeadScalarFieldEnum = {
   email: 'email',
   quizComment: 'quizComment',
   qualified: 'qualified',
+  calendlyInviteeUri: 'calendlyInviteeUri',
+  calendlyEventUri: 'calendlyEventUri',
   trafficSource: 'trafficSource',
   utmSource: 'utmSource',
   utmMedium: 'utmMedium',
@@ -2199,12 +2276,37 @@ export const MetaSyncLogScalarFieldEnum = {
 export type MetaSyncLogScalarFieldEnum = (typeof MetaSyncLogScalarFieldEnum)[keyof typeof MetaSyncLogScalarFieldEnum]
 
 
+export const CalendlyWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventKey: 'eventKey',
+  eventType: 'eventType',
+  inviteeUri: 'inviteeUri',
+  scheduledEventUri: 'scheduledEventUri',
+  status: 'status',
+  payload: 'payload',
+  attempts: 'attempts',
+  lastError: 'lastError',
+  receivedAt: 'receivedAt',
+  processedAt: 'processedAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CalendlyWebhookEventScalarFieldEnum = (typeof CalendlyWebhookEventScalarFieldEnum)[keyof typeof CalendlyWebhookEventScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -2221,6 +2323,15 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -2475,6 +2586,48 @@ export type ListEnumSyncStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'CalendlyEventType'
+ */
+export type EnumCalendlyEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CalendlyEventType'>
+    
+
+
+/**
+ * Reference to a field of type 'CalendlyEventType[]'
+ */
+export type ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CalendlyEventType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CalendlyWebhookStatus'
+ */
+export type EnumCalendlyWebhookStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CalendlyWebhookStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'CalendlyWebhookStatus[]'
+ */
+export type ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CalendlyWebhookStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'QueryMode'
+ */
+export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2616,6 +2769,7 @@ export type GlobalOmitConfig = {
   leadStatusHistory?: Prisma.LeadStatusHistoryOmit
   adInsight?: Prisma.AdInsightOmit
   metaSyncLog?: Prisma.MetaSyncLogOmit
+  calendlyWebhookEvent?: Prisma.CalendlyWebhookEventOmit
 }
 
 /* Types for Logging */

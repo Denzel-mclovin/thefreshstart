@@ -7,7 +7,8 @@
 // "Отмена" тут приближена через status IN ('CHURNED','REFUNDED'), когда
 // refundDate пуст — это более слабый сигнал, чем настоящая дата отмены.
 
-import { prisma } from "../prisma";
+import { prisma } from "../../../prisma/prisma";
+
 
 export interface SafetyRow {
   financingFlag: boolean;
