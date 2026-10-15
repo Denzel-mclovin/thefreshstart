@@ -453,6 +453,91 @@ export type EnumSyncStatusWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumSyncStatusFilter<$PrismaModel>
 }
 
+export type EnumCalendlyEventTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyEventType | Prisma.EnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyEventTypeFilter<$PrismaModel> | $Enums.CalendlyEventType
+}
+
+export type EnumCalendlyWebhookStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyWebhookStatus | Prisma.EnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyWebhookStatusFilter<$PrismaModel> | $Enums.CalendlyWebhookStatus
+}
+
+export type JsonFilter<$PrismaModel = never> =
+| Prisma.PatchUndefined<
+    Prisma.Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+    Required<JsonFilterBase<$PrismaModel>>
+  >
+| Prisma.OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+export type JsonFilterBase<$PrismaModel = never> = {
+  equals?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+  path?: string[]
+  mode?: Prisma.QueryMode | Prisma.EnumQueryModeFieldRefInput<$PrismaModel>
+  string_contains?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_starts_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_ends_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  array_starts_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_ends_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_contains?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  lt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  lte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+}
+
+export type EnumCalendlyEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyEventType | Prisma.EnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.CalendlyEventType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCalendlyEventTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCalendlyEventTypeFilter<$PrismaModel>
+}
+
+export type EnumCalendlyWebhookStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyWebhookStatus | Prisma.EnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyWebhookStatusWithAggregatesFilter<$PrismaModel> | $Enums.CalendlyWebhookStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCalendlyWebhookStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCalendlyWebhookStatusFilter<$PrismaModel>
+}
+
+export type JsonWithAggregatesFilter<$PrismaModel = never> =
+| Prisma.PatchUndefined<
+    Prisma.Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+    Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+  >
+| Prisma.OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+  equals?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+  path?: string[]
+  mode?: Prisma.QueryMode | Prisma.EnumQueryModeFieldRefInput<$PrismaModel>
+  string_contains?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_starts_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_ends_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  array_starts_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_ends_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_contains?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  lt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  lte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedJsonFilter<$PrismaModel>
+  _max?: Prisma.NestedJsonFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -903,6 +988,64 @@ export type NestedEnumSyncStatusWithAggregatesFilter<$PrismaModel = never> = {
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumSyncStatusFilter<$PrismaModel>
   _max?: Prisma.NestedEnumSyncStatusFilter<$PrismaModel>
+}
+
+export type NestedEnumCalendlyEventTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyEventType | Prisma.EnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyEventTypeFilter<$PrismaModel> | $Enums.CalendlyEventType
+}
+
+export type NestedEnumCalendlyWebhookStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyWebhookStatus | Prisma.EnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyWebhookStatusFilter<$PrismaModel> | $Enums.CalendlyWebhookStatus
+}
+
+export type NestedEnumCalendlyEventTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyEventType | Prisma.EnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyEventType[] | Prisma.ListEnumCalendlyEventTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyEventTypeWithAggregatesFilter<$PrismaModel> | $Enums.CalendlyEventType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCalendlyEventTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCalendlyEventTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumCalendlyWebhookStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.CalendlyWebhookStatus | Prisma.EnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.CalendlyWebhookStatus[] | Prisma.ListEnumCalendlyWebhookStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumCalendlyWebhookStatusWithAggregatesFilter<$PrismaModel> | $Enums.CalendlyWebhookStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumCalendlyWebhookStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumCalendlyWebhookStatusFilter<$PrismaModel>
+}
+
+export type NestedJsonFilter<$PrismaModel = never> =
+| Prisma.PatchUndefined<
+    Prisma.Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+    Required<NestedJsonFilterBase<$PrismaModel>>
+  >
+| Prisma.OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+export type NestedJsonFilterBase<$PrismaModel = never> = {
+  equals?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
+  path?: string[]
+  mode?: Prisma.QueryMode | Prisma.EnumQueryModeFieldRefInput<$PrismaModel>
+  string_contains?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_starts_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  string_ends_with?: string | Prisma.StringFieldRefInput<$PrismaModel>
+  array_starts_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_ends_with?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  array_contains?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | null
+  lt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  lte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gt?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  gte?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
+  not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel> | Prisma.JsonNullValueFilter
 }
 
 

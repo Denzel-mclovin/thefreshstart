@@ -4,7 +4,7 @@
 // total-spend / total-calls. Пока нет и AdInsight, и лидов с trafficSource —
 // возвращает { available: false } вместо неверного числа.
 
-import { prisma } from "../prisma";
+import { prisma } from "../../../prisma/prisma";
 import { Granularity, truncUnit, intervalStep } from "./query-helpers";
 
 interface RawRow {

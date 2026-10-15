@@ -1,13 +1,6 @@
-// server/utils/analytics/cohort-roas.ts
-//
-// ТЗ 4.4. Когорта = лиды, сгруппированные по НЕДЕЛЕ генерации (leadCreatedAt).
-// Выручка когорты — только из closes в пределах 90 дней от leadCreatedAt
-// конкретного лида, а не выручка, попавшая в тот же календарный период, что и spend.
-//
-// leadCount всегда в ответе — фронт обязан показывать его рядом с ROAS,
-// а не прятать в тултип.
 
-import { prisma } from "../prisma";
+
+import { prisma } from "../../../prisma/prisma";
 
 export interface CohortRow {
   cohortWeekStart: string;

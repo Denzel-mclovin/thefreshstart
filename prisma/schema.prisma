@@ -208,6 +208,9 @@ model Lead {
   quizComment String @default("UNDEFINED")
   qualified     Boolean @default(false)
 
+  calendlyInviteeUri String?
+  calendlyEventUri   String?
+
   // Attribution
   trafficSource TrafficSource @default(OTHER)
   utmSource   String?
@@ -399,6 +402,36 @@ model MetaSyncLog {
   error         String?
 
   @@map("meta_sync_logs")
+}
+
+enum CalendlyWebhookStatus {
+  PROCESSING
+  SUCCESS
+  FAILED
+}
+
+enum CalendlyEventType {
+  INVITEE_CREATED
+  INVITEE_CANCELED
+}
+
+model CalendlyWebhookEvent {
+  id             String               @id @default(cuid())
+  eventKey       String               @unique
+  eventType      CalendlyEventType
+  inviteeUri     String
+  scheduledEventUri String?
+  status         CalendlyWebhookStatus @default(PROCESSING)
+  payload        Json
+  attempts       Int                  @default(1)
+  lastError      String?
+  receivedAt     DateTime             @default(now())
+  processedAt    DateTime?
+  updatedAt      DateTime             @updatedAt
+
+  @@index([status, updatedAt])
+  @@index([inviteeUri])
+  @@map("calendly_webhook_events")
 }
 
 enum SyncStatus {

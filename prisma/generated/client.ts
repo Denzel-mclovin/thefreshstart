@@ -136,3 +136,8 @@ export type AdInsight = Prisma.AdInsightModel
  * 
  */
 export type MetaSyncLog = Prisma.MetaSyncLogModel
+/**
+ * Model CalendlyWebhookEvent
+ * 
+ */
+export type CalendlyWebhookEvent = Prisma.CalendlyWebhookEventModel
