@@ -1,69 +1,76 @@
 import { prisma } from "../../../prisma/prisma";
 
-
 export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+  const {
+    phoneNumber,
+    userEmail,
+    firstName,
+    lastName,
+    quizComment,
+    sessionId,
+    timezone,
+  } = body;
 
-    const body = await readBody(event);
+  if (!sessionId) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: "sessionId is required",
+    });
+  }
 
-    const { phoneNumber, userEmail, firstName, lastName, quizComment, sessionId } = body;
+  try {
+    let lead = await prisma.lead.findUnique({
+      where: { sessionId },
+    });
 
-    console.log(phoneNumber, userEmail, firstName, lastName, quizComment, sessionId, "body");
+    if (!lead) {
+      lead = await prisma.lead.create({
+        data: {
+          sessionId,
+          firstName: firstName || "UNDEFINED",
+          lastName: lastName || "UNDEFINED",
+          phone: phoneNumber || "UNDEFINED",
+          email: userEmail || null,
+          timezone: timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+          quizComment: quizComment || "UNDEFINED",
+          status: "NEW",
+        },
+      });
 
+      await prisma.leadStatusHistory.create({
+        data: {
+          leadId: lead.id,
+          status: "NEW",
+          createdBy: "contact_submit",
+        },
+      });
+    } else {
+      const updateData: Record<string, any> = {
+        firstName: firstName || lead.firstName,
+        lastName: lastName || lead.lastName,
+        phone: phoneNumber || lead.phone,
+        email: userEmail || lead.email,
+        timezone: timezone || lead.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
+        quizComment: quizComment || lead.quizComment,
+      };
 
-
-    if (!phoneNumber && !userEmail && !firstName && !lastName && !quizComment) {
-        return {
-            statusCode: 400,
-            message: "Missing required fields"
-        }
+      lead = await prisma.lead.update({
+        where: { id: lead.id },
+        data: updateData,
+      });
     }
 
-    try {
-
-        const checkLead = await prisma.lead.findUnique({
-            where: {
-                sessionId
-            }
-        })
-
-        if (!checkLead) {
-            return {
-                statusCode: 400,
-                message: "Lead already exists"
-            }
-        }
-
-        const lead = await prisma.lead.update({
-            where: {
-                sessionId
-            },
-            data: {
-                phone: phoneNumber,
-                email: userEmail,
-                firstName,
-                lastName,
-                quizComment,
-                completedAt: new Date(),
-                status: "COMPLETED",
-                qualified: true,
-                // answers
-            }
-        })
-
-        return {
-            statusCode: 200,
-            message: "Lead updated successfully",
-            lead
-        }
-
-    } catch (err) {
-
-        return {
-
-            statusCode: 500,
-            message: `Something went wrong ${err}`
-
-        }
-
-    }
-})
+    return {
+      statusCode: 200,
+      message: "Lead contact updated successfully",
+      lead,
+    };
+  } catch (err: any) {
+    console.error("Lead update failed:", err);
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Failed to update lead contact: ${err?.message || err}`,
+    });
+  }
+});

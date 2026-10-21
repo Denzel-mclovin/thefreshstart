@@ -26,6 +26,7 @@
     "libphonenumber-js": "^1.13.14",
     "nodemailer": "^7.0.6",
     "nuxt": "^3.18.1",
+    "nuxt-meta-pixel": "^3.0.0",
     "pg": "^8.16.3",
     "pinia": "^3.0.3",
     "postgres": "^3.4.7",

@@ -3,13 +3,18 @@ import { useSessionStorage } from '@vueuse/core'
 export default defineNuxtRouteMiddleware(async (to) => {
   if (process.server) return
 
+  // Always initialize and guarantee first-touch attribution capture (including direct / organic / fbclid)
+  const { initAttribution } = useAttribution()
+  initAttribution()
+
   const utmSource = to.query.utm_source as string | undefined
   const utmContent = to.query.utm_content as string | undefined
   const utmMedium = to.query.utm_medium as string | undefined
   const utmCampaign = to.query.utm_campaign as string | undefined
   const utmTerm = to.query.utm_term as string | undefined
+  const fbclid = to.query.fbclid as string | undefined
 
-  if (!utmSource && !utmContent && !utmMedium && !utmCampaign && !utmTerm) return;
+  if (!utmSource && !utmContent && !utmMedium && !utmCampaign && !utmTerm && !fbclid) return;
 
   if (process.client) {
     const existing = sessionStorage.getItem('utm_attribution')

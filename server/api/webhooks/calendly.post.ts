@@ -142,7 +142,13 @@ export default defineEventHandler(async (event) => {
         },
       });
 
-      void lead;
+      await prisma.leadStatusHistory.create({
+        data: {
+          leadId: lead.id,
+          status: "BOOKED",
+          createdBy: "calendly_webhook",
+        },
+      });
     }
 
     if (isCanceled) {
@@ -168,6 +174,13 @@ export default defineEventHandler(async (event) => {
           },
         });
 
+        await prisma.leadStatusHistory.create({
+          data: {
+            leadId: lead.id,
+            status: "CANCELLED",
+            createdBy: "calendly_webhook_cancel",
+          },
+        });
       }
     }
 
