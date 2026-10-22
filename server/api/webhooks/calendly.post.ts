@@ -172,7 +172,22 @@ export default defineEventHandler(async (event) => {
         meetJoinLink: payload.uri,
         timezone: payload.timezone ?? null,
         rescheduleUrl: payload.reschedule_url ?? null,
-        
+
+      });
+
+      console.log(`Lead synced with ActiveCampaign: ${email}`);
+
+      await syncActiveCampaignContact({
+        email,
+        firstName: nameParts[0] || "",
+        lastName: nameParts.slice(1).join(" ") || "",
+        bookingStatus: "BOOKED",
+        callScheduledFor: scheduledAt,
+        scheduledACall: true,
+        meetJoinLink: payload.uri,
+        timezone: payload.timezone ?? null,
+        rescheduleUrl: payload.reschedule_url ?? null,
+
       });
 
       console.log(`Lead synced with ActiveCampaign: ${email}`);

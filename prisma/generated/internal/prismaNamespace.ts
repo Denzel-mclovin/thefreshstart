@@ -399,6 +399,7 @@ export const ModelName = {
   GeneratedLinks: 'GeneratedLinks',
   Lead: 'Lead',
   Client: 'Client',
+  ClientStatusHistory: 'ClientStatusHistory',
   QuizAnswer: 'QuizAnswer',
   LeadStatusHistory: 'LeadStatusHistory',
   AdInsight: 'AdInsight',
@@ -419,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "quizAnswer" | "leadStatusHistory" | "adInsight" | "metaSyncLog" | "calendlyWebhookEvent"
+    modelProps: "callback" | "callbackReservation" | "user" | "seller" | "subscription" | "payment" | "subscriptionPlan" | "checkoutSession" | "visitor" | "session" | "attribution" | "conversion" | "generatedLinks" | "lead" | "client" | "clientStatusHistory" | "quizAnswer" | "leadStatusHistory" | "adInsight" | "metaSyncLog" | "calendlyWebhookEvent"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1533,6 +1534,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    ClientStatusHistory: {
+      payload: Prisma.$ClientStatusHistoryPayload<ExtArgs>
+      fields: Prisma.ClientStatusHistoryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ClientStatusHistoryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ClientStatusHistoryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>
+        }
+        findFirst: {
+          args: Prisma.ClientStatusHistoryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ClientStatusHistoryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>
+        }
+        findMany: {
+          args: Prisma.ClientStatusHistoryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>[]
+        }
+        create: {
+          args: Prisma.ClientStatusHistoryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>
+        }
+        createMany: {
+          args: Prisma.ClientStatusHistoryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ClientStatusHistoryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>[]
+        }
+        delete: {
+          args: Prisma.ClientStatusHistoryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>
+        }
+        update: {
+          args: Prisma.ClientStatusHistoryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>
+        }
+        deleteMany: {
+          args: Prisma.ClientStatusHistoryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ClientStatusHistoryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ClientStatusHistoryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>[]
+        }
+        upsert: {
+          args: Prisma.ClientStatusHistoryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ClientStatusHistoryPayload>
+        }
+        aggregate: {
+          args: Prisma.ClientStatusHistoryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateClientStatusHistory>
+        }
+        groupBy: {
+          args: Prisma.ClientStatusHistoryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClientStatusHistoryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ClientStatusHistoryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ClientStatusHistoryCountAggregateOutputType> | number
+        }
+      }
+    }
     QuizAnswer: {
       payload: Prisma.$QuizAnswerPayload<ExtArgs>
       fields: Prisma.QuizAnswerFieldRefs
@@ -2138,6 +2213,7 @@ export const LeadScalarFieldEnum = {
   lastName: 'lastName',
   phone: 'phone',
   email: 'email',
+  timezone: 'timezone',
   quizComment: 'quizComment',
   qualified: 'qualified',
   calendlyInviteeUri: 'calendlyInviteeUri',
@@ -2157,6 +2233,12 @@ export const LeadScalarFieldEnum = {
   referrer: 'referrer',
   landingPage: 'landingPage',
   financingFlag: 'financingFlag',
+  q1RemoteStatus: 'q1RemoteStatus',
+  q2TimeCommitment: 'q2TimeCommitment',
+  q3Autonomy: 'q3Autonomy',
+  q4FinancialReadiness: 'q4FinancialReadiness',
+  q5ConcernCode: 'q5ConcernCode',
+  q5ConcernFreetext: 'q5ConcernFreetext',
   status: 'status',
   firstVisitAt: 'firstVisitAt',
   quizStartedAt: 'quizStartedAt',
@@ -2210,12 +2292,26 @@ export const ClientScalarFieldEnum = {
   acquisitionSource: 'acquisitionSource',
   status: 'status',
   testimonialConsent: 'testimonialConsent',
+  testimonialConsentType: 'testimonialConsentType',
   testimonialConsentDate: 'testimonialConsentDate',
   figuresConsent: 'figuresConsent',
   recordingConsent: 'recordingConsent'
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
+
+
+export const ClientStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  status: 'status',
+  atRisk: 'atRisk',
+  note: 'note',
+  createdAt: 'createdAt',
+  createdBy: 'createdBy'
+} as const
+
+export type ClientStatusHistoryScalarFieldEnum = (typeof ClientStatusHistoryScalarFieldEnum)[keyof typeof ClientStatusHistoryScalarFieldEnum]
 
 
 export const QuizAnswerScalarFieldEnum = {
@@ -2765,6 +2861,7 @@ export type GlobalOmitConfig = {
   generatedLinks?: Prisma.GeneratedLinksOmit
   lead?: Prisma.LeadOmit
   client?: Prisma.ClientOmit
+  clientStatusHistory?: Prisma.ClientStatusHistoryOmit
   quizAnswer?: Prisma.QuizAnswerOmit
   leadStatusHistory?: Prisma.LeadStatusHistoryOmit
   adInsight?: Prisma.AdInsightOmit
