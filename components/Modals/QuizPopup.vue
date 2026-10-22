@@ -433,10 +433,17 @@
                   </div>
                   <div class="q-field">
                     <label>Phone Number *</label>
-                    <input
+                    <VueTelInput
                       v-model="contact.phone"
-                      type="tel"
-                      placeholder="(555) 000-0000"
+                      mode="international"
+                      defaultCountry="US"
+                      :autoDefaultCountry="false"
+                      :validCharactersOnly="true"
+                      :inputOptions="{
+                        placeholder: '(555) 000-0000',
+                        autocomplete: 'tel'
+                      }"
+                      @validate="phoneValid = $event.isValid"
                     />
                   </div>
                   <div class="q-field">
@@ -564,6 +571,8 @@ import {
   h,
 } from "vue";
 import Loader from "../shared/Loader.vue";
+import { VueTelInput } from "vue-tel-input";
+import "vue-tel-input/vue-tel-input.css";
 
 // STORES
 
@@ -573,6 +582,8 @@ import { useUtmStore } from "../../stores/utmStore.js";
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
 const utmStore = useUtmStore();
+
+const phoneValid = ref(false);
 
 const RadioIcon = defineComponent({
   props: { checked: Boolean },
@@ -938,6 +949,12 @@ async function submitContact() {
     contactError.value = "Please fill in all fields to continue.";
     return;
   }
+
+  if (!phoneValid.value) {
+    contactError.value = "Please enter a valid phone number.";
+    return;
+  }
+  
   if (!/\S+@\S+\.\S+/.test(email)) {
     contactError.value = "Please enter a valid email address.";
     return;
