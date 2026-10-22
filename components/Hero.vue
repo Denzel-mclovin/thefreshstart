@@ -79,6 +79,20 @@ const modalStore = useModalStore();
 //   landingPage: "https://example.com/test",
 // })
 
+
+
+// {
+//   "url": "https://7b61-46-150-68-68.ngrok-free.app/api/webhooks/calendly",
+//   "events": [
+//     "invitee.created",
+//     "invitee.canceled",
+//     "invitee_no_show.created"
+//   ],
+//   "organization": "https://api.calendly.com/organizations/YOUR_ORG_ID",
+//   "user": "https://api.calendly.com/users/YOUR_USER_ID",
+//   "scope": "user"
+// }
+
 const testActiveCampaign = async () => {
   try {
     // const response = await fetch("/api/active-campaign/contacts/contact-test", {
