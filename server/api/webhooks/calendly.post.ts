@@ -6,17 +6,28 @@ import {
 } from "h3";
 
 import { prisma } from "../../../prisma/prisma";
+import { syncActiveCampaignContact } from "../../../server/utils/active-campaign/syncActiveCampaignContact";
 
 
 type CalendlyPayload = {
   email?: string;
   name?: string;
+  first_name?: string | null;
+  last_name?: string | null;
+
   uri?: string;
+  event?: string;
+  timezone?: string;
+  reschedule_url?: string | null;
+  cancel_url?: string | null;
+
   rescheduled?: boolean;
   new_invitee?: string | null;
+
   scheduled_event?: {
     uri?: string;
     start_time?: string;
+    end_time?: string;
   };
 };
 
@@ -27,7 +38,12 @@ type CalendlyWebhook = {
 
 export default defineEventHandler(async (event) => {
 
+
+  const TEST_MODE = false;
+
   const body = await readBody<CalendlyWebhook>(event);
+
+  console.log(body, "Calendly Webhook Received");
 
   const isCreated = body.event === "invitee.created";
   const isCanceled = body.event === "invitee.canceled";
@@ -35,6 +51,10 @@ export default defineEventHandler(async (event) => {
   if (!isCreated && !isCanceled) {
     return { success: true, skipped: true };
   }
+
+  // if (TEST_MODE) {
+  //   return { success: true, skipped: true };
+  // }
 
   const payload = body.payload;
   const email = payload.email?.trim().toLowerCase();
@@ -125,8 +145,8 @@ export default defineEventHandler(async (event) => {
         where: { email },
         create: {
           email,
-          firstName: nameParts[0] || "UNDEFINED",
-          lastName: nameParts.slice(1).join(" ") || "UNDEFINED",
+          firstName: nameParts[0] || "",
+          lastName: nameParts.slice(1).join(" ") || "",
           status: "BOOKED",
           bookingMadeAt: new Date(),
           callScheduledFor: scheduledAt,
@@ -142,13 +162,37 @@ export default defineEventHandler(async (event) => {
         },
       });
 
-      await prisma.leadStatusHistory.create({
-        data: {
-          leadId: lead.id,
-          status: "BOOKED",
-          createdBy: "calendly_webhook",
-        },
+      await syncActiveCampaignContact({
+        email,
+        firstName: nameParts[0] || "",
+        lastName: nameParts.slice(1).join(" ") || "",
+        bookingStatus: "BOOKED",
+        callScheduledFor: scheduledAt,
+        scheduledACall: true,
+        meetJoinLink: payload.uri,
+        timezone: payload.timezone ?? null,
+        rescheduleUrl: payload.reschedule_url ?? null,
+
       });
+
+      console.log(`Lead synced with ActiveCampaign: ${email}`);
+
+      await syncActiveCampaignContact({
+        email,
+        firstName: nameParts[0] || "",
+        lastName: nameParts.slice(1).join(" ") || "",
+        bookingStatus: "BOOKED",
+        callScheduledFor: scheduledAt,
+        scheduledACall: true,
+        meetJoinLink: payload.uri,
+        timezone: payload.timezone ?? null,
+        rescheduleUrl: payload.reschedule_url ?? null,
+
+      });
+
+      console.log(`Lead synced with ActiveCampaign: ${email}`);
+
+      void lead;
     }
 
     if (isCanceled) {
@@ -174,13 +218,15 @@ export default defineEventHandler(async (event) => {
           },
         });
 
-        await prisma.leadStatusHistory.create({
-          data: {
-            leadId: lead.id,
-            status: "CANCELLED",
-            createdBy: "calendly_webhook_cancel",
-          },
+        await syncActiveCampaignContact({
+          email,
+          firstName: lead.firstName,
+          lastName: lead.lastName,
+          bookingStatus: "CANCELLED",
+          callScheduledFor: null,
+          timezone: payload.timezone ?? undefined,
         });
+
       }
     }
 
