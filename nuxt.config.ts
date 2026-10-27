@@ -60,7 +60,8 @@ export default defineNuxtConfig({
       // supabaseUrl: process.env.SUPABASE_URL,
       supabaseApiUrl: process.env.SUPABASE_API_URL,
       // stripePublicKey: process.env.STRIPE_PUBLIC_KEY
-      recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY
+      recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY,
+      metaPixelId: process.env.META_DATASET_ID || process.env.META_PIXEL_ID || "1850667959625451",
     }
   },
   app: {
@@ -70,6 +71,10 @@ export default defineNuxtConfig({
         {
           name: 'color-scheme',
           content: 'light'
+        },
+        {
+          name: 'facebook-domain-verification',
+          content: 'yg9feonp5tecpgcbt41jtsm0qgt150'
         }
       ],
       script: [
@@ -106,16 +111,11 @@ export default defineNuxtConfig({
 
     },
     display: 'swap',
-  }],
-    '@pinia/nuxt',
-    "@nuxt/image",
-  ['@nuxtjs/tailwindcss', {
+  }], '@pinia/nuxt', "@nuxt/image", ['@nuxtjs/tailwindcss', {
     exposeConfig: true,
     viewer: true,
   }
-  ],
-    '@vercel/analytics/nuxt',
-  ],
+  ], '@vercel/analytics/nuxt', 'nuxt-meta-pixel'],
   image: {
     provider: 'none',
     dir: 'public',
@@ -133,7 +133,7 @@ export default defineNuxtConfig({
   },
   vite: {
     server: {
-      allowedHosts: ['69dd817741f9.ngrok-free.app'],
+      allowedHosts: ['716c-46-150-68-68.ngrok-free.app'],
     },
   },
 

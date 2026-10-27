@@ -93,6 +93,11 @@ export type Lead = Prisma.LeadModel
  */
 export type Client = Prisma.ClientModel
 /**
+ * Model ClientStatusHistory
+ * 
+ */
+export type ClientStatusHistory = Prisma.ClientStatusHistoryModel
+/**
  * Model QuizAnswer
  * 
  */
@@ -102,3 +107,18 @@ export type QuizAnswer = Prisma.QuizAnswerModel
  * 
  */
 export type LeadStatusHistory = Prisma.LeadStatusHistoryModel
+/**
+ * Model AdInsight
+ * 
+ */
+export type AdInsight = Prisma.AdInsightModel
+/**
+ * Model MetaSyncLog
+ * 
+ */
+export type MetaSyncLog = Prisma.MetaSyncLogModel
+/**
+ * Model CalendlyWebhookEvent
+ * 
+ */
+export type CalendlyWebhookEvent = Prisma.CalendlyWebhookEventModel

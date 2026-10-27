@@ -66,8 +66,12 @@ export const ModelName = {
   GeneratedLinks: 'GeneratedLinks',
   Lead: 'Lead',
   Client: 'Client',
+  ClientStatusHistory: 'ClientStatusHistory',
   QuizAnswer: 'QuizAnswer',
-  LeadStatusHistory: 'LeadStatusHistory'
+  LeadStatusHistory: 'LeadStatusHistory',
+  AdInsight: 'AdInsight',
+  MetaSyncLog: 'MetaSyncLog',
+  CalendlyWebhookEvent: 'CalendlyWebhookEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -282,19 +286,32 @@ export const LeadScalarFieldEnum = {
   lastName: 'lastName',
   phone: 'phone',
   email: 'email',
+  timezone: 'timezone',
   quizComment: 'quizComment',
   qualified: 'qualified',
+  calendlyInviteeUri: 'calendlyInviteeUri',
+  calendlyEventUri: 'calendlyEventUri',
+  trafficSource: 'trafficSource',
   utmSource: 'utmSource',
   utmMedium: 'utmMedium',
   utmCampaign: 'utmCampaign',
   utmTerm: 'utmTerm',
   utmContent: 'utmContent',
+  metaCampaignId: 'metaCampaignId',
+  metaAdsetId: 'metaAdsetId',
+  metaAdId: 'metaAdId',
   fbclid: 'fbclid',
   fbc: 'fbc',
   fbp: 'fbp',
   referrer: 'referrer',
   landingPage: 'landingPage',
   financingFlag: 'financingFlag',
+  q1RemoteStatus: 'q1RemoteStatus',
+  q2TimeCommitment: 'q2TimeCommitment',
+  q3Autonomy: 'q3Autonomy',
+  q4FinancialReadiness: 'q4FinancialReadiness',
+  q5ConcernCode: 'q5ConcernCode',
+  q5ConcernFreetext: 'q5ConcernFreetext',
   status: 'status',
   firstVisitAt: 'firstVisitAt',
   quizStartedAt: 'quizStartedAt',
@@ -348,12 +365,26 @@ export const ClientScalarFieldEnum = {
   acquisitionSource: 'acquisitionSource',
   status: 'status',
   testimonialConsent: 'testimonialConsent',
+  testimonialConsentType: 'testimonialConsentType',
   testimonialConsentDate: 'testimonialConsentDate',
   figuresConsent: 'figuresConsent',
   recordingConsent: 'recordingConsent'
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
+
+
+export const ClientStatusHistoryScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  status: 'status',
+  atRisk: 'atRisk',
+  note: 'note',
+  createdAt: 'createdAt',
+  createdBy: 'createdBy'
+} as const
+
+export type ClientStatusHistoryScalarFieldEnum = (typeof ClientStatusHistoryScalarFieldEnum)[keyof typeof ClientStatusHistoryScalarFieldEnum]
 
 
 export const QuizAnswerScalarFieldEnum = {
@@ -379,12 +410,72 @@ export const LeadStatusHistoryScalarFieldEnum = {
 export type LeadStatusHistoryScalarFieldEnum = (typeof LeadStatusHistoryScalarFieldEnum)[keyof typeof LeadStatusHistoryScalarFieldEnum]
 
 
+export const AdInsightScalarFieldEnum = {
+  id: 'id',
+  date: 'date',
+  campaignId: 'campaignId',
+  campaignName: 'campaignName',
+  adsetId: 'adsetId',
+  adsetName: 'adsetName',
+  adId: 'adId',
+  adName: 'adName',
+  spend: 'spend',
+  impressions: 'impressions',
+  clicks: 'clicks',
+  reach: 'reach',
+  currency: 'currency',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AdInsightScalarFieldEnum = (typeof AdInsightScalarFieldEnum)[keyof typeof AdInsightScalarFieldEnum]
+
+
+export const MetaSyncLogScalarFieldEnum = {
+  id: 'id',
+  startedAt: 'startedAt',
+  finishedAt: 'finishedAt',
+  rangeStart: 'rangeStart',
+  rangeEnd: 'rangeEnd',
+  status: 'status',
+  recordsSynced: 'recordsSynced',
+  error: 'error'
+} as const
+
+export type MetaSyncLogScalarFieldEnum = (typeof MetaSyncLogScalarFieldEnum)[keyof typeof MetaSyncLogScalarFieldEnum]
+
+
+export const CalendlyWebhookEventScalarFieldEnum = {
+  id: 'id',
+  eventKey: 'eventKey',
+  eventType: 'eventType',
+  inviteeUri: 'inviteeUri',
+  scheduledEventUri: 'scheduledEventUri',
+  status: 'status',
+  payload: 'payload',
+  attempts: 'attempts',
+  lastError: 'lastError',
+  receivedAt: 'receivedAt',
+  processedAt: 'processedAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CalendlyWebhookEventScalarFieldEnum = (typeof CalendlyWebhookEventScalarFieldEnum)[keyof typeof CalendlyWebhookEventScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -401,4 +492,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

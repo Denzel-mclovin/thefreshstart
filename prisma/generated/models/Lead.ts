@@ -48,19 +48,32 @@ export type LeadMinAggregateOutputType = {
   lastName: string | null
   phone: string | null
   email: string | null
+  timezone: string | null
   quizComment: string | null
   qualified: boolean | null
+  calendlyInviteeUri: string | null
+  calendlyEventUri: string | null
+  trafficSource: $Enums.TrafficSource | null
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  metaCampaignId: string | null
+  metaAdsetId: string | null
+  metaAdId: string | null
   fbclid: string | null
   fbc: string | null
   fbp: string | null
   referrer: string | null
   landingPage: string | null
   financingFlag: boolean | null
+  q1RemoteStatus: string | null
+  q2TimeCommitment: string | null
+  q3Autonomy: string | null
+  q4FinancialReadiness: string | null
+  q5ConcernCode: string | null
+  q5ConcernFreetext: string | null
   status: $Enums.LeadStatus | null
   firstVisitAt: Date | null
   quizStartedAt: Date | null
@@ -88,19 +101,32 @@ export type LeadMaxAggregateOutputType = {
   lastName: string | null
   phone: string | null
   email: string | null
+  timezone: string | null
   quizComment: string | null
   qualified: boolean | null
+  calendlyInviteeUri: string | null
+  calendlyEventUri: string | null
+  trafficSource: $Enums.TrafficSource | null
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  metaCampaignId: string | null
+  metaAdsetId: string | null
+  metaAdId: string | null
   fbclid: string | null
   fbc: string | null
   fbp: string | null
   referrer: string | null
   landingPage: string | null
   financingFlag: boolean | null
+  q1RemoteStatus: string | null
+  q2TimeCommitment: string | null
+  q3Autonomy: string | null
+  q4FinancialReadiness: string | null
+  q5ConcernCode: string | null
+  q5ConcernFreetext: string | null
   status: $Enums.LeadStatus | null
   firstVisitAt: Date | null
   quizStartedAt: Date | null
@@ -128,19 +154,32 @@ export type LeadCountAggregateOutputType = {
   lastName: number
   phone: number
   email: number
+  timezone: number
   quizComment: number
   qualified: number
+  calendlyInviteeUri: number
+  calendlyEventUri: number
+  trafficSource: number
   utmSource: number
   utmMedium: number
   utmCampaign: number
   utmTerm: number
   utmContent: number
+  metaCampaignId: number
+  metaAdsetId: number
+  metaAdId: number
   fbclid: number
   fbc: number
   fbp: number
   referrer: number
   landingPage: number
   financingFlag: number
+  q1RemoteStatus: number
+  q2TimeCommitment: number
+  q3Autonomy: number
+  q4FinancialReadiness: number
+  q5ConcernCode: number
+  q5ConcernFreetext: number
   status: number
   firstVisitAt: number
   quizStartedAt: number
@@ -180,19 +219,32 @@ export type LeadMinAggregateInputType = {
   lastName?: true
   phone?: true
   email?: true
+  timezone?: true
   quizComment?: true
   qualified?: true
+  calendlyInviteeUri?: true
+  calendlyEventUri?: true
+  trafficSource?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  metaCampaignId?: true
+  metaAdsetId?: true
+  metaAdId?: true
   fbclid?: true
   fbc?: true
   fbp?: true
   referrer?: true
   landingPage?: true
   financingFlag?: true
+  q1RemoteStatus?: true
+  q2TimeCommitment?: true
+  q3Autonomy?: true
+  q4FinancialReadiness?: true
+  q5ConcernCode?: true
+  q5ConcernFreetext?: true
   status?: true
   firstVisitAt?: true
   quizStartedAt?: true
@@ -220,19 +272,32 @@ export type LeadMaxAggregateInputType = {
   lastName?: true
   phone?: true
   email?: true
+  timezone?: true
   quizComment?: true
   qualified?: true
+  calendlyInviteeUri?: true
+  calendlyEventUri?: true
+  trafficSource?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  metaCampaignId?: true
+  metaAdsetId?: true
+  metaAdId?: true
   fbclid?: true
   fbc?: true
   fbp?: true
   referrer?: true
   landingPage?: true
   financingFlag?: true
+  q1RemoteStatus?: true
+  q2TimeCommitment?: true
+  q3Autonomy?: true
+  q4FinancialReadiness?: true
+  q5ConcernCode?: true
+  q5ConcernFreetext?: true
   status?: true
   firstVisitAt?: true
   quizStartedAt?: true
@@ -260,19 +325,32 @@ export type LeadCountAggregateInputType = {
   lastName?: true
   phone?: true
   email?: true
+  timezone?: true
   quizComment?: true
   qualified?: true
+  calendlyInviteeUri?: true
+  calendlyEventUri?: true
+  trafficSource?: true
   utmSource?: true
   utmMedium?: true
   utmCampaign?: true
   utmTerm?: true
   utmContent?: true
+  metaCampaignId?: true
+  metaAdsetId?: true
+  metaAdId?: true
   fbclid?: true
   fbc?: true
   fbp?: true
   referrer?: true
   landingPage?: true
   financingFlag?: true
+  q1RemoteStatus?: true
+  q2TimeCommitment?: true
+  q3Autonomy?: true
+  q4FinancialReadiness?: true
+  q5ConcernCode?: true
+  q5ConcernFreetext?: true
   status?: true
   firstVisitAt?: true
   quizStartedAt?: true
@@ -387,19 +465,32 @@ export type LeadGroupByOutputType = {
   lastName: string
   phone: string
   email: string | null
+  timezone: string | null
   quizComment: string
   qualified: boolean
+  calendlyInviteeUri: string | null
+  calendlyEventUri: string | null
+  trafficSource: $Enums.TrafficSource
   utmSource: string | null
   utmMedium: string | null
   utmCampaign: string | null
   utmTerm: string | null
   utmContent: string | null
+  metaCampaignId: string | null
+  metaAdsetId: string | null
+  metaAdId: string | null
   fbclid: string | null
   fbc: string | null
   fbp: string | null
   referrer: string | null
   landingPage: string | null
   financingFlag: boolean
+  q1RemoteStatus: string | null
+  q2TimeCommitment: string | null
+  q3Autonomy: string | null
+  q4FinancialReadiness: string | null
+  q5ConcernCode: string | null
+  q5ConcernFreetext: string | null
   status: $Enums.LeadStatus
   firstVisitAt: Date | null
   quizStartedAt: Date | null
@@ -450,19 +541,32 @@ export type LeadWhereInput = {
   lastName?: Prisma.StringFilter<"Lead"> | string
   phone?: Prisma.StringFilter<"Lead"> | string
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
+  timezone?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
   referrer?: Prisma.StringNullableFilter<"Lead"> | string | null
   landingPage?: Prisma.StringNullableFilter<"Lead"> | string | null
   financingFlag?: Prisma.BoolFilter<"Lead"> | boolean
+  q1RemoteStatus?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q2TimeCommitment?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q3Autonomy?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q4FinancialReadiness?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q5ConcernCode?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q5ConcernFreetext?: Prisma.StringNullableFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
   firstVisitAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   quizStartedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
@@ -494,19 +598,32 @@ export type LeadOrderByWithRelationInput = {
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrderInput | Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrderInput | Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
   utmCampaign?: Prisma.SortOrderInput | Prisma.SortOrder
   utmTerm?: Prisma.SortOrderInput | Prisma.SortOrder
   utmContent?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdId?: Prisma.SortOrderInput | Prisma.SortOrder
   fbclid?: Prisma.SortOrderInput | Prisma.SortOrder
   fbc?: Prisma.SortOrderInput | Prisma.SortOrder
   fbp?: Prisma.SortOrderInput | Prisma.SortOrder
   referrer?: Prisma.SortOrderInput | Prisma.SortOrder
   landingPage?: Prisma.SortOrderInput | Prisma.SortOrder
   financingFlag?: Prisma.SortOrder
+  q1RemoteStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  q2TimeCommitment?: Prisma.SortOrderInput | Prisma.SortOrder
+  q3Autonomy?: Prisma.SortOrderInput | Prisma.SortOrder
+  q4FinancialReadiness?: Prisma.SortOrderInput | Prisma.SortOrder
+  q5ConcernCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  q5ConcernFreetext?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   firstVisitAt?: Prisma.SortOrderInput | Prisma.SortOrder
   quizStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -541,19 +658,32 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   firstName?: Prisma.StringFilter<"Lead"> | string
   lastName?: Prisma.StringFilter<"Lead"> | string
   phone?: Prisma.StringFilter<"Lead"> | string
+  timezone?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
   referrer?: Prisma.StringNullableFilter<"Lead"> | string | null
   landingPage?: Prisma.StringNullableFilter<"Lead"> | string | null
   financingFlag?: Prisma.BoolFilter<"Lead"> | boolean
+  q1RemoteStatus?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q2TimeCommitment?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q3Autonomy?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q4FinancialReadiness?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q5ConcernCode?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q5ConcernFreetext?: Prisma.StringNullableFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
   firstVisitAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   quizStartedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
@@ -585,19 +715,32 @@ export type LeadOrderByWithAggregationInput = {
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
+  timezone?: Prisma.SortOrderInput | Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrderInput | Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrderInput | Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrderInput | Prisma.SortOrder
   utmMedium?: Prisma.SortOrderInput | Prisma.SortOrder
   utmCampaign?: Prisma.SortOrderInput | Prisma.SortOrder
   utmTerm?: Prisma.SortOrderInput | Prisma.SortOrder
   utmContent?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrderInput | Prisma.SortOrder
+  metaAdId?: Prisma.SortOrderInput | Prisma.SortOrder
   fbclid?: Prisma.SortOrderInput | Prisma.SortOrder
   fbc?: Prisma.SortOrderInput | Prisma.SortOrder
   fbp?: Prisma.SortOrderInput | Prisma.SortOrder
   referrer?: Prisma.SortOrderInput | Prisma.SortOrder
   landingPage?: Prisma.SortOrderInput | Prisma.SortOrder
   financingFlag?: Prisma.SortOrder
+  q1RemoteStatus?: Prisma.SortOrderInput | Prisma.SortOrder
+  q2TimeCommitment?: Prisma.SortOrderInput | Prisma.SortOrder
+  q3Autonomy?: Prisma.SortOrderInput | Prisma.SortOrder
+  q4FinancialReadiness?: Prisma.SortOrderInput | Prisma.SortOrder
+  q5ConcernCode?: Prisma.SortOrderInput | Prisma.SortOrder
+  q5ConcernFreetext?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   firstVisitAt?: Prisma.SortOrderInput | Prisma.SortOrder
   quizStartedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -633,19 +776,32 @@ export type LeadScalarWhereWithAggregatesInput = {
   lastName?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   email?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  timezone?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   quizComment?: Prisma.StringWithAggregatesFilter<"Lead"> | string
   qualified?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  trafficSource?: Prisma.EnumTrafficSourceWithAggregatesFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   referrer?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   landingPage?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   financingFlag?: Prisma.BoolWithAggregatesFilter<"Lead"> | boolean
+  q1RemoteStatus?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  q2TimeCommitment?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  q3Autonomy?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  q4FinancialReadiness?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  q5ConcernCode?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
+  q5ConcernFreetext?: Prisma.StringNullableWithAggregatesFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusWithAggregatesFilter<"Lead"> | $Enums.LeadStatus
   firstVisitAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
   quizStartedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Lead"> | Date | string | null
@@ -673,19 +829,32 @@ export type LeadCreateInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -716,19 +885,32 @@ export type LeadUncheckedCreateInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -759,19 +941,32 @@ export type LeadUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -802,19 +997,32 @@ export type LeadUncheckedUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -845,19 +1053,32 @@ export type LeadCreateManyInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -885,19 +1106,32 @@ export type LeadUpdateManyMutationInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -924,19 +1158,32 @@ export type LeadUncheckedUpdateManyInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -974,19 +1221,32 @@ export type LeadCountOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrder
+  metaAdId?: Prisma.SortOrder
   fbclid?: Prisma.SortOrder
   fbc?: Prisma.SortOrder
   fbp?: Prisma.SortOrder
   referrer?: Prisma.SortOrder
   landingPage?: Prisma.SortOrder
   financingFlag?: Prisma.SortOrder
+  q1RemoteStatus?: Prisma.SortOrder
+  q2TimeCommitment?: Prisma.SortOrder
+  q3Autonomy?: Prisma.SortOrder
+  q4FinancialReadiness?: Prisma.SortOrder
+  q5ConcernCode?: Prisma.SortOrder
+  q5ConcernFreetext?: Prisma.SortOrder
   status?: Prisma.SortOrder
   firstVisitAt?: Prisma.SortOrder
   quizStartedAt?: Prisma.SortOrder
@@ -1019,19 +1279,32 @@ export type LeadMaxOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrder
+  metaAdId?: Prisma.SortOrder
   fbclid?: Prisma.SortOrder
   fbc?: Prisma.SortOrder
   fbp?: Prisma.SortOrder
   referrer?: Prisma.SortOrder
   landingPage?: Prisma.SortOrder
   financingFlag?: Prisma.SortOrder
+  q1RemoteStatus?: Prisma.SortOrder
+  q2TimeCommitment?: Prisma.SortOrder
+  q3Autonomy?: Prisma.SortOrder
+  q4FinancialReadiness?: Prisma.SortOrder
+  q5ConcernCode?: Prisma.SortOrder
+  q5ConcernFreetext?: Prisma.SortOrder
   status?: Prisma.SortOrder
   firstVisitAt?: Prisma.SortOrder
   quizStartedAt?: Prisma.SortOrder
@@ -1059,19 +1332,32 @@ export type LeadMinOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
+  timezone?: Prisma.SortOrder
   quizComment?: Prisma.SortOrder
   qualified?: Prisma.SortOrder
+  calendlyInviteeUri?: Prisma.SortOrder
+  calendlyEventUri?: Prisma.SortOrder
+  trafficSource?: Prisma.SortOrder
   utmSource?: Prisma.SortOrder
   utmMedium?: Prisma.SortOrder
   utmCampaign?: Prisma.SortOrder
   utmTerm?: Prisma.SortOrder
   utmContent?: Prisma.SortOrder
+  metaCampaignId?: Prisma.SortOrder
+  metaAdsetId?: Prisma.SortOrder
+  metaAdId?: Prisma.SortOrder
   fbclid?: Prisma.SortOrder
   fbc?: Prisma.SortOrder
   fbp?: Prisma.SortOrder
   referrer?: Prisma.SortOrder
   landingPage?: Prisma.SortOrder
   financingFlag?: Prisma.SortOrder
+  q1RemoteStatus?: Prisma.SortOrder
+  q2TimeCommitment?: Prisma.SortOrder
+  q3Autonomy?: Prisma.SortOrder
+  q4FinancialReadiness?: Prisma.SortOrder
+  q5ConcernCode?: Prisma.SortOrder
+  q5ConcernFreetext?: Prisma.SortOrder
   status?: Prisma.SortOrder
   firstVisitAt?: Prisma.SortOrder
   quizStartedAt?: Prisma.SortOrder
@@ -1139,6 +1425,10 @@ export type LeadUncheckedUpdateManyWithoutSellerNestedInput = {
   deleteMany?: Prisma.LeadScalarWhereInput | Prisma.LeadScalarWhereInput[]
 }
 
+export type EnumTrafficSourceFieldUpdateOperationsInput = {
+  set?: $Enums.TrafficSource
+}
+
 export type EnumLeadStatusFieldUpdateOperationsInput = {
   set?: $Enums.LeadStatus
 }
@@ -1197,19 +1487,32 @@ export type LeadCreateWithoutSellerInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1239,19 +1542,32 @@ export type LeadUncheckedCreateWithoutSellerInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1310,19 +1626,32 @@ export type LeadScalarWhereInput = {
   lastName?: Prisma.StringFilter<"Lead"> | string
   phone?: Prisma.StringFilter<"Lead"> | string
   email?: Prisma.StringNullableFilter<"Lead"> | string | null
+  timezone?: Prisma.StringNullableFilter<"Lead"> | string | null
   quizComment?: Prisma.StringFilter<"Lead"> | string
   qualified?: Prisma.BoolFilter<"Lead"> | boolean
+  calendlyInviteeUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  calendlyEventUri?: Prisma.StringNullableFilter<"Lead"> | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFilter<"Lead"> | $Enums.TrafficSource
   utmSource?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmMedium?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmCampaign?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmTerm?: Prisma.StringNullableFilter<"Lead"> | string | null
   utmContent?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaCampaignId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdsetId?: Prisma.StringNullableFilter<"Lead"> | string | null
+  metaAdId?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbclid?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbc?: Prisma.StringNullableFilter<"Lead"> | string | null
   fbp?: Prisma.StringNullableFilter<"Lead"> | string | null
   referrer?: Prisma.StringNullableFilter<"Lead"> | string | null
   landingPage?: Prisma.StringNullableFilter<"Lead"> | string | null
   financingFlag?: Prisma.BoolFilter<"Lead"> | boolean
+  q1RemoteStatus?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q2TimeCommitment?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q3Autonomy?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q4FinancialReadiness?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q5ConcernCode?: Prisma.StringNullableFilter<"Lead"> | string | null
+  q5ConcernFreetext?: Prisma.StringNullableFilter<"Lead"> | string | null
   status?: Prisma.EnumLeadStatusFilter<"Lead"> | $Enums.LeadStatus
   firstVisitAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
   quizStartedAt?: Prisma.DateTimeNullableFilter<"Lead"> | Date | string | null
@@ -1350,19 +1679,32 @@ export type LeadCreateWithoutClientInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1392,19 +1734,32 @@ export type LeadUncheckedCreateWithoutClientInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1450,19 +1805,32 @@ export type LeadUpdateWithoutClientInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1492,19 +1860,32 @@ export type LeadUncheckedUpdateWithoutClientInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1534,19 +1915,32 @@ export type LeadCreateWithoutAnswersInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1576,19 +1970,32 @@ export type LeadUncheckedCreateWithoutAnswersInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1634,19 +2041,32 @@ export type LeadUpdateWithoutAnswersInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1676,19 +2096,32 @@ export type LeadUncheckedUpdateWithoutAnswersInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1718,19 +2151,32 @@ export type LeadCreateWithoutStatusHistoryInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1760,19 +2206,32 @@ export type LeadUncheckedCreateWithoutStatusHistoryInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1818,19 +2277,32 @@ export type LeadUpdateWithoutStatusHistoryInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1860,19 +2332,32 @@ export type LeadUncheckedUpdateWithoutStatusHistoryInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1902,19 +2387,32 @@ export type LeadCreateManySellerInput = {
   lastName?: string
   phone?: string
   email?: string | null
+  timezone?: string | null
   quizComment?: string
   qualified?: boolean
+  calendlyInviteeUri?: string | null
+  calendlyEventUri?: string | null
+  trafficSource?: $Enums.TrafficSource
   utmSource?: string | null
   utmMedium?: string | null
   utmCampaign?: string | null
   utmTerm?: string | null
   utmContent?: string | null
+  metaCampaignId?: string | null
+  metaAdsetId?: string | null
+  metaAdId?: string | null
   fbclid?: string | null
   fbc?: string | null
   fbp?: string | null
   referrer?: string | null
   landingPage?: string | null
   financingFlag?: boolean
+  q1RemoteStatus?: string | null
+  q2TimeCommitment?: string | null
+  q3Autonomy?: string | null
+  q4FinancialReadiness?: string | null
+  q5ConcernCode?: string | null
+  q5ConcernFreetext?: string | null
   status?: $Enums.LeadStatus
   firstVisitAt?: Date | string | null
   quizStartedAt?: Date | string | null
@@ -1941,19 +2439,32 @@ export type LeadUpdateWithoutSellerInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1983,19 +2494,32 @@ export type LeadUncheckedUpdateWithoutSellerInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2025,19 +2549,32 @@ export type LeadUncheckedUpdateManyWithoutSellerInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   quizComment?: Prisma.StringFieldUpdateOperationsInput | string
   qualified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  calendlyInviteeUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  calendlyEventUri?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trafficSource?: Prisma.EnumTrafficSourceFieldUpdateOperationsInput | $Enums.TrafficSource
   utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaCampaignId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdsetId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  metaAdId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  q1RemoteStatus?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q2TimeCommitment?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q3Autonomy?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q4FinancialReadiness?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  q5ConcernFreetext?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumLeadStatusFieldUpdateOperationsInput | $Enums.LeadStatus
   firstVisitAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   quizStartedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -2104,19 +2641,32 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   lastName?: boolean
   phone?: boolean
   email?: boolean
+  timezone?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
   referrer?: boolean
   landingPage?: boolean
   financingFlag?: boolean
+  q1RemoteStatus?: boolean
+  q2TimeCommitment?: boolean
+  q3Autonomy?: boolean
+  q4FinancialReadiness?: boolean
+  q5ConcernCode?: boolean
+  q5ConcernFreetext?: boolean
   status?: boolean
   firstVisitAt?: boolean
   quizStartedAt?: boolean
@@ -2149,19 +2699,32 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   lastName?: boolean
   phone?: boolean
   email?: boolean
+  timezone?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
   referrer?: boolean
   landingPage?: boolean
   financingFlag?: boolean
+  q1RemoteStatus?: boolean
+  q2TimeCommitment?: boolean
+  q3Autonomy?: boolean
+  q4FinancialReadiness?: boolean
+  q5ConcernCode?: boolean
+  q5ConcernFreetext?: boolean
   status?: boolean
   firstVisitAt?: boolean
   quizStartedAt?: boolean
@@ -2190,19 +2753,32 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   lastName?: boolean
   phone?: boolean
   email?: boolean
+  timezone?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
   referrer?: boolean
   landingPage?: boolean
   financingFlag?: boolean
+  q1RemoteStatus?: boolean
+  q2TimeCommitment?: boolean
+  q3Autonomy?: boolean
+  q4FinancialReadiness?: boolean
+  q5ConcernCode?: boolean
+  q5ConcernFreetext?: boolean
   status?: boolean
   firstVisitAt?: boolean
   quizStartedAt?: boolean
@@ -2231,19 +2807,32 @@ export type LeadSelectScalar = {
   lastName?: boolean
   phone?: boolean
   email?: boolean
+  timezone?: boolean
   quizComment?: boolean
   qualified?: boolean
+  calendlyInviteeUri?: boolean
+  calendlyEventUri?: boolean
+  trafficSource?: boolean
   utmSource?: boolean
   utmMedium?: boolean
   utmCampaign?: boolean
   utmTerm?: boolean
   utmContent?: boolean
+  metaCampaignId?: boolean
+  metaAdsetId?: boolean
+  metaAdId?: boolean
   fbclid?: boolean
   fbc?: boolean
   fbp?: boolean
   referrer?: boolean
   landingPage?: boolean
   financingFlag?: boolean
+  q1RemoteStatus?: boolean
+  q2TimeCommitment?: boolean
+  q3Autonomy?: boolean
+  q4FinancialReadiness?: boolean
+  q5ConcernCode?: boolean
+  q5ConcernFreetext?: boolean
   status?: boolean
   firstVisitAt?: boolean
   quizStartedAt?: boolean
@@ -2259,7 +2848,7 @@ export type LeadSelectScalar = {
   assignedAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "quizComment" | "qualified" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "sessionId" | "quizAttempts" | "lastStep" | "completedAt" | "firstName" | "lastName" | "phone" | "email" | "timezone" | "quizComment" | "qualified" | "calendlyInviteeUri" | "calendlyEventUri" | "trafficSource" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "metaCampaignId" | "metaAdsetId" | "metaAdId" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "q1RemoteStatus" | "q2TimeCommitment" | "q3Autonomy" | "q4FinancialReadiness" | "q5ConcernCode" | "q5ConcernFreetext" | "status" | "firstVisitAt" | "quizStartedAt" | "leadCreatedAt" | "quizCompletedAt" | "bookingMadeAt" | "callScheduledFor" | "callOutcomeAt" | "closedAt" | "refundedAt" | "activeCampaignContactId" | "sellerId" | "assignedAt", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   seller?: boolean | Prisma.Lead$sellerArgs<ExtArgs>
   answers?: boolean | Prisma.Lead$answersArgs<ExtArgs>
@@ -2294,19 +2883,32 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     lastName: string
     phone: string
     email: string | null
+    timezone: string | null
     quizComment: string
     qualified: boolean
+    calendlyInviteeUri: string | null
+    calendlyEventUri: string | null
+    trafficSource: $Enums.TrafficSource
     utmSource: string | null
     utmMedium: string | null
     utmCampaign: string | null
     utmTerm: string | null
     utmContent: string | null
+    metaCampaignId: string | null
+    metaAdsetId: string | null
+    metaAdId: string | null
     fbclid: string | null
     fbc: string | null
     fbp: string | null
     referrer: string | null
     landingPage: string | null
     financingFlag: boolean
+    q1RemoteStatus: string | null
+    q2TimeCommitment: string | null
+    q3Autonomy: string | null
+    q4FinancialReadiness: string | null
+    q5ConcernCode: string | null
+    q5ConcernFreetext: string | null
     status: $Enums.LeadStatus
     firstVisitAt: Date | null
     quizStartedAt: Date | null
@@ -2758,19 +3360,32 @@ export interface LeadFieldRefs {
   readonly lastName: Prisma.FieldRef<"Lead", 'String'>
   readonly phone: Prisma.FieldRef<"Lead", 'String'>
   readonly email: Prisma.FieldRef<"Lead", 'String'>
+  readonly timezone: Prisma.FieldRef<"Lead", 'String'>
   readonly quizComment: Prisma.FieldRef<"Lead", 'String'>
   readonly qualified: Prisma.FieldRef<"Lead", 'Boolean'>
+  readonly calendlyInviteeUri: Prisma.FieldRef<"Lead", 'String'>
+  readonly calendlyEventUri: Prisma.FieldRef<"Lead", 'String'>
+  readonly trafficSource: Prisma.FieldRef<"Lead", 'TrafficSource'>
   readonly utmSource: Prisma.FieldRef<"Lead", 'String'>
   readonly utmMedium: Prisma.FieldRef<"Lead", 'String'>
   readonly utmCampaign: Prisma.FieldRef<"Lead", 'String'>
   readonly utmTerm: Prisma.FieldRef<"Lead", 'String'>
   readonly utmContent: Prisma.FieldRef<"Lead", 'String'>
+  readonly metaCampaignId: Prisma.FieldRef<"Lead", 'String'>
+  readonly metaAdsetId: Prisma.FieldRef<"Lead", 'String'>
+  readonly metaAdId: Prisma.FieldRef<"Lead", 'String'>
   readonly fbclid: Prisma.FieldRef<"Lead", 'String'>
   readonly fbc: Prisma.FieldRef<"Lead", 'String'>
   readonly fbp: Prisma.FieldRef<"Lead", 'String'>
   readonly referrer: Prisma.FieldRef<"Lead", 'String'>
   readonly landingPage: Prisma.FieldRef<"Lead", 'String'>
   readonly financingFlag: Prisma.FieldRef<"Lead", 'Boolean'>
+  readonly q1RemoteStatus: Prisma.FieldRef<"Lead", 'String'>
+  readonly q2TimeCommitment: Prisma.FieldRef<"Lead", 'String'>
+  readonly q3Autonomy: Prisma.FieldRef<"Lead", 'String'>
+  readonly q4FinancialReadiness: Prisma.FieldRef<"Lead", 'String'>
+  readonly q5ConcernCode: Prisma.FieldRef<"Lead", 'String'>
+  readonly q5ConcernFreetext: Prisma.FieldRef<"Lead", 'String'>
   readonly status: Prisma.FieldRef<"Lead", 'LeadStatus'>
   readonly firstVisitAt: Prisma.FieldRef<"Lead", 'DateTime'>
   readonly quizStartedAt: Prisma.FieldRef<"Lead", 'DateTime'>

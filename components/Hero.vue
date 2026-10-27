@@ -79,24 +79,38 @@ const modalStore = useModalStore();
 //   landingPage: "https://example.com/test",
 // })
 
-const testActiveCampaign = async () => {
-  try {
-    // const response = await fetch("/api/active-campaign/contacts/contact-test", {
-    const response = await fetch("/api/active-campaign/fields", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // body: JSON.stringify(contactData.value),
-    });
-    const data = await response.json();
-    console.log(data, "data");
-    console.log(response, "response");
 
-  } catch (error) {
-    console.error(error);
-  }
-};
+
+// {
+//   "url": "https://7b61-46-150-68-68.ngrok-free.app/api/webhooks/calendly",
+//   "events": [
+//     "invitee.created",
+//     "invitee.canceled",
+//     "invitee_no_show.created"
+//   ],
+//   "organization": "https://api.calendly.com/organizations/YOUR_ORG_ID",
+//   "user": "https://api.calendly.com/users/YOUR_USER_ID",
+//   "scope": "user"
+// }
+
+// const testActiveCampaign = async () => {
+//   try {
+//     // const response = await fetch("/api/active-campaign/contacts/contact-test", {
+//     const response = await fetch("/api/active-campaign/fields", {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       // body: JSON.stringify(contactData.value),
+//     });
+//     const data = await response.json();
+//     console.log(data, "data");
+//     console.log(response, "response");
+
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 
 onMounted(async () => {

@@ -204,16 +204,26 @@ model Lead {
   lastName  String @default("UNDEFINED")
   phone     String @default("UNDEFINED")
   email     String? @unique
+  timezone  String?
 
   quizComment String @default("UNDEFINED")
   qualified     Boolean @default(false)
 
+  calendlyInviteeUri String?
+  calendlyEventUri   String?
+
   // Attribution
+  trafficSource TrafficSource @default(OTHER)
   utmSource   String?
   utmMedium   String?
   utmCampaign String?
   utmTerm     String?
   utmContent  String?
+
+  // Meta identifiers, filled when trafficSource = PAID and used to join against AdInsight
+  metaCampaignId String?
+  metaAdsetId    String?
+  metaAdId       String?
 
   fbclid String?
   fbc    String?
@@ -222,8 +232,14 @@ model Lead {
   referrer    String?
   landingPage String?
 
-  // Quiz
-  financingFlag Boolean @default(false)
+  // Quiz (spec 2.2)
+  financingFlag        Boolean @default(false)
+  q1RemoteStatus       String?
+  q2TimeCommitment     String?
+  q3Autonomy           String?
+  q4FinancialReadiness String?
+  q5ConcernCode        String?
+  q5ConcernFreetext    String?
 
   // Sales status
   status LeadStatus @default(NEW)
@@ -254,6 +270,11 @@ model Lead {
 
   client Client?
 
+  @@index([trafficSource])
+  @@index([leadCreatedAt])
+  @@index([closedAt])
+  @@index([metaCampaignId])
+  @@index([metaAdId])
   @@map("leads")
 }
 
@@ -307,14 +328,33 @@ model Client {
 
   // Client status
   status ClientStatus @default(ONBOARDING)
+  statusHistory ClientStatusHistory[]
 
   // Consent
   testimonialConsent     Boolean   @default(false)
+  testimonialConsentType String?   @default("none") // none, verbal, written
   testimonialConsentDate DateTime?
   figuresConsent         Boolean   @default(false)
   recordingConsent       Boolean   @default(false)
 
+  @@index([status])
+  @@index([refundDate])
   @@map("clients")
+}
+
+model ClientStatusHistory {
+  id        String       @id @default(cuid())
+  clientId  String
+  status    ClientStatus
+  atRisk    Boolean?
+  note      String?
+  createdAt DateTime     @default(now())
+  createdBy String?
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId])
+  @@map("client_status_history")
 }
 
 model QuizAnswer {
@@ -343,6 +383,92 @@ model LeadStatusHistory {
 
   @@index([leadId])
   @@map("lead_status_history")
+}
+
+// One row per ad, per day. Pulled from Meta Marketing API /insights.
+// This is the ONLY source of spend/impressions/clicks — never derive spend from Lead data.
+model AdInsight {
+  id           String   @id @default(cuid())
+  date         DateTime
+
+  campaignId   String
+  campaignName String
+  adsetId      String
+  adsetName    String
+  adId         String
+  adName       String
+
+  spend        Int
+  impressions  Int      @default(0)
+  clicks       Int      @default(0)
+  reach        Int?
+  currency     String   @default("usd")
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([date, adId])
+  @@index([campaignId])
+  @@index([adsetId])
+  @@index([adId])
+  @@index([date])
+  @@map("ad_insights")
+}
+
+model MetaSyncLog {
+  id            String    @id @default(cuid())
+  startedAt     DateTime  @default(now())
+  finishedAt    DateTime?
+  rangeStart    DateTime
+  rangeEnd      DateTime
+  status        SyncStatus @default(RUNNING)
+  recordsSynced Int        @default(0)
+  error         String?
+
+  @@map("meta_sync_logs")
+}
+
+enum CalendlyWebhookStatus {
+  PROCESSING
+  SUCCESS
+  FAILED
+}
+
+enum CalendlyEventType {
+  INVITEE_CREATED
+  INVITEE_CANCELED
+}
+
+model CalendlyWebhookEvent {
+  id             String               @id @default(cuid())
+  eventKey       String               @unique
+  eventType      CalendlyEventType
+  inviteeUri     String
+  scheduledEventUri String?
+  status         CalendlyWebhookStatus @default(PROCESSING)
+  payload        Json
+  attempts       Int                  @default(1)
+  lastError      String?
+  receivedAt     DateTime             @default(now())
+  processedAt    DateTime?
+  updatedAt      DateTime             @updatedAt
+
+  @@index([status, updatedAt])
+  @@index([inviteeUri])
+  @@map("calendly_webhook_events")
+}
+
+enum SyncStatus {
+  RUNNING
+  SUCCESS
+  FAILED
+}
+
+enum TrafficSource {
+  PAID
+  ORGANIC
+  EMAIL_LIST
+  OTHER
 }
 
 enum SellerStatus {
