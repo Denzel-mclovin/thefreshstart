@@ -20,13 +20,13 @@
         >
           Take the 2-Minute Quiz
         </button>
-        <button 
+        <!-- <button 
           class="hero_content_cta"
           @click="testActiveCampaign"
         >
           TEST ACTIVE CAMPAIGN
 
-        </button>
+        </button> -->
       </div>
 
   
@@ -93,24 +93,24 @@ const modalStore = useModalStore();
 //   "scope": "user"
 // }
 
-const testActiveCampaign = async () => {
-  try {
-    // const response = await fetch("/api/active-campaign/contacts/contact-test", {
-    const response = await fetch("/api/active-campaign/fields", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // body: JSON.stringify(contactData.value),
-    });
-    const data = await response.json();
-    console.log(data, "data");
-    console.log(response, "response");
+// const testActiveCampaign = async () => {
+//   try {
+//     // const response = await fetch("/api/active-campaign/contacts/contact-test", {
+//     const response = await fetch("/api/active-campaign/fields", {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       // body: JSON.stringify(contactData.value),
+//     });
+//     const data = await response.json();
+//     console.log(data, "data");
+//     console.log(response, "response");
 
-  } catch (error) {
-    console.error(error);
-  }
-};
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 
 onMounted(async () => {

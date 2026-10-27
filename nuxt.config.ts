@@ -71,6 +71,10 @@ export default defineNuxtConfig({
         {
           name: 'color-scheme',
           content: 'light'
+        },
+        {
+          name: 'facebook-domain-verification',
+          content: 'yg9feonp5tecpgcbt41jtsm0qgt150'
         }
       ],
       script: [

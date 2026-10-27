@@ -1,11 +1,3 @@
-// server/utils/analytics/sales.ts
-//
-// ТЗ 4.3. bookedROAS = contractValue / adSpend, collectedROAS = cashCollected / adSpend.
-//
-// Допущение: Client.cashCollected — снэпшот на клиенте, не помесячный леджер
-// платежей. С рассрочкой Affirm точный cash collected по периодам требует
-// отдельной таблицы платежей для Client (как Payment уже есть для Subscription).
-
 import { prisma } from "../../../prisma/prisma";
 
 import { Granularity, truncUnit, intervalStep } from "./query-helpers";
