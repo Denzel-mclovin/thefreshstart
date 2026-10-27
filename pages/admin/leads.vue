@@ -116,9 +116,15 @@ const globalLeadFilter = ref('all')
 
 const leadFilters = [
   { val: 'all', label: 'All' },
-  { val: 'COMPLETED', label: 'Completed' },
-  { val: 'ABANDONED', label: 'Abandoned' },
-  { val: 'IN_PROGRESS', label: 'In Progress' },
+  { val: 'NEW', label: 'New' },
+  { val: 'BOOKED', label: 'Booked' },
+  { val: 'CLOSED_WON', label: 'Closed Won' },
+  { val: 'NO_SHOW', label: 'No Show' },
+  { val: 'CANCELLED', label: 'Cancelled' },
+  { val: 'RESCHEDULED', label: 'Rescheduled' },
+  { val: 'SHOWED_NO_CLOSE', label: 'Showed No Close' },
+  { val: 'UNQUALIFIED_ON_CALL', label: 'Unqualified On Call' },
+  { val: 'DISQUALIFIED_QUIZ', label: 'Disqualified Quiz' },
 ]
 
 // ── Computed ──────────────────────────────────────────
@@ -159,7 +165,18 @@ function formatDate(d) {
 }
 
 function statusLabel(s) {
-  return { COMPLETED: 'Completed', ABANDONED: 'Abandoned', IN_PROGRESS: 'In progress' }[s] || s
+  const map = {
+    NEW: 'New',
+    BOOKED: 'Booked',
+    CLOSED_WON: 'Closed Won',
+    NO_SHOW: 'No Show',
+    CANCELLED: 'Cancelled',
+    RESCHEDULED: 'Rescheduled',
+    SHOWED_NO_CLOSE: 'Showed No Close',
+    UNQUALIFIED_ON_CALL: 'Unqualified On Call',
+    DISQUALIFIED_QUIZ: 'Disqualified Quiz',
+  }
+  return map[s] || s
 }
 
 const fetchLeads = async () => {

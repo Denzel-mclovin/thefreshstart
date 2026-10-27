@@ -106,16 +106,11 @@ export default defineNuxtConfig({
 
     },
     display: 'swap',
-  }],
-    '@pinia/nuxt',
-    "@nuxt/image",
-  ['@nuxtjs/tailwindcss', {
+  }], '@pinia/nuxt', "@nuxt/image", ['@nuxtjs/tailwindcss', {
     exposeConfig: true,
     viewer: true,
   }
-  ],
-    '@vercel/analytics/nuxt',
-  ],
+  ], '@vercel/analytics/nuxt', 'nuxt-meta-pixel'],
   image: {
     provider: 'none',
     dir: 'public',

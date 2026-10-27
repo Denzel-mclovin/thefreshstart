@@ -75,6 +75,7 @@ export type ClientMinAggregateOutputType = {
   acquisitionSource: string | null
   status: $Enums.ClientStatus | null
   testimonialConsent: boolean | null
+  testimonialConsentType: string | null
   testimonialConsentDate: Date | null
   figuresConsent: boolean | null
   recordingConsent: boolean | null
@@ -115,6 +116,7 @@ export type ClientMaxAggregateOutputType = {
   acquisitionSource: string | null
   status: $Enums.ClientStatus | null
   testimonialConsent: boolean | null
+  testimonialConsentType: string | null
   testimonialConsentDate: Date | null
   figuresConsent: boolean | null
   recordingConsent: boolean | null
@@ -155,6 +157,7 @@ export type ClientCountAggregateOutputType = {
   acquisitionSource: number
   status: number
   testimonialConsent: number
+  testimonialConsentType: number
   testimonialConsentDate: number
   figuresConsent: number
   recordingConsent: number
@@ -211,6 +214,7 @@ export type ClientMinAggregateInputType = {
   acquisitionSource?: true
   status?: true
   testimonialConsent?: true
+  testimonialConsentType?: true
   testimonialConsentDate?: true
   figuresConsent?: true
   recordingConsent?: true
@@ -251,6 +255,7 @@ export type ClientMaxAggregateInputType = {
   acquisitionSource?: true
   status?: true
   testimonialConsent?: true
+  testimonialConsentType?: true
   testimonialConsentDate?: true
   figuresConsent?: true
   recordingConsent?: true
@@ -291,6 +296,7 @@ export type ClientCountAggregateInputType = {
   acquisitionSource?: true
   status?: true
   testimonialConsent?: true
+  testimonialConsentType?: true
   testimonialConsentDate?: true
   figuresConsent?: true
   recordingConsent?: true
@@ -418,6 +424,7 @@ export type ClientGroupByOutputType = {
   acquisitionSource: string | null
   status: $Enums.ClientStatus
   testimonialConsent: boolean
+  testimonialConsentType: string | null
   testimonialConsentDate: Date | null
   figuresConsent: boolean
   recordingConsent: boolean
@@ -481,10 +488,12 @@ export type ClientWhereInput = {
   acquisitionSource?: Prisma.StringNullableFilter<"Client"> | string | null
   status?: Prisma.EnumClientStatusFilter<"Client"> | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFilter<"Client"> | boolean
+  testimonialConsentType?: Prisma.StringNullableFilter<"Client"> | string | null
   testimonialConsentDate?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   figuresConsent?: Prisma.BoolFilter<"Client"> | boolean
   recordingConsent?: Prisma.BoolFilter<"Client"> | boolean
   lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
+  statusHistory?: Prisma.ClientStatusHistoryListRelationFilter
 }
 
 export type ClientOrderByWithRelationInput = {
@@ -522,10 +531,12 @@ export type ClientOrderByWithRelationInput = {
   acquisitionSource?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   testimonialConsent?: Prisma.SortOrder
+  testimonialConsentType?: Prisma.SortOrderInput | Prisma.SortOrder
   testimonialConsentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   figuresConsent?: Prisma.SortOrder
   recordingConsent?: Prisma.SortOrder
   lead?: Prisma.LeadOrderByWithRelationInput
+  statusHistory?: Prisma.ClientStatusHistoryOrderByRelationAggregateInput
 }
 
 export type ClientWhereUniqueInput = Prisma.AtLeast<{
@@ -566,10 +577,12 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   acquisitionSource?: Prisma.StringNullableFilter<"Client"> | string | null
   status?: Prisma.EnumClientStatusFilter<"Client"> | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFilter<"Client"> | boolean
+  testimonialConsentType?: Prisma.StringNullableFilter<"Client"> | string | null
   testimonialConsentDate?: Prisma.DateTimeNullableFilter<"Client"> | Date | string | null
   figuresConsent?: Prisma.BoolFilter<"Client"> | boolean
   recordingConsent?: Prisma.BoolFilter<"Client"> | boolean
   lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
+  statusHistory?: Prisma.ClientStatusHistoryListRelationFilter
 }, "id" | "leadId">
 
 export type ClientOrderByWithAggregationInput = {
@@ -607,6 +620,7 @@ export type ClientOrderByWithAggregationInput = {
   acquisitionSource?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   testimonialConsent?: Prisma.SortOrder
+  testimonialConsentType?: Prisma.SortOrderInput | Prisma.SortOrder
   testimonialConsentDate?: Prisma.SortOrderInput | Prisma.SortOrder
   figuresConsent?: Prisma.SortOrder
   recordingConsent?: Prisma.SortOrder
@@ -655,6 +669,7 @@ export type ClientScalarWhereWithAggregatesInput = {
   acquisitionSource?: Prisma.StringNullableWithAggregatesFilter<"Client"> | string | null
   status?: Prisma.EnumClientStatusWithAggregatesFilter<"Client"> | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolWithAggregatesFilter<"Client"> | boolean
+  testimonialConsentType?: Prisma.StringNullableWithAggregatesFilter<"Client"> | string | null
   testimonialConsentDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Client"> | Date | string | null
   figuresConsent?: Prisma.BoolWithAggregatesFilter<"Client"> | boolean
   recordingConsent?: Prisma.BoolWithAggregatesFilter<"Client"> | boolean
@@ -694,10 +709,12 @@ export type ClientCreateInput = {
   acquisitionSource?: string | null
   status?: $Enums.ClientStatus
   testimonialConsent?: boolean
+  testimonialConsentType?: string | null
   testimonialConsentDate?: Date | string | null
   figuresConsent?: boolean
   recordingConsent?: boolean
   lead: Prisma.LeadCreateNestedOneWithoutClientInput
+  statusHistory?: Prisma.ClientStatusHistoryCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateInput = {
@@ -735,9 +752,11 @@ export type ClientUncheckedCreateInput = {
   acquisitionSource?: string | null
   status?: $Enums.ClientStatus
   testimonialConsent?: boolean
+  testimonialConsentType?: string | null
   testimonialConsentDate?: Date | string | null
   figuresConsent?: boolean
   recordingConsent?: boolean
+  statusHistory?: Prisma.ClientStatusHistoryUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientUpdateInput = {
@@ -774,10 +793,12 @@ export type ClientUpdateInput = {
   acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   lead?: Prisma.LeadUpdateOneRequiredWithoutClientNestedInput
+  statusHistory?: Prisma.ClientStatusHistoryUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateInput = {
@@ -815,9 +836,11 @@ export type ClientUncheckedUpdateInput = {
   acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  statusHistory?: Prisma.ClientStatusHistoryUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateManyInput = {
@@ -855,6 +878,7 @@ export type ClientCreateManyInput = {
   acquisitionSource?: string | null
   status?: $Enums.ClientStatus
   testimonialConsent?: boolean
+  testimonialConsentType?: string | null
   testimonialConsentDate?: Date | string | null
   figuresConsent?: boolean
   recordingConsent?: boolean
@@ -894,6 +918,7 @@ export type ClientUpdateManyMutationInput = {
   acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -934,6 +959,7 @@ export type ClientUncheckedUpdateManyInput = {
   acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -979,6 +1005,7 @@ export type ClientCountOrderByAggregateInput = {
   acquisitionSource?: Prisma.SortOrder
   status?: Prisma.SortOrder
   testimonialConsent?: Prisma.SortOrder
+  testimonialConsentType?: Prisma.SortOrder
   testimonialConsentDate?: Prisma.SortOrder
   figuresConsent?: Prisma.SortOrder
   recordingConsent?: Prisma.SortOrder
@@ -1026,6 +1053,7 @@ export type ClientMaxOrderByAggregateInput = {
   acquisitionSource?: Prisma.SortOrder
   status?: Prisma.SortOrder
   testimonialConsent?: Prisma.SortOrder
+  testimonialConsentType?: Prisma.SortOrder
   testimonialConsentDate?: Prisma.SortOrder
   figuresConsent?: Prisma.SortOrder
   recordingConsent?: Prisma.SortOrder
@@ -1066,6 +1094,7 @@ export type ClientMinOrderByAggregateInput = {
   acquisitionSource?: Prisma.SortOrder
   status?: Prisma.SortOrder
   testimonialConsent?: Prisma.SortOrder
+  testimonialConsentType?: Prisma.SortOrder
   testimonialConsentDate?: Prisma.SortOrder
   figuresConsent?: Prisma.SortOrder
   recordingConsent?: Prisma.SortOrder
@@ -1076,6 +1105,11 @@ export type ClientSumOrderByAggregateInput = {
   cashCollected?: Prisma.SortOrder
   outstandingBalance?: Prisma.SortOrder
   refundAmount?: Prisma.SortOrder
+}
+
+export type ClientScalarRelationFilter = {
+  is?: Prisma.ClientWhereInput
+  isNot?: Prisma.ClientWhereInput
 }
 
 export type ClientCreateNestedOneWithoutLeadInput = {
@@ -1122,6 +1156,20 @@ export type EnumClientStatusFieldUpdateOperationsInput = {
   set?: $Enums.ClientStatus
 }
 
+export type ClientCreateNestedOneWithoutStatusHistoryInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutStatusHistoryInput, Prisma.ClientUncheckedCreateWithoutStatusHistoryInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutStatusHistoryInput
+  connect?: Prisma.ClientWhereUniqueInput
+}
+
+export type ClientUpdateOneRequiredWithoutStatusHistoryNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutStatusHistoryInput, Prisma.ClientUncheckedCreateWithoutStatusHistoryInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutStatusHistoryInput
+  upsert?: Prisma.ClientUpsertWithoutStatusHistoryInput
+  connect?: Prisma.ClientWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutStatusHistoryInput, Prisma.ClientUpdateWithoutStatusHistoryInput>, Prisma.ClientUncheckedUpdateWithoutStatusHistoryInput>
+}
+
 export type ClientCreateWithoutLeadInput = {
   id?: string
   createdAt?: Date | string
@@ -1156,9 +1204,11 @@ export type ClientCreateWithoutLeadInput = {
   acquisitionSource?: string | null
   status?: $Enums.ClientStatus
   testimonialConsent?: boolean
+  testimonialConsentType?: string | null
   testimonialConsentDate?: Date | string | null
   figuresConsent?: boolean
   recordingConsent?: boolean
+  statusHistory?: Prisma.ClientStatusHistoryCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutLeadInput = {
@@ -1195,9 +1245,11 @@ export type ClientUncheckedCreateWithoutLeadInput = {
   acquisitionSource?: string | null
   status?: $Enums.ClientStatus
   testimonialConsent?: boolean
+  testimonialConsentType?: string | null
   testimonialConsentDate?: Date | string | null
   figuresConsent?: boolean
   recordingConsent?: boolean
+  statusHistory?: Prisma.ClientStatusHistoryUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutLeadInput = {
@@ -1250,9 +1302,11 @@ export type ClientUpdateWithoutLeadInput = {
   acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  statusHistory?: Prisma.ClientStatusHistoryUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutLeadInput = {
@@ -1289,11 +1343,222 @@ export type ClientUncheckedUpdateWithoutLeadInput = {
   acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
   testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  statusHistory?: Prisma.ClientStatusHistoryUncheckedUpdateManyWithoutClientNestedInput
+}
+
+export type ClientCreateWithoutStatusHistoryInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  firstName?: string | null
+  lastName?: string | null
+  email?: string | null
+  phone?: string | null
+  timezone?: string | null
+  utmSource?: string | null
+  utmMedium?: string | null
+  utmCampaign?: string | null
+  utmTerm?: string | null
+  utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
+  contractValue?: number | null
+  cashCollected?: number | null
+  outstandingBalance?: number | null
+  paymentMethod?: $Enums.PaymentMethod | null
+  paymentStatus?: $Enums.ClientPaymentStatus | null
+  refundAmount?: number | null
+  refundDate?: Date | string | null
+  startDate?: Date | string | null
+  assignedConsultant?: string | null
+  clientGoal?: string | null
+  clientKpi?: string | null
+  acquisitionSource?: string | null
+  status?: $Enums.ClientStatus
+  testimonialConsent?: boolean
+  testimonialConsentType?: string | null
+  testimonialConsentDate?: Date | string | null
+  figuresConsent?: boolean
+  recordingConsent?: boolean
+  lead: Prisma.LeadCreateNestedOneWithoutClientInput
+}
+
+export type ClientUncheckedCreateWithoutStatusHistoryInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  leadId: string
+  firstName?: string | null
+  lastName?: string | null
+  email?: string | null
+  phone?: string | null
+  timezone?: string | null
+  utmSource?: string | null
+  utmMedium?: string | null
+  utmCampaign?: string | null
+  utmTerm?: string | null
+  utmContent?: string | null
+  fbclid?: string | null
+  fbc?: string | null
+  fbp?: string | null
+  referrer?: string | null
+  landingPage?: string | null
+  financingFlag?: boolean
+  contractValue?: number | null
+  cashCollected?: number | null
+  outstandingBalance?: number | null
+  paymentMethod?: $Enums.PaymentMethod | null
+  paymentStatus?: $Enums.ClientPaymentStatus | null
+  refundAmount?: number | null
+  refundDate?: Date | string | null
+  startDate?: Date | string | null
+  assignedConsultant?: string | null
+  clientGoal?: string | null
+  clientKpi?: string | null
+  acquisitionSource?: string | null
+  status?: $Enums.ClientStatus
+  testimonialConsent?: boolean
+  testimonialConsentType?: string | null
+  testimonialConsentDate?: Date | string | null
+  figuresConsent?: boolean
+  recordingConsent?: boolean
+}
+
+export type ClientCreateOrConnectWithoutStatusHistoryInput = {
+  where: Prisma.ClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientCreateWithoutStatusHistoryInput, Prisma.ClientUncheckedCreateWithoutStatusHistoryInput>
+}
+
+export type ClientUpsertWithoutStatusHistoryInput = {
+  update: Prisma.XOR<Prisma.ClientUpdateWithoutStatusHistoryInput, Prisma.ClientUncheckedUpdateWithoutStatusHistoryInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutStatusHistoryInput, Prisma.ClientUncheckedCreateWithoutStatusHistoryInput>
+  where?: Prisma.ClientWhereInput
+}
+
+export type ClientUpdateToOneWithWhereWithoutStatusHistoryInput = {
+  where?: Prisma.ClientWhereInput
+  data: Prisma.XOR<Prisma.ClientUpdateWithoutStatusHistoryInput, Prisma.ClientUncheckedUpdateWithoutStatusHistoryInput>
+}
+
+export type ClientUpdateWithoutStatusHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractValue?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cashCollected?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  outstandingBalance?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+  paymentStatus?: Prisma.NullableEnumClientPaymentStatusFieldUpdateOperationsInput | $Enums.ClientPaymentStatus | null
+  refundAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  refundDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedConsultant?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientKpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
+  testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  lead?: Prisma.LeadUpdateOneRequiredWithoutClientNestedInput
+}
+
+export type ClientUncheckedUpdateWithoutStatusHistoryInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  leadId?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  timezone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmMedium?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmCampaign?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmTerm?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  utmContent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbclid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fbp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  referrer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  landingPage?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  financingFlag?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  contractValue?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cashCollected?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  outstandingBalance?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  paymentMethod?: Prisma.NullableEnumPaymentMethodFieldUpdateOperationsInput | $Enums.PaymentMethod | null
+  paymentStatus?: Prisma.NullableEnumClientPaymentStatusFieldUpdateOperationsInput | $Enums.ClientPaymentStatus | null
+  refundAmount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  refundDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  startDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  assignedConsultant?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientGoal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  clientKpi?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  acquisitionSource?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumClientStatusFieldUpdateOperationsInput | $Enums.ClientStatus
+  testimonialConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  testimonialConsentType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   testimonialConsentDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   figuresConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
   recordingConsent?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
+
+/**
+ * Count Type ClientCountOutputType
+ */
+
+export type ClientCountOutputType = {
+  statusHistory: number
+}
+
+export type ClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  statusHistory?: boolean | ClientCountOutputTypeCountStatusHistoryArgs
+}
+
+/**
+ * ClientCountOutputType without action
+ */
+export type ClientCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClientCountOutputType
+   */
+  select?: Prisma.ClientCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ClientCountOutputType without action
+ */
+export type ClientCountOutputTypeCountStatusHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClientStatusHistoryWhereInput
+}
 
 
 export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1331,10 +1596,13 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   acquisitionSource?: boolean
   status?: boolean
   testimonialConsent?: boolean
+  testimonialConsentType?: boolean
   testimonialConsentDate?: boolean
   figuresConsent?: boolean
   recordingConsent?: boolean
   lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  statusHistory?: boolean | Prisma.Client$statusHistoryArgs<ExtArgs>
+  _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
 export type ClientSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1372,6 +1640,7 @@ export type ClientSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   acquisitionSource?: boolean
   status?: boolean
   testimonialConsent?: boolean
+  testimonialConsentType?: boolean
   testimonialConsentDate?: boolean
   figuresConsent?: boolean
   recordingConsent?: boolean
@@ -1413,6 +1682,7 @@ export type ClientSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   acquisitionSource?: boolean
   status?: boolean
   testimonialConsent?: boolean
+  testimonialConsentType?: boolean
   testimonialConsentDate?: boolean
   figuresConsent?: boolean
   recordingConsent?: boolean
@@ -1454,14 +1724,17 @@ export type ClientSelectScalar = {
   acquisitionSource?: boolean
   status?: boolean
   testimonialConsent?: boolean
+  testimonialConsentType?: boolean
   testimonialConsentDate?: boolean
   figuresConsent?: boolean
   recordingConsent?: boolean
 }
 
-export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "leadId" | "firstName" | "lastName" | "email" | "phone" | "timezone" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "contractValue" | "cashCollected" | "outstandingBalance" | "paymentMethod" | "paymentStatus" | "refundAmount" | "refundDate" | "startDate" | "assignedConsultant" | "clientGoal" | "clientKpi" | "acquisitionSource" | "status" | "testimonialConsent" | "testimonialConsentDate" | "figuresConsent" | "recordingConsent", ExtArgs["result"]["client"]>
+export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "leadId" | "firstName" | "lastName" | "email" | "phone" | "timezone" | "utmSource" | "utmMedium" | "utmCampaign" | "utmTerm" | "utmContent" | "fbclid" | "fbc" | "fbp" | "referrer" | "landingPage" | "financingFlag" | "contractValue" | "cashCollected" | "outstandingBalance" | "paymentMethod" | "paymentStatus" | "refundAmount" | "refundDate" | "startDate" | "assignedConsultant" | "clientGoal" | "clientKpi" | "acquisitionSource" | "status" | "testimonialConsent" | "testimonialConsentType" | "testimonialConsentDate" | "figuresConsent" | "recordingConsent", ExtArgs["result"]["client"]>
 export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
+  statusHistory?: boolean | Prisma.Client$statusHistoryArgs<ExtArgs>
+  _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ClientIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
@@ -1474,6 +1747,7 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Client"
   objects: {
     lead: Prisma.$LeadPayload<ExtArgs>
+    statusHistory: Prisma.$ClientStatusHistoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1510,6 +1784,7 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     acquisitionSource: string | null
     status: $Enums.ClientStatus
     testimonialConsent: boolean
+    testimonialConsentType: string | null
     testimonialConsentDate: Date | null
     figuresConsent: boolean
     recordingConsent: boolean
@@ -1908,6 +2183,7 @@ readonly fields: ClientFieldRefs;
 export interface Prisma__ClientClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   lead<T extends Prisma.LeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeadDefaultArgs<ExtArgs>>): Prisma.Prisma__LeadClient<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  statusHistory<T extends Prisma.Client$statusHistoryArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$statusHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientStatusHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1971,6 +2247,7 @@ export interface ClientFieldRefs {
   readonly acquisitionSource: Prisma.FieldRef<"Client", 'String'>
   readonly status: Prisma.FieldRef<"Client", 'ClientStatus'>
   readonly testimonialConsent: Prisma.FieldRef<"Client", 'Boolean'>
+  readonly testimonialConsentType: Prisma.FieldRef<"Client", 'String'>
   readonly testimonialConsentDate: Prisma.FieldRef<"Client", 'DateTime'>
   readonly figuresConsent: Prisma.FieldRef<"Client", 'Boolean'>
   readonly recordingConsent: Prisma.FieldRef<"Client", 'Boolean'>
@@ -2372,6 +2649,30 @@ export type ClientDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Clients to delete.
    */
   limit?: number
+}
+
+/**
+ * Client.statusHistory
+ */
+export type Client$statusHistoryArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ClientStatusHistory
+   */
+  select?: Prisma.ClientStatusHistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ClientStatusHistory
+   */
+  omit?: Prisma.ClientStatusHistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientStatusHistoryInclude<ExtArgs> | null
+  where?: Prisma.ClientStatusHistoryWhereInput
+  orderBy?: Prisma.ClientStatusHistoryOrderByWithRelationInput | Prisma.ClientStatusHistoryOrderByWithRelationInput[]
+  cursor?: Prisma.ClientStatusHistoryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClientStatusHistoryScalarFieldEnum | Prisma.ClientStatusHistoryScalarFieldEnum[]
 }
 
 /**
