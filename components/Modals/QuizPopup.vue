@@ -570,6 +570,9 @@ import Loader from "../shared/Loader.vue";
 import { useModalStore } from "../../stores/modal";
 import { useUtmStore } from "../../stores/utmStore.js";
 
+// COMPOSABLES
+import { useAttribution } from "../../composables/useAttribution.js";
+
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
 const utmStore = useUtmStore();
@@ -651,6 +654,8 @@ const concernLabels = {
   finances: "finances & cost of living",
   family: "family & relationships",
 };
+
+const useAttributionData = useAttribution();
 
 const teamMemberName = ref("Vito");
 
@@ -739,14 +744,14 @@ const activeCampaignData = computed(() => ({
   q5FreeText: a.value.q5FreeText,
   financingFlag: a.value.financingFlag,
 
-  utmSource: utmStore.utmSource,
-  utmMedium: utmStore.utmMedium,
-  utmCampaign: utmStore.utmCampaign,
-  utmContent: utmStore.utmContent,
+  utmSource: useAttributionData.utmSource,
+  utmMedium: useAttributionData.utmMedium,
+  utmCampaign: useAttributionData.utmCampaign,
+  utmContent: useAttributionData.utmContent,
 
-  fbclid: a.value.fbclid,
-  fbc: a.value.fbc,
-  fbp: a.value.fbp,
+  fbclid: useAttributionData.fbclid,
+  fbc: useAttributionData.fbc,
+  fbp: useAttributionData.fbp,
 
   referrer: a.value.referrer,
   landingPage: a.value.landingPage,

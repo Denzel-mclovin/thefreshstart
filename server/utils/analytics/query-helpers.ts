@@ -1,11 +1,3 @@
-// server/utils/analytics/query-helpers.ts
-//
-// Общее для всех /api/analytics/*: разбор query (from/to/granularity) и
-// безопасная подстановка granularity в SQL (никогда из "сырого" пользовательского текста).
-//
-// Берёт query уже распарсенным (результат h3's getQuery(event)), а не
-// URLSearchParams — в Nuxt это объект, не строка.
-
 import { Prisma } from "../../../prisma/generated/client";
 
 export type Granularity = "week" | "month";
