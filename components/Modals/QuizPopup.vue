@@ -436,14 +436,13 @@
                     <VueTelInput
                       v-model="contact.phone"
                       mode="international"
-                      defaultCountry="US"
                       :autoDefaultCountry="false"
                       :validCharactersOnly="true"
                       :inputOptions="{
                         placeholder: '(555) 000-0000',
                         autocomplete: 'tel'
                       }"
-                      @validate="phoneValid = $event.isValid"
+                      @validate="phoneValid = $event.valid"
                     />
                   </div>
                   <div class="q-field">
@@ -458,7 +457,7 @@
                     <label class="q-consent__item">
                       <input type="checkbox" v-model="consent.email" />
                       <span
-                        >I agree to receive email updates and marketing.</span
+                        >Email me my full breakdown plus follow-up strategies for my situation. Unsubscribe anytime.</span
                       >
                     </label>
                     <label class="q-consent__item">
@@ -480,28 +479,27 @@
                     :disabled="submitting"
                   >
                     <span v-if="submitting" class="q-spinner" />
-                    <span v-else>Send My Breakdown & Book →</span>
+                    <span v-else>Email Me My Full Breakdown</span>
                   </button>
                   <button
                     class="q-nav-back"
-                    
+
                     @click="phase = 'results'"
                   >
                     ← Back
                   </button>
                 </div>
-               
+
               </div>
             </transition>
 
             <transition name="fade" mode="out-in">
               <div v-if="phase === 'homerun'" key="homerun" class="q-slide">
                 <h2 class="q-title">
-                  What would make this a homerun in 90 days?
+                  Your breakdown is on its way to your inbox, it lands in about two minutes.
                 </h2>
                 <p class="q-hint">
-                  Be as specific as you'd like — this helps us prepare for your
-                  call.
+                  While you wait, quick one: what would make this a homerun in 90 days? Your answer helps us prep for your call.
                 </p>
                 <textarea
                   v-model="a.homerun"
@@ -516,9 +514,9 @@
                 >
                   {{ a.homerun.length }} / {{ HOMERUN_MAX }}
                 </div>
+                <button class="q-btn-secondary" @click="goToCalendly()">Or skip the line and grab a time with Vito now</button>
                 <button
                   class="q-btn-primary"
-                  :disabled="!a.homerun.trim()"
                   @click="goToCalendly()"
                   style="margin-top: 16px"
                 >
@@ -733,6 +731,7 @@ const calendlyUrl = computed(() => {
     name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
     email: contact.value.email,
     a1: contact.value.phone,
+    a2: a.value.homerun,
     hide_gdpr_banner: "1",
     embed_domain: embedDomain.value,
     embed_type: "Inline",
@@ -977,7 +976,7 @@ async function submitContact() {
     contactError.value = "Please enter a valid phone number.";
     return;
   }
-  
+
   if (!/\S+@\S+\.\S+/.test(email)) {
     contactError.value = "Please enter a valid email address.";
     return;
@@ -1356,7 +1355,7 @@ const modalStyle = computed(() => ({
       padding-bottom: unset;
     }
 
-  
+
   // padding-bottom: 50px;
 }
 
