@@ -204,6 +204,7 @@ model Lead {
   lastName  String @default("UNDEFINED")
   phone     String @default("UNDEFINED")
   email     String? @unique
+  timezone  String?
 
   quizComment String @default("UNDEFINED")
   qualified     Boolean @default(false)
@@ -231,8 +232,14 @@ model Lead {
   referrer    String?
   landingPage String?
 
-  // Quiz
-  financingFlag Boolean @default(false)
+  // Quiz (spec 2.2)
+  financingFlag        Boolean @default(false)
+  q1RemoteStatus       String?
+  q2TimeCommitment     String?
+  q3Autonomy           String?
+  q4FinancialReadiness String?
+  q5ConcernCode        String?
+  q5ConcernFreetext    String?
 
   // Sales status
   status LeadStatus @default(NEW)
@@ -321,9 +328,11 @@ model Client {
 
   // Client status
   status ClientStatus @default(ONBOARDING)
+  statusHistory ClientStatusHistory[]
 
   // Consent
   testimonialConsent     Boolean   @default(false)
+  testimonialConsentType String?   @default("none") // none, verbal, written
   testimonialConsentDate DateTime?
   figuresConsent         Boolean   @default(false)
   recordingConsent       Boolean   @default(false)
@@ -331,6 +340,21 @@ model Client {
   @@index([status])
   @@index([refundDate])
   @@map("clients")
+}
+
+model ClientStatusHistory {
+  id        String       @id @default(cuid())
+  clientId  String
+  status    ClientStatus
+  atRisk    Boolean?
+  note      String?
+  createdAt DateTime     @default(now())
+  createdBy String?
+
+  client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@index([clientId])
+  @@map("client_status_history")
 }
 
 model QuizAnswer {

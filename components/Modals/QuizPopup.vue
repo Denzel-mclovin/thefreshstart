@@ -433,10 +433,17 @@
                   </div>
                   <div class="q-field">
                     <label>Phone Number *</label>
-                    <input
+                    <VueTelInput
                       v-model="contact.phone"
-                      type="tel"
-                      placeholder="(555) 000-0000"
+                      mode="international"
+                      defaultCountry="US"
+                      :autoDefaultCountry="false"
+                      :validCharactersOnly="true"
+                      :inputOptions="{
+                        placeholder: '(555) 000-0000',
+                        autocomplete: 'tel'
+                      }"
+                      @validate="phoneValid = $event.isValid"
                     />
                   </div>
                   <div class="q-field">
@@ -564,6 +571,8 @@ import {
   h,
 } from "vue";
 import Loader from "../shared/Loader.vue";
+import { VueTelInput } from "vue-tel-input";
+import "vue-tel-input/vue-tel-input.css";
 
 // STORES
 
@@ -576,6 +585,8 @@ import { useAttribution } from "../../composables/useAttribution.js";
 // DEFINE STORE --------------------------
 const modalStore = useModalStore();
 const utmStore = useUtmStore();
+
+const phoneValid = ref(false);
 
 const RadioIcon = defineComponent({
   props: { checked: Boolean },
@@ -679,6 +690,9 @@ const a = ref({ q1: "", q2: "", q3: "", q4: "", q5: "", homerun: "" });
 const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
 const consent = ref({ email: false, sms: false });
 
+const { attribution, syncFbp } = useAttribution();
+const { trackLead, trackSchedule, trackQuizCompleted } = useMetaTracking();
+
 const TEST_MODE = ref(true);
 const loadingResults = ref(false);
 
@@ -778,8 +792,20 @@ function pick(field, value) {
 async function next(field, value) {
   if (!value) return;
 
+
   if (!TEST_MODE.value) {
+    // Persist question answer to server & database
     updateQuiz(field, value).catch(console.error);
+
+    // Q4 is ts_lead_created! The price is shown at Q4.
+    if (field === "q4") {
+      const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
+      const q4Code = mapQ4[value] || value;
+      trackLead({
+        q4FinancialReadiness: q4Code,
+        financingFlag: q4Code === "C",
+      }).catch(console.error);
+    }
   }
 
   transitionName.value = "slide-up";
@@ -799,6 +825,12 @@ async function finishQuiz() {
   if (!a.value.q5) return;
 
   loadingResults.value = true;
+
+  // Q5 is ts_quiz_completed
+  trackQuizCompleted({
+    q5ConcernCode: a.value.q5,
+    q5ConcernFreetext: a.value.homerun,
+  }).catch(console.error);
 
   await next("q5", a.value.q5);
 
@@ -848,21 +880,17 @@ function goToCalendly() {
 // ─── API ───────────────────────────────────────────────────────────────────
 
 async function createActiveCampaignContact() {
-
   try {
-
     const res = await $fetch("/api/active-campaign/contacts/contact-test", {
       method: "POST",
-      body: JSON.stringify(activeCampaignData.value)
-      
-    })
-
+      body: JSON.stringify(activeCampaignData.value),
+    });
     console.log(res, "res");
-
   } catch (err) {
-    console.error("Lead save failed:", err);
+    console.error("ActiveCampaign contact creation failed:", err);
   }
 }
+
 async function updateQuiz(field, value) {
   const q = QUESTIONS[field];
   loaderState.value = true;
@@ -874,6 +902,8 @@ async function updateQuiz(field, value) {
         questionId: q.id,
         question: q.title,
         answer: value,
+        attribution: attribution.value,
+        q5FreeText: a.value.homerun || undefined,
       },
     });
     if (!quizSession.value && result.sessionId) {
@@ -909,6 +939,9 @@ async function sendUtm() {
 
 async function createLead() {
   try {
+    const userTimezone =
+      Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+
     const createLeadContact = await $fetch("/api/lead/create", {
       method: "POST",
       body: {
@@ -916,6 +949,7 @@ async function createLead() {
         lastName: contact.value.lastName,
         phoneNumber: contact.value.phone,
         userEmail: contact.value.email,
+        timezone: userTimezone,
         sessionId: quizSession.value,
         quizComment: a.value.homerun,
         consentEmail: consent.value.email,
@@ -943,6 +977,12 @@ async function submitContact() {
     contactError.value = "Please fill in all fields to continue.";
     return;
   }
+
+  if (!phoneValid.value) {
+    contactError.value = "Please enter a valid phone number.";
+    return;
+  }
+  
   if (!/\S+@\S+\.\S+/.test(email)) {
     contactError.value = "Please enter a valid email address.";
     return;
@@ -973,6 +1013,15 @@ async function handleCalendlyMessage(e) {
   if (e.origin !== "https://calendly.com") return;
 
   if (e.data?.event === "calendly.event_scheduled") {
+    // Fire Schedule event (browser + server CAPI)
+    trackSchedule({
+      email: contact.value.email,
+      phone: contact.value.phone,
+      firstName: contact.value.firstName,
+      lastName: contact.value.lastName,
+      q5ConcernCode: a.value.q5,
+    }).catch(console.error);
+
     await $fetch("/api/calendly/invite", {
       method: "POST",
       body: {

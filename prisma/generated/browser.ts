@@ -93,6 +93,11 @@ export type Lead = Prisma.LeadModel
  */
 export type Client = Prisma.ClientModel
 /**
+ * Model ClientStatusHistory
+ * 
+ */
+export type ClientStatusHistory = Prisma.ClientStatusHistoryModel
+/**
  * Model QuizAnswer
  * 
  */
