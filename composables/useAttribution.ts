@@ -1,5 +1,3 @@
-// // composables/useAttribution.ts
-
 // export const useAttribution = () => {
 //   const utmCookie = useCookie<any>('utm_data')
 //   const facebookCookie = useCookie<any>('facebook_data')
