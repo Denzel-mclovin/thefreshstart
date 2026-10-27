@@ -96,8 +96,8 @@
 //     try {
 //       await $fetch('/api/utm/update-visit', {
 //         method: 'POST',
-//         body: { 
-//           utm_source: utmSource, 
+//         body: {
+//           utm_source: utmSource,
 //           utm_content: utmContent,
 //           utm_medium: utmMedium,
 //           utm_campaign: utmCampaign,
@@ -123,9 +123,9 @@
 
 //   // First Touch Rule: check if a UTM cookie already exists and has values
 //   const hasExistingUtm = utmCookie.value && (
-//     utmCookie.value.utm_source || 
-//     utmCookie.value.utm_content || 
-//     utmCookie.value.utm_medium || 
+//     utmCookie.value.utm_source ||
+//     utmCookie.value.utm_content ||
+//     utmCookie.value.utm_medium ||
 //     utmCookie.value.utm_campaign
 //   )
 
@@ -248,15 +248,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
     }
   }
 
-  const utmSource = getValue(to.query.utm_source)
-  const utmContent = getValue(to.query.utm_content)
-  const utmMedium = getValue(to.query.utm_medium)
-  const utmCampaign = getValue(to.query.utm_campaign)
-  const utmTerm = getValue(to.query.utm_term)
-
-  const fbclid = getValue(to.query.fbclid)
-  const fbc = getValue(to.query.fbc)
-  const fbp = getValue(to.query.fbp)
+  const fbc = to.query.fbc
+  const fbp = to.query.fbp
 
   const hasUtm = Boolean(
     utmSource || utmContent || utmMedium || utmCampaign || utmTerm
