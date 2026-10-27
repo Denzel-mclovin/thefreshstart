@@ -1,5 +1,3 @@
-
-
 import { prisma } from "../../../prisma/prisma";
 
 export interface CohortRow {

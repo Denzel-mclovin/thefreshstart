@@ -68,11 +68,11 @@ onMounted( () => {
     )
   }
 
-  if (utmStore.pending) {
+  // if (utmStore.pending) {
 
-    utmStore.openCookieModal()
+  //   utmStore.openCookieModal()
 
-  }
+  // }
 
 })
 </script>

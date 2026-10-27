@@ -1,12 +1,3 @@
-// server/utils/analytics/safety.ts
-//
-// ТЗ 4.6 — обязательная safety-метрика. Split по Lead.financingFlag
-// (ближайшее к "Q4 финансовая готовность" существующее поле).
-//
-// Пробел в схеме: нет отдельного cancelledAt на Client, только refundDate.
-// "Отмена" тут приближена через status IN ('CHURNED','REFUNDED'), когда
-// refundDate пуст — это более слабый сигнал, чем настоящая дата отмены.
-
 import { prisma } from "../../../prisma/prisma";
 
 
