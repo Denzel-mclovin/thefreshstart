@@ -12,7 +12,6 @@ export const useUTMTracking = () => {
   const saveUTMFromStore = () => {
     if (!import.meta.client) return
 
-    // Save UTM attribution
     const storedUtm = sessionStorage.getItem('utm_attribution')
 
     const utmData = storedUtm
@@ -48,7 +47,6 @@ export const useUTMTracking = () => {
       }
     }
 
-    // Save Facebook attribution
     const storedFacebook = sessionStorage.getItem('facebook_attribution')
 
     if (storedFacebook) {

@@ -683,6 +683,7 @@ const affirmVisible = ref(false);
 const affirmStatus = ref("idle"); // idle | loading | approved | denied
 const isBreakdown = ref(false);
 const scheduledACall = ref("NO");
+const leadCreated = ref(false);
 
 const a = ref({ q1: "", q2: "", q3: "", q4: "", q5: "", homerun: "" });
 const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
@@ -691,7 +692,7 @@ const consent = ref({ email: false, sms: false });
 const { attribution, syncFbp } = useAttribution();
 const { trackLead, trackSchedule, trackQuizCompleted } = useMetaTracking();
 
-const TEST_MODE = ref(true);
+const TEST_MODE = ref(false);
 const loadingResults = ref(false);
 
 // ─── Computed ──────────────────────────────────────────────────────────────
@@ -936,12 +937,47 @@ async function sendUtm() {
   });
 }
 
+// async function createLead() {
+//   try {
+//     const userTimezone =
+//       Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+
+//     const createLeadContact = await $fetch("/api/lead/create", {
+//       method: "POST",
+//       body: {
+//         firstName: contact.value.firstName,
+//         lastName: contact.value.lastName,
+//         phoneNumber: contact.value.phone,
+//         userEmail: contact.value.email,
+//         timezone: userTimezone,
+//         sessionId: quizSession.value,
+//         quizComment: a.value.homerun,
+//         consentEmail: consent.value.email,
+//         consentSms: consent.value.sms,
+//       },
+//     });
+
+//     const activeCampaignContact = await createActiveCampaignContact();
+
+//     if (isBreakdown.value) {
+//       createLeadContact();
+//     } else {
+//       Promise.all([createLeadContact(), activeCampaignContact()]);
+//     }
+
+//   } catch (err) {
+//     console.error("Lead save failed:", err);
+//   }
+// }
+
 async function createLead() {
+  if (leadCreated.value) return;
+
   try {
     const userTimezone =
       Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
-    const createLeadContact = await $fetch("/api/lead/create", {
+    const leadResult = await $fetch("/api/lead/create", {
       method: "POST",
       body: {
         firstName: contact.value.firstName,
@@ -956,16 +992,18 @@ async function createLead() {
       },
     });
 
-    const activeCampaignContact = await createActiveCampaignContact();
+    // console.log("Lead created:", leadResult);
 
-    if (isBreakdown.value) {
-      createLeadContact();
-    } else {
-      Promise.all([createLeadContact(), activeCampaignContact()]);
+    leadCreated.value = true;
+
+    if (!isBreakdown.value) {
+      await createActiveCampaignContact();
     }
 
+    return leadResult;
   } catch (err) {
     console.error("Lead save failed:", err);
+    throw err;
   }
 }
 
@@ -990,9 +1028,20 @@ async function submitContact() {
   console.log(activeCampaignData.value, "activeCampaignData");
   submitting.value = true;
   // phase.value = "calendly";
-  isBreakdown.value = true;
-  phase.value = "homerun";
-  submitting.value = false;
+  try {
+    isBreakdown.value = true;
+
+    await createLead();
+
+    phase.value = "homerun";
+  } catch (err) {
+    console.error("Contact submission failed:", err);
+  } finally {
+    submitting.value = false;
+  }
+  // isBreakdown.value = true;
+  // phase.value = "homerun";
+  // submitting.value = false;
 }
 
 // ─── Calendly ──────────────────────────────────────────────────────────────
