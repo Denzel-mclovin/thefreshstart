@@ -1,4 +1,5 @@
 // plugins/meta-pixel.client.ts
+
 declare global {
   interface Window {
     fbq?: any
@@ -6,29 +7,34 @@ declare global {
   }
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const pixelId = '1541485453520508'
+export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig()
+  const pixelId = (config.public as any)?.metaPixelId || '1850667959625451'
 
-  // Initialize Meta Pixel script once
+  // Initialize Meta Pixel script once on client
   if (typeof window !== 'undefined' && !window.fbq) {
-    /* eslint-disable */
-    !(function (f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
+    const initPixel = (f: any, b: any, e: string, v: string) => {
       if (f.fbq) return
-      n = f.fbq = function () {
-        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-      }
+      const n: any = (f.fbq = function (...args: any[]) {
+        if (n.callMethod) {
+          n.callMethod.apply(n, args)
+        } else {
+          n.queue.push(args)
+        }
+      })
       if (!f._fbq) f._fbq = n
       n.push = n
-      n.loaded = !0
+      n.loaded = true
       n.version = '2.0'
       n.queue = []
-      t = b.createElement(e)
-      t.async = !0
+      const t = b.createElement(e)
+      t.async = true
       t.src = v
-      s = b.getElementsByTagName(e)[0]
-      s.parentNode.insertBefore(t, s)
-    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js')
-    /* eslint-enable */
+      const s = b.getElementsByTagName(e)[0]
+      s?.parentNode?.insertBefore(t, s)
+    }
+
+    initPixel(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js')
 
     window.fbq('init', pixelId)
     window.fbq('track', 'PageView')

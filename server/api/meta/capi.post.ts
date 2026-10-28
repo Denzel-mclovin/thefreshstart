@@ -20,7 +20,7 @@ export default defineEventHandler(async (event) => {
   const datasetId =
     process.env.META_DATASET_ID ||
     process.env.META_PIXEL_ID ||
-    "1541485453520508";
+    "1850667959625451";
 
   const token =
     process.env.META_CAPI_ACCESS_TOKEN ||

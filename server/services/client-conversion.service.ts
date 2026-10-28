@@ -123,7 +123,7 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
 
   // 4. Dispatch offline Purchase event to Meta via CAPI ONLY
   try {
-    const datasetId = process.env.META_DATASET_ID || "1541485453520508";
+    const datasetId = process.env.META_DATASET_ID || "1850667959625451";
     const token = process.env.META_CAPI_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN;
     const graphVersion = process.env.META_GRAPH_VERSION || "v26.0";
 
