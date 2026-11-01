@@ -7,19 +7,26 @@
         </div>
 
         <div class="videos_content_media">
+
+          <VideoComponent src="https://fast.wistia.com/embed/fmgbe7xv3n.js" media-id="fmgbe7xv3n"/>
+          <VideoComponent src="https://fast.wistia.com/embed/lhnh9gm4ft.js" media-id="lhnh9gm4ft"/>
+          <VideoComponent src="https://fast.wistia.com/embed/wmwyh5gdak.js" media-id="wmwyh5gdak"/>
+          <VideoComponent src="https://fast.wistia.com/embed/jyhwcs3gqu.js" media-id="jyhwcs3gqu"/>
+          <VideoComponent src="https://fast.wistia.com/embed/m1inautcv5.js" media-id="m1inautcv5"/>
+
           <VideoComponent src="https://fast.wistia.com/embed/k304wo40mb.js" media-id="k304wo40mb"/>
           <VideoComponent src="https://fast.wistia.com/embed/qbvrmw3gai.js" media-id="qbvrmw3gai"/>
           <VideoComponent src="https://fast.wistia.com/embed/dzemku09rm.js" media-id="dzemku09rm"/>
           <VideoComponent src="https://fast.wistia.com/embed/clnjuxo4ol.js" media-id="clnjuxo4ol"/>
           <VideoComponent src="https://fast.wistia.com/embed/rkoa61a5lu.js" media-id="rkoa61a5lu"/>
-          <VideoComponent src="https://fast.wistia.com/embed/kdzatkr3eo.js" media-id="kdzatkr3eo"/>
+          <VideoComponent src="https://fast.wistia.com/embed/kdzatkr3eo.js" media-id="kdzatkr3eo"/> 
         </div>
       </div>
     </div>
   </section>
 </template>
 
-<script setup lang="ts">
+<script setup>
 </script>
 
 <style scoped lang="scss">

@@ -1,6 +1,5 @@
 <template>
   <div class="page">
-    <!-- <TempLinks /> -->
 
     <ScheduledCall />
     <BeforeTalk />

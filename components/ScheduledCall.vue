@@ -40,16 +40,32 @@
             </p>
           </div>
         </div>
-        <VideoItem />
+        <VideoItem :src="videoProps.src" :media-id="videoProps.mediaId" :vertical="videoProps.vertical" />
       </div>
     </div>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+
+import { ref } from 'vue'
+
+
+
+const videoProps = ref({
+  src: "https://fast.wistia.com/embed/m1rdacdq9i.js",
+  mediaId: "m1rdacdq9i",
+  vertical: true
+})
+
+
+
+
+</script>
 
 <style scoped lang="scss">
 @use "/styles/mixins.scss" as mixins;
+
 
 .scheduled_call {
   @include mixins.component-spacing;
