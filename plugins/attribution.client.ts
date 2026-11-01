@@ -1,11 +1,11 @@
-// plugins/attribution.client.ts
 export default defineNuxtPlugin(() => {
+  const router = useRouter()
   const { initAttribution, syncFbp } = useAttribution()
-  
-  // Capture immediately on client load
-  initAttribution()
 
-  // Attempt to sync _fbp cookie after 1.5s when Meta Pixel script initializes and sets _fbp
+  router.isReady().then(() => {
+    initAttribution(router.currentRoute.value)
+  })
+
   setTimeout(() => {
     syncFbp()
   }, 1500)

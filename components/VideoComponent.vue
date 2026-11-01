@@ -1,8 +1,10 @@
 <template>
   <section class="video_section" :class="{'video_section--hero': props.heroVideo}" >
-      <VideoItem :src="props.src" :media-id="props.mediaId" :vertical="props.vertical" />
 
-      <div class="video_options" v-if="props.heroVideo">
+    <section class="video_section" :class="{'video_section--hero': props.heroVideo}">
+    <VideoItem :src="props.src" :media-id="props.mediaId" :vertical="props.vertical" />
+
+    <div class="video_options" v-if="props.heroVideo">
         <div class="video_options_item">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +52,6 @@
             </defs>
           </svg>
           <span> 
-            <!-- Built on a legal U.S. tax provision (FEIE)  -->
              Built on a proven relocation framework.
           
           </span>
@@ -206,27 +207,23 @@
         </div>
       </div>
   </section>
+
+  
+  </section>
 </template>
 
 <script setup>
+
+
 const props = defineProps({
-  src: {
-    type: String,
-    required: true
-  },
-  mediaId: {
-    type: String,
-    required: true
-  },
-  heroVideo: {
-    type: Boolean,
-    default: false
-  },
-  vertical: {
-    type: Boolean,
-    default: false
-  }
+  src: { type: String, required: true },
+  mediaId: { type: String, required: true },
+  heroVideo: { type: Boolean, default: false },
+  vertical: { type: Boolean, default: false }
 })
+
+
+
 </script>
 
 <style lang="scss" scoped>

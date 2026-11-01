@@ -1,5 +1,5 @@
 <template>
-  <NuxtLayout>
+  <!-- <NuxtLayout>
     <NuxtPage />
     <IconLibrary />
     <noscript>
@@ -10,69 +10,64 @@
         src="https://www.facebook.com/tr?id=1850667959625451&ev=PageView&noscript=1"
       />
     </noscript>
+  </NuxtLayout> -->
+
+   <NuxtLayout>
+    <NuxtPage />
+    <IconLibrary />
   </NuxtLayout>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
-import { useRoute } from "#app";
-import IconLibrary from "./components/shared/IconLibrary.vue";
+// import { onMounted } from "vue";
+// import { useRoute } from "#app";
+// import IconLibrary from "./components/shared/IconLibrary.vue";
 
-import { useModalStore } from "./stores/modal";
+// import { useModalStore } from "./stores/modal";
 
 
-const modalStore = useModalStore();
-
-useHead({
-  meta: [
-    { name: 'color-scheme', content: 'light' }
-  ]
-})
+// const modalStore = useModalStore();
 
 // useHead({
 //   meta: [
-//     {
-//       name: "facebook-domain-verification",
-//       content: "wzdp1app2xxgco9ejbc04zwjc2w0ub",
-//     },
-//   ],
-//   script: [
-//     {
-//       key: "facebook-pixel",
-//       children: `
-//         !function(f,b,e,v,n,t,s)
-//         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-//         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-//         if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-//         n.queue=[];t=b.createElement(e);t.async=!0;
-//         t.src=v;s=b.getElementsByTagName(e)[0];
-//         s.parentNode.insertBefore(t,s)}(window, document,'script',
-//         'https://connect.facebook.net/en_US/fbevents.js');
-//         fbq('init', '1850667959625451');
-//         fbq('track', 'PageView');
-//       `,
-//       type: "text/javascript",
-//     },
-//   ],
-// });
+//     { name: 'color-scheme', content: 'light' }
+//   ]
+// })
 
+// const utmStore = useUtmStore();
+
+
+// onMounted( () => {
+
+//    if (!localStorage.getItem("landing_time")) {
+//     localStorage.setItem(
+//       "landing_time",
+//       Date.now().toString()
+//     )
+//   }
+
+// })
+
+import { onMounted } from "vue";
+import IconLibrary from "./components/shared/IconLibrary.vue";
+
+const modalStore = useModalStore();
 const utmStore = useUtmStore();
 
+useHead({
+  meta: [{ name: "color-scheme", content: "light" }],
+  noscript: [
+    {
+      tagPosition: "bodyOpen",
+      innerHTML:
+        '<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1850667959625451&amp;ev=PageView&amp;noscript=1" />',
+    },
+  ],
+});
 
-onMounted( () => {
-
-   if (!localStorage.getItem("landing_time")) {
-    localStorage.setItem(
-      "landing_time",
-      Date.now().toString()
-    )
+onMounted(() => {
+  if (!localStorage.getItem("landing_time")) {
+    localStorage.setItem("landing_time", Date.now().toString());
   }
-
-  // if (utmStore.pending) {
-
-  //   utmStore.openCookieModal()
-
-  // }
-
-})
+});
 </script>

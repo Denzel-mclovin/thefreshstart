@@ -676,7 +676,7 @@ const stepIdx = ref(0);
 const transitionName = ref("slide-up");
 const submitting = ref(false);
 const contactError = ref("");
-const quizSession = ref(null);
+// const quizSession = ref(null);
 const loaderState = ref(false);
 const embedDomain = ref("");
 const affirmVisible = ref(false);
@@ -684,6 +684,12 @@ const affirmStatus = ref("idle"); // idle | loading | approved | denied
 const isBreakdown = ref(false);
 const scheduledACall = ref("NO");
 const leadCreated = ref(false);
+
+const quizSession = useCookie("quiz_session", {
+  default: () => null,
+  maxAge: 60 * 60 * 24 * 365,
+  sameSite: "lax",
+});
 
 const a = ref({ q1: "", q2: "", q3: "", q4: "", q5: "", homerun: "" });
 const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
@@ -789,18 +795,54 @@ function pick(field, value) {
   a.value[field] = value;
 }
 
-async function next(field, value) {
-  if (!value) return;
+// async function next(field, value) {
+//   if (!value) return;
 
+
+//   if (!TEST_MODE.value) {
+//     // Persist question answer to server & database
+//     updateQuiz(field, value).catch(console.error);
+
+//     // Q4 is ts_lead_created! The price is shown at Q4.
+//     if (field === "q4") {
+//       const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
+//       const q4Code = mapQ4[value] || value;
+//       trackLead({
+//         q4FinancialReadiness: q4Code,
+//         financingFlag: q4Code === "C",
+//       }).catch(console.error);
+//     }
+//   }
+
+//   transitionName.value = "slide-up";
+//   if (stepIdx.value < TOTAL_STEPS - 1) {
+//     setTimeout(() => {
+//       stepIdx.value++;
+//     }, 180);
+//   }
+// }
+
+async function next(field, value) {
+  if (!value || loaderState.value) return;
 
   if (!TEST_MODE.value) {
-    // Persist question answer to server & database
-    updateQuiz(field, value).catch(console.error);
+    try {
+      await updateQuiz(field, value);
+    } catch (err) {
+      console.error("Failed to save quiz answer:", err);
+      return;
+    }
 
-    // Q4 is ts_lead_created! The price is shown at Q4.
     if (field === "q4") {
-      const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
+      const mapQ4 = {
+        yes: "A",
+        week: "B",
+        affirm: "C",
+        no: "D",
+      };
+
       const q4Code = mapQ4[value] || value;
+
       trackLead({
         q4FinancialReadiness: q4Code,
         financingFlag: q4Code === "C",
@@ -809,6 +851,7 @@ async function next(field, value) {
   }
 
   transitionName.value = "slide-up";
+
   if (stepIdx.value < TOTAL_STEPS - 1) {
     setTimeout(() => {
       stepIdx.value++;
@@ -891,9 +934,41 @@ async function createActiveCampaignContact() {
   }
 }
 
+// async function updateQuiz(field, value) {
+//   const q = QUESTIONS[field];
+//   loaderState.value = true;
+//   try {
+//     const result = await $fetch("/api/quiz", {
+//       method: "POST",
+//       body: {
+//         sessionId: quizSession.value,
+//         questionId: q.id,
+//         question: q.title,
+//         answer: value,
+//         attribution: attribution.value,
+//         q5FreeText: a.value.homerun || undefined,
+//       },
+//     });
+//     if (!quizSession.value && result.sessionId) {
+//       quizSession.value = result.sessionId;
+//       document.cookie = `quiz_session=${quizSession.value}; path=/; max-age=31536000`;
+//       await sendUtm();
+//     }
+//     return result;
+//   } finally {
+//     loaderState.value = false;
+//   }
+// }
+
 async function updateQuiz(field, value) {
   const q = QUESTIONS[field];
+
+  if (!quizSession.value) {
+    quizSession.value = crypto.randomUUID();
+  }
+
   loaderState.value = true;
+
   try {
     const result = await $fetch("/api/quiz", {
       method: "POST",
@@ -906,11 +981,15 @@ async function updateQuiz(field, value) {
         q5FreeText: a.value.homerun || undefined,
       },
     });
-    if (!quizSession.value && result.sessionId) {
-      quizSession.value = result.sessionId;
-      document.cookie = `quiz_session=${quizSession.value}; path=/; max-age=31536000`;
-      await sendUtm();
+
+    if (!result.success) {
+      throw new Error(result.error || "Failed to save quiz answer");
     }
+
+    if (result.sessionId) {
+      quizSession.value = result.sessionId;
+    }
+
     return result;
   } finally {
     loaderState.value = false;
