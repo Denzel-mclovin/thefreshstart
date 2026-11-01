@@ -1,7 +1,8 @@
 <template>
-  <div 
+  <div
+    ref="root"
     class="video_block"
-    :class="{'vertical': props.vertical}"
+    :class="{ vertical: props.vertical }"
     :style="{ backgroundImage: `url(${preview})` }"
   >
     <ClientOnly>
@@ -9,27 +10,25 @@
         <wistia-player
           ref="playerRef"
           :media-id="props.mediaId"
-          autoplay="true"
-          silent-autoplay="true"
+          muted="true"
           playsinline
           fit-strategy="cover"
-          @loaded-metadata="onLoaded"
           controls-visible-on-load="false"
           big-play-button="false"
+          @loaded-metadata="onLoaded"
         />
       </div>
     </ClientOnly>
 
     <Transition name="fade">
-      <div 
+      <div
         v-if="showOverlay"
         class="video_control"
         :style="{
-            '--overlay-background': showOverlay
-            ? 'linear-gradient(180deg, rgba(0,0,0,0) -25.08%, #000 125.76%)'
-            : 'transparent'
+          '--overlay-background':
+            'linear-gradient(180deg, rgba(0,0,0,0) -25.08%, #000 125.76%)'
         }"
-    >
+      >
         <button class="play_button" @click="enableSound">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +52,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
+import { activeVideoId } from '../composables/useSingleVideo'
 
 const props = defineProps({
   src: { type: String, required: true },
@@ -61,10 +61,14 @@ const props = defineProps({
   vertical: { type: Boolean, default: false },
 })
 
-const showOverlay = ref(true)
+const root = ref(null)
 const playerRef = ref(null)
-const preview = ref("")
+const preview = ref('')
 const playerReady = ref(false)
+const isVisible = ref(false)
+let observer = null
+
+const showOverlay = computed(() => activeVideoId.value !== props.mediaId)
 
 const loadWistiaMediaScript = (src) => {
   return new Promise((resolve, reject) => {
@@ -82,23 +86,81 @@ const loadWistiaMediaScript = (src) => {
   })
 }
 
+const setMuted = (muted) => {
+  const player = playerRef.value
+  if (!player) return
+
+  if (muted) {
+    player.setAttribute('muted', 'true')
+    player.muted = true
+  } else {
+    player.removeAttribute('muted')
+    player.muted = false
+    player.volume = 1
+    player.unmute?.()
+  }
+}
+
+const safePlay = async () => {
+  try {
+    await playerRef.value?.play?.()
+  } catch (e) {
+  }
+}
+
+const safePause = () => {
+  try {
+    playerRef.value?.pause?.()
+  } catch (e) {}
+}
+
+const applyState = () => {
+  if (!playerReady.value) return
+
+  const isActive = activeVideoId.value === props.mediaId
+  setMuted(!isActive)
+
+  const shouldPlay =
+    isVisible.value && (activeVideoId.value === null || isActive)
+
+  if (shouldPlay) safePlay()
+  else safePause()
+}
+
+watch([isVisible, activeVideoId, playerReady], applyState)
+
 onMounted(async () => {
   try {
-    if (props.src) {
-      await loadWistiaMediaScript(props.src)
-    }
+    if (props.src) await loadWistiaMediaScript(props.src)
   } catch (err) {
     console.error('Error loading Wistia script:', err)
   }
+
+  if (!root.value) return
+
+  observer = new IntersectionObserver(
+    ([entry]) => {
+      isVisible.value = entry.isIntersecting
+
+      if (!entry.isIntersecting && activeVideoId.value === props.mediaId) {
+        activeVideoId.value = null
+      }
+    },
+    { threshold: 0.5 }
+  )
+  observer.observe(root.value)
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  if (activeVideoId.value === props.mediaId) activeVideoId.value = null
 })
 
 const onLoaded = () => {
   const player = playerRef.value
   if (!player) return
 
-  if (player.thumbnailUrl) {
-    preview.value = player.thumbnailUrl
-  }
+  if (player.thumbnailUrl) preview.value = player.thumbnailUrl
   playerReady.value = true
 }
 
@@ -107,21 +169,11 @@ const enableSound = async () => {
   if (!player) return
 
   try {
-    if (typeof player.unmute === 'function') {
-      player.unmute()
-    } else {
-      player.muted = false
-    }
+    activeVideoId.value = props.mediaId 
 
-    if (player.currentTime > 0) {
-      player.currentTime = 0
-    }
-
-    if (typeof player.play === 'function') {
-      await player.play()
-    }
-
-    showOverlay.value = false
+    setMuted(false)
+    if (player.currentTime > 0) player.currentTime = 0
+    await player.play()
   } catch (error) {
     console.error('Wistia play failed:', error)
   }
@@ -135,12 +187,10 @@ const enableSound = async () => {
   width: 100%;
   height: auto;
   position: relative;
-  // background: url(v-bind(preview));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: var(--dark-green);
-  background-size: cover;
   max-width: 1240px;
   max-height: 660px;
   aspect-ratio: 5/3;
@@ -235,6 +285,7 @@ const enableSound = async () => {
     gap: 10px;
   }
 }
+
 .wistia-wrapper {
   width: 100%;
   height: 100%;
@@ -254,11 +305,11 @@ const enableSound = async () => {
 }
 
 .video_control::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: var(--overlay-background);
-    border-radius: 15px;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-background);
+  border-radius: 15px;
 }
 
 .fade-enter-active,

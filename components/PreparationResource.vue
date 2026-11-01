@@ -14,7 +14,11 @@
             v-for="video in videoListData"
             :key="video.id"
           >
-            <div class="video_item_content">
+            <div
+              class="video_item_content"
+              :ref="(el) => setItem(video.id, el)"
+              :data-id="video.id"
+            >
               <ClientOnly>
                 <div
                   class="wistia-wrapper"
@@ -25,14 +29,15 @@
                     :media-id="video.mediaId"
                     playsinline
                     fit-strategy="cover"
+                    @loaded-metadata="onLoaded(video.id)"
                   />
                 </div>
               </ClientOnly>
 
               <img
-                v-if="activeVideo !== video.id"
+                v-if="activeVideo !== video.id && getPreview(video)"
                 class="video_item_preview"
-                :src="video.previewLink"
+                :src="getPreview(video)"
                 :alt="video.title"
               />
 
@@ -83,7 +88,7 @@
                       </clipPath>
                     </defs>
                   </svg>
-                  <span> {{ video.duration }} </span>
+                  <span> {{ getDuration(video) }} </span>
                 </div>
                 <div class="timeline_item"></div>
               </div>
@@ -100,71 +105,107 @@
 </template>
 
 <script setup>
-import { ref, nextTick } from "vue";
+import { ref, reactive, onMounted, onBeforeUnmount } from "vue";
 
 const activeVideo = ref(null);
-const playerRef = ref(null);
 const players = new Map();
+const items = new Map();
+const thumbs = reactive({});
+const durations = reactive({});
+let observer = null;
+
 
 const videoListData = [
-  {
-    id: 1,
-    title: "Real Relocation Success Stories",
-    mediaId: "mi2sa50wnp",
-    duration: "8:00",
-    previewLink: "./images/preview1.png",
-  },
-  {
-    id: 2,
-    title: "Common Relocation Mistakes",
-    mediaId: "mi2sa50wnp",
-    duration: "8:00",
-    previewLink: "./images/preview2.png",
-  },
-  {
-    id: 3,
-    title: "Preparing Your Relocation Plan",
-    mediaId: "mi2sa50wnp",
-    duration: "8:00",
-    previewLink: "./images/preview3.png",
-  },
-  {
-    id: 4,
-    title: "Visa & Residency Essentials",
-    mediaId: "mi2sa50wnp",
-    duration: "8:00",
-    previewLink: "./images/preview4.png",
-  },
-  {
-    id: 5,
-    title: "Financial Planning Before Moving",
-    mediaId: "mi2sa50wnp",
-    duration: "8:00",
-    previewLink: "./images/preview5.png",
-  },
-  {
-    id: 6,
-    title: "Understanding Global Mobility & Residencies",
-    mediaId: "mi2sa50wnp",
-    duration: "8:00",
-    previewLink: "./images/preview6.png",
-  },
+  { id: 1, title: "Video 1", mediaId: "n50p98a6i8", duration: "8:00", previewLink: "" },
+  { id: 2, title: "Video 2", mediaId: "dlak7c96na", duration: "8:00", previewLink: "" },
+  { id: 3, title: "Video 3", mediaId: "j10675jsbn", duration: "8:00", previewLink: "" },
+  { id: 4, title: "Video 4", mediaId: "hxwgyl9egw", duration: "8:00", previewLink: "" },
+  { id: 5, title: "Video 5", mediaId: "0ajj9fkr2v", duration: "8:00", previewLink: "" },
+  { id: 6, title: "Video 6", mediaId: "xoqyv0jymi", duration: "8:00", previewLink: "" },
+  { id: 7, title: "Video 7", mediaId: "96yg4qdh2n", duration: "8:00", previewLink: "" },
 ];
 
-const setPlayer = (id, player) => {
-  if (player) {
-    players.set(id, player);
-  } else {
-    players.delete(id);
+
+const loadScript = (src, { module = false } = {}) => {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) {
+      resolve();
+      return;
+    }
+    const script = document.createElement("script");
+    script.src = src;
+    if (module) script.type = "module";
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(script);
+  });
+};
+
+const loadWistia = async () => {
+  try {
+    await loadScript("https://fast.wistia.com/player.js");
+    await Promise.all(
+      videoListData.map((v) =>
+        loadScript(`https://fast.wistia.com/embed/${v.mediaId}.js`, {
+          module: true,
+        })
+      )
+    );
+  } catch (err) {
+    console.error("Error loading Wistia scripts:", err);
   }
 };
 
+
+const setPlayer = (id, player) => {
+  if (player) players.set(id, player);
+  else players.delete(id);
+};
+
+const setItem = (id, el) => {
+  if (el) items.set(id, el);
+  else items.delete(id);
+};
+
+const onLoaded = (id) => {
+  const player = players.get(id);
+  if (!player) return;
+
+  if (player.thumbnailUrl) thumbs[id] = player.thumbnailUrl;
+
+  const d = Number(player.duration);
+  if (Number.isFinite(d) && d > 0) durations[id] = d;
+};
+
+const getPreview = (video) => video.previewLink || thumbs[video.id] || "";
+
+const getDuration = (video) => {
+  const d = durations[video.id];
+  if (!d) return video.duration;
+  const m = Math.floor(d / 60);
+  const s = Math.floor(d % 60);
+  return `${m}:${String(s).padStart(2, "0")}`;
+};
+
+
 const stopAllPlayers = () => {
   players.forEach((player) => {
-    player.pause?.();
-    player.currentTime = 0;
-    player.muted = true;
+    try {
+      player.pause?.();
+      player.currentTime = 0;
+      player.muted = true;
+    } catch (e) {}
   });
+};
+
+const stopVideo = (id) => {
+  const player = players.get(id);
+  try {
+    player?.pause?.();
+    if (player) player.muted = true;
+  } catch (e) {}
+  if (activeVideo.value === id) activeVideo.value = null;
 };
 
 const playVideo = async (id) => {
@@ -173,15 +214,41 @@ const playVideo = async (id) => {
   activeVideo.value = id;
 
   const player = players.get(id);
-
   if (!player) return;
 
-  player.pause?.();
-  player.currentTime = 0;
-  player.muted = false;
-
-  await player.play?.();
+  try {
+    player.pause?.();
+    player.currentTime = 0;
+    player.removeAttribute("muted");
+    player.muted = false;
+    player.volume = 1;
+    await player.play?.();
+  } catch (error) {
+    console.error("Wistia play failed:", error);
+  }
 };
+
+onMounted(async () => {
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const id = Number(entry.target.dataset.id);
+        if (!entry.isIntersecting && activeVideo.value === id) {
+          stopVideo(id);
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  items.forEach((el) => observer.observe(el));
+
+  await loadWistia();
+});
+
+onBeforeUnmount(() => {
+  observer?.disconnect();
+});
 </script>
 
 <style scoped lang="scss">
