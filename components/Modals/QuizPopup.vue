@@ -333,7 +333,7 @@
 
             <transition name="fade" mode="out-in">
               <div v-if="phase === 'results'" key="results" class="q-slide">
-                <div v-if="loadingResults" class="loading_results">
+                <!-- <div v-if="loadingResults" class="loading_results">
                   <div class="ios-spinner">
                     <div
                       class="ios-spinner__blade"
@@ -342,6 +342,16 @@
                     ></div>
                   </div>
                   <p class="loading_results__text">Your results will be soon</p>
+                </div> -->
+
+                <div v-if="loadingResults" class="loading_results">
+                  <div class="ios-spinner">
+                    <div class="ios-spinner__blade" v-for="n in 12" :key="n"></div>
+                  </div>
+                  <h2 class="loading_results__title">Analyzing your answers...</h2>
+                  <p class="loading_results__subtitle">
+                    Matching your income, your hours, and your top concern...
+                  </p>
                 </div>
                 <div v-else class="q-slide-results">
                   <button
@@ -670,7 +680,7 @@ const teamMemberName = ref("Vito");
 
 // ─── State ─────────────────────────────────────────────────────────────────
 const phase = ref("questions");
-// const phase = ref("calendly");
+// const phase = ref("results");
 
 const stepIdx = ref(0);
 const transitionName = ref("slide-up");
@@ -1915,12 +1925,51 @@ const modalStyle = computed(() => ({
   }
 }
 
-.loading_results__text {
-  @include mixins.fz-body($color: var(--dark-green));
-  font-size: 20px;
+// .loading_results__text {
+//   @include mixins.fz-body($color: var(--dark-green));
+//   font-size: 20px;
+//   font-weight: 500;
+//   text-align: center;
+//   margin: 0;
+// }
+
+.loading_results {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.loading_results__title {
+  @include mixins.fz-h3($color: var(--dark-green));
   font-weight: 500;
+  font-size: 28px;
+  line-height: 1.25;
   text-align: center;
   margin: 0;
+
+  @media screen and (max-width: 480px) {
+    font-size: 21px;
+  }
+}
+
+.loading_results__subtitle {
+  @include mixins.fz-body;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: rgba(0, 51, 35, 0.68);
+  text-align: center;
+  margin: 0;
+  max-width: 440px;
+
+  @media screen and (max-width: 480px) {
+    font-size: 15px;
+  }
 }
 
 .confirmed-label {

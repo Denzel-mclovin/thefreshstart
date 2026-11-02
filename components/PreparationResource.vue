@@ -24,22 +24,32 @@
                   class="wistia-wrapper"
                   :class="{ active: activeVideo === video.id }"
                 >
-                  <wistia-player
+                  <!-- <wistia-player
                     :ref="(el) => setPlayer(video.id, el)"
                     :media-id="video.mediaId"
                     playsinline
                     fit-strategy="cover"
                     @loaded-metadata="onLoaded(video.id)"
+                  /> -->
+                  <wistia-player
+                    :ref="(el) => setPlayer(video.id, el)"
+                    :media-id="video.mediaId"
+                    playsinline
+                    fit-strategy="cover"
+                    play-button="false"
+                    controls-visible-on-load="false"
+                    @loaded-metadata="onLoaded(video.id)"
+                    style="width: 100%; height: 100%; display: block;"
                   />
                 </div>
               </ClientOnly>
 
-              <img
+              <!-- <img
                 v-if="activeVideo !== video.id && getPreview(video)"
                 class="video_item_preview"
                 :src="getPreview(video)"
                 :alt="video.title"
-              />
+              /> -->
 
               <button
                 class="video_item_play"
@@ -94,9 +104,9 @@
               </div>
             </div>
 
-            <div class="video_item_title">
+            <!-- <div class="video_item_title">
               {{ video.title }}
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -351,27 +361,16 @@ onBeforeUnmount(() => {
       position: relative;
       aspect-ratio: 4 / 3;
       overflow: hidden;
+      border-radius: 12px;
 
       .wistia-wrapper {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
+        opacity: 1;
         pointer-events: none;
-        transition: 0.25s;
+        position: relative;
         width: 100%;
         height: 100%;
-        top: 0;
-        left: 0;
-
-        wistia-player {
-          display: block;
-          width: 100%;
-          height: 100%;
-        }
       }
-
       .wistia-wrapper.active {
-        opacity: 1;
         pointer-events: auto;
       }
 
@@ -393,6 +392,7 @@ onBeforeUnmount(() => {
         rgba(0, 0, 0, 0) -25.08%,
         #000 125.76%
       );
+      border-radius: 12px;
       top: 0;
       left: 0;
     }
