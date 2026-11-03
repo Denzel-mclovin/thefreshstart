@@ -19,6 +19,11 @@
               :ref="(el) => setItem(video.id, el)"
               :data-id="video.id"
             >
+
+
+
+
+            
               <ClientOnly>
                 <div
                   class="wistia-wrapper"
