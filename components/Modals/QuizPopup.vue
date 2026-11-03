@@ -711,6 +711,8 @@ const { trackLead, trackSchedule, trackQuizCompleted } = useMetaTracking();
 const TEST_MODE = ref(false);
 const loadingResults = ref(false);
 
+const value = ref(1);
+
 // ─── Computed ──────────────────────────────────────────────────────────────
 const progressPct = computed(() => (stepIdx.value / TOTAL_STEPS) * 100);
 
