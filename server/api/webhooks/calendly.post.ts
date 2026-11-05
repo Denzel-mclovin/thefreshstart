@@ -31,6 +31,9 @@ type CalendlyPayload = {
   };
 };
 
+
+
+
 type CalendlyWebhook = {
   event: "invitee.created" | "invitee.canceled";
   payload: CalendlyPayload;
