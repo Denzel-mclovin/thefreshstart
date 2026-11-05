@@ -807,33 +807,6 @@ function pick(field, value) {
   a.value[field] = value;
 }
 
-// async function next(field, value) {
-//   if (!value) return;
-
-
-//   if (!TEST_MODE.value) {
-//     // Persist question answer to server & database
-//     updateQuiz(field, value).catch(console.error);
-
-//     // Q4 is ts_lead_created! The price is shown at Q4.
-//     if (field === "q4") {
-//       const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
-//       const q4Code = mapQ4[value] || value;
-//       trackLead({
-//         q4FinancialReadiness: q4Code,
-//         financingFlag: q4Code === "C",
-//       }).catch(console.error);
-//     }
-//   }
-
-//   transitionName.value = "slide-up";
-//   if (stepIdx.value < TOTAL_STEPS - 1) {
-//     setTimeout(() => {
-//       stepIdx.value++;
-//     }, 180);
-//   }
-// }
-
 async function next(field, value) {
   if (!value || loaderState.value) return;
 
@@ -929,32 +902,6 @@ async function createActiveCampaignContact() {
   }
 }
 
-// async function updateQuiz(field, value) {
-//   const q = QUESTIONS[field];
-//   loaderState.value = true;
-//   try {
-//     const result = await $fetch("/api/quiz", {
-//       method: "POST",
-//       body: {
-//         sessionId: quizSession.value,
-//         questionId: q.id,
-//         question: q.title,
-//         answer: value,
-//         attribution: attribution.value,
-//         q5FreeText: a.value.homerun || undefined,
-//       },
-//     });
-//     if (!quizSession.value && result.sessionId) {
-//       quizSession.value = result.sessionId;
-//       document.cookie = `quiz_session=${quizSession.value}; path=/; max-age=31536000`;
-//       await sendUtm();
-//     }
-//     return result;
-//   } finally {
-//     loaderState.value = false;
-//   }
-// }
-
 async function updateQuiz(field, value) {
   const q = QUESTIONS[field];
 
@@ -1010,39 +957,6 @@ async function sendUtm() {
     },
   });
 }
-
-// async function createLead() {
-//   try {
-//     const userTimezone =
-//       Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
-
-//     const createLeadContact = await $fetch("/api/lead/create", {
-//       method: "POST",
-//       body: {
-//         firstName: contact.value.firstName,
-//         lastName: contact.value.lastName,
-//         phoneNumber: contact.value.phone,
-//         userEmail: contact.value.email,
-//         timezone: userTimezone,
-//         sessionId: quizSession.value,
-//         quizComment: a.value.homerun,
-//         consentEmail: consent.value.email,
-//         consentSms: consent.value.sms,
-//       },
-//     });
-
-//     const activeCampaignContact = await createActiveCampaignContact();
-
-//     if (isBreakdown.value) {
-//       createLeadContact();
-//     } else {
-//       Promise.all([createLeadContact(), activeCampaignContact()]);
-//     }
-
-//   } catch (err) {
-//     console.error("Lead save failed:", err);
-//   }
-// }
 
 async function createLead() {
   if (leadCreated.value) return;
