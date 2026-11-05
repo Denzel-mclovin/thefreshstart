@@ -218,6 +218,7 @@ export function useMetaTracking() {
 
   return {
     generateEventId,
+    trackQuizStart,
     trackLead,
     trackQuizCompleted,
     trackSchedule,
