@@ -706,7 +706,7 @@ const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
 const consent = ref({ email: false, sms: false });
 
 const { attribution, syncFbp } = useAttribution();
-const { trackLead, trackSchedule, trackQuizCompleted } = useMetaTracking();
+const { trackLead, trackSchedule, trackQuizCompleted, trackQuizStart } = useMetaTracking();
 
 const TEST_MODE = ref(false);
 const loadingResults = ref(false);
@@ -845,20 +845,9 @@ async function next(field, value) {
       return;
     }
 
-    if (field === "q4") {
-      const mapQ4 = {
-        yes: "A",
-        week: "B",
-        affirm: "C",
-        no: "D",
-      };
-
-      const q4Code = mapQ4[value] || value;
-
-      trackLead({
-        q4FinancialReadiness: q4Code,
-        financingFlag: q4Code === "C",
-      }).catch(console.error);
+    // Q1 is QuizStart
+    if (field === "q1") {
+      trackQuizStart({}).catch(console.error);
     }
   }
 
@@ -880,12 +869,6 @@ async function finishQuiz() {
   if (!a.value.q5) return;
 
   loadingResults.value = true;
-
-  // Q5 is ts_quiz_completed
-  trackQuizCompleted({
-    q5ConcernCode: a.value.q5,
-    q5ConcernFreetext: a.value.homerun,
-  }).catch(console.error);
 
   await next("q5", a.value.q5);
 
@@ -1122,7 +1105,23 @@ async function submitContact() {
   try {
     isBreakdown.value = true;
 
-    await createLead();
+    // Fire Lead and QuizCompleted now that we have the email for advanced matching
+    const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
+    const q4Code = mapQ4[a.value.q4] || a.value.q4;
+
+    await Promise.all([
+      trackLead({
+        q4FinancialReadiness: q4Code,
+        financingFlag: q4Code === "C",
+        email: email,
+      }),
+      trackQuizCompleted({
+        q5ConcernCode: a.value.q5,
+        q5ConcernFreetext: a.value.homerun,
+        email: email,
+      }),
+      createLead(),
+    ]);
 
     phase.value = "homerun";
   } catch (err) {
