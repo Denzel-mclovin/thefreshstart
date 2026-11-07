@@ -241,8 +241,10 @@ export default defineEventHandler(async (event) => {
       const isEmpty = (v?: string | null) => !v || v === "UNDEFINED";
 
       const phoneFromCalendly =
-        qa.find(i => /phone/i.test(i.question))?.answer ||
-        (payload as any).text_reminder_number || undefined;
+        qa.find((i) => /phone/i.test(i.question))?.answer ||
+        (payload as any).text_reminder_number ||
+        undefined;
+      const homerun = qa.find((i) => /homerun|90/i.test(i.question))?.answer;
 
       const lead = existing
         ? await prisma.lead.update({
@@ -267,26 +269,25 @@ export default defineEventHandler(async (event) => {
 
       await syncActiveCampaignContact({
         email,
-        firstName,
-        lastName,
-
-        // !!!!!
-        q1: ans(1), 
-        q2: ans(2), 
-        q3: ans(3), 
-        q4: ans(4), 
-        q5: ans(5),
-        q5FreeText: lead.quizComment ?? qa.find(i => /homerun|90/i.test(i.question))?.answer,
-        // financingFlag: ans(4) === "affirm",
-        utmSource: tracking.utm_source,
-        utmMedium: tracking.utm_medium,
-        utmCampaign: tracking.utm_campaign,
-        utmContent: tracking.utm_content,
+        firstName: isEmpty(lead.firstName) ? firstName : lead.firstName,
+        lastName: isEmpty(lead.lastName) ? lastName : lead.lastName,
+        phone: !isEmpty(lead.phone) ? lead.phone : phoneFromCalendly,
+        q1: ans(1), q2: ans(2), q3: ans(3), q4: ans(4), q5: ans(5),
+        q5FreeText: !isEmpty(lead.quizComment) ? lead.quizComment : homerun,
+        financingFlag: ans(4) === "affirm",
+        utmSource: lead.utmSource ?? tracking.utm_source ?? undefined,
+        utmMedium: lead.utmMedium ?? tracking.utm_medium ?? undefined,
+        utmCampaign: lead.utmCampaign ?? tracking.utm_campaign ?? undefined,
+        utmContent: lead.utmContent ?? tracking.utm_content ?? undefined,
+        fbclid: lead.fbclid ?? undefined,
         fbc: lead.fbc ?? undefined,
         fbp: lead.fbp ?? undefined,
+        referrer: lead.referrer ?? undefined,
+        landingPage: lead.landingPage ?? undefined,
         bookingStatus: "BOOKED",
         callScheduledFor: scheduledAt,
         scheduledACall: true,
+        meetJoinLink: (payload.scheduled_event as any)?.location?.join_url ?? null,
         timezone: payload.timezone ?? null,
         rescheduleUrl: payload.reschedule_url ?? null,
       });
