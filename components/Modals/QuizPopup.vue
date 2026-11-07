@@ -986,9 +986,9 @@ async function createLead() {
 
     leadCreated.value = true;
 
-    if (!isBreakdown.value) {
+    // if (!isBreakdown.value) {
       await createActiveCampaignContact();
-    }
+    // }
 
     return leadResult;
   } catch (err) {
@@ -1095,7 +1095,37 @@ async function handleCalendlyMessage(e) {
 }
 
 function initCalendly() {
-  if (window.Calendly) window.Calendly.initInlineWidgets();
+  // if (window.Calendly) window.Calendly.initInlineWidgets();
+  const calendlyPrefill = {
+    name: `${contact.value.firstName} ${contact.value.lastName}`,
+    email: contact.value.email,
+
+    customAnswers: {
+      a1: contact.value.phone || "",
+      a2: String(a.value.q1 || ""),
+      a3: String(a.value.q2 || ""),
+      a4: String(a.value.q3 || ""),
+      a5: String(a.value.q4 || ""),
+      a6: String(a.value.q5 || ""),
+      a7: String(a.value.q5FreeText || ""),
+      a8: String(a.value.financingFlag ?? false),
+      a9: String(quizSession.value || ""),
+    },
+  };
+
+  const calendlyUtm = {
+    utmSource: useAttributionData.utmSource || "",
+    utmMedium: useAttributionData.utmMedium || "",
+    utmCampaign: useAttributionData.utmCampaign || "",
+    utmContent: useAttributionData.utmContent || "",
+  };
+  
+  Calendly.initInlineWidget({
+    url: CALENDLY_URL,
+    parentElement: document.getElementById("calendly-embed"),
+    prefill: calendlyPrefill,
+    utm: calendlyUtm,
+  });
 }
 
 const modalStyle = computed(() => ({
