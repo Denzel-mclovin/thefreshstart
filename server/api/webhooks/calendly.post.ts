@@ -10,6 +10,17 @@ import { syncActiveCampaignContact } from "../../../server/utils/active-campaign
 
 
 type CalendlyPayload = {
+  tracking?: {
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    utm_content?: string;
+    utm_term?: string;
+  };
+  questions_and_answers?: {
+    question: string;
+    answer: string;
+  }[];
   email?: string;
   name?: string;
   first_name?: string | null;
@@ -130,73 +141,149 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    if (isCreated) {
-      const scheduledAt = payload.scheduled_event?.start_time
-        ? new Date(payload.scheduled_event.start_time)
-        : null;
+    // if (isCreated) {
+    //   const scheduledAt = payload.scheduled_event?.start_time
+    //     ? new Date(payload.scheduled_event.start_time)
+    //     : null;
 
-      if (
-        scheduledAt &&
-        Number.isNaN(scheduledAt.getTime())
-      ) {
-        throw new Error("Invalid scheduled event date");
-      }
+    //   if (
+    //     scheduledAt &&
+    //     Number.isNaN(scheduledAt.getTime())
+    //   ) {
+    //     throw new Error("Invalid scheduled event date");
+    //   }
+
+    //   const nameParts = (payload.name ?? "").trim().split(/\s+/);
+
+    //   const lead = await prisma.lead.upsert({
+    //     where: { email },
+    //     create: {
+    //       email,
+    //       firstName: nameParts[0] || "",
+    //       lastName: nameParts.slice(1).join(" ") || "",
+    //       status: "BOOKED",
+    //       bookingMadeAt: new Date(),
+    //       callScheduledFor: scheduledAt,
+    //       calendlyInviteeUri: inviteeUri,
+    //       calendlyEventUri: eventUri ?? null,
+    //     },
+    //     update: {
+    //       status: "BOOKED",
+    //       bookingMadeAt: new Date(),
+    //       callScheduledFor: scheduledAt,
+    //       calendlyInviteeUri: inviteeUri,
+    //       calendlyEventUri: eventUri ?? null,
+    //     },
+    //   });
+
+    //   await syncActiveCampaignContact({
+    //     email,
+    //     firstName: nameParts[0] || "",
+    //     lastName: nameParts.slice(1).join(" ") || "",
+    //     bookingStatus: "BOOKED",
+    //     callScheduledFor: scheduledAt,
+    //     scheduledACall: true,
+    //     meetJoinLink: payload.uri,
+    //     timezone: payload.timezone ?? null,
+    //     rescheduleUrl: payload.reschedule_url ?? null,
+
+    //   });
+
+    //   console.log(`Lead synced with ActiveCampaign: ${email}`);
+
+    //   // await syncActiveCampaignContact({
+    //   //   email,
+    //   //   firstName: nameParts[0] || "",
+    //   //   lastName: nameParts.slice(1).join(" ") || "",
+    //   //   bookingStatus: "BOOKED",
+    //   //   callScheduledFor: scheduledAt,
+    //   //   scheduledACall: true,
+    //   //   meetJoinLink: payload.uri,
+    //   //   timezone: payload.timezone ?? null,
+    //   //   rescheduleUrl: payload.reschedule_url ?? null,
+
+    //   // });
+
+    //   // console.log(`Lead synced with ActiveCampaign: ${email}`);
+
+    //   void lead;
+    // }
+
+
+    if (isCreated) {
+      const tracking = payload.tracking ?? {};
+      const sessionId: string | null = tracking.utm_term || null;
+      const qa = payload.questions_and_answers ?? [];
+
+      const scheduledAt = payload.scheduled_event?.start_time
+        ? new Date(payload.scheduled_event.start_time) : null;
 
       const nameParts = (payload.name ?? "").trim().split(/\s+/);
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
 
-      const lead = await prisma.lead.upsert({
-        where: { email },
-        create: {
-          email,
-          firstName: nameParts[0] || "",
-          lastName: nameParts.slice(1).join(" ") || "",
-          status: "BOOKED",
-          bookingMadeAt: new Date(),
-          callScheduledFor: scheduledAt,
-          calendlyInviteeUri: inviteeUri,
-          calendlyEventUri: eventUri ?? null,
-        },
-        update: {
-          status: "BOOKED",
-          bookingMadeAt: new Date(),
-          callScheduledFor: scheduledAt,
-          calendlyInviteeUri: inviteeUri,
-          calendlyEventUri: eventUri ?? null,
-        },
-      });
+      // 1. ищем лида: сначала по сессии, потом по email
+      const [bySession, byEmail] = await Promise.all([
+        sessionId ? prisma.lead.findUnique({ where: { sessionId } }) : null,
+        prisma.lead.findUnique({ where: { email } }),
+      ]);
+      const existing = bySession ?? byEmail;
 
+      const bookingData = {
+        status: "BOOKED" as const,
+        bookingMadeAt: new Date(),
+        callScheduledFor: scheduledAt,
+        calendlyInviteeUri: inviteeUri,
+        calendlyEventUri: eventUri ?? null,
+        timezone: payload.timezone ?? undefined,
+      };
+
+      const lead = existing
+        ? await prisma.lead.update({
+            where: { id: existing.id },
+            data: {
+              ...bookingData,
+              firstName: existing.firstName || firstName,
+              lastName: existing.lastName || lastName,
+              // email пишем, только если он не занят другим лидом
+              ...(!existing.email && !(byEmail && byEmail.id !== existing.id)
+                ? { email } : {}),
+            },
+          })
+        : await prisma.lead.create({
+            data: { email, firstName, lastName, sessionId, ...bookingData },
+          });
+
+      // 2. ответы квиза из вашей таблицы (подставьте свою модель!)
+      const quizAnswers = sessionId
+        ? await prisma.quizAnswer.findMany({ where: { lead: { sessionId } } })
+        : [];
+      const ans = (id: number) => quizAnswers.find(x => x.questionId === id)?.answer;
+
+      // 3. один синк в AC со всеми данными
       await syncActiveCampaignContact({
         email,
-        firstName: nameParts[0] || "",
-        lastName: nameParts.slice(1).join(" ") || "",
+        firstName,
+        lastName,
+
+        // !!!!!
+        // q1: ans(1), q2: ans(2), q3: ans(3), q4: ans(4), q5: ans(5),
+        // q5FreeText: lead.quizComment ?? qa.find(i => /homerun|90/i.test(i.question))?.answer,
+        // financingFlag: ans(4) === "affirm",
+        // utmSource: tracking.utm_source,
+        // utmMedium: tracking.utm_medium,
+        // utmCampaign: tracking.utm_campaign,
+        // utmContent: tracking.utm_content,
+        // fbc: lead.fbc ?? undefined,
+        // fbp: lead.fbp ?? undefined,
         bookingStatus: "BOOKED",
         callScheduledFor: scheduledAt,
         scheduledACall: true,
-        meetJoinLink: payload.uri,
         timezone: payload.timezone ?? null,
         rescheduleUrl: payload.reschedule_url ?? null,
-
       });
-
-      console.log(`Lead synced with ActiveCampaign: ${email}`);
-
-      await syncActiveCampaignContact({
-        email,
-        firstName: nameParts[0] || "",
-        lastName: nameParts.slice(1).join(" ") || "",
-        bookingStatus: "BOOKED",
-        callScheduledFor: scheduledAt,
-        scheduledACall: true,
-        meetJoinLink: payload.uri,
-        timezone: payload.timezone ?? null,
-        rescheduleUrl: payload.reschedule_url ?? null,
-
-      });
-
-      console.log(`Lead synced with ActiveCampaign: ${email}`);
-
-      void lead;
     }
+
 
     if (isCanceled) {
       const lead = await prisma.lead.findUnique({

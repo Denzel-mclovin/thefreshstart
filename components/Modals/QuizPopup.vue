@@ -543,7 +543,7 @@
             </transition>
 
             <div
-              v-show="phase === 'calendly'"
+              v-if="phase === 'calendly'"
               :class="[
                 'q-slide',
                 'q-slide--calendly',
@@ -694,6 +694,25 @@ const affirmStatus = ref("idle"); // idle | loading | approved | denied
 const isBreakdown = ref(false);
 const scheduledACall = ref("NO");
 const leadCreated = ref(false);
+const calendlyUrl = ref("");
+
+function buildCalendlyUrl() {
+  const p = new URLSearchParams({
+    name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
+    email: contact.value.email,
+    a1: contact.value.phone,
+    a2: a.value.homerun,
+    utm_source: useAttributionData.utmSource || "",
+    utm_medium: useAttributionData.utmMedium || "",
+    utm_campaign: useAttributionData.utmCampaign || "",
+    utm_content: useAttributionData.utmContent || "",
+    utm_term: quizSession.value || "", // <-- ключ связи с квизом
+    hide_gdpr_banner: "1",
+    embed_domain: embedDomain.value,
+    embed_type: "Inline",
+  });
+  return `${CALENDLY_URL}?${p.toString()}`;
+}
 
 const quizSession = useCookie("quiz_session", {
   default: () => null,
@@ -750,18 +769,18 @@ const resultsSummary = computed(() => {
   return `${opener} ${concernHook}\n\n That's exactly what the strategy session is for. To turn this into your specific plan: which country, what it actually costs you, and how fast.`;
 });
 
-const calendlyUrl = computed(() => {
-  const p = new URLSearchParams({
-    name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
-    email: contact.value.email,
-    a1: contact.value.phone,
-    a2: a.value.homerun,
-    hide_gdpr_banner: "1",
-    embed_domain: embedDomain.value,
-    embed_type: "Inline",
-  });
-  return `${CALENDLY_URL}?${p.toString()}`;
-});
+// const calendlyUrl = computed(() => {
+//   const p = new URLSearchParams({
+//     name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
+//     email: contact.value.email,
+//     a1: contact.value.phone,
+//     a2: a.value.homerun,
+//     hide_gdpr_banner: "1",
+//     embed_domain: embedDomain.value,
+//     embed_type: "Inline",
+//   });
+//   return `${CALENDLY_URL}?${p.toString()}`;
+// });
 
 const activeCampaignData = computed(() => ({
   firstName: contact.value.firstName,
@@ -922,14 +941,20 @@ function simulateAffirm() {
 // }
 
 function goToCalendlyDirect() {
+  // phase.value = "calendly";
+  // nextTick(initCalendly);
+  calendlyUrl.value = buildCalendlyUrl();
   phase.value = "calendly";
-  nextTick(initCalendly);
 }
 
 function goToCalendly() {
-  phase.value = "calendly";
+  // phase.value = "calendly";
 
-  nextTick(initCalendly);
+  calendlyUrl.value = buildCalendlyUrl();
+  phase.value = "calendly";
+  // createLead();
+
+  // nextTick(initCalendly);
   createLead();
 }
 
@@ -1211,52 +1236,61 @@ function loadCalendlyScript() {
 //   }
 // }
 
-async function handleCalendlyMessage(e) {
-  if (e.origin !== "https://calendly.com") return;
+// async function handleCalendlyMessage(e) {
+//   if (e.origin !== "https://calendly.com") return;
 
+//   if (e.data?.event !== "calendly.event_scheduled") return;
+
+//   try {
+//     const result = await $fetch("/api/calendly/invite", {
+//       method: "POST",
+//       body: {
+//         inviteeUri: e.data.payload.invitee.uri,
+//         eventUri: e.data.payload.event.uri,
+//         sessionId: quizSession.value,
+//       },
+//     });
+
+//     if (!result.success) {
+//       throw new Error("Calendly invite processing failed");
+//     }
+
+//     const inviteeEmail = result.invitee?.resource?.email;
+
+//     if (!inviteeEmail) {
+//       throw new Error("Calendly did not return invitee email");
+//     }
+
+//     contact.value.email = inviteeEmail;
+
+//     scheduledACall.value = "YES";
+
+//     await createActiveCampaignContact();
+
+//     trackSchedule({
+//       email: inviteeEmail,
+//       phone: contact.value.phone,
+//       firstName: contact.value.firstName,
+//       lastName: contact.value.lastName,
+//       q5ConcernCode: a.value.q5,
+//     }).catch(console.error);
+
+//     setTimeout(() => {
+//       navigateTo("/confirmation");
+//     }, 1800);
+
+//   } catch (err) {
+//     console.error("Calendly booking processing failed:", err);
+//   }
+// }
+
+function handleCalendlyMessage(e) {
+  if (e.origin !== "https://calendly.com") return;
   if (e.data?.event !== "calendly.event_scheduled") return;
 
-  try {
-    const result = await $fetch("/api/calendly/invite", {
-      method: "POST",
-      body: {
-        inviteeUri: e.data.payload.invitee.uri,
-        eventUri: e.data.payload.event.uri,
-        sessionId: quizSession.value,
-      },
-    });
-
-    if (!result.success) {
-      throw new Error("Calendly invite processing failed");
-    }
-
-    const inviteeEmail = result.invitee?.resource?.email;
-
-    if (!inviteeEmail) {
-      throw new Error("Calendly did not return invitee email");
-    }
-
-    contact.value.email = inviteeEmail;
-
-    scheduledACall.value = "YES";
-
-    await createActiveCampaignContact();
-
-    trackSchedule({
-      email: inviteeEmail,
-      phone: contact.value.phone,
-      firstName: contact.value.firstName,
-      lastName: contact.value.lastName,
-      q5ConcernCode: a.value.q5,
-    }).catch(console.error);
-
-    setTimeout(() => {
-      navigateTo("/confirmation");
-    }, 1800);
-
-  } catch (err) {
-    console.error("Calendly booking processing failed:", err);
-  }
+  scheduledACall.value = "YES";
+  trackSchedule({ q5ConcernCode: a.value.q5 }).catch(console.error);
+  setTimeout(() => navigateTo("/confirmation"), 1800);
 }
 
 // function initCalendly() {
