@@ -696,21 +696,43 @@ const scheduledACall = ref("NO");
 const leadCreated = ref(false);
 const calendlyUrl = ref("");
 
+// function buildCalendlyUrl() {
+//   const p = new URLSearchParams({
+//     name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
+//     email: contact.value.email,
+//     a1: contact.value.phone,
+//     a2: a.value.homerun,
+//     utm_source: useAttributionData.utmSource || "",
+//     utm_medium: useAttributionData.utmMedium || "",
+//     utm_campaign: useAttributionData.utmCampaign || "",
+//     utm_content: useAttributionData.utmContent || "",
+//     utm_term: quizSession.value || "", // <-- ключ связи с квизом
+//     hide_gdpr_banner: "1",
+//     embed_domain: embedDomain.value,
+//     embed_type: "Inline",
+//   });
+//   return `${CALENDLY_URL}?${p.toString()}`;
+// }
+
 function buildCalendlyUrl() {
-  const p = new URLSearchParams({
+  const attr = attribution.value || {};
+  const params = {
     name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
     email: contact.value.email,
     a1: contact.value.phone,
     a2: a.value.homerun,
-    utm_source: useAttributionData.utmSource || "",
-    utm_medium: useAttributionData.utmMedium || "",
-    utm_campaign: useAttributionData.utmCampaign || "",
-    utm_content: useAttributionData.utmContent || "",
-    utm_term: quizSession.value || "", // <-- ключ связи с квизом
+    utm_source: attr.utm_source,
+    utm_medium: attr.utm_medium,
+    utm_campaign: attr.utm_campaign,
+    utm_content: attr.utm_content,
+    utm_term: quizSession.value,
     hide_gdpr_banner: "1",
     embed_domain: embedDomain.value,
     embed_type: "Inline",
-  });
+  };
+  const p = new URLSearchParams(
+    Object.entries(params).filter(([, v]) => typeof v === "string" && v !== "")
+  );
   return `${CALENDLY_URL}?${p.toString()}`;
 }
 
@@ -1166,9 +1188,18 @@ function handleCalendlyMessage(e) {
 
   scheduledACall.value = "YES";
   trackSchedule({ q5ConcernCode: a.value.q5 }).catch(console.error);
+
+  $fetch("/api/calendly/invite", {
+    method: "POST",
+    body: {
+      inviteeUri: e.data.payload.invitee.uri,
+      eventUri: e.data.payload.event.uri,
+      sessionId: quizSession.value,
+    },
+  }).catch(console.error);
+
   setTimeout(() => navigateTo("/confirmation"), 1800);
 }
-
 // function initCalendly() {
 //   // if (window.Calendly) window.Calendly.initInlineWidgets();
 //   const calendlyPrefill = {

@@ -1,3 +1,5 @@
+//invite.post.ts
+
 import { readBody, createError } from "h3";
 import { prisma } from "../../../prisma/prisma";
 
