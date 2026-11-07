@@ -35,6 +35,36 @@ export default defineEventHandler(async (event) => {
       });
     }
 
+    console.log(
+      "[Calendly Invitee]",
+      JSON.stringify(invitee.resource, null, 2)
+    );
+
+    const resource = invitee.resource;
+
+    console.log({
+      name: resource.name,
+      email: resource.email,
+      timezone: resource.timezone,
+      questions: resource.questions_and_answers,
+      tracking: resource.tracking,
+    });
+
+    const answers = resource.questions_and_answers || [];
+
+    const sessionAnswer = answers.find(
+      (item: any) => item.question === "Quiz Session ID"
+    );
+
+    const sessionId = sessionAnswer?.answer;
+
+    const lead = await prisma.lead.findUnique({
+      where: { sessionId },
+    });
+
+    console.log("[Calendly Lead]", lead);
+
+
     const name = (invitee.resource.name || "").trim();
     const parts = name.split(/\s+/);
     const receivedName = parts.shift() || "";
@@ -59,9 +89,42 @@ export default defineEventHandler(async (event) => {
 
     const now = new Date();
 
-    const existingLead = await prisma.lead.findFirst({
-      where: sessionId ? { sessionId } : { email: inviteeEmail },
-    });
+    // const existingLead = await prisma.lead.findFirst({
+    //   // where: sessionId ? { sessionId } : { email: inviteeEmail },
+    //   where: {
+    //     OR: [
+    //       ...(sessionId ? [{ sessionId }] : []),
+    //       ...(inviteeEmail ? [{ email: inviteeEmail }] : []),
+    //     ],
+    //   },
+    // });
+
+    const [leadBySession, leadByEmail] = await Promise.all([
+      sessionId
+        ? prisma.lead.findUnique({
+            where: { sessionId },
+          })
+        : null,
+
+      inviteeEmail
+        ? prisma.lead.findUnique({
+            where: { email: inviteeEmail },
+          })
+        : null,
+    ]);
+
+    if (
+      leadBySession &&
+      leadByEmail &&
+      leadBySession.id !== leadByEmail.id
+    ) {
+      throw createError({
+        statusCode: 409,
+        statusMessage: "Session ID and email belong to different leads",
+      });
+    }
+
+    const existingLead = leadBySession || leadByEmail;
 
     if (existingLead) {
       const updatedLead = await prisma.lead.update({
