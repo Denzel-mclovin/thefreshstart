@@ -396,7 +396,7 @@
                   </div>
 
                   <div class="button-group">
-                    <button class="q-btn-primary" @click="goToCalendlyDirect()">
+                    <button class="q-btn-primary" @click="goToCalendly()">
                       Book My Free Strategy Call →
                     </button>
                     <button
@@ -869,18 +869,20 @@ function simulateAffirm() {
   }, 1800);
 }
 
-async function goToResults() {
-  transitionName.value = "slide-up";
+// async function goToResults() {
+//   transitionName.value = "slide-up";
 
-  await new Promise((resolve) => setTimeout(resolve, 280));
+//   await new Promise((resolve) => setTimeout(resolve, 280));
 
-  phase.value = "results";
-}
+//   phase.value = "results";
+// }
 
-function goToCalendlyDirect() {
-  phase.value = "calendly";
-  nextTick(initCalendly);
-}
+// function goToCalendlyDirect() {
+//   phase.value = "calendly";
+//   nextTick(initCalendly);
+//   createLead();
+
+// }
 function goToCalendly() {
   phase.value = "calendly";
 
