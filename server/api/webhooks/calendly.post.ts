@@ -1,4 +1,5 @@
 
+// webhook calendly
 import {
   createError,
   defineEventHandler,
@@ -222,7 +223,6 @@ export default defineEventHandler(async (event) => {
       const firstName = nameParts[0] || "";
       const lastName = nameParts.slice(1).join(" ") || "";
 
-      // 1. ищем лида: сначала по сессии, потом по email
       const [bySession, byEmail] = await Promise.all([
         sessionId ? prisma.lead.findUnique({ where: { sessionId } }) : null,
         prisma.lead.findUnique({ where: { email } }),
@@ -238,14 +238,20 @@ export default defineEventHandler(async (event) => {
         timezone: payload.timezone ?? undefined,
       };
 
+      const isEmpty = (v?: string | null) => !v || v === "UNDEFINED";
+
+      const phoneFromCalendly =
+        qa.find(i => /phone/i.test(i.question))?.answer ||
+        (payload as any).text_reminder_number || undefined;
+
       const lead = existing
         ? await prisma.lead.update({
             where: { id: existing.id },
             data: {
               ...bookingData,
-              firstName: existing.firstName || firstName,
-              lastName: existing.lastName || lastName,
-              // email пишем, только если он не занят другим лидом
+              firstName: isEmpty(existing.firstName) ? firstName : existing.firstName,
+              lastName:  isEmpty(existing.lastName)  ? lastName  : existing.lastName,
+              ...(isEmpty(existing.phone) && phoneFromCalendly ? { phone: phoneFromCalendly } : {}),
               ...(!existing.email && !(byEmail && byEmail.id !== existing.id)
                 ? { email } : {}),
             },
@@ -254,28 +260,30 @@ export default defineEventHandler(async (event) => {
             data: { email, firstName, lastName, sessionId, ...bookingData },
           });
 
-      // 2. ответы квиза из вашей таблицы (подставьте свою модель!)
       const quizAnswers = sessionId
         ? await prisma.quizAnswer.findMany({ where: { lead: { sessionId } } })
         : [];
       const ans = (id: number) => quizAnswers.find(x => x.questionId === id)?.answer;
 
-      // 3. один синк в AC со всеми данными
       await syncActiveCampaignContact({
         email,
         firstName,
         lastName,
 
         // !!!!!
-        // q1: ans(1), q2: ans(2), q3: ans(3), q4: ans(4), q5: ans(5),
-        // q5FreeText: lead.quizComment ?? qa.find(i => /homerun|90/i.test(i.question))?.answer,
+        q1: ans(1), 
+        q2: ans(2), 
+        q3: ans(3), 
+        q4: ans(4), 
+        q5: ans(5),
+        q5FreeText: lead.quizComment ?? qa.find(i => /homerun|90/i.test(i.question))?.answer,
         // financingFlag: ans(4) === "affirm",
-        // utmSource: tracking.utm_source,
-        // utmMedium: tracking.utm_medium,
-        // utmCampaign: tracking.utm_campaign,
-        // utmContent: tracking.utm_content,
-        // fbc: lead.fbc ?? undefined,
-        // fbp: lead.fbp ?? undefined,
+        utmSource: tracking.utm_source,
+        utmMedium: tracking.utm_medium,
+        utmCampaign: tracking.utm_campaign,
+        utmContent: tracking.utm_content,
+        fbc: lead.fbc ?? undefined,
+        fbp: lead.fbp ?? undefined,
         bookingStatus: "BOOKED",
         callScheduledFor: scheduledAt,
         scheduledACall: true,

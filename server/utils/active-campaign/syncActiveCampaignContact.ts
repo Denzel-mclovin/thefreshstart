@@ -1,95 +1,4 @@
-
-// import { activeCampaign } from "../activeCampaingClient";
-
-// type BookingStatus = "BOOKED" | "CANCELLED";
-
-// type SyncActiveCampaignContactParams = {
-//   email: string;
-//   firstName: string;
-//   lastName: string;
-//   bookingStatus: BookingStatus;
-//   callScheduledFor?: Date | null;
-// };
-
-// type ActiveCampaignContact = {
-//   id: string;
-// };
-
-// type ContactsResponse = {
-//   contacts: ActiveCampaignContact[];
-// };
-
-// type ContactResponse = {
-//   contact: ActiveCampaignContact;
-// };
-
-// export async function syncActiveCampaignContact({
-//   email,
-//   firstName,
-//   lastName,
-//   bookingStatus,
-//   callScheduledFor = null,
-// }: SyncActiveCampaignContactParams) {
-//   const fieldValues = [
-//     {
-//       field: "54",
-//       value: bookingStatus === "BOOKED" ? "Yes" : "No",
-//     },
-//     {
-//       field: "55",
-//       value: callScheduledFor
-//         ? callScheduledFor.toISOString().slice(0, 10)
-//         : "",
-//     },
-//     {
-//       field: "57",
-//       value: callScheduledFor
-//         ? callScheduledFor.toISOString().slice(11, 16)
-//         : "",
-//     },
-//   ];
-
-//   const searchResponse =
-//     await activeCampaign.get<ContactsResponse>("contacts", {
-//       query: { email },
-//     }) as ContactsResponse;
-
-//   const existingContact = searchResponse.contacts?.[0];
-
-//   let contactId: string;
-
-//   if (existingContact) {
-//     const response =
-//       await activeCampaign.put<ContactResponse>(
-//         `contacts/${existingContact.id}`,
-//         {
-//           contact: {
-//             email,
-//             firstName,
-//             lastName,
-//             fieldValues,
-//           },
-//         },
-//       ) as ContactResponse;
-
-//     contactId = response.contact.id;
-//   } else {
-//     const response =
-//       await activeCampaign.post<ContactResponse>("contacts", {
-//         contact: {
-//           email,
-//           firstName,
-//           lastName,
-//           fieldValues,
-//         },
-//       }) as ContactResponse;
-
-//     contactId = response.contact.id;
-//   }
-
-//   return { contactId };
-// }
-
+// SYNC ACTIVE CAMPAIGN CONTACT
 
 import { activeCampaign } from "../activeCampaingClient";
 
@@ -99,6 +8,18 @@ type SyncContactParams = {
   email: string;
   firstName: string;
   lastName: string;
+  q1?: string;
+  q2?: string;
+  q3?: string;
+  q4?: string;
+  q5?: string;
+  q5FreeText?: string;
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  fbc?: string;
+  fbp?: string;
   bookingStatus: BookingStatus;
   callScheduledFor: Date | null;
   scheduledACall?: boolean;
@@ -111,6 +32,18 @@ export async function syncActiveCampaignContact({
   email,
   firstName,
   lastName,
+  q1,
+  q2,
+  q3,
+  q4,
+  q5,
+  q5FreeText,
+  utmSource,
+  utmMedium,
+  utmCampaign,
+  utmContent,
+  fbc,
+  fbp,
   bookingStatus,
   callScheduledFor,
   scheduledACall,
@@ -119,6 +52,54 @@ export async function syncActiveCampaignContact({
   rescheduleUrl,
 }: SyncContactParams) {
   const fieldValues = [
+    {
+      field: "38",
+      value: q1 ?? "",
+    },
+    {
+      field: "39",
+      value: q2 ?? "",
+    },
+    {
+      field: "40",
+      value: q3 ?? "",
+    },
+    {
+      field: "41",
+      value: q4 ?? "",
+    },
+    {
+      field: "42",
+      value: q5 ?? "",
+    },
+    {
+      field: "43",
+      value: q5FreeText ?? "",
+    },
+    {
+      field: "44",
+      value: utmSource ?? "",
+    },
+    {
+      field: "45",
+      value: utmMedium ?? "",
+    },
+    {
+      field: "46",
+      value: utmCampaign ?? "",
+    },
+    {
+      field: "47",
+      value: utmContent ?? "",
+    },
+    {
+      field: "48",
+      value: fbc ?? "",
+    },
+    {
+      field: "50",
+      value: fbp ?? "",
+    },
     {
       field: "54",
       value: scheduledACall ? "YES" : "NO",
