@@ -13,6 +13,7 @@
 
         <div class="results_content_media">
           <div class="column_content">
+            <VideoComponent src="https://fast.wistia.com/embed/mikapc2u4m.js" class="video_result_bg" media-id="mikapc2u4m" :vertical="true"/>
             <VideoComponent src="https://fast.wistia.com/embed/0j7y3omt95.js" class="video_result_bg" media-id="0j7y3omt95" :vertical="true" />
             <VideoComponent v-if="!isDesktop" src="https://fast.wistia.com/embed/qaafwh40mf.js" class="video_result_bg" media-id="qaafwh40mf" :vertical="true"/>
             <VideoComponent v-if="!isDesktop" src="https://fast.wistia.com/embed/7lxbd0a05q.js" class="video_result_bg" media-id="7lxbd0a05q" :vertical="true" />
