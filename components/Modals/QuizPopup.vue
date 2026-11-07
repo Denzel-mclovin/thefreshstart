@@ -396,7 +396,7 @@
                   </div>
 
                   <div class="button-group">
-                    <button class="q-btn-primary" @click="goToCalendly()">
+                    <button class="q-btn-primary" @click="goToCalendlyDirect()">
                       Book My Free Strategy Call →
                     </button>
                     <button
@@ -921,12 +921,11 @@ function simulateAffirm() {
 //   phase.value = "results";
 // }
 
-// function goToCalendlyDirect() {
-//   phase.value = "calendly";
-//   nextTick(initCalendly);
-//   createLead();
+function goToCalendlyDirect() {
+  phase.value = "calendly";
+  nextTick(initCalendly);
+}
 
-// }
 function goToCalendly() {
   phase.value = "calendly";
 
@@ -1063,6 +1062,43 @@ async function sendUtm() {
 //   }
 // }
 
+// async function createLead() {
+//   if (leadCreated.value) return;
+
+//   try {
+//     const userTimezone =
+//       Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
+
+//     const leadResult = await $fetch("/api/lead/create", {
+//       method: "POST",
+//       body: {
+//         firstName: contact.value.firstName,
+//         lastName: contact.value.lastName,
+//         phoneNumber: contact.value.phone,
+//         userEmail: contact.value.email,
+//         timezone: userTimezone,
+//         sessionId: quizSession.value,
+//         quizComment: a.value.homerun,
+//         consentEmail: consent.value.email,
+//         consentSms: consent.value.sms,
+//       },
+//     });
+
+//     // console.log("Lead created:", leadResult);
+
+//     leadCreated.value = true;
+
+//     // if (!isBreakdown.value) {
+//       await createActiveCampaignContact();
+//     // }
+
+//     return leadResult;
+//   } catch (err) {
+//     console.error("Lead save failed:", err);
+//     throw err;
+//   }
+// }
+
 async function createLead() {
   if (leadCreated.value) return;
 
@@ -1076,7 +1112,7 @@ async function createLead() {
         firstName: contact.value.firstName,
         lastName: contact.value.lastName,
         phoneNumber: contact.value.phone,
-        userEmail: contact.value.email,
+        userEmail: null,
         timezone: userTimezone,
         sessionId: quizSession.value,
         quizComment: a.value.homerun,
@@ -1085,13 +1121,7 @@ async function createLead() {
       },
     });
 
-    // console.log("Lead created:", leadResult);
-
     leadCreated.value = true;
-
-    // if (!isBreakdown.value) {
-      await createActiveCampaignContact();
-    // }
 
     return leadResult;
   } catch (err) {
@@ -1150,20 +1180,44 @@ function loadCalendlyScript() {
   document.head.appendChild(script);
 }
 
+// async function handleCalendlyMessage(e) {
+//   if (e.origin !== "https://calendly.com") return;
+
+//   if (e.data?.event === "calendly.event_scheduled") {
+//     // Fire Schedule event (browser + server CAPI)
+//     trackSchedule({
+//       email: contact.value.email,
+//       phone: contact.value.phone,
+//       firstName: contact.value.firstName,
+//       lastName: contact.value.lastName,
+//       q5ConcernCode: a.value.q5,
+//     }).catch(console.error);
+
+//     await $fetch("/api/calendly/invite", {
+//       method: "POST",
+//       body: {
+//         inviteeUri: e.data.payload.invitee.uri,
+//         eventUri: e.data.payload.event.uri,
+//         sessionId: quizSession.value,
+//       },
+//     });
+//   }
+//   if (e.data?.event === "calendly.event_scheduled") {
+//     setTimeout(() => {
+//       // phase.value = "confirmed";
+
+//       navigateTo("/confirmation");
+//     }, 1800);
+//   }
+// }
+
 async function handleCalendlyMessage(e) {
   if (e.origin !== "https://calendly.com") return;
 
-  if (e.data?.event === "calendly.event_scheduled") {
-    // Fire Schedule event (browser + server CAPI)
-    trackSchedule({
-      email: contact.value.email,
-      phone: contact.value.phone,
-      firstName: contact.value.firstName,
-      lastName: contact.value.lastName,
-      q5ConcernCode: a.value.q5,
-    }).catch(console.error);
+  if (e.data?.event !== "calendly.event_scheduled") return;
 
-    await $fetch("/api/calendly/invite", {
+  try {
+    const result = await $fetch("/api/calendly/invite", {
       method: "POST",
       body: {
         inviteeUri: e.data.payload.invitee.uri,
@@ -1171,32 +1225,85 @@ async function handleCalendlyMessage(e) {
         sessionId: quizSession.value,
       },
     });
-  }
-  if (e.data?.event === "calendly.event_scheduled") {
-    setTimeout(() => {
-      // phase.value = "confirmed";
 
+    if (!result.success) {
+      throw new Error("Calendly invite processing failed");
+    }
+
+    const inviteeEmail = result.invitee?.resource?.email;
+
+    if (!inviteeEmail) {
+      throw new Error("Calendly did not return invitee email");
+    }
+
+    contact.value.email = inviteeEmail;
+
+    scheduledACall.value = "YES";
+
+    await createActiveCampaignContact();
+
+    trackSchedule({
+      email: inviteeEmail,
+      phone: contact.value.phone,
+      firstName: contact.value.firstName,
+      lastName: contact.value.lastName,
+      q5ConcernCode: a.value.q5,
+    }).catch(console.error);
+
+    setTimeout(() => {
       navigateTo("/confirmation");
     }, 1800);
+
+  } catch (err) {
+    console.error("Calendly booking processing failed:", err);
   }
 }
 
-function initCalendly() {
-  // if (window.Calendly) window.Calendly.initInlineWidgets();
-  const calendlyPrefill = {
-    name: `${contact.value.firstName} ${contact.value.lastName}`,
-    email: contact.value.email,
+// function initCalendly() {
+//   // if (window.Calendly) window.Calendly.initInlineWidgets();
+//   const calendlyPrefill = {
+//     name: `${contact.value.firstName} ${contact.value.lastName}`,
+//     email: contact.value.email,
 
+//     customAnswers: {
+//       a1: contact.value.phone || "",
+//       a2: String(a.value.q1 || ""),
+//       a3: String(a.value.q2 || ""),
+//       a4: String(a.value.q3 || ""),
+//       a5: String(a.value.q4 || ""),
+//       a6: String(a.value.q5 || ""),
+//       a7: String(a.value.q5FreeText || ""),
+//       a8: String(a.value.financingFlag ?? false),
+//       a9: String(quizSession.value || ""),
+//     },
+//   };
+
+//   const calendlyUtm = {
+//     utmSource: useAttributionData.utmSource || "",
+//     utmMedium: useAttributionData.utmMedium || "",
+//     utmCampaign: useAttributionData.utmCampaign || "",
+//     utmContent: useAttributionData.utmContent || "",
+//   };
+
+//   Calendly.initInlineWidget({
+//     url: CALENDLY_URL,
+//     parentElement: document.getElementById("calendly-embed"),
+//     prefill: calendlyPrefill,
+//     utm: calendlyUtm,
+//   });
+// }
+
+function initCalendly() {
+  if (!window.Calendly) {
+    console.error("Calendly script is not loaded");
+    return;
+  }
+
+  const calendlyPrefill = {
+    name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
     customAnswers: {
       a1: contact.value.phone || "",
-      a2: String(a.value.q1 || ""),
-      a3: String(a.value.q2 || ""),
-      a4: String(a.value.q3 || ""),
-      a5: String(a.value.q4 || ""),
-      a6: String(a.value.q5 || ""),
-      a7: String(a.value.q5FreeText || ""),
-      a8: String(a.value.financingFlag ?? false),
-      a9: String(quizSession.value || ""),
+      a2: a.value.homerun || "",
     },
   };
 
@@ -1205,11 +1312,21 @@ function initCalendly() {
     utmMedium: useAttributionData.utmMedium || "",
     utmCampaign: useAttributionData.utmCampaign || "",
     utmContent: useAttributionData.utmContent || "",
+    utmTerm: quizSession.value || "",
   };
-  
-  Calendly.initInlineWidget({
+
+  const container = document.getElementById("calendly-embed");
+
+  if (!container) {
+    console.error("Calendly container not found");
+    return;
+  }
+
+  container.innerHTML = "";
+
+  window.Calendly.initInlineWidget({
     url: CALENDLY_URL,
-    parentElement: document.getElementById("calendly-embed"),
+    parentElement: container,
     prefill: calendlyPrefill,
     utm: calendlyUtm,
   });
