@@ -2,7 +2,6 @@ import { prisma } from '../../../prisma/prisma'
 
 export default defineEventHandler(async () => {
 
-    console.log("enter")
   try {
     const leads = await prisma.lead.findMany({
       include: {
@@ -13,8 +12,6 @@ export default defineEventHandler(async () => {
         createdAt: 'desc'
       }
     })
-
-    console.log(leads, "leads")
 
     return {
       success: true,

@@ -104,12 +104,10 @@ export default defineEventHandler(async (event) => {
       },
     });
 
-    // Prepare fields to update directly on Lead
     const leadUpdates: Record<string, any> = {
       lastStep: Math.max(lead.lastStep, questionId),
     };
 
-    // If attribution wasn't fully set on lead, populate it
     if (!lead.utmSource && initialAttributionData.utmSource) {
       Object.assign(leadUpdates, initialAttributionData);
     }
@@ -122,7 +120,6 @@ export default defineEventHandler(async (event) => {
     } else if (questionId === 3) {
       leadUpdates.q3Autonomy = String(answer);
     } else if (questionId === 4) {
-      // Q4 is ts_lead_created! Price is shown at Q4.
       const code = mapQ4ToCode(String(answer));
       const financingFlag = code === "C";
       const newStatus = code === "D" ? "DISQUALIFIED_QUIZ" : "NEW";
@@ -132,7 +129,6 @@ export default defineEventHandler(async (event) => {
       leadUpdates.financingFlag = financingFlag;
       leadUpdates.status = newStatus;
 
-      // Append to status history
       await prisma.leadStatusHistory.create({
         data: {
           leadId: lead.id,

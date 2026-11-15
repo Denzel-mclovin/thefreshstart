@@ -1,17 +1,3 @@
-// server/utils/meta-client.ts
-//
-// Обёртка над Meta Marketing API /insights (read-only, ads_read permission).
-// Это НЕ Conversions API — если нужно ещё отправлять события обратно в Meta
-// для оптимизации рекламы, это отдельная интеграция.
-//
-// Env:
-//   META_AD_ACCOUNT_ID   напр. "act_1234567890" (с префиксом act_)
-//   META_ACCESS_TOKEN    System User token с правом ads_read
-//   META_GRAPH_VERSION   (опционально) напр. "v26.0"
-
-// Marketing API versions are retired roughly every few months, so the version is configurable.
-// v26.0 was released 29 July 2026; check https://developers.facebook.com/docs/graph-api/changelog
-// every few months and bump META_GRAPH_VERSION in .env instead of editing code.
 const GRAPH_VERSION = process.env.META_GRAPH_VERSION || "v26.0";
 
 export interface MetaInsightRow {

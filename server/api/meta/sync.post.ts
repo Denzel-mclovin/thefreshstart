@@ -1,17 +1,3 @@
-// server/api/meta/sync.post.ts
-//
-// POST /api/meta/sync
-// POST /api/meta/sync?date=2026-09-23
-// POST /api/meta/sync?from=2026-09-01&to=2026-09-23
-//
-// Тянет day+ad insights из Meta и делает upsert в AdInsight. Вызывается
-// из cron'а (Supabase Edge Function по расписанию / внешний cron, который
-// бьёт в этот роут), не руками с фронта. Каждый запуск логируется в
-// MetaSyncLog — пропуск синка виден, а не молчаливая дыра в данных.
-//
-// Перед деплоем закройте роут секретом (заголовок с cron secret) — здесь
-// авторизации нет намеренно, т.к. это зависит от вашей текущей схемы миддлвари.
-
 function toCents(dollars: number): number {
   return Math.round(dollars * 100);
 }
