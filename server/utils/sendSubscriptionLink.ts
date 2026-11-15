@@ -3,9 +3,6 @@ import handlebars from 'handlebars'
 import getEmailAttachments from './getEmailAttachments'
 
 
-// import subscriptionTemplate from '../../assets/email/subscription-ntf.hbs?raw'
-
-
 const subscriptionTemplate = `
     <!DOCTYPE html>
 <html lang="en">

@@ -18,7 +18,6 @@ export const useModalStore = defineStore('modal', {
             if (scroll) {
                 document.body.style.overflow = "hidden";
             }
-            // document.body.style.overflow = "hidden";
             
         },
         closeModal() {

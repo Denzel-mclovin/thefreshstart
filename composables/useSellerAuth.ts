@@ -16,7 +16,6 @@ export const useSellerAuth = () => {
   const supabase = useCustomSupabase();
   const authStore = useAuthStore();
 
-//   SELLER REGISTER
   const signUpSeller = async (payload: SellerRegisterPayload) => {
     loading.value = true;
 
@@ -54,7 +53,6 @@ export const useSellerAuth = () => {
     }
   };
 
-// SELLER ENTRANCE
 
   const signInSeller = async (email: string, password: string) => {
   loading.value = true
@@ -84,12 +82,6 @@ export const useSellerAuth = () => {
   }
 }
 
-
-
-// CHECK AUTH
-
-  
-
 const getCurrentSeller = async () => {
   const supabase = useCustomSupabase()
 
@@ -107,7 +99,6 @@ const getCurrentSeller = async () => {
     return null
   }
 
-// 
 }
 
 const canAccessSellerPanel = async () => {
@@ -117,8 +108,6 @@ const canAccessSellerPanel = async () => {
   };
 
 
-
-//   EXIT
 
 const signOutSeller = async () => {
   await supabase.auth.signOut()
