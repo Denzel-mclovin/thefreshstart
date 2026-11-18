@@ -61,7 +61,7 @@ export default defineNuxtConfig({
       supabaseApiUrl: process.env.SUPABASE_API_URL,
       // stripePublicKey: process.env.STRIPE_PUBLIC_KEY
       recaptchaSiteKey: process.env.RECAPTCHA_SITE_KEY,
-      metaPixelId: process.env.META_DATASET_ID || process.env.META_PIXEL_ID || "1850667959625451",
+      metaPixelId: process.env.META_DATASET_ID || process.env.META_PIXEL_ID || "1762596058133899",
     }
   },
   app: {

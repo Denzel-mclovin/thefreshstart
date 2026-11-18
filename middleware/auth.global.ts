@@ -10,7 +10,6 @@ export default defineNuxtRouteMiddleware((to) => {
 
   const role = roleCookie.value
 
-  // ADMIN ROUTES
   if (to.path.startsWith('/admin')) {
     if (to.path === '/admin/login') return
 
@@ -21,10 +20,6 @@ export default defineNuxtRouteMiddleware((to) => {
     return
   }
 
-  // SELLER ROUTES
-
-
-
   if (!to.path.startsWith('/seller')) return;
 
     const publicSellerPages = [
@@ -32,21 +27,9 @@ export default defineNuxtRouteMiddleware((to) => {
       '/seller/reset-password'
     ]
 
-
-
-  // allow login page always
-  // if (to.path === '/seller/login') {
-  //   if (role === 'seller') {
-  //     return navigateTo('/seller')
-  //   }
-  //   return
-  // }
-
   if (publicSellerPages.includes(to.path)) {
     return;
   }
-
-  // AUTH CHECK (COOKIE ONLY — NO SSR CRASH)
 
   if (!role) {
     return navigateTo('/seller/login')
@@ -56,7 +39,6 @@ export default defineNuxtRouteMiddleware((to) => {
     return navigateTo('/seller/login')
   }
 
-  // SELLER APPROVAL FLOW
 
   const seller = auth.seller
 
