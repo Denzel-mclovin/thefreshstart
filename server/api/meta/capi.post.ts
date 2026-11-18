@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { isProductionTrackingAllowed } from "../../utils/meta/meta-guard"
 
 function hashSha256(val?: string | null): string | undefined {
   if (!val) return undefined;
@@ -19,8 +20,7 @@ export default defineEventHandler(async (event) => {
 
   const datasetId =
     process.env.META_DATASET_ID ||
-    process.env.META_PIXEL_ID ||
-    "1850667959625451";
+    process.env.META_PIXEL_ID;
 
   const token =
     process.env.META_CAPI_ACCESS_TOKEN ||
@@ -93,6 +93,13 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
+    if (!isProductionTrackingAllowed(process.env.PUBLIC_SITE_URL)) {
+      return {
+        success: false,
+        skipped: true,
+        reason: 'Non-production tracking source'
+      }
+    }
     const metaUrl = `https://graph.facebook.com/${graphVersion}/${datasetId}/events?access_token=${token}`;
     const metaResponse = await $fetch<any>(metaUrl, {
       method: "POST",

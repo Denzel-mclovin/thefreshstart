@@ -1,5 +1,4 @@
 <template>
-
    <NuxtLayout>
     <NuxtPage />
     <IconLibrary />
@@ -7,7 +6,6 @@
 </template>
 
 <script setup>
-
 import { onMounted } from "vue";
 import IconLibrary from "./components/shared/IconLibrary.vue";
 
@@ -20,7 +18,7 @@ useHead({
     {
       tagPosition: "bodyOpen",
       innerHTML:
-        '<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1850667959625451&amp;ev=PageView&amp;noscript=1" />',
+        '<img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1762596058133899&amp;ev=PageView&amp;noscript=1" />',
     },
   ],
 });
