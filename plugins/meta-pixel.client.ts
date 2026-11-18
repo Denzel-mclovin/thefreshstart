@@ -9,7 +9,17 @@ declare global {
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
-  const pixelId = (config.public as any)?.metaPixelId || '1850667959625451'
+
+  const productionUrl = new URL((config.public as any)?.siteUrl)
+  const allowedHost = productionUrl.hostname
+
+  if (window.location.hostname !== allowedHost) {
+    return
+  }
+
+  const pixelId = (config.public as any)?.metaPixelId;
+
+  if (!pixelId) return
 
   // Initialize Meta Pixel script once on client
   if (typeof window !== 'undefined' && !window.fbq) {

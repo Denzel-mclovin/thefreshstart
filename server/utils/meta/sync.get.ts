@@ -1,7 +1,4 @@
-// server/api/meta/sync.get.ts
-//
-// GET /api/meta/sync — последние 20 запусков синка. Для индикатора
-// "last synced" на дашборде.
+import { prisma } from '../../../prisma/prisma';
 
 export default defineEventHandler(async () => {
   const logs = await prisma.metaSyncLog.findMany({

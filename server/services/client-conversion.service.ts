@@ -1,4 +1,6 @@
+import nuxtConfig from "~/nuxt.config";
 import { prisma } from "../../prisma/prisma";
+import { isProductionTrackingAllowed } from "../utils/meta/meta-guard"
 
 export interface CloseWonParams {
   leadId: string;
@@ -123,7 +125,7 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
 
   // 4. Dispatch offline Purchase event to Meta via CAPI ONLY
   try {
-    const datasetId = process.env.META_DATASET_ID || "1850667959625451";
+    const datasetId = process.env.META_DATASET_ID || "1762596058133899";
     const token = process.env.META_CAPI_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN;
     const graphVersion = process.env.META_GRAPH_VERSION || "v26.0";
 
@@ -161,6 +163,14 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
 
       if (process.env.META_TEST_EVENT_CODE) {
         (capiPayload as any).test_event_code = process.env.META_TEST_EVENT_CODE;
+      }
+
+      if (!isProductionTrackingAllowed(process.env.PUBLIC_SITE_URL)) {
+        return {
+          success: false,
+          skipped: true,
+          reason: 'Non-production tracking source'
+        }
       }
 
       await $fetch(`https://graph.facebook.com/${graphVersion}/${datasetId}/events?access_token=${token}`, {
