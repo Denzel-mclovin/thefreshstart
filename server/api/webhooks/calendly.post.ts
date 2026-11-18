@@ -287,7 +287,7 @@ export default defineEventHandler(async (event) => {
         bookingStatus: "BOOKED",
         callScheduledFor: scheduledAt,
         scheduledACall: true,
-        meetJoinLink: (payload.scheduled_event as any)?.location?.join_url ?? null,
+        meetJoinLink: inviteeUri,
         timezone: payload.timezone ?? null,
         rescheduleUrl: payload.reschedule_url ?? null,
       });
