@@ -17,12 +17,17 @@ function cleanPhone(phone?: string | null): string | undefined {
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+  const config = useRuntimeConfig();
 
   const datasetId =
+    config.metaDatasetId ||
     process.env.META_DATASET_ID ||
-    process.env.META_PIXEL_ID;
+    process.env.META_PIXEL_ID ||
+    (config.public as any)?.metaPixelId ||
+    "1762596058133899";
 
   const token =
+    config.metaCapiAccessToken ||
     process.env.META_CAPI_ACCESS_TOKEN ||
     process.env.META_ACCESS_TOKEN;
 
@@ -35,7 +40,7 @@ export default defineEventHandler(async (event) => {
     };
   }
 
-  const graphVersion = process.env.META_GRAPH_VERSION || "v26.0";
+  const graphVersion = config.metaGraphVersion || process.env.META_GRAPH_VERSION || "v26.0";
 
   // IP extraction (handles Vercel / proxies)
   const forwardedFor = getRequestHeader(event, "x-forwarded-for");
@@ -49,10 +54,14 @@ export default defineEventHandler(async (event) => {
   const eventName = body.eventName || "Lead";
   const eventId = body.eventId; // Critical for deduplication with browser pixel
   const eventTime = body.eventTime || Math.floor(Date.now() / 1000);
+  const origin = getRequestHeader(event, "origin");
+  const referer = getRequestHeader(event, "referer");
   const eventSourceUrl =
     body.eventSourceUrl ||
-    getRequestHeader(event, "referer") ||
-    "https://thefreshstart.com";
+    referer ||
+    origin ||
+    (config.public as any)?.siteUrl ||
+    "https://www.thefreshstart.net";
 
   // Build user_data with SHA-256 hashing for PII
   const userData: Record<string, any> = {
@@ -87,13 +96,13 @@ export default defineEventHandler(async (event) => {
   };
 
   // Optional test code from Meta Events Manager "Test Events" tab
-  if (body.testEventCode || process.env.META_TEST_EVENT_CODE) {
-    payload.test_event_code =
-      body.testEventCode || process.env.META_TEST_EVENT_CODE;
+  const testCode = body.testEventCode || config.metaTestEventCode || process.env.META_TEST_EVENT_CODE;
+  if (testCode) {
+    payload.test_event_code = testCode;
   }
 
   try {
-    if (!isProductionTrackingAllowed(process.env.PUBLIC_SITE_URL)) {
+    if (!isProductionTrackingAllowed(eventSourceUrl, origin, referer)) {
       return {
         success: false,
         skipped: true,

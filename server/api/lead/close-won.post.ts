@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const host = getRequestHeader(event, "host") || "thefreshstart.com";
+  const host = getRequestHeader(event, "host") || "www.thefreshstart.net";
   const protocol = host.includes("localhost") ? "http" : "https";
 
   try {

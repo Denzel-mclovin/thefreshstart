@@ -154,7 +154,7 @@
 //       });
 
 //       // Dispatch CAPI Schedule event directly from server
-//       const host = getRequestHeader(event, "host") || "thefreshstart.com";
+//       const host = getRequestHeader(event, "host") || "www.thefreshstart.net";
 //       const protocol = host.includes("localhost") ? "http" : "https";
 //       try {
 //         await $fetch(`${protocol}://${host}/api/meta/capi`, {
@@ -273,7 +273,7 @@ export default defineEventHandler(async (event) => {
         data: { leadId: updatedLead.id, status: "BOOKED", createdBy: "calendly_invite" },
       });
 
-      const host = getRequestHeader(event, "host") || "thefreshstart.com";
+      const host = getRequestHeader(event, "host") || "www.thefreshstart.net";
       const protocol = host.includes("localhost") ? "http" : "https";
       try {
         await $fetch(`${protocol}://${host}/api/meta/capi`, {

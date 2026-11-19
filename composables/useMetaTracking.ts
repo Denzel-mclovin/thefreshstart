@@ -1,5 +1,12 @@
 import { useAttribution } from "./useAttribution";
 
+function isProdClient(): boolean {
+  if (typeof window === "undefined") return false;
+  const isHttps = window.location.protocol === "https:";
+  const host = window.location.hostname.replace(/^www\./, "").toLowerCase();
+  return isHttps && host === "thefreshstart.net";
+}
+
 export function useMetaTracking() {
   const { attribution, syncFbp } = useAttribution();
 
@@ -13,6 +20,8 @@ export function useMetaTracking() {
   async function trackQuizStart(params: {
     eventId?: string;
   }) {
+    if (!isProdClient()) return "";
+
     syncFbp();
     const eventId = params.eventId || generateEventId("quiz_start");
     const currentUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -54,6 +63,8 @@ export function useMetaTracking() {
     email?: string;
     eventId?: string;
   }) {
+    if (!isProdClient()) return "";
+
     syncFbp();
     const eventId = params.eventId || generateEventId("lead");
     const currentUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -102,6 +113,8 @@ export function useMetaTracking() {
     email?: string;
     eventId?: string;
   }) {
+    if (!isProdClient()) return "";
+
     syncFbp();
     const eventId = params.eventId || generateEventId("quiz_done");
     const currentUrl = typeof window !== "undefined" ? window.location.href : "";
@@ -149,6 +162,8 @@ export function useMetaTracking() {
     q5ConcernCode?: string;
     eventId?: string;
   }) {
+    if (!isProdClient()) return "";
+
     syncFbp();
     const eventId = params.eventId || generateEventId("sched");
     const currentUrl = typeof window !== "undefined" ? window.location.href : "";
