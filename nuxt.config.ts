@@ -52,6 +52,12 @@ export default defineNuxtConfig({
     activeCampaignUrl: process.env.ACTIVE_CAMPAIGN_URL,
     activeCampaignApiKey: process.env.ACTIVE_CAMPAIGN_API_KEY,
 
+    metaCapiEnabled: process.env.META_CAPI_ENABLED !== 'false',
+    metaDatasetId: process.env.META_DATASET_ID || process.env.META_PIXEL_ID || "1762596058133899",
+    metaCapiAccessToken: process.env.META_CAPI_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN,
+    metaGraphVersion: process.env.META_GRAPH_VERSION || "v26.0",
+    metaTestEventCode: process.env.META_TEST_EVENT_CODE,
+
     public: {
       supabaseKey: process.env.SUPABASE_KEY,
       zohoAppHost: process.env.ZOHO_APP_HOST,
@@ -116,7 +122,7 @@ export default defineNuxtConfig({
     exposeConfig: true,
     viewer: true,
   }
-  ], '@vercel/analytics/nuxt', 'nuxt-meta-pixel'],
+  ], '@vercel/analytics/nuxt'],
   image: {
     provider: 'none',
     dir: 'public',

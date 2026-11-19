@@ -10,47 +10,53 @@ declare global {
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
 
-  const productionUrl = new URL((config.public as any)?.siteUrl)
-  const allowedHost = productionUrl.hostname
+  // STRICT PROD CHECK: Only initialize on production domain (https://thefreshstart.net or https://www.thefreshstart.net)
+  if (typeof window === 'undefined') return
 
-  if (window.location.hostname !== allowedHost) {
+  const isHttps = window.location.protocol === 'https:'
+  const host = window.location.hostname.replace(/^www\./, '').toLowerCase()
+  const isProdHost = host === 'thefreshstart.net'
+
+  if (!isHttps || !isProdHost) {
     return
   }
 
-  const pixelId = (config.public as any)?.metaPixelId;
-
+  const pixelId = (config.public as any)?.metaPixelId || '1762596058133899'
   if (!pixelId) return
 
-  // Initialize Meta Pixel script once on client
-  if (typeof window !== 'undefined' && !window.fbq) {
-    const initPixel = (f: any, b: any, e: string, v: string) => {
-      if (f.fbq) return
-      const n: any = (f.fbq = function (...args: any[]) {
-        if (n.callMethod) {
-          n.callMethod.apply(n, args)
-        } else {
-          n.queue.push(args)
-        }
-      })
-      if (!f._fbq) f._fbq = n
-      n.push = n
-      n.loaded = true
-      n.version = '2.0'
-      n.queue = []
-      const t = b.createElement(e)
-      t.async = true
-      t.src = v
-      const s = b.getElementsByTagName(e)[0]
-      s?.parentNode?.insertBefore(t, s)
+  // 1. Initialize Meta Pixel script on client
+  if (typeof window !== 'undefined') {
+    if (!window.fbq) {
+      const initPixel = (f: any, b: any, e: string, v: string) => {
+        if (f.fbq) return
+        const n: any = (f.fbq = function (...args: any[]) {
+          if (n.callMethod) {
+            n.callMethod.apply(n, args)
+          } else {
+            n.queue.push(args)
+          }
+        })
+        if (!f._fbq) f._fbq = n
+        n.push = n
+        n.loaded = true
+        n.version = '2.0'
+        n.queue = []
+        const t = b.createElement(e)
+        t.async = true
+        t.src = v
+        const s = b.getElementsByTagName(e)[0]
+        s?.parentNode?.insertBefore(t, s)
+      }
+
+      initPixel(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js')
     }
 
-    initPixel(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js')
-
+    // Always initialize the Pixel ID and fire the initial PageView
     window.fbq('init', pixelId)
     window.fbq('track', 'PageView')
   }
 
-  // Track page view on route transitions
+  // 2. Track page view on route transitions
   const router = useRouter()
   router.afterEach(() => {
     if (typeof window !== 'undefined' && window.fbq) {

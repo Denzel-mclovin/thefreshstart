@@ -26,7 +26,7 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
     clientGoal,
     clientKpi,
     closedBy = "closer",
-    hostUrl = "https://thefreshstart.com",
+    hostUrl = "https://www.thefreshstart.net",
   } = params;
 
   const lead = await prisma.lead.findUnique({
@@ -125,9 +125,17 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
 
   // 4. Dispatch offline Purchase event to Meta via CAPI ONLY
   try {
-    const datasetId = process.env.META_DATASET_ID || "1762596058133899";
-    const token = process.env.META_CAPI_ACCESS_TOKEN || process.env.META_ACCESS_TOKEN;
-    const graphVersion = process.env.META_GRAPH_VERSION || "v26.0";
+    const config = useRuntimeConfig();
+    const datasetId =
+      config.metaDatasetId ||
+      process.env.META_DATASET_ID ||
+      (config.public as any)?.metaPixelId ||
+      "1762596058133899";
+    const token =
+      config.metaCapiAccessToken ||
+      process.env.META_CAPI_ACCESS_TOKEN ||
+      process.env.META_ACCESS_TOKEN;
+    const graphVersion = config.metaGraphVersion || process.env.META_GRAPH_VERSION || "v26.0";
 
     if (token) {
       const crypto = await import("node:crypto");
@@ -161,11 +169,12 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
         ],
       };
 
-      if (process.env.META_TEST_EVENT_CODE) {
-        (capiPayload as any).test_event_code = process.env.META_TEST_EVENT_CODE;
+      const testCode = config.metaTestEventCode || process.env.META_TEST_EVENT_CODE;
+      if (testCode) {
+        (capiPayload as any).test_event_code = testCode;
       }
 
-      if (!isProductionTrackingAllowed(process.env.PUBLIC_SITE_URL)) {
+      if (!isProductionTrackingAllowed(hostUrl)) {
         return {
           success: false,
           skipped: true,

@@ -1187,7 +1187,13 @@ function handleCalendlyMessage(e) {
   if (e.data?.event !== "calendly.event_scheduled") return;
 
   scheduledACall.value = "YES";
-  trackSchedule({ q5ConcernCode: a.value.q5 }).catch(console.error);
+  trackSchedule({
+    email: contact.value.email,
+    phone: contact.value.phone,
+    firstName: contact.value.firstName,
+    lastName: contact.value.lastName,
+    q5ConcernCode: a.value.q5,
+  }).catch(console.error);
 
   $fetch("/api/calendly/invite", {
     method: "POST",
