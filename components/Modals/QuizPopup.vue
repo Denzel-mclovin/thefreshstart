@@ -969,7 +969,7 @@ async function createLead() {
         firstName: contact.value.firstName,
         lastName: contact.value.lastName,
         phoneNumber: contact.value.phone,
-        userEmail: null,
+        userEmail: contact.value.email,
         timezone: userTimezone,
         sessionId: quizSession.value,
         quizComment: a.value.homerun,
