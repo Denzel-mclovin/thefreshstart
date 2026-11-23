@@ -333,16 +333,6 @@
 
             <transition name="fade" mode="out-in">
               <div v-if="phase === 'results'" key="results" class="q-slide">
-                <!-- <div v-if="loadingResults" class="loading_results">
-                  <div class="ios-spinner">
-                    <div
-                      class="ios-spinner__blade"
-                      v-for="n in 12"
-                      :key="n"
-                    ></div>
-                  </div>
-                  <p class="loading_results__text">Your results will be soon</p>
-                </div> -->
 
                 <div v-if="loadingResults" class="loading_results">
                   <div class="ios-spinner">
@@ -403,7 +393,7 @@
                       class="q-btn-secondary q-btn-neon"
                       @click="phase = 'contact'"
                     >
-                      Email me my full breakdown first
+                      Not ready yet? Email me the full breakdown first →
                     </button>
                   </div>
                 </div>
@@ -524,7 +514,6 @@
                 >
                   {{ a.homerun.length }} / {{ HOMERUN_MAX }}
                 </div>
-                <button class="q-btn-secondary" @click="goToCalendly()">Or skip the line and grab a time with Vito now</button>
                 <button
                   class="q-btn-primary"
                   @click="goToCalendly()"
@@ -532,9 +521,10 @@
                 >
                   Book My Session →
                 </button>
+                <button class="q-btn-secondary" style="margin-top: 16px" @click="goToCalendly()">In a hurry? Skip this question and grab your time with Vito →</button>
                 <button
                   class="q-nav-back"
-                  style="margin-top: 12px"
+                  style="margin-top: auto"
                   @click="phase = 'contact'"
                 >
                   ← Back
@@ -679,14 +669,13 @@ const useAttributionData = useAttribution();
 const teamMemberName = ref("Vito");
 
 // ─── State ─────────────────────────────────────────────────────────────────
-const phase = ref("questions");
-// const phase = ref("results");
+// const phase = ref("questions");
+const phase = ref("homerun");
 
 const stepIdx = ref(0);
 const transitionName = ref("slide-up");
 const submitting = ref(false);
 const contactError = ref("");
-// const quizSession = ref(null);
 const loaderState = ref(false);
 const embedDomain = ref("");
 const affirmVisible = ref(false);
@@ -695,24 +684,6 @@ const isBreakdown = ref(false);
 const scheduledACall = ref("NO");
 const leadCreated = ref(false);
 const calendlyUrl = ref("");
-
-// function buildCalendlyUrl() {
-//   const p = new URLSearchParams({
-//     name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
-//     email: contact.value.email,
-//     a1: contact.value.phone,
-//     a2: a.value.homerun,
-//     utm_source: useAttributionData.utmSource || "",
-//     utm_medium: useAttributionData.utmMedium || "",
-//     utm_campaign: useAttributionData.utmCampaign || "",
-//     utm_content: useAttributionData.utmContent || "",
-//     utm_term: quizSession.value || "", // <-- ключ связи с квизом
-//     hide_gdpr_banner: "1",
-//     embed_domain: embedDomain.value,
-//     embed_type: "Inline",
-//   });
-//   return `${CALENDLY_URL}?${p.toString()}`;
-// }
 
 function buildCalendlyUrl() {
   const attr = attribution.value || {};
@@ -791,19 +762,6 @@ const resultsSummary = computed(() => {
   return `${opener} ${concernHook}\n\n That's exactly what the strategy session is for. To turn this into your specific plan: which country, what it actually costs you, and how fast.`;
 });
 
-// const calendlyUrl = computed(() => {
-//   const p = new URLSearchParams({
-//     name: `${contact.value.firstName} ${contact.value.lastName}`.trim(),
-//     email: contact.value.email,
-//     a1: contact.value.phone,
-//     a2: a.value.homerun,
-//     hide_gdpr_banner: "1",
-//     embed_domain: embedDomain.value,
-//     embed_type: "Inline",
-//   });
-//   return `${CALENDLY_URL}?${p.toString()}`;
-// });
-
 const activeCampaignData = computed(() => ({
   firstName: contact.value.firstName,
   lastName: contact.value.lastName,
@@ -859,7 +817,6 @@ async function next(field, value) {
       return;
     }
 
-    // Q1 is QuizStart
     if (field === "q1") {
       trackQuizStart({}).catch(console.error);
     }
@@ -910,13 +867,6 @@ function simulateAffirm() {
   }, 1800);
 }
 
-// async function goToResults() {
-//   transitionName.value = "slide-up";
-
-//   await new Promise((resolve) => setTimeout(resolve, 280));
-
-//   phase.value = "results";
-// }
 
 function goToCalendlyDirect() {
   // phase.value = "calendly";
@@ -1054,14 +1004,10 @@ async function submitContact() {
     contactError.value = "Please enter a valid email address.";
     return;
   }
-
-  console.log(activeCampaignData.value, "activeCampaignData");
   submitting.value = true;
-  // phase.value = "calendly";
   try {
     isBreakdown.value = true;
 
-    // Fire Lead and QuizCompleted now that we have the email for advanced matching
     const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
     const q4Code = mapQ4[a.value.q4] || a.value.q4;
 
@@ -1085,9 +1031,7 @@ async function submitContact() {
   } finally {
     submitting.value = false;
   }
-  // isBreakdown.value = true;
-  // phase.value = "homerun";
-  // submitting.value = false;
+
 }
 
 // ─── Calendly ──────────────────────────────────────────────────────────────
@@ -1102,85 +1046,6 @@ function loadCalendlyScript() {
   script.async = true;
   document.head.appendChild(script);
 }
-
-// async function handleCalendlyMessage(e) {
-//   if (e.origin !== "https://calendly.com") return;
-
-//   if (e.data?.event === "calendly.event_scheduled") {
-//     // Fire Schedule event (browser + server CAPI)
-//     trackSchedule({
-//       email: contact.value.email,
-//       phone: contact.value.phone,
-//       firstName: contact.value.firstName,
-//       lastName: contact.value.lastName,
-//       q5ConcernCode: a.value.q5,
-//     }).catch(console.error);
-
-//     await $fetch("/api/calendly/invite", {
-//       method: "POST",
-//       body: {
-//         inviteeUri: e.data.payload.invitee.uri,
-//         eventUri: e.data.payload.event.uri,
-//         sessionId: quizSession.value,
-//       },
-//     });
-//   }
-//   if (e.data?.event === "calendly.event_scheduled") {
-//     setTimeout(() => {
-//       // phase.value = "confirmed";
-
-//       navigateTo("/confirmation");
-//     }, 1800);
-//   }
-// }
-
-// async function handleCalendlyMessage(e) {
-//   if (e.origin !== "https://calendly.com") return;
-
-//   if (e.data?.event !== "calendly.event_scheduled") return;
-
-//   try {
-//     const result = await $fetch("/api/calendly/invite", {
-//       method: "POST",
-//       body: {
-//         inviteeUri: e.data.payload.invitee.uri,
-//         eventUri: e.data.payload.event.uri,
-//         sessionId: quizSession.value,
-//       },
-//     });
-
-//     if (!result.success) {
-//       throw new Error("Calendly invite processing failed");
-//     }
-
-//     const inviteeEmail = result.invitee?.resource?.email;
-
-//     if (!inviteeEmail) {
-//       throw new Error("Calendly did not return invitee email");
-//     }
-
-//     contact.value.email = inviteeEmail;
-
-//     scheduledACall.value = "YES";
-
-//     await createActiveCampaignContact();
-
-//     trackSchedule({
-//       email: inviteeEmail,
-//       phone: contact.value.phone,
-//       firstName: contact.value.firstName,
-//       lastName: contact.value.lastName,
-//       q5ConcernCode: a.value.q5,
-//     }).catch(console.error);
-
-//     setTimeout(() => {
-//       navigateTo("/confirmation");
-//     }, 1800);
-
-//   } catch (err) {
-//     console.error("Calendly booking processing failed:", err);
-//   }
-// }
 
 function handleCalendlyMessage(e) {
   if (e.origin !== "https://calendly.com") return;
@@ -1206,39 +1071,6 @@ function handleCalendlyMessage(e) {
 
   setTimeout(() => navigateTo("/confirmation"), 1800);
 }
-// function initCalendly() {
-//   // if (window.Calendly) window.Calendly.initInlineWidgets();
-//   const calendlyPrefill = {
-//     name: `${contact.value.firstName} ${contact.value.lastName}`,
-//     email: contact.value.email,
-
-//     customAnswers: {
-//       a1: contact.value.phone || "",
-//       a2: String(a.value.q1 || ""),
-//       a3: String(a.value.q2 || ""),
-//       a4: String(a.value.q3 || ""),
-//       a5: String(a.value.q4 || ""),
-//       a6: String(a.value.q5 || ""),
-//       a7: String(a.value.q5FreeText || ""),
-//       a8: String(a.value.financingFlag ?? false),
-//       a9: String(quizSession.value || ""),
-//     },
-//   };
-
-//   const calendlyUtm = {
-//     utmSource: useAttributionData.utmSource || "",
-//     utmMedium: useAttributionData.utmMedium || "",
-//     utmCampaign: useAttributionData.utmCampaign || "",
-//     utmContent: useAttributionData.utmContent || "",
-//   };
-
-//   Calendly.initInlineWidget({
-//     url: CALENDLY_URL,
-//     parentElement: document.getElementById("calendly-embed"),
-//     prefill: calendlyPrefill,
-//     utm: calendlyUtm,
-//   });
-// }
 
 function initCalendly() {
   if (!window.Calendly) {
@@ -2106,11 +1938,11 @@ const modalStyle = computed(() => ({
 }
 
 .q-btn-primary {
-  @include mixins.button-primary;
+  @include mixins.button-secondary;
   border-radius: var(--radius-small);
-  color: #ffffff;
+  color: var(--dark-green);
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   padding: 14px 22px;
   width: 100%;
   display: flex;
@@ -2122,15 +1954,17 @@ const modalStyle = computed(() => ({
     opacity: 0.4;
     cursor: not-allowed;
   }
-  &:hover:not(:disabled) {
-    background-color: var(--primary-btn-hover, #004c34) !important;
-  }
+  // &:hover:not(:disabled) {
+  //   background-color: var(--primary-btn-hover, #004c34) !important;
+  // }
 }
 
 .q-btn-secondary {
   @include mixins.button-outline;
-  border-radius: var(--radius-small);
-  color: var(--gray-6);
+  background: none;
+  // border-radius: var(--radius-small);
+  border: unset;
+  color: var(--soft-grey);
   font-size: 14px;
   font-weight: 500;
   padding: 12px 20px;
@@ -2141,6 +1975,7 @@ const modalStyle = computed(() => ({
 
   @media screen and (min-width: 1024px) {
     &:hover {
+      background: unset;
       color: var(--dark-green);
       transition: all ease 0.3s;
     }
@@ -2149,10 +1984,11 @@ const modalStyle = computed(() => ({
 
 .q-btn-neon {
   @include mixins.button-secondary;
+  background: unset;
   border-radius: var(--radius-small);
-  color: var(--text-primary);
+  color: #5F6673;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   padding: 12px 20px;
   width: 100%;
   text-align: center;
@@ -2161,8 +1997,9 @@ const modalStyle = computed(() => ({
 
   @media screen and (min-width: 1024px) {
     &:hover {
-      color: var(--dark-green);
-      transition: all ease 0.3s;
+      // color: var(--dark-green);
+      // transition: all ease 0.3s;
+      background: unset;
     }
   }
 }
