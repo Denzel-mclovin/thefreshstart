@@ -516,12 +516,12 @@
                 </div>
                 <button
                   class="q-btn-primary"
-                  @click="goToCalendly()"
+                  @click="continueFromHomerun()"
                   style="margin-top: 16px"
                 >
                   Book My Session →
                 </button>
-                <button class="q-btn-secondary" style="margin-top: 16px" @click="goToCalendly()">In a hurry? Skip this question and grab your time with Vito →</button>
+                <button class="q-btn-secondary" style="margin-top: 16px" @click="skipHomerun()">In a hurry? Skip this question and grab your time with Vito →</button>
                 <button
                   class="q-nav-back"
                   style="margin-top: auto"
@@ -762,32 +762,55 @@ const resultsSummary = computed(() => {
   return `${opener} ${concernHook}\n\n That's exactly what the strategy session is for. To turn this into your specific plan: which country, what it actually costs you, and how fast.`;
 });
 
-const activeCampaignData = computed(() => ({
-  firstName: contact.value.firstName,
-  lastName: contact.value.lastName,
-  email: contact.value.email,
-  phone: contact.value.phone,
-  q1: a.value.q1,
-  q2: a.value.q2,
-  q3: a.value.q3,
-  q4: a.value.q4,
-  q5: a.value.q5,
-  q5FreeText: a.value.q5FreeText,
-  financingFlag: a.value.financingFlag,
+const activeCampaignData = computed(() => {
+  const attr = attribution.value;
 
-  utmSource: useAttributionData.utmSource,
-  utmMedium: useAttributionData.utmMedium,
-  utmCampaign: useAttributionData.utmCampaign,
-  utmContent: useAttributionData.utmContent,
+  return {
+    q1: a.value.q1,
+    q2: a.value.q2,
+    q3: a.value.q3,
+    q4: a.value.q4,
+    q5: a.value.q5,
+    financingFlag: a.value.q4 === "affirm",
 
-  fbclid: useAttributionData.fbclid,
-  fbc: useAttributionData.fbc,
-  fbp: useAttributionData.fbp,
+    utmSource: attr.utm_source,
+    utmMedium: attr.utm_medium,
+    utmCampaign: attr.utm_campaign,
+    utmContent: attr.utm_content,
 
-  referrer: a.value.referrer,
-  landingPage: a.value.landingPage,
-  scheduledACall: scheduledACall.value,
-}));
+    fbclid: attr.fbclid,
+    fbc: attr.fbc,
+    fbp: attr.fbp,
+
+    referrer: attr.referrer,
+    landingPage: attr.landing_page,
+  };
+});
+
+  // firstName: contact.value.firstName,
+  // lastName: contact.value.lastName,
+  // email: contact.value.email,
+  // phone: contact.value.phone,
+  // q1: a.value.q1,
+  // q2: a.value.q2,
+  // q3: a.value.q3,
+  // q4: a.value.q4,
+  // q5: a.value.q5,
+  // q5FreeText: a.value.q5FreeText,
+  // financingFlag: a.value.financingFlag,
+
+  // utmSource: useAttributionData.utmSource,
+  // utmMedium: useAttributionData.utmMedium,
+  // utmCampaign: useAttributionData.utmCampaign,
+  // utmContent: useAttributionData.utmContent,
+
+  // fbclid: useAttributionData.fbclid,
+  // fbc: useAttributionData.fbc,
+  // fbp: useAttributionData.fbp,
+
+  // referrer: a.value.referrer,
+  // landingPage: a.value.landingPage,
+  // scheduledACall: scheduledACall.value,
 
 // ─── Lifecycle ─────────────────────────────────────────────────────────────
 onMounted(() => {
@@ -957,7 +980,7 @@ async function sendUtm() {
 }
 
 async function createLead() {
-  if (leadCreated.value) return;
+  // if (leadCreated.value) return;
 
   try {
     const userTimezone =
@@ -975,6 +998,7 @@ async function createLead() {
         quizComment: a.value.homerun,
         consentEmail: consent.value.email,
         consentSms: consent.value.sms,
+        ac: activeCampaignData.value, 
       },
     });
 
@@ -1011,7 +1035,7 @@ async function submitContact() {
     const mapQ4 = { yes: "A", week: "B", affirm: "C", no: "D" };
     const q4Code = mapQ4[a.value.q4] || a.value.q4;
 
-    await Promise.all([
+    await Promise.allSettled([
       trackLead({
         q4FinancialReadiness: q4Code,
         financingFlag: q4Code === "C",
@@ -1023,6 +1047,7 @@ async function submitContact() {
         email: email,
       }),
       createLead(),
+      // createActiveCampaignContact(),
     ]);
 
     phase.value = "homerun";
@@ -1070,6 +1095,19 @@ function handleCalendlyMessage(e) {
   }).catch(console.error);
 
   setTimeout(() => navigateTo("/confirmation"), 1800);
+}
+
+async function continueFromHomerun() {
+  if (a.value.homerun.trim()) {
+    await createLead().catch(console.error);
+  }
+  calendlyUrl.value = buildCalendlyUrl();
+  phase.value = "calendly";
+}
+
+function skipHomerun() {
+  calendlyUrl.value = buildCalendlyUrl();
+  phase.value = "calendly";
 }
 
 function initCalendly() {
