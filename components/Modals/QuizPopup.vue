@@ -669,8 +669,8 @@ const useAttributionData = useAttribution();
 const teamMemberName = ref("Vito");
 
 // ─── State ─────────────────────────────────────────────────────────────────
-// const phase = ref("questions");
-const phase = ref("homerun");
+const phase = ref("questions");
+// const phase = ref("homerun");
 
 const stepIdx = ref(0);
 const transitionName = ref("slide-up");
