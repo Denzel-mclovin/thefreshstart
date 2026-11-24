@@ -197,3 +197,24 @@ export const syncContact = async (data: ContactData) => {
 export const createOrUpdateContact = async (data: ContactData) => {
   return await syncContact(data);
 };
+
+export const syncContactWithDefaults = async (data: ContactData) => {
+  if (!isValidEmail(data.email)) {
+    throw new Error("Invalid email");
+  }
+
+  const { scheduledACall: _ignored, ...rest } = data;
+
+  let isNew = false;
+  try {
+    const existing = await findContactByEmail(data.email);
+    isNew = !existing;
+  } catch (err) {
+    console.error("AC contact lookup failed:", err);
+  }
+
+  return syncContact({
+    ...rest,
+    ...(isNew ? { scheduledACall: "NO" } : {}),
+  });
+};
