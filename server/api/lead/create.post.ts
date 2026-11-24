@@ -86,7 +86,7 @@
 
 
 import { prisma } from "../../../prisma/prisma";
-import { createOrUpdateContact } from "../../utils/active-campaign/contacts";
+import { syncContactWithDefaults } from "../../utils/active-campaign/contacts";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
@@ -158,18 +158,35 @@ export default defineEventHandler(async (event) => {
     }
 
     // ─── ActiveCampaign ────────────────────────────────────────────────
+    // if (lead.email) {
+    //   try {
+    //     const { scheduledACall, ...acFields } = ac;
+
+    //     await createOrUpdateContact({
+    //       ...acFields,
+    //       email: lead.email,
+    //       firstName: firstName || undefined,
+    //       lastName: lastName || undefined,
+    //       phone: phoneNumber || undefined,
+    //       q5FreeText: quizComment || undefined,
+    //       ...(lead.status === "NEW" ? { scheduledACall: "NO" } : {}),
+    //     });
+    //   } catch (acErr: any) {
+    //     console.error("ActiveCampaign sync failed:", acErr?.message || acErr);
+    //   }
+    // }
+
     if (lead.email) {
       try {
         const { scheduledACall, ...acFields } = ac;
 
-        await createOrUpdateContact({
+        await syncContactWithDefaults({
           ...acFields,
           email: lead.email,
           firstName: firstName || undefined,
           lastName: lastName || undefined,
           phone: phoneNumber || undefined,
           q5FreeText: quizComment || undefined,
-          ...(lead.status === "NEW" ? { scheduledACall: "NO" } : {}),
         });
       } catch (acErr: any) {
         console.error("ActiveCampaign sync failed:", acErr?.message || acErr);
