@@ -21,7 +21,7 @@ export default defineNuxtPlugin(() => {
     return
   }
 
-  const pixelId = (config.public as any)?.metaPixelId || '1762596058133899'
+  const pixelId = (config.public as any)?.metaPixelId || '1850667959625451'
   if (!pixelId) return
 
   // 1. Initialize Meta Pixel script on client
