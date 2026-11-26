@@ -670,7 +670,7 @@ const teamMemberName = ref("Vito");
 
 // ─── State ─────────────────────────────────────────────────────────────────
 const phase = ref("questions");
-// const phase = ref("homerun");
+// const phase = ref("contact");
 
 const stepIdx = ref(0);
 const transitionName = ref("slide-up");
@@ -715,7 +715,7 @@ const quizSession = useCookie("quiz_session", {
 
 const a = ref({ q1: "", q2: "", q3: "", q4: "", q5: "", homerun: "" });
 const contact = ref({ firstName: "", lastName: "", phone: "", email: "" });
-const consent = ref({ email: false, sms: false });
+const consent = ref({ email: true, sms: true });
 
 const { attribution, syncFbp } = useAttribution();
 const { trackLead, trackSchedule, trackQuizCompleted, trackQuizStart } = useMetaTracking();
