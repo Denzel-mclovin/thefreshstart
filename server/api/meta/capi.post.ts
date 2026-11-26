@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     process.env.META_DATASET_ID ||
     process.env.META_PIXEL_ID ||
     (config.public as any)?.metaPixelId ||
-    "1762596058133899";
+    "1850667959625451";
 
   const token =
     config.metaCapiAccessToken ||

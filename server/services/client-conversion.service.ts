@@ -130,7 +130,7 @@ export async function closeLeadAndCreateClient(params: CloseWonParams) {
       config.metaDatasetId ||
       process.env.META_DATASET_ID ||
       (config.public as any)?.metaPixelId ||
-      "1762596058133899";
+      "1850667959625451";
     const token =
       config.metaCapiAccessToken ||
       process.env.META_CAPI_ACCESS_TOKEN ||
