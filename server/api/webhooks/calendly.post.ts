@@ -41,6 +41,7 @@ type CalendlyPayload = {
     start_time?: string;
     end_time?: string;
   };
+  missedACall?: boolean;
 };
 
 
@@ -142,74 +143,6 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    // if (isCreated) {
-    //   const scheduledAt = payload.scheduled_event?.start_time
-    //     ? new Date(payload.scheduled_event.start_time)
-    //     : null;
-
-    //   if (
-    //     scheduledAt &&
-    //     Number.isNaN(scheduledAt.getTime())
-    //   ) {
-    //     throw new Error("Invalid scheduled event date");
-    //   }
-
-    //   const nameParts = (payload.name ?? "").trim().split(/\s+/);
-
-    //   const lead = await prisma.lead.upsert({
-    //     where: { email },
-    //     create: {
-    //       email,
-    //       firstName: nameParts[0] || "",
-    //       lastName: nameParts.slice(1).join(" ") || "",
-    //       status: "BOOKED",
-    //       bookingMadeAt: new Date(),
-    //       callScheduledFor: scheduledAt,
-    //       calendlyInviteeUri: inviteeUri,
-    //       calendlyEventUri: eventUri ?? null,
-    //     },
-    //     update: {
-    //       status: "BOOKED",
-    //       bookingMadeAt: new Date(),
-    //       callScheduledFor: scheduledAt,
-    //       calendlyInviteeUri: inviteeUri,
-    //       calendlyEventUri: eventUri ?? null,
-    //     },
-    //   });
-
-    //   await syncActiveCampaignContact({
-    //     email,
-    //     firstName: nameParts[0] || "",
-    //     lastName: nameParts.slice(1).join(" ") || "",
-    //     bookingStatus: "BOOKED",
-    //     callScheduledFor: scheduledAt,
-    //     scheduledACall: true,
-    //     meetJoinLink: payload.uri,
-    //     timezone: payload.timezone ?? null,
-    //     rescheduleUrl: payload.reschedule_url ?? null,
-
-    //   });
-
-    //   console.log(`Lead synced with ActiveCampaign: ${email}`);
-
-    //   // await syncActiveCampaignContact({
-    //   //   email,
-    //   //   firstName: nameParts[0] || "",
-    //   //   lastName: nameParts.slice(1).join(" ") || "",
-    //   //   bookingStatus: "BOOKED",
-    //   //   callScheduledFor: scheduledAt,
-    //   //   scheduledACall: true,
-    //   //   meetJoinLink: payload.uri,
-    //   //   timezone: payload.timezone ?? null,
-    //   //   rescheduleUrl: payload.reschedule_url ?? null,
-
-    //   // });
-
-    //   // console.log(`Lead synced with ActiveCampaign: ${email}`);
-
-    //   void lead;
-    // }
-
 
     if (isCreated) {
       const tracking = payload.tracking ?? {};
@@ -290,6 +223,7 @@ export default defineEventHandler(async (event) => {
         meetJoinLink: inviteeUri,
         timezone: payload.timezone ?? null,
         rescheduleUrl: payload.reschedule_url ?? null,
+        missedACall: false,
       });
     }
 

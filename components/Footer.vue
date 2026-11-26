@@ -36,7 +36,7 @@
               </ul>
             </div>
 
-            <div class="links_item">
+            <!-- <div class="links_item">
               <h6>Contact</h6>
               <ul class="links_item_list">
                 <li>
@@ -53,7 +53,7 @@
                   </NuxtLink>
                 </li>
               </ul>
-            </div>
+            </div> -->
           </div>
         </div>
 

@@ -72,12 +72,10 @@
 
   &_media {
     overflow: visible;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    transform: translateY(-10px);
-    width: 75%;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
     height: auto;
     gap: 30px;
 
@@ -89,16 +87,11 @@
       gap: 15px;
     }
 
-    @media screen and (max-width: 480px) {
-      flex-direction: column;
-      justify-content: flex-start;
-      width: 100%;
-      gap: 28px;
+    @media screen and (max-width: 650px) {
+      grid-template-columns: 1fr;
     }
 
-    @media screen and (max-width: 375px) {
-      gap: 24px;
-    }
+
   }
 
   @media screen and (max-width: 1024px) {

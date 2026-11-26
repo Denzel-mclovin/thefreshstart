@@ -122,6 +122,10 @@
               <div class="sd-popup__field-label">📢 Medium</div>
               <div class="sd-popup__field-val">{{ selectedLead.utmMedium }}</div>
             </div>
+            <div class="sd-popup__field">
+              <div class="sd-popup__field-label">🕒 Call</div>
+              <div class="sd-popup__field-val">{{ formatDateTime(selectedLead.callScheduledFor) }}</div>
+            </div>
           </div>
 
           <div class="sd-popup__answers">
@@ -142,6 +146,44 @@
               <div class="sd-answer__a">{{ ans.answer }}</div>
             </div>
           </div>
+
+          <div class="sd-popup__actions">
+            <button
+              class="sd-missed"
+              :disabled="!!missedDisabledReason"
+              @click="missedConfirm = true"
+            >
+              Missed a call
+            </button>
+            <p v-if="missedDisabledReason" class="sd-popup__hint">
+              <!-- {{ missedButtonLabel }} -->
+              {{ missedDisabledReason }}
+            
+            </p>
+          </div>
+        </div>
+      </div>
+    </Teleport>
+
+    <Teleport to="body">
+      <div v-if="missedConfirm" class="sd-overlay" @click.self="closeMissedConfirm">
+        <div class="sd-remove">
+          <div class="sd-remove_head">
+            Mark {{ selectedLead?.firstName }} {{ selectedLead?.lastName }} as missed a call?
+            This will start the automation in ActiveCampaign.
+          </div>
+
+          <p v-if="missedError" class="sd-remove_error">{{ missedError }}</p>
+
+          <div class="sd-remove_body">
+            <button class="accept" :disabled="missedLoading" @click="submitMissedCall">
+              <span v-if="missedLoading" class="sd-spinner sd-spinner--danger"></span>
+              <span v-else>Yes</span>
+            </button>
+            <button class="cancel" :disabled="missedLoading" @click="closeMissedConfirm">
+              No
+            </button>
+          </div>
         </div>
       </div>
     </Teleport>
@@ -156,12 +198,6 @@ import { useSellerStore } from '../../stores/seller';
 import { useModalStore } from '../../stores/modal';
 
 const sellerStore = useSellerStore();
-
-// defineProps({
-//   leads: { type: Array, default: () => [] },
-//   loading: { type: Boolean, default: false },
-// })
-
 const loading = computed(() => sellerStore.loading);
 const leads = computed(() => sellerStore.myLeads);
 
@@ -169,16 +205,29 @@ const selectedLead = ref(null)
 const removeLeadData = ref(null)
 const loaderState = ref(false);
 
+const missedConfirm = ref(false)
+const missedLoading = ref(false)
+const missedError = ref('')
+
 function openLead(lead) { selectedLead.value = lead }
 function removeLead(lead) { removeLeadData.value = lead }
-function closeLead() { selectedLead.value = null }
+function closeLead() { 
+  selectedLead.value = null,
+  missedConfirm.value = false,
+  missedError.value = ''
+}
 
 function getInitials(first, last) {
   return ((first?.[0] || '') + (last?.[0] || '')).toUpperCase() || '?'
 }
 
 function statusLabel(s) {
-  return { COMPLETED: 'Completed', ABANDONED: 'Abandoned', IN_PROGRESS: 'In Progress' }[s] || s
+  return { 
+    COMPLETED: 'Completed', 
+    ABANDONED: 'Abandoned', 
+    IN_PROGRESS: 'In Progress',
+    NO_SHOW: 'Missed', 
+  }[s] || s
 }
 
 function formatDate(d) {
@@ -192,6 +241,52 @@ function closeRemove() {
   removeLeadData.value = null;
 
 
+}
+
+const missedDisabledReason = computed(() => {
+  const lead = selectedLead.value
+  if (!lead) return ''
+  if (lead.status === 'NO_SHOW') return 'Already marked as missed'
+  if (!lead.callScheduledFor) return 'Call has not been scheduled'
+  if (new Date(lead.callScheduledFor) > new Date()) return 'Call has not happened yet'
+  return ''
+})
+
+const missedButtonLabel = computed(() =>
+  selectedLead.value?.status === 'NO_SHOW'
+    ? 'TEST: set Missed a call → NO'
+    : 'TEST: set Missed a call → YES'
+)
+
+function closeMissedConfirm() {
+  if (missedLoading.value) return
+  missedConfirm.value = false
+  missedError.value = ''
+}
+
+async function submitMissedCall() {
+  if (missedLoading.value || missedDisabledReason.value) return
+
+  missedLoading.value = true
+  missedError.value = ''
+
+  try {
+    const updated = await sellerStore.markMissedCall(selectedLead.value.id)
+    selectedLead.value = updated
+    missedConfirm.value = false
+  } catch (e) {
+    missedError.value = e?.data?.statusMessage || 'Something went wrong. Try again.'
+  } finally {
+    missedLoading.value = false
+  }
+}
+
+function formatDateTime(d) {
+  if (!d) return 'Not scheduled'
+  return new Date(d).toLocaleString('ru-RU', {
+    day: '2-digit', month: '2-digit', year: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+  })
 }
 
 
@@ -668,5 +763,68 @@ definePageMeta({
     }
 
   }
+
+  
+}
+
+.sd-badge--no_show { background: #fff0f3; color: #dc2626; border: 1px solid #fecdd3; }
+
+.sd-popup__actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e8e0f0;
+}
+
+.sd-missed {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--danger);
+  background: transparent;
+  color: var(--danger);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+
+  &:hover:not(:disabled) {
+    background: var(--danger);
+    color: white;
+  }
+
+  &:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+  }
+}
+
+.sd-popup__hint {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+
+.sd-remove_error {
+  margin: 0;
+  font-size: 13px;
+  color: var(--danger);
+}
+
+.sd-remove_body button:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+.sd-remove_body .accept {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+}
+
+.sd-spinner--danger {
+  border-color: rgba(225, 0, 77, .25);
+  border-top-color: #e1004d;
 }
 </style>

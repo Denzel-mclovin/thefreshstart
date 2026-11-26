@@ -31,6 +31,7 @@ type SyncContactParams = {
   meetJoinLink?: string | null;
   timezone?: string | null;
   rescheduleUrl?: string | null;
+  missedACall?: boolean;
 };
 
 function formatInTimezone(date: Date, timeZone?: string | null) {
@@ -87,6 +88,11 @@ export async function syncActiveCampaignContact(p: SyncContactParams) {
     { field: "58", value: p.meetJoinLink ?? undefined },
     { field: "59", value: p.timezone ?? undefined },
     { field: "60", value: p.rescheduleUrl ?? undefined },
+    {
+      field: "61",
+      value:
+        p.missedACall === undefined ? undefined : p.missedACall ? "YES" : "NO",
+    },
   ];
 
   const fieldValues = raw
