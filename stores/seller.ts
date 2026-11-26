@@ -144,6 +144,15 @@ export const useSellerStore = defineStore('seller', {
             } finally {
                 this.loading = false    
             }
-        }
+        }, 
+
+        async markMissedCall(leadId) {
+            const updated = await $fetch(`/api/lead/${leadId}/missed-call`, { method: 'POST' })
+
+            const i = this.myLeads.findIndex((l) => l.id === leadId)
+            if (i !== -1) this.myLeads[i] = updated
+
+            return updated
+        },
     },
 });
