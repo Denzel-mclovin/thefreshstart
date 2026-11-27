@@ -180,14 +180,16 @@ export default defineEventHandler(async (event) => {
       try {
         const { scheduledACall, ...acFields } = ac;
 
-        await syncContactWithDefaults({
+        await syncContactWithDefaults(
+        {
           ...acFields,
           email: lead.email,
           firstName: firstName || undefined,
           lastName: lastName || undefined,
           phone: phoneNumber || undefined,
           q5FreeText: quizComment || undefined,
-        });
+        }
+        );
       } catch (acErr: any) {
         console.error("ActiveCampaign sync failed:", acErr?.message || acErr);
       }
