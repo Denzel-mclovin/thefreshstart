@@ -44,6 +44,7 @@ type ContactData = {
   referrer?: string;
   landingPage?: string;
   scheduledACall?: string;
+  missedACall?: string;
 };
 
 const isValidEmail = (email: string) => {
@@ -73,11 +74,11 @@ const buildFieldValues = (data: ContactData) => {
     [ACTIVE_CAMPAIGN_FIELDS.FB_CLICK_ID, data.fbclid],
     [ACTIVE_CAMPAIGN_FIELDS.FBC, data.fbc],
     [ACTIVE_CAMPAIGN_FIELDS.FBP, data.fbp],
-    [ACTIVE_CAMPAIGN_FIELDS.FBP, data.fbp],
 
     [ACTIVE_CAMPAIGN_FIELDS.REFERRER, data.referrer],
     [ACTIVE_CAMPAIGN_FIELDS.LANDING_PAGE, data.landingPage],
     [ACTIVE_CAMPAIGN_FIELDS.SCHEDULED_A_CALL, data.scheduledACall],
+    [ACTIVE_CAMPAIGN_FIELDS.MISSED_A_CALL, data.missedACall],
 
 
   ];
@@ -215,6 +216,6 @@ export const syncContactWithDefaults = async (data: ContactData) => {
 
   return syncContact({
     ...rest,
-    ...(isNew ? { scheduledACall: "NO" } : {}),
+    ...(isNew ? { scheduledACall: "NO", missedACall: "NO"  } : {}),
   });
 };
