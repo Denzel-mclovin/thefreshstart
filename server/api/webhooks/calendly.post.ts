@@ -37,9 +37,13 @@ type CalendlyPayload = {
   new_invitee?: string | null;
 
   scheduled_event?: {
+    // uri?: string;
+    // start_time?: string;
+    // end_time?: string;
     uri?: string;
     start_time?: string;
     end_time?: string;
+    location?: { type?: string; join_url?: string };
   };
   missedACall?: boolean;
 };
@@ -59,7 +63,6 @@ export default defineEventHandler(async (event) => {
 
   const body = await readBody<CalendlyWebhook>(event);
 
-  console.log(body, "Calendly Webhook Received");
 
   const isCreated = body.event === "invitee.created";
   const isCanceled = body.event === "invitee.canceled";
@@ -166,6 +169,7 @@ export default defineEventHandler(async (event) => {
         status: "BOOKED" as const,
         bookingMadeAt: new Date(),
         callScheduledFor: scheduledAt,
+        callOutcomeAt: null,
         calendlyInviteeUri: inviteeUri,
         calendlyEventUri: eventUri ?? null,
         timezone: payload.timezone ?? undefined,

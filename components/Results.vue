@@ -53,10 +53,10 @@ const columnContentLeft = ref([
     id: 3,
     imgPath: "/images/screen3.png",
   },
-     {
-    id: 6,
-    imgPath: "/images/screen6.png",
-  },
+  // {
+  //   id: 6,
+  //   imgPath: "/images/screen6.png",
+  // },
 
 
 ])
